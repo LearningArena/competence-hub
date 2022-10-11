@@ -2,9 +2,11 @@
 
 Background, reason for existance ...
 
-## Parts of old private README ...
+_< Parts of old private README ...>_
 
 ## Contributing
+
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on working with the project.
 
 ## License
 
