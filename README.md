@@ -1,4 +1,4 @@
-# Course Manager
+# Competence Hub
 
 Background, reason for existance ...
 
