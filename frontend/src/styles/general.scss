@@ -1,0 +1,1522 @@
+/* SASS GENERALS
+    I N D E X
+    * APP (.app)
+    * Typography 
+        h1,h2,h3,h4,h5
+        p, a
+        ul, li
+    * General Graphics
+       .buttons
+       .dropdown styling
+       .icon-button
+        Select
+    * Content general 
+        .flex-row
+        .image-grid
+        .postgrid-flex
+        Table
+        .post-item
+        .list-view
+        
+    * pop-up
+    * Cards and Accordion
+    * postgrid-flex
+    * BOX
+        .box,
+        .grid-col-1 etc
+
+    * BOOTSTRAP Overwrite
+    * Cards and Accordion
+*/
+@import 'variables.scss';
+
+*, *::before, *::after, *:focus, *:active {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  font-family: 'Raleway', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiazsed;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/** ========= APP ======= **/
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+  font-size: 16px;
+} 
+
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.centered-header {
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* ========= TYPOGRAPHY ========= */
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Raleway';
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 400;
+  color: $colTextDark;
+}
+
+h1 {
+  font-family: 'Josefin Sans';
+  font-weight: normal;
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.3rem;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 40px;
+  text-align: center;
+}
+
+h3 {
+  font-size: 1.15em;
+  line-height: 20px;
+}
+
+h4 {
+  font-size: 1em;
+  font-weight: bold;
+}
+
+h5 {
+  font-size: 0.7rem;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 40px;
+}
+
+p {
+  line-height: 1.5em;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.25s ease-in-out;
+  
+  h2, h3, h4, h5, p {
+    transition: all 0.25s ease-in-out;
+  }
+
+  
+
+  &:before, &:after {
+    color: inherit;
+    transition: all 0.5s ease-in-out;
+  }
+}
+
+p a, span a, ul.bullet-list li a {
+  color: $colLearnD;
+} 
+
+a:hover {
+  color: $colLearnHov;
+  h2, h3, h4, h5, p {
+    color: $colLearnHov;
+  }
+}
+
+strong {
+  display: inline-block;
+}
+
+
+
+ul {
+  margin: 0;
+  padding-left: 0;
+}
+
+ul li {
+  list-style: none;
+  .user-acount-type {
+    white-space: nowrap;
+  }
+}
+
+ul.bullet-list li {
+  list-style: none;
+  margin-left: 1.25em;
+  margin-bottom: 1em;
+  line-height: 1.5em;
+
+  &:before {
+    content:"•";
+    font-weight: bold;
+    font-size: 2.5em;
+    line-height: 0.6em;
+    color: $colLearnD;
+    display: inline-block;
+    margin-right: 0.5em;
+    margin-left: -0.5em;
+    position: absolute;
+  }
+
+  .user-acount-type {
+    white-space: nowrap;
+  }
+}
+
+svg {
+  * {
+    transition: all 0.5s ease-in-out;
+  }
+}
+
+
+/* ====== POSITIONING ======= */
+.align-center {
+  margin: 0 auto;
+}
+
+.align-left {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.align-right {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+
+/* ======= BUTTONS ========= */ 
+
+button, input {
+  -webkit-appearance: none; //Disable IOS styling 
+}
+.button-container {
+  display: flex;
+}
+
+button {
+  border: none; //Disable browser default
+  cursor: pointer;
+}
+
+.button {
+  display: inline-flex;
+  font-family: 'Raleway';
+  padding: 1em;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: $colButtonBG;
+  color: $colTextLight;
+  transition: all 0.5s ease-in-out;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+
+
+   h3, h4, h5, p, a {
+      margin: 0;
+      background: transparent !important;
+      transition: all 0.5s ease-in-out;
+  }
+
+  a {
+    color: $colTextLight !important;
+    &:hover {
+      color: $colTextDark !important;
+    }
+  }
+ 
+  &:hover {
+    background-color: $colLearnHov;
+    color: $colTextDark !important;
+    h2, h3, h4, h5, p, a {
+      color: $colTextDark !important;
+    }
+  }
+  
+// BUTTON, no background with OUTLINE
+
+  &.button-b {
+    background: transparent;
+    border: solid 3px $colButtonBG;
+    color: $colButtonBG;
+
+    &:hover {
+      border-color: transparent
+    }
+  }
+
+  &.align-right {
+    margin-left: 0;
+    margin-right: auto;
+  }
+
+  &.align-center {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  &.align-left {
+    margin-left: auto;
+    margin-right: 0;
+  }
+} //END .button
+
+button.icon-button {
+  position: relative;
+  width: auto;
+  padding: 0.5em;
+  outline: solid 2px transparent;
+  &.table {
+    padding: 0.1em;
+  }
+  
+
+  &:hover  {
+  
+   outline: solid 2px $colButtonBG;
+
+    svg {
+    path, rect {
+      fill: $colButtonBG;
+    }
+      line {
+        stroke: $colButtonBG;
+      }
+    }
+  }
+
+  &.not-active {
+    opacity: 0.5;   
+  }
+}
+
+button.icon-only, .button.icon-only {
+    background: transparent !important;
+    color: $colTextDark;
+    border: none !important;
+
+    &:hover {
+      background: transparent !important;
+    }
+}
+
+button.link-button {
+  width: auto;
+
+  &.read-more {
+    align-self: flex-end;
+  }
+}
+
+.image-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+button.show-more {
+  position: relative;
+  font-size: 0.75em;
+  padding: 0.25em 0.5em;
+
+  background: none;
+  color: $colTextDark;
+
+  &::after {
+    content: "▶";
+    margin-left: 1em;
+    transition: transform 0.5s ease-in;
+  }
+
+  &.expanded::after {
+    transform: rotate(90deg);
+  }
+}
+
+button.load-more {
+  margin: 2em 1em;
+}
+
+/*** POP UP ****/
+
+
+.popup-wrapper {
+ 
+}
+
+.popup-content {
+  h2, h3, h4, p {
+    color: $colTextLight;
+  }
+
+  .course-information {
+    color: $colTextDark;
+  }
+  .button {
+    background-color: $colLearnC;
+    border: solid 3px $colLearnC;
+    color: $colTextDark;
+    padding: 0.5rem 2rem;
+    margin: 0 0.5em;
+    text-transform: uppercase;
+    &:hover {
+      border-color: $colEduC;
+      background-color: $colButtonHov;
+      color: $colButtonHov;
+      transition: all 0.5s ease-in-out;  
+    }
+  } 
+
+  .button-b {
+    background: transparent;
+    border: solid 3px $colLearnC;
+    color: $colLearnC;;
+    
+    &:hover {
+      border-color: transparent;
+      background-color: $colButtonHov;
+    }
+  }
+}
+
+.back-button {
+  color: $colTextLight !important;
+
+  .back-icon {
+    display: inline-block;
+    transition: transform 0.5s ease-in;
+    margin-left: 2px;
+
+  }
+  &:hover {
+    color: $colEduHov !important;
+
+    .back-icon {
+      transform: scale(1.2);
+      
+    }
+  }
+}
+
+.popup-buttons {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+
+  .button {
+    margin: 2rem auto 0rem;
+  }
+}
+
+/* ======= FORMS (input, select etc.) ========= */ 
+form.add-edu {
+  margin-left: 0;
+  margin-right: 0;
+  .button-wrapper {
+    .dropdown {
+      min-width: 15em;
+      height: 2.5em;
+    }
+  }
+}
+
+form .button-wrapper, form .button-group, form .add-edu-buttons, form .sticky-wrapper {
+  margin-top: 0!important;
+}
+
+.search-bar-container {
+  form {
+  padding-bottom: 10px!important;
+  }
+}
+
+form {
+  //padding-top: 50px;
+  padding-bottom: 50px;
+  margin-left: 40px;
+  margin-right: 40px;
+  .form-margin {
+    margin-left: 40px!important;
+    margin-right: 40px!important;
+  }
+  .labelwrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 20px;
+    justify-content: space-between;
+  }
+  .checkbox {
+    text-align: left;
+    input {
+      width: unset!important;
+    }
+
+    :focus {
+      border: none!important;
+      outline: none!important;
+      box-shadow: none!important;
+    }
+
+  }
+  .upload-specifications {
+    font-style: italic;
+    font-size: 10pt;
+  }
+
+  .limit {
+    text-align: right;
+    font-size: 0.8em;
+    font-weight: 300;
+    &.over {
+      color: red;
+      font-weight: 500;
+    }
+  }
+
+  .questionmark {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+    
+    svg {
+      height: 1.2em;
+      margin: 0;
+      path {
+        fill: $colEduC;
+      }
+    }
+  }
+  
+  * {
+    display: block;
+    margin-top: 5px;
+  }
+
+  .columns {
+    //position: relative;
+    display: flex;
+    .column-left, .column-right {
+     align-items: start;
+     justify-content: flex-end;
+     > div {
+        width: 100%;
+      }
+    }
+    .column-left {
+      //background-color: red;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      width: 100%;
+      padding-right: 5%;
+      .column-left-double {
+        display: flex;
+        margin-top: 0;
+        padding-top: 0;
+        .leftone {
+          width: 100%;
+          padding-right: 5%;
+          //background-color: red;
+          margin-top: 0;
+          .react-datepicker-wrapper, .react-datepicker__input-container {
+            margin-top: 0;
+            padding-top: 0;
+          }
+        }
+        .lefttwo {
+          //background-color: blue;
+          width: 100%;
+          padding-left: 5%;
+          margin-top: 0;
+          .react-datepicker-wrapper, .react-datepicker__input-container {
+            margin-top: 0;
+            padding-top: 0;
+          }
+        }
+      }
+      input, select, h5{
+        width: 100%; 
+      }
+    }
+    .column-right {
+      //background-color: blue;
+      flex-direction: column;
+      display: flex;
+      flex: 1;
+      width: 100%;
+      padding-left: 5%;
+      input, select, h5 {
+        width: 100%; 
+        
+      }
+    }
+    .push-right {
+      justify-content: flex-end!important;
+
+    }
+  }
+
+  label {
+    align-self: flex-start;
+    display: flex;
+  }
+
+  input[type=text]:focus, textarea:focus, select:focus {
+    outline: none;
+    border: 3px solid $colEduA; 
+  }
+
+  input[type=checkbox] {
+   position: relative;
+    background: transparent;
+    height: 20px;
+    width: 20px;
+
+    cursor: pointer;
+   
+    &:before {
+      content: "";
+      position: absolute;
+      background: #ffffff;
+      opacity: 1;
+      border: solid 1px $colButtonBG;
+      height: 20px;
+      width: 20px;
+      left: 0px;
+      top: 0;
+      display: inline-block;
+      pointer-events: none;
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      left: 8px;
+      top: 4px;
+      width: 5px;
+      height: 10px;
+      border: solid $colHeaderBG;
+      border-width: 0 3px 3px 0;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s ease-in;
+    }
+  }
+
+  input[type=checkbox]:checked {
+    &:after {
+      opacity: 1;
+    }
+  }
+  
+
+  input:disabled {
+    opacity: 0.5;
+  }
+
+  label {
+    //margin-top: 20px;
+    padding-right: 0.5em;
+  }
+  
+  .error {
+    font-size: 0.8em;
+    padding-left: 0.5rem;
+    color: red;
+  }
+
+  h4 {
+    margin-top: 80px;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  h5 {
+    margin-top: 20px;
+    margin-bottom: 0;
+    width: 100%;
+    text-transform: uppercase;
+    display: inline-flex;
+    flex-wrap: nowrap;
+    justify-content: space-evenly !important;
+  }
+  
+  .inline {
+    display: inline;
+    margin-right: 10px;
+    * {
+      margin-right: 10px;
+      display: inline;
+    }
+
+    input, select {
+      width: 20%;
+    }
+  }
+
+  img {
+    max-height: 100px;
+  }
+
+
+  select.inline {
+    width: 20%;
+  }
+
+  input {
+    width: 45%;
+    padding: 0;
+  }
+  select {
+    width: 45%;
+    padding: 0;
+    color: $colTextDark;
+    background-color: $colEduC;
+    padding: 8px 6px 8px 6px !important;
+    ::placeholder {
+      font-style: italic !important;
+    }
+  }
+    
+  input[type=file]::-webkit-file-upload-button {
+    background-color: red;
+  }
+  
+  textarea {
+    width: 100%;
+    padding: 0;
+    box-sizing: border-box;
+    resize: none;
+    overflow-y: scroll;
+  }
+  
+  ::placeholder {
+    font-style: italic;
+  }
+  
+  input, textarea, select {
+    border: none;
+    font-family: inherit;
+    font-size: 11pt;
+    padding: 0.8em;
+    padding-left: 1em;
+    transition: all 0.25s ease-in;
+    &:focus {
+      border: none!important;
+      box-shadow:
+      inset 0 0em 0em rgba(0,0,0,0.1),
+            0 0  0 2px $colLearnC,
+            0.3em 0.3em 1em rgba(0,0,0,0.3);
+    }
+  }
+  
+  .dropdown__control {
+    font-style: italic;
+    background-color: white;
+    border-radius: 0;
+    border-style: none;
+    margin-top: 0;
+    path {
+      color: $colTextDark;
+    }
+  }
+  
+  .dropdown__single-value { 
+    font-style: normal;
+    margin-top: 0;
+  }
+
+  .dropdown__control--is-focused {
+    border: none;
+    box-shadow:
+    inset 0 0em 0em rgba(0,0,0,0.1),
+          0 0  0 2px $colLearnC,
+          0.3em 0.3em 1em rgba(0,0,0,0.3);
+  }
+
+  input.choose-image {
+    height: auto;
+    width: auto;
+    padding: 5px 0 0 0;
+    letter-spacing: 0.1em;
+  }
+  
+
+  .dropdown__value-container {
+    //padding: 0 0.8em;
+  }
+
+  .dropdown__indicators {
+    margin-top: 0;
+  }
+  .dropdown__indicator {
+    padding: 0;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-top: 0;
+    svg {
+      margin-top: 0;
+      width: 10px;
+      height: 10px;
+    }
+  }
+  .dropdown__placeholder {
+    margin-top: 0;
+  }
+
+  .dropdown__option--is-selected {
+    background-color: $colLearnC;
+    color: $colTextDark;
+  }
+  .dropdown__value-container {
+    margin-top: 0;
+    
+  }
+
+  .dropdown__menu {
+    background-color: #666e70;   
+    border-radius: 6pt;
+    color: $colTextLight;
+    font-size: 1em;
+    padding: 0.3em;
+    
+  }
+  .dropdown__option--is-focused {
+    background-color: $colEduB;
+    color: $colTextDark;
+    border-radius: 4pt;
+    &:active {
+      background-color: $colEduB;
+      color: $colTextDark;
+    
+    }
+    b {
+      color: $colTextDark;
+    }
+  }
+
+  input.negative[type=file]::-webkit-file-upload-button { //Chrome browser 
+    background-color: $colEduHov;
+    color: $colTextDark;
+  }
+  input.negative[type=file]::-webkit-file-upload-button:hover { //Chrome browser 
+    background-color: $colEduC;
+    color: $colTextDark;
+  }
+  input.negative[type=file]::-webkit-file-upload-button:focus { //Chrome browser 
+    outline: none;
+  }
+  input.negative[type=file]::-webkit-file-upload-button:active { //Chrome browser 
+    outline-color: $colEduD;
+  }
+  input.negative[type=file]::file-selector-button {  //Firefox browser 
+    background-color:$colEduHov;
+    color: $colTextDark;
+  }
+  input.negative[type=file]::file-selector-button:hover { //Firefox browser 
+    background-color: $colEduC;
+    color: $colTextDark;
+  }
+
+  input.negative[type=file]::file-selector-button:focus { //Firefox browser 
+    outline: none;
+  }
+
+  input.negative[type=file]::file-selector-button:active { //Firefox browser 
+    outline-color: $colEduD;
+  }
+
+
+
+
+
+  input[type=file]::-webkit-file-upload-button { //Chrome browser 
+    background-color: $colButtonBG;
+    color: $colTextLight;
+    border: none;
+    height: 60px;
+    width: 140px;
+    padding: 10px;
+    text-decoration: none;
+    font-family: 'Raleway';
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 400;
+    font-size: 0.9em;
+    line-height: 20px;
+    transition: all 0.25s ease-in;
+    cursor: pointer;
+    
+  }
+  input[type=file]::-webkit-file-upload-button:hover { //Chrome browser 
+    background-color: $colEduHov;
+    color: $colTextDark;
+  }
+  input[type=file]::-webkit-file-upload-button:focus { //Chrome browser 
+    outline: none;
+  }
+  input[type=file]::-webkit-file-upload-button:active { //Chrome browser 
+    outline-color: $colEduD;
+    outline-width: 2px;
+    outline-style: solid;
+  }
+  input[type=file]::file-selector-button {  //Firefox browser 
+    background-color: $colButtonBG;
+    color: $colTextLight;
+    border: none;
+    height: 60px;
+    width: 140px;
+    padding: 10px;
+    text-decoration: none;
+    font-family: 'Raleway';
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 400;
+    font-size: 0.9em;
+    line-height: 20px;  
+  }
+  input[type=file]::file-selector-button:hover { //Firefox browser 
+    background-color: $colEduHov;
+    color: $colTextDark;
+  }
+
+  input[type=file]::file-selector-button:focus { //Firefox browser 
+    outline: none;
+  }
+
+  input[type=file]::file-selector-button:active { //Firefox browser 
+    outline-color: $colEduD;
+    outline-width: 2px;
+    outline-style: solid;
+  }
+
+  label {
+    font-weight: 500;
+    font-size: 1em;
+  }
+  
+  .checkbox {
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    align-items: center;
+    .labelwrapper {
+      margin: 0;
+    }
+    input {
+      width: auto;
+    }
+    label {
+      order: 2;
+      margin: 0;
+      font-weight: 400;
+      font-size: 0.7em;
+    }
+  }
+  input.disable-all {
+    opacity: 0.2;
+  }
+  input.datum, .other, .labelwrapper.revert.datum{
+    pointer-events: none;
+    opacity: 0.2;
+  }
+  input.revert.other, .labelwrapper.revert.other {
+    opacity: 1;
+    pointer-events: visible;
+  }
+  .disable-all {
+    pointer-events: none;
+    label {
+      opacity: 0.2;
+    }
+    input, select, form textarea, textarea, form select, ::placeholder, .dropdown__control{
+      opacity: 0.2;
+    }
+  }
+} //End form  
+
+.popup-basic {
+  form .error {
+  color: rgb(255, 92, 92);
+  font-weight: 500;
+  font-size: 12pt;
+  }
+}
+
+.box-half {
+  width: 50% !important;
+  min-width: 500px !important;
+}
+
+  .box-half form {
+    input, select {
+      width: 100%;
+    }
+  }
+  @-moz-document url-prefix() {
+    select {
+      -moz-appearance:none !important;
+      background:  url('../../src/images/dropdownarrow_white.png') no-repeat !important;
+      background-size: 8px  !important;
+      background-position: calc(100% - 3px) center !important;
+    }
+    form select {
+      background:  url('../../src/images/dropdownarrow_black.png') no-repeat !important;
+      background-size: 10px  !important;
+      background-position: calc(100% - 5px) center !important;
+      background-color: #fcffff !important;
+    }
+    .register-user select {
+      background-color: $colEduC !important;
+    }
+    .add-request select {
+      background-color: $colButtonBG !important;
+    }
+  }
+  .checkbox-horizontal{   // in add education form language picker
+    display: flex;
+    flex-direction: row;
+    justify-items: baseline !important;
+    justify-content: space-between;
+    .checkbox {
+      margin-top: 0!important;
+      .labelwrapper {
+        margin: auto
+        }
+      // input {
+      //   width: 3em !important;
+      // }
+    }
+  }
+  .extra { // in add education form language picker rubrik
+    margin-top: 25px;
+  }
+  select {
+    border: none;
+    background: $colButtonBG;
+    padding: 0.5em 1em;
+    border-right: solid 1em $colButtonBG;
+    font-size: 1rem;
+    font-family: 'Raleway';
+    color: $colLearnBG;
+  
+    .select-items {
+      background: $colButtonBG;
+    }
+}
+
+
+/* ======= POPUP ======= */
+
+.login-popup {
+  .additional {
+    text-align: center;
+    padding-top: 2em;
+  }
+}
+
+.popup-wrapper {
+  position: fixed;
+  top:0;
+  left:0;
+  width: 100vw;
+  height: 100vh;
+
+  z-index: 5;
+  .popup-content {
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-height: 100vh;
+  
+    overflow-x: hidden;
+    box-shadow: 5px 5px rgba(0, 0, 0, 0.5);  
+
+    &.noscroll {
+      overflow: initial;
+    }
+    
+    .close-icon {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      height: 1em;
+      width: 1em;
+    }
+  }
+  
+  .popup-basic {
+    
+    background: $colHeaderBG;
+    color: $colTextLight;
+    padding: 2rem 4rem;
+
+    h4 {
+      color: $colTextLight;
+      margin: 0;
+    }
+    p.subtitle {
+      color: $colLearnB;
+      margin-top: 2em;
+      margin-bottom: 0;
+      text-align: center;
+    }
+
+    form {
+      margin: 0;
+      padding: 0;
+      min-width: 20em;
+
+      input {
+        width: 100%;
+      }
+    }
+
+
+  }
+
+  .popup-padding {
+    position: absolute;
+    top:0;
+    left:0;
+    background: black;
+    opacity: 0.5;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(5px);
+    filter: blur(5px);
+  }
+}
+
+.tooltip-wrapper {
+  position: absolute;
+  z-index: 10;
+  padding: 0 1rem;
+  padding-bottom: 1rem;
+  width: 100vw;
+  transform: translate(0%,-100%);
+
+  .content {
+    position: absolute;
+    display: inline-block;
+    bottom: 20px;
+    max-width: 40em;
+    min-width: 8em;
+    background: white;
+    font-size: 0.8em;
+    padding: 0.5rem;
+    text-align: center;
+    margin: auto;
+  }
+  .arrow-down {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transform: translateX(-25%);
+    width: 0; 
+    height: 0; 
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    
+    border-top: 20px solid white;
+  }
+}
+
+/** ========= CONTENT GENERAL ======= **/
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  padding-top: 3em;
+  justify-content: space-evenly;
+}
+
+.sort-group {
+  label {
+    white-space: nowrap;
+  }
+}
+
+.posts-sort, .filter-input {
+  
+  .dropdown-sortable {
+    width: 100%;
+    margin-left: 1.5em;
+    padding-right: 10%;
+      
+  }
+  .dropdown__control {
+    font-style: italic;
+    background-color: white;
+    border-radius: 0;
+    border-style: none;
+    margin-top: 0;
+    path {
+      color: $colTextDark;
+    }
+  }
+  
+  .dropdown__single-value { 
+    font-style: normal;
+    margin-top: 0;
+  }
+
+  .dropdown__control--is-focused {
+    border: none;
+    box-shadow:
+    inset 0 0em 0em rgba(0,0,0,0.1),
+          0 0  0 2px $colLearnC,
+          0.3em 0.3em 1em rgba(0,0,0,0.3);
+  }
+
+  input.choose-image {
+    height: auto;
+    width: auto;
+    padding: 5px 0 0 0;
+    letter-spacing: 0.1em;
+  }
+  
+
+  .dropdown__value-container {
+    //padding: 0 0.8em;
+  }
+
+  .dropdown__indicators {
+    margin-top: 0;
+  }
+  .dropdown__indicator {
+    padding: 0;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-top: 0;
+    svg {
+      margin-top: 0;
+      width: 10px;
+      height: 10px;
+    }
+  }
+  .dropdown__placeholder {
+    margin-top: 0;
+  }
+
+  .dropdown__option--is-selected {
+    background-color: $colLearnC;
+    color: $colTextDark;
+  }
+  .dropdown__value-container {
+    margin-top: 0;
+    
+  }
+
+  .dropdown__menu {
+    background-color: #666e70;   
+    border-radius: 6pt;
+    color: $colTextLight;
+    font-size: 1em;
+    padding: 0.3em;
+    
+  }
+  .dropdown__option--is-focused {
+    background-color: $colEduB;
+    color: $colTextDark;
+    border-radius: 4pt;
+    &:active {
+      background-color: $colEduB;
+      color: $colTextDark;
+    
+    }
+    b {
+      color: $colTextDark;
+    }
+  }
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* Three columns, one three times as wide as the others */
+  grid-template-rows: auto auto auto; /* Three rows, two with explicit widths */
+  align-items: center;
+  img {
+    width: 100%;
+    padding: 1.5em;
+  }
+}
+
+/* CONTENT BOX */
+//Box layout -CfP
+.box {
+    display: grid;
+    padding: 2em;
+    min-width: 400px;
+    &.cols-1 {
+      grid-template-columns: 100%;
+    }
+    &.cols-2 {
+      grid-template-columns: calc(50% - 10px) calc(50% - 10px);
+      column-gap: 20px;
+    }
+    &.cols-3 {
+      grid-template-columns: calc(33.3334% - 10px) calc(33.3334% - 10px);
+      column-gap: 20px;
+    }
+    &.cols-4 {
+      grid-template-columns: calc(25% - 10px) calc(25% - 10px);
+      column-gap: 20px;
+    }
+  
+    h2 {
+      justify-self: center;
+      text-align: center;
+  }
+}
+  
+.box-full {
+width: 100%;
+    * {
+        max-width: 100%;
+    }
+}
+.box-half {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+//Use fore item position
+.grid-col-1 {
+    grid-column-start: 1;
+
+}
+
+.grid-col-2 {
+    grid-column-start: 2;
+}
+
+.grid-col-3 {
+    grid-column-start: 3;
+}
+
+.grid-col-4 {
+    grid-column-start: 4;
+}
+
+.grid-row-start {
+    grid-row-start: row1-start;
+}
+
+.justify-center {
+    justify-self: center;
+}
+
+table td, table th {
+  text-align: left;
+  &:last-child {
+    text-align: right;
+  }
+}
+
+.overview table{
+
+    display: block;
+    padding: 2rem;
+    margin: 0rem;
+
+  th.last-values {
+    padding: 0!important;
+  }
+  td, th.last-values, th.sortable {
+    text-align: center!important;
+    p {
+      font-style: italic;
+      font-size: 0.8em;
+    }
+    h3 {
+      margin: 0.4em 0 !important;
+      text-align: left !important;
+      font-size: 0.8em;
+      font-weight: bold;
+      color: $colEduD;
+      &:hover {
+        color: $colLearnC;
+      }
+    }
+  }
+
+  th {
+    border-bottom: $colEduD solid 2px;
+    padding-bottom: 0.5em;
+    justify-items: center;
+    align-content: center;
+    text-align: center;
+    h4 {
+      margin: 0em;
+    }
+    &.one {
+      padding-left: 5em!important;
+    }
+    &.wide {
+      text-align: left;
+      width: 30em;
+    }
+  }
+  td:nth-child(4), th:nth-child(4) { 
+    //background: hsl(150, 50%, 50%); 
+    padding-left: 2em!important;
+    // border: none;
+  }
+  td:nth-child(5), td:nth-child(6), th:nth-child(5), th:nth-child(6), th:nth-child(7) { 
+    // border: none;
+  }
+  .button {
+    svg {
+      height: 1.5em;
+    }
+  }
+}
+/** =========  SHOW/HIDE CONTENT ======= **/
+
+//Hide content
+.collapsed {
+  overflow: hidden;
+  height: 0;
+  max-height: 0;
+  transition: max-height 2s ease-in;
+  
+  .collapsed-content {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease-in 0.25s;
+  }
+
+  &.expanded {
+    max-height: 2000px;
+    height: auto;
+    transition-delay: 0s;
+
+    .collapsed-content {
+      opacity: 1;
+      visibility: visible;
+      transition-delay: 0s;
+    }
+  }
+}
+
+/** =========  BOOTSTRAP Overwrite ======= **/
+
+/* Cards and Accordion */
+
+.card-body span ul li {
+  list-style-type: disc;
+  padding-bottom: 1em;
+}
+
+.card {
+  border-radius: 0em;
+  border: 0;
+  margin-bottom: 4px;
+  
+ 
+  .accordian-toggle-button {
+    background-color: $colHeaderBG;
+    height: auto;
+    padding: 1em;
+    cursor: pointer;
+
+  
+
+    h4 {
+      color: $colTextLight;
+      text-align: left;
+      margin-bottom: 0;
+      margin-top: 0;
+      text-transform: none;
+      font-size: 1.1em;
+
+      .light {
+        font-weight: 100;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+     
+      &:after {
+        content: "►";
+        width: 1em;
+        height: 1em;
+        position: absolute;
+        right: 1em;
+        top: 1.5em;
+        margin-top: -0.5em;
+        color: $colTextLight;
+        transition: transform 0.5s ease-in;
+      }
+  
+    }
+    
+  }
+
+  &.opened {
+    h4:after {
+      transform: rotate(90deg);
+    }
+  }
+}
+
+.sticky-wrapper {
+  position: relative;
+}
+
+/* ============ Z-index  ================ */
+
+.popup-wrapper { z-index: 15000; }
+.page-header { z-index: 9900; }
+footer.page-footer, .footer-navarea  { z-index: 9800; }
+.add-edu-buttons { z-index: 8900; }
+.add-education .sticky {
+  z-index: 8900;
+}
+
+
+.sidemenu {z-index: 8500}
+
+.sticky-wrapper, .sticky-wrapper.sticky {
+  z-index: 6000;
+/* Carl, what was this doing here? /Ronald (fucks up the search filter dropdowns)
+  * {
+    z-index: 6001;
+  }
+  */
+}
+.columns, .form-margin {
+  z-index: 1;
+  /* Carl, what was this doing here? /Ronald (fucks up the form dropdowns)
+  * { 
+    z-index: 1;
+  } */
+}

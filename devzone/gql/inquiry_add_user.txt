@@ -1,0 +1,10 @@
+mutation
+{
+	inquiry_add_user(inquiry_id:1, new_user_id: 13, relationship:AUTHOR)
+	{
+		id
+		inquiry_id
+		user_id
+		relationship
+	}
+}

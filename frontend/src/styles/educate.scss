@@ -1,0 +1,524 @@
+/* SASS for Educate
+    I N D E X
+    .educate-main (colors),
+    .add-education
+    .confirm-delete-course-popup
+    .active-educations (educations overview)
+*/
+
+@import 'variables.scss';
+
+/* EDUCATE Colors */
+
+.educate-main {
+    background: $colEduBG;
+    //padding-top: 20px;
+    
+    .content-main .box {
+      a {
+        color: $colLearnD;
+        
+        h2, h3, h4, h5, p, &::before, &::after {
+          color: $colLearnD;
+          transition: all 0.5s ease-in-out;
+        }
+      }
+    }
+
+    .button:not(.icon-only):hover {
+        background-color: $colEduHov !important;
+    }
+    
+    .front-page .media .video  {
+      position: relative;
+      width: 100%;
+    }
+  
+    .user-page .user-info-row, .org-page .user-info-row, .user-page .user-name, .org-page .user-name {
+      background-color: $colEduC;
+    }
+
+    .user-content {
+      background-color: $colEduB;
+    }
+
+    .content-right {
+      background-color: $colEduC;
+
+      .user-info-row {
+        background-color: $colEduB;
+      }
+
+      a {
+        color: $colLearnB !important;
+        &:hover {
+          color: $colEduHov !important;
+        }
+      }
+    }
+
+    .user-page .user-info-row {
+      margin-top: 2em;
+    }
+  
+    .front-page {
+      padding-top: 2em;
+  
+      h2 {
+        text-align: center;
+      }
+      
+      p {
+        text-align: center;
+        //padding: 0 6em 0 6em;
+      }
+  
+      .media {
+        margin-bottom: -10px;
+      }
+      .partners {
+        position: relative;
+        padding-top: 2em;
+        padding-bottom: 2em;
+        width: 100%;
+        background-color: white;
+        h3 {
+          text-align: center;
+        }
+        .logos {
+          display: flex;
+          flex-direction: row;
+          width: 100%;
+          justify-content: space-evenly;
+          align-items: center;
+          flex-wrap: wrap;
+  
+          .logo {
+            width: 180px;
+            height: auto;
+            padding: 1.2em;
+          }
+        }
+      }
+      
+      .edu-request-carousel {
+        margin-top: 2em;
+        width: 100%;
+        .carousel {
+          background-color: lavender;
+          height: 600px;
+        }
+  
+      }
+    }
+
+    .button.icon-only {
+        svg path {
+            fill: $colEduD;
+        }
+        
+        &:hover svg path{
+            fill: $colEduHov;
+        }
+
+        .active svg path{
+            fill: $colEduA;
+        }
+    }
+
+  
+    .box {
+      background: $colEduA;
+    }
+  
+    .button:hover {
+      background-color: #9ACAEB;
+      
+    }
+  
+    .tab-nav a.tab-overview {
+      background-color: $colEduA;
+      
+      &:hover {
+        background-color: $colEduHov !important;
+        
+        h4 { color: $colTextDark !important;}
+      }
+  
+      &.active:hover {
+        color: $colTextDark !important;
+        background: $colEduB !important;
+      }
+    }
+
+    .tab-nav a.tab-new {
+      background-color: $colEduC;
+     
+      &:hover {
+        background-color: $colEduHov !important;
+        h4 { color: $colTextDark !important;}
+      }
+
+      &.active {
+        pointer-events: none;
+      }
+
+      &.active:hover {
+        color: $colTextDark !important;
+        background: $colEduC !important;
+      }
+    }
+
+    .tab-nav a.tab-edit {
+      background-color: $colEduD !important;
+     
+      &:hover {
+        background-color: $colEduHov !important;
+        h4 { color: $colTextDark !important;}
+      }
+
+      &.active {
+        pointer-events: none;
+      }
+
+      &.active:hover {
+        color: $colTextDark !important;
+        background: $colEduC !important;
+      }
+    }
+
+    
+
+    .tab-nav a.tab-left {
+        background: $colEduB;
+    }
+
+    .tab-nav a.tab-right {
+      background: $colEduC;
+    }
+
+    .account-page .user-info-row {
+      a {
+        color: $colLearnA;
+        &:hover {
+          color: $colEduHov;
+        }
+      }
+    }
+
+
+    .account-page .user-info-row .org-info {
+        background: $colEduC;
+    }
+
+    .org-all-users .tab-right.org-info {
+        background: $colEduC;
+    }
+
+    .tab-nav a:hover {
+      color: $colEduHov; 
+    }
+
+    .account-page {
+        
+        .user-name {
+            background: transparent;
+        }
+
+        .org-all-users .user-info {
+            background: $colEduC;
+        }
+
+        .user-list li {
+            background: $colEduC;
+        }
+
+        .user-list li .user-image h3 {
+            color: $colEduC;
+        }
+    }
+
+
+    .post-item {
+        background: $colEduB;
+        .post-header {
+          background: $colEduC;
+        }
+        .content {
+          background: $colEduA;
+        }
+
+    }
+
+    .account-page .edit-buttons .my-account {
+      background-color: $colEduB;
+    }
+    .my-account {
+      background-color: $colEduB;
+    }
+
+  } //End .educate-main
+
+  /** ========= ADD EDUCATE ======= **/
+
+
+.add-education, .edit-education {
+    background-color: $colEduB;
+    .url-section {
+      background-color: $colEduC;
+      h5 {
+        display: flex;
+        justify-content: center;
+        padding: 2em;
+        margin: 0px;
+      }
+    }
+    
+    .sticky-wrapper {
+      position: relative;
+      padding-bottom: 1em;
+    }
+
+    .sticky {
+      padding-bottom: 200px;
+
+      .button-wrapper {
+        //width: 50em;
+        position: fixed;
+        top: 5em;
+        left:50vw;
+        transform: translateX(-50%);
+        padding: 0rem;
+        padding-bottom: 1.5rem;
+        min-width: $mainContentMin;
+        width: $mainContentWidth;
+        max-width: $mainContentMax;
+        box-shadow: 0px 5px rgba(0, 0, 0, 0.25);
+
+        //background: none;
+        
+        button {
+          margin: 0 0rem;
+          padding: 0 1em;
+        }
+      }
+      
+      .add-feedback {
+        margin: 0;
+      }
+    }
+    .button-wrapper {
+      background-color: $colEduC;
+      padding-bottom: 2rem;
+
+    }
+    .add-edu-buttons {
+      background-color: $colEduC;
+      display: flex;
+      padding-top: 3em;
+      padding-bottom: 0em;
+      flex-direction: row;
+      justify-content: space-evenly;
+      column-gap: 1em;
+      align-items: center;
+      .status {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        h4 {
+          margin-top: 0;
+          margin-bottom: 0;
+          margin-right: 1em;
+        }
+      }
+     
+  
+      button {
+        padding-left: 2em;
+        padding-right: 2em;
+        background-color: $colButtonBG;
+        }
+
+        h3 {
+          color: $colTextLight;
+          padding: 0.5em;
+        }
+
+      :hover {
+        //background-color: $colEduHov;
+        color: $colTextDark;
+        h3 {
+          color: $colTextDark;
+        }
+      }
+      button:focus {
+        outline: none;
+      }
+      button:active {
+        outline-color: $colEduA;
+        outline-width: 2px;
+        outline-style: solid;
+      }
+    }
+
+    input#price {
+      position: relative;
+      padding-right: 4em;
+
+      &::after {
+        position: absolute;
+        content: "SEK";
+        display: inline-block;
+        height: 100%;
+        width: 2em;
+        color: red;
+      }
+
+    }
+
+    .currency {
+      position: absolute;
+      top: 3.4em;
+      right: 0;
+      height: 2.8em;
+      width: 4em;
+      display: flex;
+      align-items: center;
+      padding: 0.5em 1em;
+      background: $colEduA;
+    }
+
+    .tab-nav .tab-left {
+        background: $colEduB;
+    }
+
+    .save-button {
+      width: auto;
+      margin: 2em auto 0 auto;
+      font-size: 1.15em;
+    }
+  
+  } //End .add-education
+
+  .edit-education {
+    .sticky-wrapper,
+    .button-wrapper,
+    .add-edu-buttons
+     {
+      background: $colEduD;
+    }
+  }
+  .confirm-delete-course-popup, .confirm-course-popup {
+    .title {
+      text-align: center;
+      p {
+        max-width: 40em;
+        padding: 1em 0;
+      }
+    }
+    h5 {
+      color: $colLearnC;
+      margin-bottom: 0;
+    }
+    .button-box {
+      display: flex;
+      margin-top: 2em;
+      justify-content: space-evenly;
+    }
+  }
+  .active-educations, .archived-educations {
+    td, th.last-values, th.sortable h3 {
+        color: $colEduD;
+        &:hover {
+          color: $colLearnC;
+        }
+    }
+    th, td {
+      border-bottom: $colEduD solid 2px;
+    }
+  } //End .active-educations
+
+  .archived-educations {
+    background: $colEduD;
+    
+    th, td, h3, h4 {
+      border-color: $colEduB;
+      color: $colEduA !important;
+    }
+    .button.icon-only svg path {
+      fill: $colEduB;
+    }
+  }
+
+.confirm-delete-course-popup {
+  form {
+    .dropdown__control {
+      font-style: italic;
+      border-radius: 0;
+      border-style: none;
+      margin-top: 0;
+      background-color: white;
+      path {
+        color: $colTextDark;
+      }
+    }
+    
+    .dropdown__single-value { 
+      font-style: normal;
+      margin-top: 0;
+      color: $colTextDark;
+    }
+
+    .dropdown__control--is-focused {
+      border: none;
+      box-shadow:
+      inset 0 0em 0em rgba(0,0,0,0.1),
+            0 0  0 2px $colLearnC,
+            0.3em 0.3em 1em rgba(0,0,0,0.3);
+    }
+
+    input.choose-image {
+      height: auto;
+      width: auto;
+      padding: 5px 0 0 0;
+      letter-spacing: 0.1em;
+    }
+
+    .dropdown__indicators {
+      margin-top: 0;
+    }
+    .dropdown__indicator {
+      padding: 0;
+      padding-left: 8px;
+      padding-right: 8px;
+      margin-top: 0;
+      svg {
+        margin-top: 0;
+        width: 10px;
+        height: 10px;
+      }
+    }
+    .dropdown__placeholder {
+      margin-top: 0;
+      color: lightgrey;
+    }
+    .dropdown__option {
+      p {
+        color: $colTextDark;
+      }
+    }
+
+    .dropdown__menu {
+
+    }
+
+    .dropdown__option--is-selected {
+      background-color: $colLearnC;
+
+    }
+    .dropdown__value-container {
+      margin-top: 0;
+      
+    }
+  }
+}

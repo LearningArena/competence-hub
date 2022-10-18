@@ -1,0 +1,13 @@
+query
+{
+	a:organizations_by_current_user(relationship:FAVORITE)
+	{
+		name
+		orgid
+	}
+	b:organizations_by_current_user(relationship:AUTHOR)
+	{
+		name
+		orgid
+	}
+}

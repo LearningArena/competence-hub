@@ -1,0 +1,139 @@
+table
+{
+	/*margin:20px;*/
+	border-collapse: collapse;
+	background-color: rgb(241, 239, 236);
+	/*font-family: Arial;*/
+	font-size: 14px;
+	font-family: 'Courier New', monospace;
+	/*font-family: "Comic Sans MS", "Comic Sans", cursive;*/
+}
+
+table > tbody
+{
+	/*white-space: pre;*/
+}
+
+td,th 
+{
+	border: 1px solid #cdc9c1;
+	text-align: left;
+	padding: 4px;
+}
+
+th[colspan="100"]
+{
+	background-color: rgb(51, 50, 46);
+	color: #fff;
+}
+
+th
+{
+	background-color: rgb(215, 213, 209);
+	color: #000;
+}
+td{}
+
+tr[selected]
+{
+	background-color: rgb(235, 213, 209);
+}
+
+tr.selected
+{
+	background-color: rgb(235, 213, 209);
+}
+
+.hide
+{
+	display: none !important;
+}
+
+.links .hrefmatch
+{
+	background-color:#444;
+	color: #DDD;
+}
+.links
+{
+	display: flex;
+}
+
+.links a
+{
+	padding:4px;
+	display:block;
+	background-color:#EEE;
+	border-style: double;
+	border-style: dotted;
+	border-style: ridge;
+	border-style: inset;
+	border-style: outset;
+	color: black;
+	text-decoration: none;
+}
+
+
+
+.example
+{
+	color: rgb(100, 10, 60);
+	text-decoration: underline;
+}
+
+.example:hover
+{
+	color: hotpink;
+	cursor: pointer;
+}
+
+textarea
+{
+	white-space: pre;
+	overflow-wrap: normal;
+	overflow-x: scroll;
+}
+
+h4
+{
+	margin-bottom: 2px;
+}
+
+
+
+
+nav
+{
+	width: 200px;
+	background-color:whitesmoke;
+}
+
+nav button
+{
+	margin:5px;
+}
+
+.btn:hover
+{
+	cursor: pointer;
+	background-color:rgb(190, 190, 190);
+}
+
+.btn.on
+{
+	background-color:rgb(190, 190, 190);
+}
+
+.modified
+{
+	background-color:rgb(245, 250, 176);
+}
+
+thead th.column_id{width: 40px;}
+thead th.column_rowlink{width: 400px;}
+
+.me{background-color: #CEC;}
+.impostor{background-color: #CCE;}
+
+.remove{color:#933;}
+.add{color:#393;}

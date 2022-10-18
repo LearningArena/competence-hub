@@ -1,0 +1,10 @@
+mutation
+{
+	organization_add_user(organization_id:1, new_user_id: 13, relationship:AUTHOR)
+	{
+		id
+		organization_id
+		user_id
+		relationship
+	}
+}

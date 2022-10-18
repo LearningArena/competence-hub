@@ -1,0 +1,9 @@
+query
+{
+	courses
+	{
+		id
+		title
+		course_user_edges{relationship,user{id,username}}
+	}
+}

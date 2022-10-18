@@ -1,0 +1,8 @@
+mutation
+{
+	register(email:"youremail", password:"yourpw",orgid:"556464-6874",orgname:"RISE",preference_language:SE)
+	{
+		errorMessage
+		status
+	}
+}

@@ -1,0 +1,10 @@
+mutation
+{
+	organization_set_record_status(id:1, record_status:APPROVED)
+	{
+		id
+		orgid
+		name
+		record_status
+	}
+}

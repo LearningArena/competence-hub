@@ -1,0 +1,18 @@
+query
+{
+	organizations
+	{
+		id
+		country_code
+		orgid
+		name
+		record_status
+		organization_user_edges
+		{
+			relationship
+			user{id,email}
+		}
+		courses{id,title}
+		inquiries{id,title}
+	}
+}

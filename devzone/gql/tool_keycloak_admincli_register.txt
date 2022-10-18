@@ -1,0 +1,4 @@
+query
+{
+	tool_keycloak_admincli_register(access_token:"123", email:"youremail", password:"yourpw")
+}

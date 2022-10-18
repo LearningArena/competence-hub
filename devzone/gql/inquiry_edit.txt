@@ -1,0 +1,7 @@
+mutation
+{
+	inquiry_edit(id:1, title:"New title")
+	{
+		id
+	}
+}

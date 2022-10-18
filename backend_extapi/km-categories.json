@@ -1,0 +1,108 @@
+
+{
+    "artificiellintelligens": {
+        "name": "Artificiell intelligens",
+        "keywords": [
+            "artificiell intelligens",
+            "maskininl\u00e4rning"
+        ]
+    },
+    "ekonomi": {
+        "name": "Ekonomi & handel",
+        "keywords": [
+            "ekonomi",
+            "handel"
+        ]
+    },
+    "ledarskap": {
+        "name": "Ledarskap",
+        "keywords": [
+            "ledarskap",
+            "ledning"
+        ]
+    },
+    "transport": {
+        "name": "Transport & logistik",
+        "keywords": [
+            "transport",
+            "logistik"
+        ]
+    },
+    "digitalisering": {
+        "name": "Digitalisering",
+        "keywords": [
+            "digital"
+        ]
+    },
+    "miljo": {
+        "name": "Milj\u00f6 & h\u00e5llbarhet",
+        "keywords": [
+            "milj\u00f6",
+            "h\u00e5llbar",
+            "cirkul\u00e4r",
+            "cirkular"
+        ]
+    },
+    "datait": {
+        "name": "Data & IT",
+        "keywords": [
+            "data",
+            " it ",
+            "it-",
+            "dator",
+            "informationstek"
+        ]
+    },
+    "design": {
+        "name": "Design & media",
+        "keywords": [
+            "design",
+            "media",
+            "medie"
+        ]
+    },
+    "elektrifiering": {
+        "name": "Elektrifiering",
+        "keywords": [
+            "elektr",
+            "mekatronik"
+        ]
+    },
+    "marknadsforing": {
+        "name": "Marknadsf\u00f6ring & kommunikation",
+        "keywords": [
+            "marknad",
+            "kommuni"
+        ]
+    },
+    "personal": {
+        "name": "HR & personal",
+        "keywords": [
+            "personal"
+        ]
+    },
+    "material": {
+        "name": "Material, konstruktion & tillverkning",
+        "keywords": [
+            "material",
+            "konstruktion",
+            "tillverkning",
+            "maskin",
+            "verkstad"
+        ]
+    },
+    "vardochhalsa": {
+        "name": "V\u00e5rd & h\u00e4lsa",
+        "keywords": [
+            "v\u00e5rd",
+            "h\u00e4lsa"
+        ]
+    },
+    "film": {
+        "name": "Film & TV-produktion",
+        "keywords": [
+            "film",
+            "tv-"
+        ]
+    }
+}

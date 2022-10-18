@@ -1,0 +1,834 @@
+/* SASS for Learn 
+    I N D E X
+    .learn-main (colors),
+    .category-courses
+    .request-invoice-popup
+    .inquiries
+*/
+
+@import 'variables.scss';
+
+/* LEARN colors */
+
+.learn-main {
+  background: $colLearnBG;
+
+  p.start-search-text {
+    
+      margin: 0em 1em;
+      text-align: center;
+  }
+
+  .search-bar input.search-submit {
+      background: $colEduD;
+  }
+
+  .button.icon-only.pinned {
+    svg path {
+      fill: $colEduD;
+    }
+  }
+
+  .learn-start {
+    .posts-sidebar {
+      top: 1.5em;
+    }
+
+  }
+
+  .content-main .box {
+    a {
+      color: $colEduD;
+      
+      h2, h3, h4, h5, p, &::before, &::after {
+        color: $colEduD;
+        transition: all 0.5s ease-in-out;
+      }
+    }
+  }
+
+  .button.icon-only {
+      svg path {
+          fill: $colLearnD;
+      }
+      
+      &:hover svg path{
+          fill: $colLearnHov;
+      }
+
+      .active svg path{
+          fill: $colLearnA;
+      }
+  }
+
+  .box {
+      background: $colLearnA;
+      overflow-x: hidden;
+  }
+
+  .button:not(.icon-only):hover {
+      background-color: #EFD78F;
+  }
+
+  .tab-nav a.tab-left {
+      background-color: $colLearnA;
+
+      .section-1 {
+          background-color: $colLearnA !important;
+      }
+
+      .section-2 {
+          background-color: $colLearnA !important;
+      }
+
+      &:hover {
+      background-color: $colLearnHov !important;
+        h4 { color: $colTextDark !important;}
+      }
+
+      &.active {
+        pointer-events: none;
+      }
+
+      &.active:hover {
+      background: none !important;
+      }
+  }
+  .tab-new {
+    background-color: $colLearnB;
+  }
+
+  .tab-nav a.tab-right {
+      background-color: $colLearnC;
+      &:hover {
+      background-color: $colLearnHov !important;
+      h4 { color: $colTextDark !important;}
+      }
+
+      &.active:hover {
+        pointer-events: none;
+      }
+  }
+
+  .tab-content .content {
+      background: $colLearnA;
+  }
+
+  .account-org .tab-nav .tab-left {
+      background: $colLearnB;
+  }
+
+  .user-page .user-info-row {
+    background: $colLearnB;
+  }
+
+  .content-right {
+    background-color: $colLearnC;
+
+    .user-info-row {
+      background-color: $colLearnB;
+    }
+  }
+  
+  .overview .active-requests,
+  .overview .archived-requests {
+    h3 { color: $colLearnD; }
+    th,td {border-color: $colLearnD; }
+  }
+  .overview .archived-requests {
+      background: $colLearnD;
+      
+      th, td, h3, h4 {
+        border-color: $colLearnB;
+        color: $colEduA !important;
+      }
+      .button.icon-only svg path {
+        fill: $colLearnB;
+      }
+  
+  }
+  
+}
+
+/** ========= LEARN Content ========= **/
+
+//BY CATEGORY PAGE LIST
+.category-list {
+    display: flex;
+  
+    .cats-wrap {
+      display: flex;
+      width: 100%;
+    }
+  
+    .cat-item 
+    {
+      position: relative;
+    }
+  
+    .cat-item-link {
+      display: flex;
+    }
+  
+    &.liststyle-grid {
+      margin: 0;
+  
+      .cats-wrap {
+        display: grid !important;
+        grid-template-columns: repeat(4, calc(25% - 0.75em) [col-start]);
+        grid-row-gap: 1em;
+        grid-column-gap: 1em;
+      }
+
+      .cat-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    
+        &:before {
+          content: '';
+          float: left;
+          padding-top: 100%;
+        }
+        
+        .cat-item-link {
+          position: absolute;
+          display: flex;
+          flex-direction: column;
+          align-content: center;
+          width: 100%;
+          height: 100%;
+      
+          &:hover {
+            background-color: $colLearnHov;
+            h2, h3, h4, h5 {
+              color: $colTextLight !important;
+            }
+          }
+        }
+      
+        .cat-image {
+          position: relative;
+          display: flex;
+          height: 60%;
+          align-items: center;
+          text-align: center;
+          padding-top: 1em;
+  
+          img {
+            margin: auto;
+            width: 80%;
+            height: 90%;
+          }
+        }
+  
+        .cat-title {
+          position: relative;
+          text-transform: uppercase;
+          white-space: pre-wrap;
+          height: 100%;
+          text-align: center;
+          align-items: center;
+          display: flex;
+          justify-content: center;
+          padding-left: 0.5em;
+          padding-right: 0.5em;
+  
+          h3{
+            text-align: center;
+            margin: 0;
+          }
+          :hover{
+            color: $colTextLight;
+          }
+        }
+      }
+    } //End .lisstyle-grid
+  
+    &.liststyle-list {
+      .cats-wrap {
+        flex-direction: column;
+      }
+  
+      .cat-item-link {
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        text-align: left;
+        background: transparent !important;
+  
+        h3 {
+          font-size: 1em;
+        }
+      }
+  
+      .cat-image {
+        position: relative;
+        width: 3em;
+        height: 3em;
+        padding-right: 4em;
+        margin-left: 2.5em;
+        text-align: center;
+        img {
+          height: 100%;
+          width: auto;
+          margin: 0 auto;
+        }
+      }
+    } //End .liststyle-learn
+    
+    &.cats-learn {
+      .cat-item-link {
+        background: $colLearnA;
+      }
+    }
+  } //END .category-list
+
+//Category Courses
+.category-courses {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .sidebar.category-list {
+    flex-basis: 80%; //Makes it 1/4? -cfp
+    flex-direction: column;
+  
+    .cat-item-link {
+      width: auto;
+    }
+  }
+  
+  .course-information {
+    p, h4 {
+      color: $colTextDark;
+    }
+    .title-bar {
+      background: $colLearnC;
+      position: relative;
+      padding: 1rem;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-end;
+
+      h4 {
+        flex: 1;
+        margin: 0;
+      }
+  
+      .pin {
+        flex: 0 0 4em;
+        display: flex;
+        align-items: flex-end;
+        height: 2em;
+
+        .image-link, .image-button {
+          //margin-left: auto;
+          margin: 0.8em auto 0.4em;
+          height: 100%;
+        }
+        
+        span {
+          margin-right: 0.5rem;
+        }
+        svg {
+          width: 2em;
+          height: 2em;
+          margin-left: auto;
+          path {
+            fill: $colLearnIcon;
+          }
+        }
+      }
+      
+      
+    }
+    .meta-container {
+      display: flex;
+      max-height: none !important;
+      background: $colLearnB;
+      justify-content: stretch;
+
+      .course-meta-list {
+        padding: 0em 4em 0 2em;
+        width: 90%;
+        clip-path: polygon(0 0%, 100% 0%, calc(100% - 4em) 100%, 0 100%);
+        li {
+            position: relative;
+            &:after {
+              content: "";
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              width: calc(100% + 4em);
+              border-bottom: solid 1px $colLearnD;
+            }
+            padding-bottom: 0.5em;
+        }
+      
+      }
+    }
+
+    .meta-left {
+      width: 50%;
+      margin-right: -10%;
+
+      overflow: visible;
+    }
+
+    .meta-center {
+      position: relative;
+    
+      width: 60%;
+      margin-left: 0%;
+      margin-right: -20%;
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: flex-end;
+      overflow: hidden;
+      clip-path: polygon(8em 0%, 100% 0%, calc(100% - 8em) 100%, 0 100%);
+      z-index: 1003;
+
+      .feature-image {
+        position: absolute;
+        width: 100%;
+        height: auto;
+        min-width: 100%;
+        min-height: 100%;
+        object-fit: cover!important;
+        transform: translateX(0%);
+
+        top: 0;
+        left: 0;
+        z-index: 1004;
+        
+      }
+    }
+
+    .meta-right{
+      position: relative;
+      display: flex;
+      width: 10em;
+      margin-left: auto;
+      background: #ffffff;
+      z-index: 1002;
+   
+      
+      .provider-image {
+        bottom: 1rem;
+        right: 1rem;
+        width: 56%;
+        position: absolute;
+      }
+
+    }
+
+    .meta-icons {
+      display: flex;
+      width: 100%;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: flex-start;
+      padding: 1rem 2rem 1rem 0.5rem;
+      margin-bottom: 1rem;
+      z-index: 1002;
+
+      .image-button, .image-link {
+        display: flex;
+        font-size: 0.8em;
+        padding: 0 1em;
+        text-align: left;
+        justify-content: flex-start;
+        max-width: 33.3334%;
+        svg {
+          max-height: 2.8em!important;
+          path {
+            fill: $colLearnIcon;
+          }
+        }
+      
+        span {
+          min-width: 7em;
+        }
+
+        h5 {
+          line-height: 1em;
+          text-align: center;
+          margin: 0;
+        }
+      }
+    }
+    .post-meta-item {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      strong {
+        margin-right: 0.4rem;
+      }
+    }
+
+
+    .more-meta {
+      background: $colLearnC;
+      overflow: hidden;
+      
+      .more-meta-content {
+          max-height: 0;
+          margin-bottom: 0;
+          padding: 0;
+      }
+
+      h5 {
+        margin: 0 !important;
+      }
+
+     
+      .course-meta-list,
+      .more-meta-content {
+        max-height: 0;
+        margin-bottom: 0;
+        padding: 0;
+        // column-count: 2;
+        // column-gap: 2em;
+       
+        transition: all 0.5s ease-in-out;
+
+        li {
+          position: relative;
+          padding-bottom: 0.5em;
+          &:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: calc(100%);
+            border-bottom: solid 2px $colLearnB;
+          }
+        }
+
+      }
+  
+      &.expanded {
+        .show-more svg {
+          transform: rotate(90deg);
+        }
+        .more-meta-content {
+          height: auto;
+          max-height: 1000px;
+          padding: 0 2em;
+        }
+        .course-meta-list {
+          height: auto;
+          max-height: 1000px;
+        
+        }
+
+        .more-meta-content {
+          padding: 0 2em 2em 2em !important;
+        }
+    
+     }
+    }
+    
+    .more-meta-content {
+      padding-left: 2em !important;
+    }
+
+  
+
+    .show-more {
+      position: relative;
+      top: 0;
+      left: 0;
+      margin: 1em 1em 1em 2em;
+      margin-bottom: 1em;
+
+      display: flex;
+      flex-direction: row;
+      justify-self: end;
+      margin-right: 8em;
+      transition: all 0.5s ease-in-out;
+      
+       span {
+         margin-right: 5px;
+         cursor: pointer;
+       }
+    
+       svg {
+         height: 1em;
+         transition: all 0.4s ease-in-out 0.5s;
+         cursor: pointer;
+       }
+     }
+  
+    .description-container {
+      background: $colTextLight;
+      padding: 2rem;
+      
+      .course-intro{
+        font-weight: bold;
+      }
+    }
+
+    .course-contact {
+      background: $colLearnB;
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+
+      strong {
+        margin-right: 0.5em;
+      }
+    }
+  } //End .course-information
+
+  ul.post-meta-list {
+    padding-left: 2rem;
+    margin-bottom: 1.5rem;
+
+    li {
+      margin-bottom: 0.25em;
+    }
+  }
+
+  .add-request, .edit-request {
+    background: $colLearnA;
+
+    .top-container {
+      background: $colLearnC !important;
+    }
+  
+    form {
+      input, textarea {
+        &::placeholder {
+          color: lightgrey!important;
+        }
+      }
+      .dropdown__control {
+        font-style: italic;
+        border-radius: 0;
+        border-style: none;
+        margin-top: 0;
+        background-color: $colHeaderBG;
+        path {
+          color: $colTextLight;
+        }
+      }
+      
+      .dropdown__single-value { 
+        font-style: normal;
+        margin-top: 0;
+        color: $colTextLight;
+      }
+    
+      .dropdown__control--is-focused {
+        border: none;
+        box-shadow:
+        inset 0 0em 0em rgba(0,0,0,0.1),
+              0 0  0 2px $colLearnC,
+              0.3em 0.3em 1em rgba(0,0,0,0.3);
+      }
+    
+      input.choose-image {
+        height: auto;
+        width: auto;
+        padding: 5px 0 0 0;
+        letter-spacing: 0.1em;
+      }
+    
+      .dropdown__indicators {
+        margin-top: 0;
+      }
+      .dropdown__indicator {
+        padding: 0;
+        padding-left: 8px;
+        padding-right: 8px;
+        margin-top: 0;
+        svg {
+          margin-top: 0;
+          width: 10px;
+          height: 10px;
+        }
+      }
+      .dropdown__placeholder {
+        margin-top: 0;
+        color: lightgrey;
+      }
+    
+      .dropdown__option--is-selected {
+        background-color: $colLearnC;
+        color: $colTextLight;
+      }
+      .dropdown__value-container {
+        margin-top: 0;
+        
+      }
+    }
+
+    .top-container {
+      background: $colLearnC;
+      margin: 0;
+      padding: 2rem 2rem 1rem 2rem;
+      width: 100%;
+      h4 {
+        margin: 0;
+      }
+      p {
+        font-size: 0.9em;
+        text-align: center;
+      }
+    }
+    .fields {
+      &.coach .edu-only {
+        pointer-events: none;
+        //background: #ddd;
+        opacity: 0.2;
+        label {
+          //color: #aaa;
+          //opacity: 0.2;
+        }
+        input, select {
+          //background: #ddd;
+          //opacity: 0.2;
+        }
+      }
+    }
+
+    &.edit-request .top-container {
+      background-color: $colLearnB !important;
+    }
+  } //End .add-request / .edit-request
+
+// End Category courses
+
+.course-list .sticky-wrapper {
+  // height: auto !important; //Override element.style {height}
+}
+
+// Request page
+.request-invoice-popup {
+  .title {
+    h3 {
+      color: $colLearnC;
+    }
+  }
+  .contact-cards {
+    display: flex;
+    justify-content: space-between;
+    margin: 1.5em;
+    margin-top: 2em;
+    .picture {
+      width: 8em;
+      position: relative;
+      justify-content: center;
+      margin-top: 0;
+      align-items: center;
+      -webkit-clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
+      clip-path: polygon(0% 0%, 84% 0%, 100% 50%, 84% 100%, 0% 100%);
+      background: #ffffff;
+      img {
+        position: absolute;
+        height: 100%;
+        width: auto;
+        max-width: none;
+        left: 50%;
+        transform: translate(-50%);
+      }
+    }
+    .card {
+      width: 25em;
+      height: 12em;
+      display: flex;
+      flex-direction: row;
+      margin-top: 0;
+      .content {
+        display: flex;
+        padding: 1em;
+        flex-direction: column;
+        margin-left: 0;
+        justify-content: center;
+        h5 {
+          margin-top: 0;
+          margin-bottom: 0;
+          display: unset;
+          line-height: 2em;
+          text-transform: none;
+        }
+        h3 {
+          margin-top: 0;
+          margin-bottom: 0.5em;
+          color: $colTextDark;
+        }
+      }
+    }
+    .arrow {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      svg {
+        height: 1.2em;
+        margin: 0;
+        path {
+          fill: $colTextLight;
+        }
+      }
+    }
+    .receiver {
+      background-color: $colEduC;
+      h3.initials-small {
+        color: $colEduD;
+      }
+    }
+    .sender {
+      background-color: $colLearnB;
+      h3.initials-small {
+        color: $colLearnD;
+      }
+    }
+  }
+  .checkbox {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    padding-bottom: 0.5em;
+    align-items: flex-end;
+    padding-top: 1em;
+    input {
+      width: unset!important;
+    }
+  }
+  .button-box {
+    display: flex;
+    justify-content: center;
+  }
+  .request-invoice {
+    background-color: $colLearnC;
+    color: $colTextDark;
+    a {
+      color: $colTextLight !important;
+      &:hover {
+        color: $colTextDark !important;
+      }
+    }
+    &:hover {
+      background-color: $colEduC;
+      color: $colTextDark !important;
+      h2, h3, h4, h5, p, a {
+        color: $colTextDark !important;
+      }
+    }
+  }
+}
+.icon-list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  p {
+    //padding-left: 1em;
+    margin: auto 0 auto 1em;
+    align-items: center;
+  }
+}
+// Request Invoice Popup

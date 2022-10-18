@@ -1,0 +1,8 @@
+mutation
+{
+	course_remove(id:1)
+	{
+		id
+		title
+	}
+}

@@ -1,0 +1,8 @@
+query
+{
+	users_by_access
+	{
+		id
+		email
+	}
+}

@@ -1,0 +1,4 @@
+query
+{
+	tool_keycloak_admincli_token
+}

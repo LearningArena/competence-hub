@@ -1,0 +1,4 @@
+mutation
+{
+	login(username:"cloakman",password:"cloakman")
+}

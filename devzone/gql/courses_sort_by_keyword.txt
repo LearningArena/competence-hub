@@ -1,0 +1,14 @@
+query
+{
+	keywords(where:{name:"Rust"})
+	{
+		name
+		course_keyword_edge
+		{
+			course
+			{
+				title:prop(name:TITLE,lang:EN){value}
+			}
+		}
+	}
+}

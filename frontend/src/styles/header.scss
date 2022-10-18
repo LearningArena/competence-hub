@@ -1,0 +1,226 @@
+/* SASS for Page header 
+    I N D E X
+    * .page-header
+    * .page-brand
+    * .navbar
+    * .select-language
+*/
+
+@import 'variables.scss';
+
+/* ======= PAGE HEADER ========= */ 
+.page-header {
+    position: relative;
+
+    .page-header-wrap {
+      height: 166px;
+      transition: all 0.5s ease-in-out;
+     //display: flex;
+      //flex-direction: column;
+      justify-content: center;
+      align-items: top;
+      background: $colHeaderBG;
+      color: $colTextLight;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      
+    }
+
+    
+    .sticky {
+  
+      .page-header-wrap {
+        position: fixed;
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        grid-template-rows: repeat(2, 50%);
+        width: 100%;
+        z-index: 1;
+        height: 102px;
+        
+        .page-header-menu {
+          height: 2em;
+        }
+        
+        .page-brand {
+          margin-top: 3.5em;
+          svg {
+            height: 3.5em;
+            margin-bottom: 0em;
+          }
+        }
+  
+        h1.page-title {
+          font-size: 1.2rem;
+        }
+  
+        .page-payoff {
+          opacity: 0;
+          height: 0;
+          margin-top: -1.5em;
+         
+        }
+
+        .tab-nav .tab-educate h2 {
+          line-height: 1em !important;
+       }
+
+       .navbar .nav-list {
+         padding-bottom: 0 !important;
+       }
+
+      }
+    }
+  }
+  
+  .page-header .page-header-menu{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background: $colHeaderBG;
+    color: $colTextLight;
+    height: 6em;
+    transition: all 0.5s ease-in-out;
+  }
+  
+  h1.page-title {
+      color: $colTextLight;
+  }
+  
+  .page-brand {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    //flex-grow: 3;
+    margin: 0 auto; //Center
+    margin-top: 5.5em;
+    transition: all 0.5s ease-in-out;
+  
+    svg {
+      height: 4rem;
+      margin-bottom: -0.5em;
+      transition: all 0.5s ease-in-out;
+
+      .path-top {
+        fill: $colEduBG;
+      }
+  
+      .path-bottom {
+        fill: $colLearnIcon;
+      }
+    }
+  
+    h1.page-title {
+      margin-top: 0.5em;
+      margin-bottom: 0em;
+    }
+    .page-payoff {
+      margin-top: 0;
+      height: 2em;
+      transition: all 0.5s ease-in-out, margin-top 0.25s ease 0.25s;
+    }
+  } //end .page-brand
+  
+  
+  /* HEADER NAVBAR */
+  
+  .navbar {
+    grid-row: 2;
+    display: flex;
+    width: 10%;
+    flex-grow: 1;
+    text-align: center;
+    margin-right: right; //push to left
+    
+    ul {
+      padding: 1em;
+    }
+  
+    h3 {
+        font-size: 0.8rem;
+        letter-spacing: 0.15em;
+        color: $colTextLight;
+    }
+  
+    .nav-list {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 1em 0;
+  
+      .nav-item {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        padding: 0 0.5em;
+  
+        h3 {
+            padding: 0 0.5em;
+        }
+      }
+  
+    
+      .nav-item:not(:first-child)::before {
+        content: "|";
+        opacity: 0.5;
+        margin-left: -0.5em;
+        padding-right: 0.5em;
+        z-index: 1000;
+        color: $colTextLight;
+      }
+    }
+  
+    &.nav-left {
+      padding-left: 2vw;
+      margin-right: auto;
+    }
+    
+    &.nav-right {
+      justify-content: flex-end;
+      padding-right: 2vw;
+      margin-left: auto;
+  
+      .nav-list {
+       flex-direction: row;
+       justify-content: flex-end;
+      }
+  
+      h3 {
+        text-align: right;
+      }
+    }
+  
+    .nav-item * {
+      background: none;
+    }
+  } 
+
+  .select-language {
+    font-family: 'Raleway';
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 0.8rem;
+    font-weight: 400;
+    text-align: right;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    border-right: none;
+  }
+
+  .page-tab-nav {
+    width: 100vw;
+    transition: all 0.5s ease-in-out;
+    grid-row: 2;
+
+    .flex-pusher {
+      @include contentWidth();
+      background: transparent;
+      display: block;
+    }
+    
+  }

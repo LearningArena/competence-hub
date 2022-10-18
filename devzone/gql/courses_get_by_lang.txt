@@ -1,0 +1,9 @@
+query
+{
+	courses
+	{
+		id
+		title:prop(name:TITLE,lang:SE){value}
+		subtitle:prop(name:SUBTITLE,lang:SE){value}
+	}
+}

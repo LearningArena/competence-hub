@@ -1,0 +1,119 @@
+h1,h2,h3,h4,h5,h6{margin: 0px;margin-top: 10px;background-color: rgb(182, 173, 255);padding: 5px;}
+body
+{
+	display: flex;
+}
+nav
+{
+	padding: 4px;
+	font-size: 16px;
+}
+table
+{
+	border-collapse: collapse;
+	background-color: rgb(241, 239, 236);
+	font-size: 13px;
+	font-family: 'Courier New', monospace;
+}
+td,th 
+{
+	border: 1px solid #cdc9c1;
+	text-align: left;
+	padding: 3px;
+}
+th
+{
+	background-color: rgb(215, 213, 209);
+	color: #000;
+}
+td input,textarea,a
+{
+	display: block;
+}
+
+.btn
+{
+	vertical-align: top;
+	background-color: rgb(237, 233, 227);
+	border: 1px solid #c3baa7;
+	padding: 5px;
+	display: inline-block;
+	user-select: none;
+	height: 20px;
+	text-decoration: none;
+	color: black;
+	text-align: center;
+}
+.btn:hover
+{
+	background-color: yellow;
+}
+
+
+
+[draggable="true"]:hover
+{
+	background-color: yellow;
+	cursor: move;
+}
+.drag
+{
+	background-color: rgb(208, 232, 27) !important;
+}
+.dragenter
+{
+	background-color: rgb(52, 235, 95);
+}
+
+.btn.selected
+{
+	/*text-decoration: underline;*/
+	background-color: rgb(182, 215, 255);
+}
+
+a.selected
+{
+	text-decoration: underline;
+}
+
+tr.selected
+{
+	background-color: rgb(233, 255, 154);
+}
+
+th a
+{
+	display: block;
+	text-decoration: none;
+}
+
+.args
+{
+	color:#AAA;
+}
+
+th>input
+{
+	width: 80%;
+}
+
+table.onerow > tbody > tr
+{
+	display: none;
+}
+
+label
+{
+	font-family: 'Courier New', Courier, monospace;
+	font-size: 13px;
+	display: block;
+}
+
+.disabled
+{
+	background-color: rgb(255, 195, 195);
+}
+.enabled
+{
+	background-color: rgb(204, 255, 195);
+}

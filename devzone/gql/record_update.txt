@@ -1,0 +1,4 @@
+mutation
+{
+	record_update(id:1, table: COURSES, values:[{column:"title",value_str:"NewTitle1"}])
+}

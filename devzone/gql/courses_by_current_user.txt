@@ -1,0 +1,11 @@
+query
+{
+	a:courses_by_current_user(relationship:FAVORITE)
+	{
+		title
+	}
+	b:courses_by_current_user(relationship:AUTHOR)
+	{
+		title
+	}
+}

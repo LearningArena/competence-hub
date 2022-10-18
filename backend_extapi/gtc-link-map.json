@@ -1,0 +1,40 @@
+{
+    "https://www.goteborgstekniskacollege.se/utbildningar/yrkeshogskola/konstruktion-och-additiv-tillverkning-med-3d-printer-for-underhallstekniker": {
+        "categories": [
+            "material"
+        ]
+    },
+    "https://www.goteborgstekniskacollege.se/utbildningar/yrkeshogskola/automation-for-underhallspersonal": {
+        "categories": [
+            "datait"
+        ]
+    },
+    "https://www.goteborgstekniskacollege.se/utbildningar/yrkeshogskola/smart-underhall-dataanalys": {
+        "categories": [
+            "datait"
+        ]
+    },
+    "https://www.goteborgstekniskacollege.se/utbildningar/yrkeshogskola/automation-och-robotteknik": {
+        "categories": [
+            "datait",
+            "material"
+        ]
+    },
+    "https://www.goteborgstekniskacollege.se/utbildningar/yrkeshogskola/industriellit": {
+        "categories": [
+            "datait",
+            "digitalisering"
+        ]
+    },
+    "https://www.goteborgstekniskacollege.se/utbildningar/yrkeshogskola/molnteknologi": {
+        "categories": [
+            "datait",
+            "digitalisering"
+        ]
+    },
+    "https://www.goteborgstekniskacollege.se/utbildningar/yrkeshogskola/ledarskap-i-forandring": {
+        "categories": [
+            "ledarskap"
+        ]
+    }
+}

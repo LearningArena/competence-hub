@@ -1,0 +1,15 @@
+export const dummyCompanies = [
+  {title: 'RISE Research Institutes of Sweden', image: 'img/ikon-AI.svg', id:'0'},
+  {title: 'Google', image: 'img/ikon-Bränsle.svg', id:'1'},
+  {title: 'Länsförsäkringar', image: 'img/ikon-Certifiering.svg', id:'2'},
+  {title: 'Bil och hund AB', image: 'img/ikon-Design.svg', id:'3'},
+  {title: 'CodeBranch', image: 'img/ikon-Digitalisering.svg', id:'4'},
+  {title: 'EPA', image: 'img/ikon-Energi.svg', id:'5'},
+  {title: 'Selecta', image: 'img/ikon-Ekonomi.svg', id:'6'},
+  {title: 'Philips', image: 'img/ikon-Hållbarhet.svg', id:'7'},
+  {title: 'Volvo Group AB', image: 'img/ikon-Produktion.svg', id:'8'},
+  {title: 'Siemens', image: 'img/ikon-Ledarskap.svg', id:'9'},
+  {title: 'Peugot Cars', image: 'img/ikon-Miljö.svg', id:'10'},
+  {title: 'ABN Ambro', image: 'img/ikon-Säkerhet.svg', id:'11'},
+  {title: 'Apple Store', image: 'img/ikon-Säkerhet.svg', id:'12'},
+]

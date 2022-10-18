@@ -1,0 +1,8 @@
+mutation
+{
+	course_update(id:1,credits:3.14159265359)
+	{
+		id
+		credits
+	}
+}

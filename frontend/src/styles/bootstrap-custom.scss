@@ -1,0 +1,23 @@
+/* CUSTOM bootstrap imports
+*/
+
+html {
+    box-sizing: border-box;
+    -ms-overflow-style: scrollbar;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+ 
+/* NEEDED IMPORTS */
+@import "~bootstrap/scss/_functions";
+@import "~bootstrap/scss/_variables";
+@import "~bootstrap/scss/_mixins";
+@import "~bootstrap/scss/_transitions";
+@import "~bootstrap/scss/_utilities";
+
+/* BOOTSTRAP COMPONENT STYLES TO IMPORT */
+@import "~bootstrap/scss/_card";

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Query</title>
+<link rel="stylesheet" type="text/css" href = "index.css"/>
+<style>
+header
+{
+	background-color:#ABA;
+	margin:0px;
+	padding:5px;
+	font-size: 20px;
+}
+</style>
+</head>
+<body style="margin:0px;">
+    <header>
+		<b>Send your GraphQL queries</b>
+		<label for="url">Server URL</label>
+		<input id="url" size="50"/>
+		<button id="POST" type="submit">POST (withCredentials=true)</button>
+		<label for="readyState">readyState = </label><output id="readyState"></output>
+		<label for="status">status = </label><output id="status"></output>
+	</header>
+	<div>
+		<div style="display: flex;">
+			<div style="flex: 20%;height: 400px;overflow:auto;background-color:#EEE;padding:10px;">
+				<h4>Fileitems</h4>
+				<a class="example" href="#fileitems.txt">fileitems</a><br>
+
+				<h4>Courses</h4>
+				<a class="example" href="#courses.txt">courses</a><br>
+				<a class="example" href="#courses_keywords.txt">courses_keywords</a><br>
+				<a class="example" href="#courses_get_by_lang.txt">courses_get_by_lang</a><br>
+				<a class="example" href="#courses_sort_by_keyword.txt">courses_sort_by_keyword</a><br>
+				
+				<h4>Inquries</h4>
+				<a class="example" href="#inquiries.txt">inquiries</a><br>
+				
+				<h4>Users</h4>
+				<a class="example" href="#users.txt">users</a><br>
+				<a class="example" href="#users_by_access.txt">users_by_access</a><br>
+				<a class="example" href="#user_by_keycloak_guid.txt">user_by_keycloak_guid</a><br>
+
+				<h4>Keycloak</h4>
+				<a class="example" href="#keycloak_users.txt">keycloak_users</a><br>
+				
+				<h4>Organizations</h4>
+				<a class="example" href="#organizations.txt">organizations</a><br>
+				
+				<h4>Account</h4>
+				<a class="example" href="#account.txt">account</a><br>
+				<a class="example" href="#login.txt">login</a><br>
+				<a class="example" href="#logout.txt">logout</a><br>
+				<a class="example" href="#register.txt">register</a><br>
+				<a class="example" href="#change_password.txt">change password</a><br>
+				<a class="example" href="#forgot_password_email.txt">forgot_password_email</a><br>
+				<a class="example" href="#login_keycloak_userinfo.txt">login_keycloak_userinfo</a><br>
+				<a class="example" href="#user_current.txt">user_current</a><br>
+				<a class="example" href="#keycloak_userinfo.txt">keycloak_userinfo</a><br>
+				<a class="example" href="#impersonate.txt">impersonate</a><br>
+				
+				<h4>Account - Courses</h4>
+				<a class="example" href="#courses_by_current_user.txt">courses_by_current_user</a><br>
+				<a class="example" href="#course_add.txt">course_add</a><br>
+				<a class="example" href="#course_add__img64_bmp.txt">course_add__img64_bmp</a><br>
+				<a class="example" href="#course_add__img64_png.txt">course_add__img64_png</a><br>
+				<a class="example" href="#course_add__img64_gif.txt">course_add__img64_gif</a><br>
+				<a class="example" href="#course_add__img64_webp.txt">course_add__img64_webp</a><br>
+				<a class="example" href="#course_update.txt">course_update</a><br>
+				<a class="example" href="#course_remove.txt">course_remove</a><br>
+				<a class="example" href="#course_add_favorite.txt">course_add_favorite</a><br>
+				<a class="example" href="#course_add_current_user.txt">course_add_current_user</a><br>
+				<a class="example" href="#course_add_user.txt">course_add_user</a><br>
+				<a class="example" href="#course_remove_user.txt">course_remove_user</a><br>
+				<a class="example" href="#course_set_organization.txt">course_set_organization</a><br>
+				
+				<h4>Account - Inquries</h4>
+				<a class="example" href="#inquiries_by_current_user.txt">inquiries_by_current_user</a><br>
+				<a class="example" href="#inquiry_add.txt">inquiry_add</a><br>
+				<a class="example" href="#inquiry_remove.txt">inquiry_remove</a><br>
+				<a class="example" href="#inquiry_edit.txt">inquiry_edit</a><br>
+				<a class="example" href="#inquiry_add_current_user.txt">inquiry_add_current_user</a><br>
+				<a class="example" href="#inquiry_add_user.txt">inquiry_add_user</a><br>
+				<a class="example" href="#inquiry_remove_user.txt">inquiry_remove_user</a><br>
+				
+				<h4>Account - Organizations</h4>
+				<a class="example" href="#organizations_by_current_user.txt">organizations_by_current_user</a><br>
+				<a class="example" href="#organization_add.txt">organization_add</a><br>
+				<a class="example" href="#organization_edit.txt">organization_edit</a><br>
+				<a class="example" href="#organization_remove.txt">organization_remove</a><br>
+				<a class="example" href="#organization_add_current_user.txt">organization_add_current_user</a><br>
+				<a class="example" href="#organization_add_user.txt">organization_add_user</a><br>
+				<a class="example" href="#organization_remove_user.txt">organization_remove_user</a><br>
+				<a class="example" href="#organization_set_record_status.txt">organization_set_record_status</a><br>
+				
+				<h4>Keywords</h4>
+				<a class="example" href="#keywords.txt">keywords</a><br>
+				
+				<h4>Tools</h4>
+				<a class="example" href="#tool_keycloak_admincli_register.txt">tool_keycloak_admincli_register</a><br>
+				<a class="example" href="#tool_keycloak_admincli_token.txt">tool_keycloak_admincli_token</a><br>
+				<a class="example" href="#allabolag.txt">Allabolag</a><br>
+				
+				<h4>Imports</h4>
+				<a class="example" href="#external_import.txt">external_import</a><br>
+				
+				<h4>Record Update</h4>
+				<a class="example" href="#record_update.txt">record_update</a><br>
+				
+			</div>
+			<div style="flex: 80%;padding:10px;">
+				<textarea id="queryarea" name="queryarea" rows="20" cols="80" wrap="soft"></textarea>
+			</div>
+		</div>
+		<hr>
+
+		<details>
+			<summary>responseText</summary>
+			<samp id="responseText"></samp>
+		</details>
+		
+		<hr>
+		<div id="tables"></div>
+	</div>
+
+	
+	<script src="misc.js"></script>
+	<script src="arena.js"></script>
+	<script src="jsontable.js"></script>
+	<script src="graphql.js"></script>
+	<script src="index.js"></script>
+</body>
+</html>

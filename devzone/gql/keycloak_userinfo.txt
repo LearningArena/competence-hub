@@ -1,0 +1,4 @@
+query
+{
+	keycloak_userinfo
+}

@@ -1,0 +1,7 @@
+query
+{
+	user_id
+	impostor_id
+	claims
+	identities
+}

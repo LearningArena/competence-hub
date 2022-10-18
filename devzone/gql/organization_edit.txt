@@ -1,0 +1,9 @@
+mutation
+{
+	organization_edit(id:1, name:"RISE", address:"Sundsvall")
+	{
+		id
+		name
+		address
+	}
+}

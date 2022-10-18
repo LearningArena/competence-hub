@@ -1,0 +1,14 @@
+query
+{
+	user_by_guid(guid:"")
+	{
+		id
+		keycloak_guid
+		preference
+		orgid_se
+		username
+		firstname
+		lastname
+		email
+	}
+}

@@ -1,0 +1,18 @@
+mutation
+{
+	organization_add(orgid:"1234567890", name:"countup")
+	{
+		id
+		country_code
+		orgid
+		name
+		record_status
+		organization_user_edges
+		{
+			relationship
+			user{id,email}
+		}
+		courses{id,title}
+		inquiries{id,title}
+	}
+}

@@ -1,0 +1,90 @@
+
+version: '3'
+services:
+  postgres_backend:
+    image: postgres:12-alpine
+    volumes:
+      - postgres_backend_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=${BACKEND_POSTGRES_DB}
+      - POSTGRES_PASSWORD=${BACKEND_POSTGRES_PASSWORD}
+      - POSTGRES_USER=${BACKEND_POSTGRES_USER}
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        tag: "arena-stack-postgres-backend"
+
+  postgres_keycloak:
+    image: postgres:12-alpine
+    volumes:
+      - postgres_keycloak_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=${KEYCLOAK_POSTGRES_DB}
+      - POSTGRES_PASSWORD=${KEYCLOAK_POSTGRES_PASSWORD}
+      - POSTGRES_USER=${KEYCLOAK_POSTGRES_USER}
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        tag: "arena-stack-postgres-keycloak"
+
+  backend:
+    build: .
+    environment:
+      - keycloak_admincli_resource=${keycloak_admincli_resource}
+      - keycloak_admincli_auth_server_url=${keycloak_admincli_auth_server_url}
+      - keycloak_admincli_credentials_secret=${keycloak_admincli_credentials_secret}
+      - keycloak_admincli_realm=${keycloak_admincli_realm}
+      - keycloak_arenaclient_resource=${keycloak_arenaclient_resource}
+      - keycloak_arenaclient_auth_server_url=${keycloak_arenaclient_auth_server_url}
+      - keycloak_arenaclient_credentials_secret=${keycloak_arenaclient_credentials_secret}
+      - keycloak_arenaclient_realm=${keycloak_arenaclient_realm}
+      - POSTMARK_SERVER_TOKEN=${POSTMARK_SERVER_TOKEN}
+      - POSTGRES_DB=${BACKEND_POSTGRES_DB}
+      - POSTGRES_HOST=postgres_backend
+      - POSTGRES_PASSWORD=${BACKEND_POSTGRES_PASSWORD}
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=${BACKEND_POSTGRES_USER}
+    restart: always
+    ports:
+      - 8000:8000
+    logging:
+      driver: json-file
+      options:
+        tag: "arena-stack-backend"
+    depends_on:
+      - postgres_backend
+      - keycloak
+
+
+  keycloak:
+    image: jboss/keycloak:16.1.1
+    environment:
+      - DB_ADDR=postgres_keycloak
+      - DB_DATABASE=${KEYCLOAK_POSTGRES_DB}
+      - DB_PASSWORD=${KEYCLOAK_POSTGRES_PASSWORD}
+      - DB_USER=${KEYCLOAK_POSTGRES_USER}
+      - DB_VENDOR=POSTGRES
+      - KEYCLOAK_PASSWORD=${KEYCLOAK_ADMIN_PASSWORD}
+      - KEYCLOAK_USER=${KEYCLOAK_ADMIN_USER}
+      - KEYCLOAK_IMPORT=/tmp/arenarealm.json
+      - PROXY_ADDRESS_FORWARDING=true
+    volumes:
+      - ${KEYCLOAK_REALM_FILE}:/tmp/arenarealm.json
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        tag: "arena-stack-keycloak"
+    ports:
+      - "${KEYCLOAK_PORT}:8080"
+    depends_on:
+      - postgres_keycloak
+
+
+volumes:
+  postgres_backend_data:
+    driver: local
+  postgres_keycloak_data:
+    driver: local

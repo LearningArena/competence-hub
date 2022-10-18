@@ -1,0 +1,13 @@
+query
+{
+	user_current
+	{
+		id
+		keycloak_guid
+		preference
+		username
+		firstname
+		lastname
+		email
+	}
+}

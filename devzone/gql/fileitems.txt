@@ -1,0 +1,9 @@
+query
+{
+	fileitems
+	{
+		id
+		path
+		kind
+	}
+}

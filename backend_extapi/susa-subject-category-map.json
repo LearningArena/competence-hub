@@ -1,0 +1,2761 @@
+[
+    {
+        "slug": "artificiellintelligens",
+        "name": "Artificiell intelligens",
+        "keywords": [
+            "artificiell intelligens",
+            "maskininl\u00e4rning"
+        ],
+        "subjects": []
+    },
+    {
+        "slug": "ekonomi",
+        "name": "Ekonomi & handel",
+        "keywords": [
+            "ekonomi",
+            "handel"
+        ],
+        "subjects": [
+            {
+                "id": 416,
+                "name": "Annan utbildning i industriell ekonomi och organisation",
+                "nameEn": null,
+                "type": "YH",
+                "code": "526x",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/416"
+                    }
+                ]
+            },
+            {
+                "id": 42,
+                "name": "Entrepren\u00f6rskapskurser, Ekonomikurser",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "26",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/42"
+                    }
+                ]
+            },
+            {
+                "id": 603,
+                "name": "Handelsr\u00e4tt",
+                "nameEn": "Commercial Law",
+                "type": "UOH",
+                "code": "535",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/603"
+                    }
+                ]
+            },
+            {
+                "id": 280,
+                "name": "Ekonomi",
+                "nameEn": "Business Administration and Economics",
+                "type": "UOH",
+                "code": "395",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/280"
+                    }
+                ]
+            },
+            {
+                "id": 281,
+                "name": "Ekonomisk historia",
+                "nameEn": "Economic History",
+                "type": "UOH",
+                "code": "433",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/281"
+                    }
+                ]
+            },
+            {
+                "id": 286,
+                "name": "Finansiell ekonomi",
+                "nameEn": "Finance",
+                "type": "UOH",
+                "code": "586",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/286"
+                    }
+                ]
+            },
+            {
+                "id": 287,
+                "name": "F\u00f6retagsekonomi",
+                "nameEn": "Business Administration",
+                "type": "UOH",
+                "code": "616",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/287"
+                    }
+                ]
+            },
+            {
+                "id": 291,
+                "name": "Nationalekonomi",
+                "nameEn": "Economics",
+                "type": "UOH",
+                "code": "571",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/291"
+                    }
+                ]
+            },
+            {
+                "id": 294,
+                "name": "Handelsr\u00e4tt",
+                "nameEn": "Commercial Law",
+                "type": "UOH",
+                "code": "479",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/294"
+                    }
+                ]
+            },
+            {
+                "id": 380,
+                "name": "F\u00f6retagsekonomi",
+                "nameEn": null,
+                "type": "YH",
+                "code": "340a",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/380"
+                    }
+                ]
+            },
+            {
+                "id": 381,
+                "name": "Handel och administration",
+                "nameEn": null,
+                "type": "YH",
+                "code": "340b",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/381"
+                    }
+                ]
+            },
+            {
+                "id": 382,
+                "name": "Annan bred utbildning i f\u00f6retagsekonomi, handel och administration",
+                "nameEn": null,
+                "type": "YH",
+                "code": "340x",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/382"
+                    }
+                ]
+            },
+            {
+                "id": 392,
+                "name": "F\u00f6retagsekonomi, handel, administration,            \u00f6vrig/ospec utbildning",
+                "nameEn": null,
+                "type": "YH",
+                "code": "349z",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/392"
+                    }
+                ]
+            },
+            {
+                "id": 528,
+                "name": "Ekonomisk historia",
+                "nameEn": "Economic History",
+                "type": "UOH",
+                "code": "721",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/528"
+                    }
+                ]
+            },
+            {
+                "id": 318,
+                "name": "Industriell ekonomi och organisation",
+                "nameEn": "Industrial Economics, Organisation and Management",
+                "type": "UOH",
+                "code": "456",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/318"
+                    }
+                ]
+            },
+            {
+                "id": 631,
+                "name": "Ekonomisk historia",
+                "nameEn": "Economic History",
+                "type": "UOH",
+                "code": "560",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/631"
+                    }
+                ]
+            },
+            {
+                "id": 653,
+                "name": "Industriell ekonomi och organisation",
+                "nameEn": "Industrial Economics, Organisation and Management",
+                "type": "UOH",
+                "code": "577",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/653"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "slug": "ledarskap",
+        "name": "Ledarskap",
+        "keywords": [
+            "ledarskap",
+            "ledning"
+        ],
+        "subjects": [
+            {
+                "id": 472,
+                "name": "Annan utbildning inom socialt arbete och v\u00e4gledning",
+                "nameEn": null,
+                "type": "YH",
+                "code": "762x",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/472"
+                    }
+                ]
+            },
+            {
+                "id": 605,
+                "name": "Projektledning",
+                "nameEn": "Project Management",
+                "type": "UOH",
+                "code": "536",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/605"
+                    }
+                ]
+            },
+            {
+                "id": 629,
+                "name": "Projektledning",
+                "nameEn": "Project Management",
+                "type": "UOH",
+                "code": "559",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/629"
+                    }
+                ]
+            },
+            {
+                "id": 285,
+                "name": "Projektledning",
+                "nameEn": "Project Management",
+                "type": "UOH",
+                "code": "458",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/285"
+                    }
+                ]
+            },
+            {
+                "id": 387,
+                "name": "Ledarskap, organisation och styrning",
+                "nameEn": null,
+                "type": "YH",
+                "code": "345a",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/387"
+                    }
+                ]
+            },
+            {
+                "id": 390,
+                "name": "Annan utbildning i ledning och administration",
+                "nameEn": null,
+                "type": "YH",
+                "code": "345x",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/390"
+                    }
+                ]
+            },
+            {
+                "id": 47,
+                "name": "Ledarskapskurser, Projektledningskurser",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "51",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/47"
+                    }
+                ]
+            },
+            {
+                "id": 253,
+                "name": "Studie- och yrkesv\u00e4gledning",
+                "nameEn": "Student and Vocational Counselling",
+                "type": "UOH",
+                "code": "478",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/253"
+                    }
+                ]
+            },
+            {
+                "id": 282,
+                "name": "Ledarskap och organisation",
+                "nameEn": "Leadership, Organisation and Management",
+                "type": "UOH",
+                "code": "495",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/282"
+                    }
+                ]
+            },
+            {
+                "id": 608,
+                "name": "Studie- och yrkesv\u00e4gledning",
+                "nameEn": "Student and Vocational Counselling",
+                "type": "UOH",
+                "code": "538",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/608"
+                    }
+                ]
+            },
+            {
+                "id": 660,
+                "name": "Projektledning",
+                "nameEn": "Project Management",
+                "type": "UOH",
+                "code": "462",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/660"
+                    }
+                ]
+            },
+            {
+                "id": 982,
+                "name": "\u00d6vriga ledarskapskurser, projektledningskurser",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "1817",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/982"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "slug": "transport",
+        "name": "Transport & logistik",
+        "keywords": [
+            "transport",
+            "logistik"
+        ],
+        "subjects": [
+            {
+                "id": 290,
+                "name": "Logistik",
+                "nameEn": "Logistics",
+                "type": "UOH",
+                "code": "671",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/290"
+                    }
+                ]
+            },
+            {
+                "id": 483,
+                "name": "Transporttj\u00e4nster, allm\u00e4n utbildning",
+                "nameEn": null,
+                "type": "YH",
+                "code": "840a",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/483"
+                    }
+                ]
+            },
+            {
+                "id": 484,
+                "name": "Utbildning f\u00f6r landtransporter",
+                "nameEn": null,
+                "type": "YH",
+                "code": "840b",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/484"
+                    }
+                ]
+            },
+            {
+                "id": 487,
+                "name": "Annan utbildning inom transporttj\u00e4nster",
+                "nameEn": null,
+                "type": "YH",
+                "code": "840x",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/487"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "slug": "digitalisering",
+        "name": "Digitalisering",
+        "keywords": [
+            "digital"
+        ],
+        "subjects": [
+            {
+                "id": 726,
+                "name": "Digital design",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "1152",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/726"
+                    }
+                ]
+            },
+            {
+                "id": 727,
+                "name": "Digitalt",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "1845",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/727"
+                    }
+                ]
+            },
+            {
+                "id": 728,
+                "name": "Digitalt, journalistiskt foto",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "303",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/728"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "slug": "miljo",
+        "name": "Milj\u00f6 & h\u00e5llbarhet",
+        "keywords": [
+            "milj\u00f6",
+            "h\u00e5llbar",
+            "cirkul\u00e4r",
+            "cirkular"
+        ],
+        "subjects": [
+            {
+                "id": 22,
+                "name": "Milj\u00f6kurser, Ekologikurser",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "57",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/22"
+                    }
+                ]
+            },
+            {
+                "id": 45,
+                "name": "H\u00e5llbar utveckling",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "38",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/45"
+                    }
+                ]
+            },
+            {
+                "id": 212,
+                "name": "Milj\u00f6vetenskap",
+                "nameEn": "Environmental Science, Care and Protection",
+                "type": "UOH",
+                "code": "483",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/212"
+                    }
+                ]
+            },
+            {
+                "id": 213,
+                "name": "Milj\u00f6- och energiteknik",
+                "nameEn": "Environmental Techniques and Energy Technology",
+                "type": "UOH",
+                "code": "414",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/213"
+                    }
+                ]
+            },
+            {
+                "id": 488,
+                "name": "Milj\u00f6v\u00e5rdsteknik och milj\u00f6kontroll",
+                "nameEn": null,
+                "type": "YH",
+                "code": "851z",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/488"
+                    }
+                ]
+            },
+            {
+                "id": 490,
+                "name": "Milj\u00f6v\u00e5rd och milj\u00f6skydd, \u00f6vrig/ospec utbildning",
+                "nameEn": null,
+                "type": "YH",
+                "code": "859z",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/490"
+                    }
+                ]
+            },
+            {
+                "id": 505,
+                "name": "Arbetsmilj\u00f6 och arbetarskydd",
+                "nameEn": null,
+                "type": "YH",
+                "code": "862z",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/505"
+                    }
+                ]
+            },
+            {
+                "id": 519,
+                "name": "Milj\u00f6geologi",
+                "nameEn": "Environmental Geology",
+                "type": "UOH",
+                "code": "712",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/519"
+                    }
+                ]
+            },
+            {
+                "id": 557,
+                "name": "Milj\u00f6- och energiteknik",
+                "nameEn": "Environmental Techniques and Energy Technology",
+                "type": "UOH",
+                "code": "750",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/557"
+                    }
+                ]
+            },
+            {
+                "id": 777,
+                "name": "Globala milj\u00f6fr\u00e5gor",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "1836",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/777"
+                    }
+                ]
+            },
+            {
+                "id": 998,
+                "name": "\u00d6vriga milj\u00f6/ekologikurser",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "1840",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/998"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "slug": "datait",
+        "name": "Data & IT",
+        "keywords": [
+            "data",
+            " it ",
+            "it-",
+            "dator",
+            "informationstek"
+        ],
+        "subjects": [
+            {
+                "id": 398,
+                "name": "Data, \u00f6vrig/ospecificerad utbildning",
+                "nameEn": null,
+                "type": "YH",
+                "code": "489z",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/398"
+                    }
+                ]
+            },
+            {
+                "id": 407,
+                "name": "Ingenj\u00f6rsutbildning, datateknik",
+                "nameEn": null,
+                "type": "YH",
+                "code": "523c",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/407"
+                    }
+                ]
+            },
+            {
+                "id": 409,
+                "name": "Annan utbildning i elektronik, datateknik och automation",
+                "nameEn": null,
+                "type": "YH",
+                "code": "523x",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/409"
+                    }
+                ]
+            },
+            {
+                "id": 31,
+                "name": "Datakurser - grundniv\u00e5",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "20",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/31"
+                    }
+                ]
+            },
+            {
+                "id": 32,
+                "name": "Datakurser - webb, design, IT",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "21",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/32"
+                    }
+                ]
+            },
+            {
+                "id": 612,
+                "name": "Informationsteknik",
+                "nameEn": "Information Technology",
+                "type": "UOH",
+                "code": "540",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/612"
+                    }
+                ]
+            },
+            {
+                "id": 621,
+                "name": "Datateknik",
+                "nameEn": "Computer Technology",
+                "type": "UOH",
+                "code": "546",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/621"
+                    }
+                ]
+            },
+            {
+                "id": 271,
+                "name": "Data",
+                "nameEn": "Computer Science and Engineering",
+                "type": "UOH",
+                "code": "392",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/271"
+                    }
+                ]
+            },
+            {
+                "id": 344,
+                "name": "Datateknik",
+                "nameEn": "Computer Technology",
+                "type": "UOH",
+                "code": "757",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/344"
+                    }
+                ]
+            },
+            {
+                "id": 346,
+                "name": "Dataspelsutveckling",
+                "nameEn": "Game development",
+                "type": "UOH",
+                "code": "744",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/346"
+                    }
+                ]
+            },
+            {
+                "id": 394,
+                "name": "Data, allm\u00e4n utbildning",
+                "nameEn": null,
+                "type": "YH",
+                "code": "480z",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/394"
+                    }
+                ]
+            },
+            {
+                "id": 396,
+                "name": "Annan utbildning inom datavetenskap och systemvetenskap",
+                "nameEn": null,
+                "type": "YH",
+                "code": "481x",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/396"
+                    }
+                ]
+            },
+            {
+                "id": 397,
+                "name": "Datoranv\u00e4ndning",
+                "nameEn": null,
+                "type": "YH",
+                "code": "482z",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/397"
+                    }
+                ]
+            },
+            {
+                "id": 272,
+                "name": "M\u00e4nniska- datorinteraktion",
+                "nameEn": "Human-Computer Interaction",
+                "type": "UOH",
+                "code": "543",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/272"
+                    }
+                ]
+            },
+            {
+                "id": 320,
+                "name": "Informationsteknik",
+                "nameEn": "Information Technology",
+                "type": "UOH",
+                "code": "447",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/320"
+                    }
+                ]
+            },
+            {
+                "id": 325,
+                "name": "Lantm\u00e4teri och geografisk informationsteknik",
+                "nameEn": "Surveying and Geographic Information Technology",
+                "type": "UOH",
+                "code": "699",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/325"
+                    }
+                ]
+            },
+            {
+                "id": 581,
+                "name": "Spr\u00e5kteknologi Datorlingvistik",
+                "nameEn": "Computer Linguistics",
+                "type": "UOH",
+                "code": "764",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/581"
+                    }
+                ]
+            },
+            {
+                "id": 674,
+                "name": "Datavetenskap",
+                "nameEn": "Computer Science",
+                "type": "UOH",
+                "code": "595",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/674"
+                    }
+                ]
+            },
+            {
+                "id": 679,
+                "name": "Elektronik-, tele- och datatekniskt arbete",
+                "nameEn": null,
+                "type": "YH",
+                "code": "523e",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/679"
+                    }
+                ]
+            },
+            {
+                "id": 986,
+                "name": "\u00d6vriga datakurser",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "1796",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/986"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "slug": "design",
+        "name": "Design & media",
+        "keywords": [
+            "design",
+            "media",
+            "medie"
+        ],
+        "subjects": [
+            {
+                "id": 32,
+                "name": "Datakurser - webb, design, IT",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "21",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/32"
+                    }
+                ]
+            },
+            {
+                "id": 39,
+                "name": "Mediekurser - grundniv\u00e5",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "56",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/39"
+                    }
+                ]
+            },
+            {
+                "id": 590,
+                "name": "Teknisk design",
+                "nameEn": "Technical Design",
+                "type": "UOH",
+                "code": "770",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/590"
+                    }
+                ]
+            },
+            {
+                "id": 602,
+                "name": "Mediehistoria",
+                "nameEn": "Media History",
+                "type": "UOH",
+                "code": "776",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/602"
+                    }
+                ]
+            },
+            {
+                "id": 635,
+                "name": "Ljusdesign",
+                "nameEn": "Lighting Design",
+                "type": "UOH",
+                "code": "685",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/635"
+                    }
+                ]
+            },
+            {
+                "id": 162,
+                "name": "Konst, design och media",
+                "nameEn": "Arts, Design and Media",
+                "type": "UOH",
+                "code": "400",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/162"
+                    }
+                ]
+            },
+            {
+                "id": 169,
+                "name": "Design",
+                "nameEn": "Design",
+                "type": "UOH",
+                "code": "437",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/169"
+                    }
+                ]
+            },
+            {
+                "id": 314,
+                "name": "Medieproduktion",
+                "nameEn": "Media Production",
+                "type": "UOH",
+                "code": "547",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/314"
+                    }
+                ]
+            },
+            {
+                "id": 330,
+                "name": "Medieteknik",
+                "nameEn": "Media Technology",
+                "type": "UOH",
+                "code": "443",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/330"
+                    }
+                ]
+            },
+            {
+                "id": 371,
+                "name": "Annan utbildning inom medieproduktion",
+                "nameEn": null,
+                "type": "YH",
+                "code": "213x",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/371"
+                    }
+                ]
+            },
+            {
+                "id": 372,
+                "name": "Inredningsdesign",
+                "nameEn": null,
+                "type": "YH",
+                "code": "214b",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/372"
+                    }
+                ]
+            },
+            {
+                "id": 373,
+                "name": "Industri- och produktdesign",
+                "nameEn": null,
+                "type": "YH",
+                "code": "214c",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/373"
+                    }
+                ]
+            },
+            {
+                "id": 376,
+                "name": "Konst och media, \u00f6vrig/ospecificerad utbildning",
+                "nameEn": null,
+                "type": "YH",
+                "code": "219z",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/376"
+                    }
+                ]
+            },
+            {
+                "id": 377,
+                "name": "Medie- och kommunikationsvetenskap",
+                "nameEn": null,
+                "type": "YH",
+                "code": "321b",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/377"
+                    }
+                ]
+            },
+            {
+                "id": 378,
+                "name": "Annan utbildning i journalistik och medievetenskap",
+                "nameEn": null,
+                "type": "YH",
+                "code": "321x",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/378"
+                    }
+                ]
+            },
+            {
+                "id": 172,
+                "name": "Ljusdesign",
+                "nameEn": "Lighting Design",
+                "type": "UOH",
+                "code": "643",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/172"
+                    }
+                ]
+            },
+            {
+                "id": 312,
+                "name": "Medie- och kommunikationsvetenskap",
+                "nameEn": "Media and Communications Studies",
+                "type": "UOH",
+                "code": "503",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/312"
+                    }
+                ]
+            },
+            {
+                "id": 496,
+                "name": "Konst och media, allm\u00e4n utbildning",
+                "nameEn": null,
+                "type": "YH",
+                "code": "210z",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/496"
+                    }
+                ]
+            },
+            {
+                "id": 499,
+                "name": "Modedesign",
+                "nameEn": null,
+                "type": "YH",
+                "code": "214a",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/499"
+                    }
+                ]
+            },
+            {
+                "id": 520,
+                "name": "Scen och medier",
+                "nameEn": "Performing Arts and Media",
+                "type": "UOH",
+                "code": "714",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/520"
+                    }
+                ]
+            },
+            {
+                "id": 604,
+                "name": "Mediehistoria",
+                "nameEn": "Media History",
+                "type": "UOH",
+                "code": "777",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/604"
+                    }
+                ]
+            },
+            {
+                "id": 611,
+                "name": "Medieteknik",
+                "nameEn": "Media Technology",
+                "type": "UOH",
+                "code": "660",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/611"
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "name": "Designkurser, Formgivningskurser",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "22",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/3"
+                    }
+                ]
+            },
+            {
+                "id": 723,
+                "name": "Design",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "503",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/723"
+                    }
+                ]
+            },
+            {
+                "id": 726,
+                "name": "Digital design",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "1152",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/726"
+                    }
+                ]
+            },
+            {
+                "id": 780,
+                "name": "Grafisk design",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "183",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/780"
+                    }
+                ]
+            },
+            {
+                "id": 796,
+                "name": "Industriell design",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "185",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/796"
+                    }
+                ]
+            },
+            {
+                "id": 835,
+                "name": "Ljuddesign",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "837",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/835"
+                    }
+                ]
+            },
+            {
+                "id": 839,
+                "name": "Ljusdesign",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "1322",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/839"
+                    }
+                ]
+            },
+            {
+                "id": 863,
+                "name": "M\u00f6beldesign",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "1056",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/863"
+                    }
+                ]
+            },
+            {
+                "id": 896,
+                "name": "Redesign",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "817",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/896"
+                    }
+                ]
+            },
+            {
+                "id": 952,
+                "name": "Textildesign",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "184",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/952"
+                    }
+                ]
+            },
+            {
+                "id": 987,
+                "name": "\u00d6vriga design formgivning",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "1773",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/987"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "slug": "elektrifiering",
+        "name": "Elektrifiering",
+        "keywords": [
+            "elektr",
+            "mekatronik"
+        ],
+        "subjects": [
+            {
+                "id": 403,
+                "name": "Ingenj\u00f6rsutbildning - energi- och elektroteknik",
+                "nameEn": null,
+                "type": "YH",
+                "code": "522b",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/403"
+                    }
+                ]
+            },
+            {
+                "id": 404,
+                "name": "Elektrisk installation och elmekanik",
+                "nameEn": null,
+                "type": "YH",
+                "code": "522c",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/404"
+                    }
+                ]
+            },
+            {
+                "id": 406,
+                "name": "Annan utbildning i energi- och elektroteknik",
+                "nameEn": null,
+                "type": "YH",
+                "code": "522x",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/406"
+                    }
+                ]
+            },
+            {
+                "id": 409,
+                "name": "Annan utbildning i elektronik, datateknik och automation",
+                "nameEn": null,
+                "type": "YH",
+                "code": "523x",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/409"
+                    }
+                ]
+            },
+            {
+                "id": 585,
+                "name": "Mekatronik",
+                "nameEn": "Mechatronics",
+                "type": "UOH",
+                "code": "768",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/585"
+                    }
+                ]
+            },
+            {
+                "id": 347,
+                "name": "Elektroteknik",
+                "nameEn": "Electrical Engineering",
+                "type": "UOH",
+                "code": "550",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/347"
+                    }
+                ]
+            },
+            {
+                "id": 348,
+                "name": "Elektronik",
+                "nameEn": "Electronics",
+                "type": "UOH",
+                "code": "656",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/348"
+                    }
+                ]
+            },
+            {
+                "id": 679,
+                "name": "Elektronik-, tele- och datatekniskt arbete",
+                "nameEn": null,
+                "type": "YH",
+                "code": "523e",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/679"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "slug": "marknadsforing",
+        "name": "Marknadsf\u00f6ring & kommunikation",
+        "keywords": [
+            "marknad",
+            "kommuni"
+        ],
+        "subjects": [
+            {
+                "id": 36,
+                "name": "Kommunikationskurser",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "41",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/36"
+                    }
+                ]
+            },
+            {
+                "id": 377,
+                "name": "Medie- och kommunikationsvetenskap",
+                "nameEn": null,
+                "type": "YH",
+                "code": "321b",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/377"
+                    }
+                ]
+            },
+            {
+                "id": 384,
+                "name": "Marknadsf\u00f6ring",
+                "nameEn": null,
+                "type": "YH",
+                "code": "342z",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/384"
+                    }
+                ]
+            },
+            {
+                "id": 312,
+                "name": "Medie- och kommunikationsvetenskap",
+                "nameEn": "Media and Communications Studies",
+                "type": "UOH",
+                "code": "503",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/312"
+                    }
+                ]
+            },
+            {
+                "id": 665,
+                "name": "Marknadsf\u00f6ring",
+                "nameEn": "Marketing",
+                "type": "UOH",
+                "code": "476",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/665"
+                    }
+                ]
+            },
+            {
+                "id": 352,
+                "name": "Journalistik, information och kommunikation",
+                "nameEn": "Journalism, Communication and Information",
+                "type": "UOH",
+                "code": "387",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/352"
+                    }
+                ]
+            },
+            {
+                "id": 812,
+                "name": "Kommunikat\u00f6r",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "145",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/812"
+                    }
+                ]
+            },
+            {
+                "id": 996,
+                "name": "\u00d6vriga kommunikationskurser",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "1799",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/996"
+                    }
+                ]
+            },
+            {
+                "id": 1034,
+                "name": "Strategisk kommunikation",
+                "nameEn": null,
+                "type": "UOH",
+                "code": "779",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/1034"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "slug": "personal",
+        "name": "HR & personal",
+        "keywords": [
+            "personal"
+        ],
+        "subjects": [
+            {
+                "id": 389,
+                "name": "Personaladministration",
+                "nameEn": null,
+                "type": "YH",
+                "code": "345c",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/389"
+                    }
+                ]
+            },
+            {
+                "id": 284,
+                "name": "Personalarbete",
+                "nameEn": "Human Resources",
+                "type": "UOH",
+                "code": "470",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/284"
+                    }
+                ]
+            },
+            {
+                "id": 566,
+                "name": "Personalarbete",
+                "nameEn": "Human Resources",
+                "type": "UOH",
+                "code": "513",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/566"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "slug": "material",
+        "name": "Material, konstruktion & tillverkning",
+        "keywords": [
+            "material",
+            "konstruktion",
+            "tillverkning",
+            "maskin",
+            "verkstad"
+        ],
+        "subjects": [
+            {
+                "id": 400,
+                "name": "Ingenj\u00f6rsutbildning - maskinteknik",
+                "nameEn": null,
+                "type": "YH",
+                "code": "521b",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/400"
+                    }
+                ]
+            },
+            {
+                "id": 401,
+                "name": "Industri och verkstadsteknik",
+                "nameEn": null,
+                "type": "YH",
+                "code": "521c",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/401"
+                    }
+                ]
+            },
+            {
+                "id": 402,
+                "name": "Annan utbildning i maskinteknik och verkstadsteknik",
+                "nameEn": null,
+                "type": "YH",
+                "code": "521x",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/402"
+                    }
+                ]
+            },
+            {
+                "id": 418,
+                "name": "Tillverkning/hantering av livsmedel, allm\u00e4n utbildning",
+                "nameEn": null,
+                "type": "YH",
+                "code": "541c",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/418"
+                    }
+                ]
+            },
+            {
+                "id": 421,
+                "name": "Annan utbildning i tillverkning/hantering av livsmedel",
+                "nameEn": null,
+                "type": "YH",
+                "code": "541x",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/421"
+                    }
+                ]
+            },
+            {
+                "id": 422,
+                "name": "Tillverkning av textilier och konfektion",
+                "nameEn": null,
+                "type": "YH",
+                "code": "542c",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/422"
+                    }
+                ]
+            },
+            {
+                "id": 425,
+                "name": "Pappersmasse- och papperstillverkning",
+                "nameEn": null,
+                "type": "YH",
+                "code": "543d",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/425"
+                    }
+                ]
+            },
+            {
+                "id": 426,
+                "name": "Glas- och porslinstillverkning",
+                "nameEn": null,
+                "type": "YH",
+                "code": "543e",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/426"
+                    }
+                ]
+            },
+            {
+                "id": 427,
+                "name": "Tillverkning av plast och gummiprodukter",
+                "nameEn": null,
+                "type": "YH",
+                "code": "543f",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/427"
+                    }
+                ]
+            },
+            {
+                "id": 428,
+                "name": "Annan utbildning i tillverkning i specifikt material",
+                "nameEn": null,
+                "type": "YH",
+                "code": "543x",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/428"
+                    }
+                ]
+            },
+            {
+                "id": 431,
+                "name": "Tillverkning, \u00f6vrig/ospececificerad inriktning",
+                "nameEn": null,
+                "type": "YH",
+                "code": "549z",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/431"
+                    }
+                ]
+            },
+            {
+                "id": 547,
+                "name": "Materialkemi",
+                "nameEn": "Materials Chemistry",
+                "type": "UOH",
+                "code": "743",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/547"
+                    }
+                ]
+            },
+            {
+                "id": 580,
+                "name": "Materialfysik",
+                "nameEn": "Material Physics",
+                "type": "UOH",
+                "code": "642",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/580"
+                    }
+                ]
+            },
+            {
+                "id": 326,
+                "name": "Maskinteknik",
+                "nameEn": "Mechanical Engineering",
+                "type": "UOH",
+                "code": "611",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/326"
+                    }
+                ]
+            },
+            {
+                "id": 328,
+                "name": "Materialteknik",
+                "nameEn": "Materials Technology",
+                "type": "UOH",
+                "code": "491",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/328"
+                    }
+                ]
+            },
+            {
+                "id": 558,
+                "name": "Nanomaterial",
+                "nameEn": "Nanomaterials",
+                "type": "UOH",
+                "code": "630",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/558"
+                    }
+                ]
+            },
+            {
+                "id": 672,
+                "name": "Material, konstruktion och tillverkning",
+                "nameEn": "Materials, Construction and Manufacturing",
+                "type": "UOH",
+                "code": "397",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/672"
+                    }
+                ]
+            },
+            {
+                "id": 681,
+                "name": "Annan bred utbildning i material och tillverkning",
+                "nameEn": null,
+                "type": "YH",
+                "code": "540x",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/681"
+                    }
+                ]
+            },
+            {
+                "id": 830,
+                "name": "Levande verkstad",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "475",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/830"
+                    }
+                ]
+            },
+            {
+                "id": 831,
+                "name": "Levande verkstadspedagog",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "647",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/831"
+                    }
+                ]
+            },
+            {
+                "id": 866,
+                "name": "M\u00f6nsterkonstruktion",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "109",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/866"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "slug": "vardochhalsa",
+        "name": "V\u00e5rd & h\u00e4lsa",
+        "keywords": [
+            "v\u00e5rd",
+            "h\u00e4lsa"
+        ],
+        "subjects": [
+            {
+                "id": 443,
+                "name": "Utbildning i djurv\u00e5rd",
+                "nameEn": null,
+                "type": "YH",
+                "code": "621g",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/443"
+                    }
+                ]
+            },
+            {
+                "id": 450,
+                "name": "H\u00e4lso- och sjukv\u00e5rd, allm\u00e4n utbildning",
+                "nameEn": null,
+                "type": "YH",
+                "code": "720z",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/450"
+                    }
+                ]
+            },
+            {
+                "id": 451,
+                "name": "Annan omv\u00e5rdnadsutbildning - allm\u00e4n v\u00e5rd och omsorg",
+                "nameEn": null,
+                "type": "YH",
+                "code": "723m",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/451"
+                    }
+                ]
+            },
+            {
+                "id": 452,
+                "name": "Annan omv\u00e5rdnadsutbildning - inriktning mot sjukv\u00e5rd",
+                "nameEn": null,
+                "type": "YH",
+                "code": "723n",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/452"
+                    }
+                ]
+            },
+            {
+                "id": 453,
+                "name": "Annan omv\u00e5rdnadsutbildning - inriktning mot            psykiatrisk v\u00e5rd",
+                "nameEn": null,
+                "type": "YH",
+                "code": "723o",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/453"
+                    }
+                ]
+            },
+            {
+                "id": 454,
+                "name": "Annan omv\u00e5rdnadsutbildning - inriktning mot \u00e4ldreomsorg",
+                "nameEn": null,
+                "type": "YH",
+                "code": "723p",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/454"
+                    }
+                ]
+            },
+            {
+                "id": 455,
+                "name": "Annan omv\u00e5rdnadsutbildning - inriktning mot            psykiskt utvecklingsst\u00f6rda",
+                "nameEn": null,
+                "type": "YH",
+                "code": "723q",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/455"
+                    }
+                ]
+            },
+            {
+                "id": 456,
+                "name": "Annan omv\u00e5rdnadsutbildning - inriktning mot funktionshindrade",
+                "nameEn": null,
+                "type": "YH",
+                "code": "723r",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/456"
+                    }
+                ]
+            },
+            {
+                "id": 457,
+                "name": "Annan omv\u00e5rdnadsutbildning - \u00f6vriga inriktningar",
+                "nameEn": null,
+                "type": "YH",
+                "code": "723s",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/457"
+                    }
+                ]
+            },
+            {
+                "id": 458,
+                "name": "Annan utbildning inom omv\u00e5rdnad",
+                "nameEn": null,
+                "type": "YH",
+                "code": "723x",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/458"
+                    }
+                ]
+            },
+            {
+                "id": 460,
+                "name": "Annan utbildning inom tandv\u00e5rd",
+                "nameEn": null,
+                "type": "YH",
+                "code": "724x",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/460"
+                    }
+                ]
+            },
+            {
+                "id": 464,
+                "name": "Annan tekniskt inriktad v\u00e5rdutbildning",
+                "nameEn": null,
+                "type": "YH",
+                "code": "725x",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/464"
+                    }
+                ]
+            },
+            {
+                "id": 467,
+                "name": "H\u00e4lso- och sjukv\u00e5rd, \u00f6vrig eller ospecificerad utbildning",
+                "nameEn": null,
+                "type": "YH",
+                "code": "729z",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/467"
+                    }
+                ]
+            },
+            {
+                "id": 479,
+                "name": "Idrott och friskv\u00e5rd",
+                "nameEn": null,
+                "type": "YH",
+                "code": "813z",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/479"
+                    }
+                ]
+            },
+            {
+                "id": 480,
+                "name": "Utbildning f\u00f6r h\u00e5rv\u00e5rd",
+                "nameEn": null,
+                "type": "YH",
+                "code": "815a",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/480"
+                    }
+                ]
+            },
+            {
+                "id": 481,
+                "name": "Annan utbildning inom h\u00e5r- och sk\u00f6nhetsv\u00e5rd",
+                "nameEn": null,
+                "type": "YH",
+                "code": "815x",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/481"
+                    }
+                ]
+            },
+            {
+                "id": 55,
+                "name": "V\u00e5rdkurser, Omsorgskurser",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "1764",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/55"
+                    }
+                ]
+            },
+            {
+                "id": 625,
+                "name": "Friskv\u00e5rd",
+                "nameEn": "Wellness",
+                "type": "UOH",
+                "code": "553",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/625"
+                    }
+                ]
+            },
+            {
+                "id": 178,
+                "name": "Global h\u00e4lsa",
+                "nameEn": "Global Health",
+                "type": "UOH",
+                "code": "465",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/178"
+                    }
+                ]
+            },
+            {
+                "id": 204,
+                "name": "Kulturv\u00e5rd",
+                "nameEn": "Conservation",
+                "type": "UOH",
+                "code": "407",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/204"
+                    }
+                ]
+            },
+            {
+                "id": 19,
+                "name": "H\u00e4lsokurser, Friskv\u00e5rdskurser",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "32",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/19"
+                    }
+                ]
+            },
+            {
+                "id": 176,
+                "name": "H\u00e4lsa och sjukv\u00e5rd",
+                "nameEn": "Health and Medical Care",
+                "type": "UOH",
+                "code": "399",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/176"
+                    }
+                ]
+            },
+            {
+                "id": 190,
+                "name": "Djursjukv\u00e5rd",
+                "nameEn": "Veterinary Medicine and Nursing",
+                "type": "UOH",
+                "code": "396",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/190"
+                    }
+                ]
+            },
+            {
+                "id": 195,
+                "name": "Omv\u00e5rdnad",
+                "nameEn": "Nursing Science and Nursing",
+                "type": "UOH",
+                "code": "416",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/195"
+                    }
+                ]
+            },
+            {
+                "id": 201,
+                "name": "H\u00e4lso- och sjukv\u00e5rdsutveckling",
+                "nameEn": "Health and Medical Service Development",
+                "type": "UOH",
+                "code": "601",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/201"
+                    }
+                ]
+            },
+            {
+                "id": 288,
+                "name": "H\u00e4lso- och sjukv\u00e5rdsadministration",
+                "nameEn": "Health Service Administration",
+                "type": "UOH",
+                "code": "403",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/288"
+                    }
+                ]
+            },
+            {
+                "id": 488,
+                "name": "Milj\u00f6v\u00e5rdsteknik och milj\u00f6kontroll",
+                "nameEn": null,
+                "type": "YH",
+                "code": "851z",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/488"
+                    }
+                ]
+            },
+            {
+                "id": 490,
+                "name": "Milj\u00f6v\u00e5rd och milj\u00f6skydd, \u00f6vrig/ospec utbildning",
+                "nameEn": null,
+                "type": "YH",
+                "code": "859z",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/490"
+                    }
+                ]
+            },
+            {
+                "id": 504,
+                "name": "Annan utbildning inom djursjukv\u00e5rd",
+                "nameEn": null,
+                "type": "YH",
+                "code": "640x",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/504"
+                    }
+                ]
+            },
+            {
+                "id": 515,
+                "name": "Naturv\u00e5rdsbiologi",
+                "nameEn": "Conservation Biology",
+                "type": "UOH",
+                "code": "707",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/515"
+                    }
+                ]
+            },
+            {
+                "id": 634,
+                "name": "Reproduktiv och perinatal h\u00e4lsa",
+                "nameEn": "Reproductive and Perinatal Health",
+                "type": "UOH",
+                "code": "442",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/634"
+                    }
+                ]
+            },
+            {
+                "id": 682,
+                "name": "Annan omv\u00e5rdnadsutbildning, funktionsnedsatta",
+                "nameEn": null,
+                "type": "YH",
+                "code": "723t",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/682"
+                    }
+                ]
+            },
+            {
+                "id": 683,
+                "name": "Annan omv\u00e5rdnadsutbildning, \u00f6vriga inriktningar",
+                "nameEn": null,
+                "type": "YH",
+                "code": "723u",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/683"
+                    }
+                ]
+            },
+            {
+                "id": 716,
+                "name": "Byggnadsv\u00e5rd",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "1204",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/716"
+                    }
+                ]
+            },
+            {
+                "id": 725,
+                "name": "Diakoni, sj\u00e4lav\u00e5rd",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "1825",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/725"
+                    }
+                ]
+            },
+            {
+                "id": 768,
+                "name": "Friskv\u00e5rdsledare",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "114",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/768"
+                    }
+                ]
+            },
+            {
+                "id": 769,
+                "name": "Friskv\u00e5rdsledare",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "1703",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/769"
+                    }
+                ]
+            },
+            {
+                "id": 788,
+                "name": "H\u00e4lsa",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "366",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/788"
+                    }
+                ]
+            },
+            {
+                "id": 820,
+                "name": "Kriminalv\u00e5rd",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "278",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/820"
+                    }
+                ]
+            },
+            {
+                "id": 850,
+                "name": "Mental friskv\u00e5rd",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "495",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/850"
+                    }
+                ]
+            },
+            {
+                "id": 870,
+                "name": "Naturv\u00e5rd",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "1835",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/870"
+                    }
+                ]
+            },
+            {
+                "id": 918,
+                "name": "Sj\u00e4lav\u00e5rd, diakoni",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "393",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/918"
+                    }
+                ]
+            },
+            {
+                "id": 971,
+                "name": "Vattenv\u00e5rd",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "1837",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/971"
+                    }
+                ]
+            },
+            {
+                "id": 979,
+                "name": "\u00c4ldrev\u00e5rd",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "279",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/979"
+                    }
+                ]
+            },
+            {
+                "id": 1037,
+                "name": "V\u00e5rdpedagogik",
+                "nameEn": "Care pedagogics",
+                "type": "UOH",
+                "code": "785",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/1037"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "slug": "film",
+        "name": "Film & TV-produktion",
+        "keywords": [
+            "film",
+            "tv-"
+        ],
+        "subjects": [
+            {
+                "id": 34,
+                "name": "\u00d6vriga filmkurser, TV-kurser, videokurser",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "1820",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/34"
+                    }
+                ]
+            },
+            {
+                "id": 552,
+                "name": "Film",
+                "nameEn": "Film",
+                "type": "UOH",
+                "code": "747",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/552"
+                    }
+                ]
+            },
+            {
+                "id": 553,
+                "name": "Filmvetenskap",
+                "nameEn": "Film Studies",
+                "type": "UOH",
+                "code": "506",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/553"
+                    }
+                ]
+            },
+            {
+                "id": 156,
+                "name": "Filmvetenskap",
+                "nameEn": "Film Studies",
+                "type": "UOH",
+                "code": "422",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/156"
+                    }
+                ]
+            },
+            {
+                "id": 368,
+                "name": "Film-, radio- och TV-produktion",
+                "nameEn": null,
+                "type": "YH",
+                "code": "213b",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/368"
+                    }
+                ]
+            },
+            {
+                "id": 33,
+                "name": "Filmkurser, TV-kurser, Videokurser",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "29",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/33"
+                    }
+                ]
+            },
+            {
+                "id": 729,
+                "name": "Dokument\u00e4rfilm",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "786",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/729"
+                    }
+                ]
+            },
+            {
+                "id": 744,
+                "name": "Filmfoto",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "1048",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/744"
+                    }
+                ]
+            },
+            {
+                "id": 745,
+                "name": "Filmhistoria",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "1438",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/745"
+                    }
+                ]
+            },
+            {
+                "id": 746,
+                "name": "Filmkunskap",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "1045",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/746"
+                    }
+                ]
+            },
+            {
+                "id": 747,
+                "name": "Filmljud",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "865",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/747"
+                    }
+                ]
+            },
+            {
+                "id": 748,
+                "name": "Filmmanus",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "1046",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/748"
+                    }
+                ]
+            },
+            {
+                "id": 749,
+                "name": "Filmproduktion",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "1426",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/749"
+                    }
+                ]
+            },
+            {
+                "id": 933,
+                "name": "Spelfilm",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "788",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/933"
+                    }
+                ]
+            },
+            {
+                "id": 966,
+                "name": "TV-journalist",
+                "nameEn": null,
+                "type": "FHSK",
+                "code": "433",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "http://susanavet2.skolverket.se/api/1.1/subjects/966"
+                    }
+                ]
+            }
+        ]
+    }
+]

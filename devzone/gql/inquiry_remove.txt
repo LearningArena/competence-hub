@@ -1,0 +1,8 @@
+mutation
+{
+	inquiry_remove(id:1)
+	{
+		id
+		title
+	}
+}

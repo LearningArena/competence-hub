@@ -1,0 +1,4 @@
+mutation
+{
+	login_keycloak_userinfo(username:"johan",password:"johan")
+}

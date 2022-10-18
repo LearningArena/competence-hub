@@ -1,0 +1,8 @@
+mutation
+{
+	course_set_organization(course_id:1, organization_id:3)
+	{
+		id
+		title
+	}
+}

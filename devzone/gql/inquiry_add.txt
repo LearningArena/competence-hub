@@ -1,0 +1,8 @@
+mutation
+{
+	inquiry_add(title:"Bounty this person 1000$")
+	{
+		id
+		title
+	}
+}

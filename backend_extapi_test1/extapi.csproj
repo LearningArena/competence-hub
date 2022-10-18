@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../backend_structs/**/*.cs" />
+    <Compile Include="../backend_extapi/**/*.cs" />
+    <Compile Include="../backend/misc/AutoNumberToStringConverter.cs" />
+    <Compile Include="../backend/misc/UrlValidator.cs" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.40" />
+    <PackageReference Include="Schema.NET" Version="11.0.0" />
+    <PackageReference Include="Serilog" Version="2.10.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="4.0.1" />
+    <PackageReference Include="HotChocolate" Version="13.0.0-preview.8" />
+    <PackageReference Include="HotChocolate.Types" Version="13.0.0-preview.8" />
+    <PackageReference Include="HotChocolate.Data" Version="13.0.0-preview.8" />
+    <PackageReference Include="HotChocolate.Types.Filters" Version="13.0.0-preview.8" />
+    <PackageReference Include="HotChocolate.Types.Sorting" Version="13.0.0-preview.8" />
+  </ItemGroup>
+</Project>

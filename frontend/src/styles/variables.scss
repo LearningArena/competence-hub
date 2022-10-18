@@ -1,0 +1,70 @@
+/* FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Raleway&display=swap');
+
+/**** COLORS *****/
+
+//General
+$colHeaderBG: #2D4855; //Header background, 
+$colheaderText: #F8F0DE; //Header text
+$colTextDark: #2e2e2e; // Dark text
+$colTextLight: #fffcf5; // Light text
+$colButtonBG: $colHeaderBG; //Col button, same as header
+$colButtonHov: #9ACAEB; //Default hover color for links and buttons
+
+//Learn
+$colLearnBG: #F8F0DE;
+$colLearnTextLight: #F8F0DE;
+$colLearnA: #FFFCF5; // theme color light, Box background
+$colLearnB: #FAEECA; // theme color medium
+$colLearnC: #EFD78F; // Top of boxes 
+$colLearnD: #CCA633; // Icons, headers
+$colLearnE: #70541e; //Darker icons
+$colLearnShade: rgba(112, 89, 20, 0.9);
+$colLearnIcon: $colLearnD; //Icons. Logo
+$colLearnHov: #9ACAEB; // hover color
+
+//Educate
+$colEduBG: #C7D6E0; // BG color main page
+$colEduA: #F5FBFF; // theme color light
+$colEduB: #EAF6FE; // theme color medium
+$colEduC: #9ACAEB; // theme color dark
+$colEduD: #4D88B2; // icons h3 with accent
+$colEduE: #1b3c54; // icons h3 with accent
+$colEduIcon: $colEduD; // icons color
+$colEduHov: #EFD78F; // hover color
+
+
+
+//Menus left & right
+$colArrowLeft: #E5C461;
+$colArrowRight: #61A1CD;
+
+//Searchbar
+$colSearchBG: #2D4855;  //Searchbar background
+$colSearchText: #FFFCF5; // Searchbar text
+
+//Fixed Footer
+$colFooterBG: $colTextDark; 
+
+//Scoll footer
+$colFooterscrollBGblue: #C7D6E0; 
+$colFooterscrollBGyellow: #F8F0DE;
+
+/**** Sizes *****/
+// $mainContentMin: 500px;
+// $mainContentWidth: 50vw;
+// $mainContentMax: 1024px;
+
+$mainContentMin: 0px;
+$mainContentWidth: 60vw;
+$mainContentMax: 1300px;
+
+@mixin contentWidth() {
+    width: $mainContentWidth;
+    min-width: $mainContentMin;
+    max-width: $mainContentMax;
+}
+
+/* SPACING */
+// $boxMargin: 20px;
+// $boxPadding: 20px;

@@ -1,0 +1,222 @@
+{
+	"components_style": 
+	{
+		"id"            : {"edit":"raw", "filter":"input", "htmltype":"number", "prefix":"", "width":"80px"},
+		"record_status" : {"edit":"option", "filter":"option", "htmltype":"string", "prefix":"💡"},
+		"time_created"  : {"edit":"input", "filter":"input", "htmltype":"datetime", "prefix":"📅"},
+		"time_modifed"  : {"edit":"input", "filter":"input", "htmltype":"datetime", "prefix":"📅"},
+		"title"         : {"edit":"input", "filter":"input", "htmltype":"string", "prefix":""},
+		"name"          : {"edit":"input", "filter":"input", "htmltype":"string", "prefix":""},
+		"firstname"     : {"edit":"input", "filter":"input", "htmltype":"string", "prefix":""},
+		"lastname"      : {"edit":"input", "filter":"input", "htmltype":"string", "prefix":""},
+		"content"       : {"edit":"input", "filter":"input", "htmltype":"string", "prefix":""},
+		"price"         : {"edit":"input", "filter":"input", "htmltype":"money", "prefix":"💲"},
+		"email"         : {"edit":"input", "filter":"input", "htmltype":"email", "prefix":"✉️"},
+		"url"           : {"edit":"input", "filter":"input", "htmltype":"url", "prefix":"🌐"},
+		"language_id"   : {"edit":"input", "filter":"input", "htmltype":"number", "prefix":"🌎"},
+		"attribute_id"  : {"edit":"input", "filter":"input", "htmltype":"number", "prefix":""},
+		"sync"          : {"edit":"input", "filter":"input", "htmltype":"button", "prefix":""},
+		"descriptions"  : {"edit":"input", "filter":"input", "htmltype":"string", "prefix":""},
+		"description"   : {"edit":"input", "filter":"input", "htmltype":"textbox", "prefix":""},
+		"users"         : {"edit":"input", "filter":"input", "htmltype":"", "prefix":""},
+
+		"token"         : {"edit":"raw", "filter":"", "htmltype":"string", "prefix":""},
+		"created"       : {"edit":"raw", "filter":"", "htmltype":"string", "prefix":""},
+
+		"$cursor"       : {"name":"", "edit":"", "filter":"", "htmltype":"", "prefix":"📑"},
+		"$relations"    : {"edit":"", "filter":"", "htmltype":"", "prefix":"🧑‍🤝‍🧑"},
+		"$edgebox"      : {"edit":"", "filter":"", "htmltype":"", "prefix":"🧑‍🤝‍🧑"},
+		"$selection"    : {"name":""}
+	},
+
+
+	"components_description": 
+	{
+		"dummy"                : "Owner or group can edit this field.",
+		"name"                 : "The name of entity",
+		"sync"                 : "A sync action to get the latest data from external source",
+		"time_created"         : "When entity was created",
+		"time_modified"        : "When entity was modified",
+		"record_status"        : "The current state of entity"
+	},
+
+	"components_jsonld":
+	{
+		"name"                : {"@id":"schema:name", "url":"http://xmlns.com/foaf/0.1/name"},
+		"title"               : {"@id":"schema:title", "url":"http://xmlns.com/foaf/0.1/title"},
+		"image_company_logo"  : {"@id":"schema:img", "url":"http://xmlns.com/foaf/0.1/img"},
+		"image_course_banner" : {"@id":"schema:img", "url":"http://xmlns.com/foaf/0.1/img"},
+		"image_teacher"       : {"@id":"schema:img", "url":"http://xmlns.com/foaf/0.1/img"},
+		"image_feature"       : {"@id":"schema:img", "url":"http://xmlns.com/foaf/0.1/img"},
+		"image_provider"      : {"@id":"schema:img", "url":"http://xmlns.com/foaf/0.1/img"},
+		"phonenumber"         : {"@id":"schema:telephone", "url":"https://schema.org/telephone"},
+		"email"               : {"@id":"schema:email", "url":"https://schema.org/email"},
+		"firstname"           : {"@id":"schema:givenName", "url":"https://schema.org/givenName"},
+		"lastname"            : {"@id":"schema:familyName", "url":"https://schema.org/familyName"},
+		"price"               : {"@id":"schema:price", "url":"https://schema.org/price"},
+		"time_created"        : {"@id":"schema:DateTime", "url":"https://schema.org/DateTime"},
+		"time_modified"       : {"@id":"schema:DateTime", "url":"https://schema.org/DateTime"},
+		"course"              : {"@id":"schema:Course", "url":"https://schema.org/Course"},
+		"user"                : {"@id":"schema:Person", "url":"https://schema.org/Person"},
+		"organization"        : {"@id":"schema:Organization", "url":"https://schema.org/Organization"},
+		"dummy"               : ""
+	},
+
+	"components_perm": 
+	{
+		"id"            : {"default":"r", "Siteadmin":"r", "AUTHOR":"r-"},
+		"record_status" : {"default":"r", "Siteadmin":"rw", "AUTHOR":"rw"},
+		"time_created"  : {"default":"r", "Siteadmin":"rw", "AUTHOR":"rw"},
+		"time_modified" : {"default":"r", "Siteadmin":"rw", "AUTHOR":"rw"},
+		"title"         : {"default":"r", "Siteadmin":"rw", "AUTHOR":"rw"},
+		"name"          : {"default":"r", "Siteadmin":"rw", "AUTHOR":"rw"},
+		"firstname"     : {"default":"r", "Siteadmin":"rw", "AUTHOR":"rw"},
+		"lastname"      : {"default":"r", "Siteadmin":"rw", "AUTHOR":"rw"},
+		"price"         : {"default":"r", "Siteadmin":"rw", "AUTHOR":"rw"},
+		"email"         : {"default":"r", "Siteadmin":"rw", "AUTHOR":"rw"},
+		"url"           : {"default":"r", "Siteadmin":"rw", "AUTHOR":"rw"},
+		"language_id"   : {"default":"r", "Siteadmin":"rw", "AUTHOR":"r-"},
+		"attribute_id"  : {"default":"r", "Siteadmin":"rw", "AUTHOR":"r-"},
+		"sync"          : {"default":"r", "Siteadmin":"rw", "AUTHOR":"--"},
+		"description"   : {"default":"r", "Siteadmin":"rw", "AUTHOR":"rw"},
+		"course"        : {"default":"r", "Siteadmin":"rw", "AUTHOR":"r-"},
+		"user"          : {"default":"r", "Siteadmin":"rw", "AUTHOR":"r-"},
+		"organization"  : {"default":"r", "Siteadmin":"rw", "AUTHOR":"r-"},
+		"content"       : {"default":"r", "Siteadmin":"rw", "AUTHOR":"r-"},
+		"descriptions"  : {"default":"r", "Siteadmin":"rw", "AUTHOR":"r-"},
+		"users"         : {"default":"r", "Siteadmin":"rw", "AUTHOR":"r-"},
+		"courses"       : {"default":"r", "Siteadmin":"rw", "AUTHOR":"r-"},
+		"keywords"      : {"default":"r", "Siteadmin":"rw", "AUTHOR":"r-"},
+		"dummy"         : {"default":"r", "Siteadmin":"rw", "AUTHOR":"r-"}
+	},
+
+	"components": 
+	{
+		"id"               : {"type":"int", "importance":"critical"},
+		"record_status"    : {"type":"enum", "importance":"critical"},
+		"time_created"     : {"type":"datetime", "importance":"critical", "quantity":"time", "unit":"utc"},
+		"time_modified"    : {"type":"datetime", "importance":"critical", "quantity":"time", "unit":"utc"},
+		"title"            : {"type":"string", "importance":"critical"},
+		"name"             : {"type":"string", "importance":"critical"},
+		"firstname"        : {"type":"string", "importance":""},
+		"lastname"         : {"type":"string", "importance":""},
+		"price"            : {"type":"int", "importance":"", "quantity":"money", "unit":"SEK"},
+		"email"            : {"type":"string", "importance":"critical"},
+		"url"              : {"type":"string", "importance":""},
+		"language_id"      : {"type":"int"},
+		"attribute_id"     : {"type":"int"},
+		"token"            : {"type":"string"},
+		"created"          : {"type":"datetime"},
+		"description"      : {"type":"string", "importance":""},
+		"course"           : {"type":"object", "importance":""},
+		"user"             : {"type":"object", "importance":""},
+		"organization"     : {"type":"object", "importance":""},
+		"content"          : {"type":"object", "importance":""},
+		"descriptions"     : {"type":"list of content"},
+		"users"            : {"type":"list of user"},
+		"courses"          : {"type":"list of course"},
+		"$extsync"         : {"type":"function"},
+		"$cursor"          : {"type":"unknown"},
+		"$r;USERS"         : {"type":"unknown"},
+		"$r;COURSES"       : {"type":"unknown"},
+		"$r;INQUIRIES"     : {"type":"unknown"},
+		"$r;ORGANIZATIONS" : {"type":"unknown"},
+		"$r;KEYWORDS"      : {"type":"unknown"},
+		"$dummy"           : {"type":"unknown"},
+		"$selection"       : {"type":"unknown"}
+	},
+
+	"collections":
+	{
+		"UNKNOWN"        : [],
+		"COURSES"        : ["$selection", "id", "record_status", "title", "description", "price", "time_modified", "time_created", "$sync", "$cursor", "$r;USERS", "$r;KEYWORDS", "$r;ORGANIZATIONS"],
+		"INQUIRIES"      : ["$selection", "id", "record_status", "title", "time_modified", "time_created", "$r;USERS", "$r;KEYWORDS"],
+		"USERS"          : ["$selection", "id", "record_status", "email", "firstname", "lastname", "time_modified", "time_created", "$r;COURSES", "$r;INQUIRIES", "$r;ORGANIZATIONS"],
+		"ORGANIZATIONS"  : ["$selection", "id", "record_status", "name", "users", "descriptions", "time_modified", "time_created", "$r;USERS", "$r;COURSES"],
+		"KEYWORDS"       : ["$selection", "id", "record_status", "name"],
+		"CONTENTS"       : ["$selection", "id", "record_status", "name", "content", "language_id", "attribute_id"],
+		"LANGUAGES"      : ["$selection", "id", "record_status", "name"],
+		"ATTRIBUTES"     : ["$selection", "id", "record_status", "name"], 
+		"FILEITEMS"      : ["$selection", "id", "record_status", "name"],
+		"EXTPOINT"       : ["$selection", "id", "record_status", "name"],
+		"TEMPUSERS"      : ["$selection", "token", "created"]
+	},
+
+	"collections1":
+	{
+		"UNKNOWN"        : [],
+		"COURSES"        : ["$selection", "id", "title"],
+		"INQUIRIES"      : ["$selection", "id", "title"],
+		"USERS"          : ["$selection", "id", "email", "firstname", "lastname"],
+		"ORGANIZATIONS"  : ["$selection", "id", "name"],
+		"KEYWORDS"       : ["$selection", "id", "name"],
+		"CONTENTS"       : ["$selection", "id", "name"],
+		"LANGUAGES"      : ["$selection", "id", "name"],
+		"ATTRIBUTES"     : ["$selection", "id", "name"], 
+		"FILEITEMS"      : ["$selection", "id", "name"],
+		"EXTPOINT"       : ["$selection", "id", "name"],
+		"TEMPUSERS"      : ["$selection", "token", "created"]
+	},
+	
+	
+	"ARENA_TABLES":
+	{
+		"COURSES"       : {"name":"courses"       , "singular":"course"        },
+		"INQUIRIES"     : {"name":"inquiries"     , "singular":"inquiry"       },
+		"USERS"         : {"name":"users"         , "singular":"user"          },
+		"ORGANIZATIONS" : {"name":"organizations" , "singular":"organization"  },
+		"KEYWORDS"      : {"name":"keywords"      , "singular":"keyword"       },
+		"CONTENTS"      : {"name":"contents"      , "singular":"content"       },
+		"TEMPUSERS"     : {"name":"tempusers"     , "singular":"tempuser"      },
+		"LANGUAGES"     : {"name":"languages"     , "singular":"language"      },
+		"ATTRIBUTES"    : {"name":"attributes"    , "singular":"attribute"     },
+		"FILEITEMS"     : {"name":"fileitems"     , "singular":"fileitem"      },
+		"EXTPOINT"      : {"name":"extpoints"     , "singular":"extpoint"      }
+	},
+	
+	"ARENA_COMPONENTS_EDGEBOX":
+	{
+		"USERS" : 
+		[
+			["id"],
+			["email",null,null,"raw"]
+		],
+		"COURSES" : 
+		[
+			["id"],
+			["title",null,null,"raw"]
+		],
+		"INQUIRIES" : 
+		[
+			["id"],
+			["title",null,null,"raw"]
+		],
+		"ORGANIZATIONS" : 
+		[
+			["id"],
+			["name",null,null,"raw"]
+		],
+		"KEYWORDS" : 
+		[
+			["id"],
+			["name",null,null,"raw"]
+		]
+	},
+
+
+	"ARENA_ENUM":
+	{
+		"record_status"	:
+		{
+			"DRAFT"              : {"ienum":0, "prefix":"⚫"},
+			"NEEDVERIFICATION"   : {"ienum":1, "prefix":"🟡"},
+			"UNAPPROVED"         : {"ienum":2, "prefix":"❌"},
+			"APPROVED"           : {"ienum":3, "prefix":"✔️"},
+			"RUBBISH"            : {"ienum":4, "prefix":"🗑️"},
+			"GENERATED"          : {"ienum":5, "prefix":"⚙️"},
+			"ARCHIVED"           : {"ienum":6, "prefix":"🗃️"}
+		}
+	}
+	
+	
+}

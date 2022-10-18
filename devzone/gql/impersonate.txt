@@ -1,0 +1,4 @@
+mutation
+{
+	impersonate(id:2)
+}

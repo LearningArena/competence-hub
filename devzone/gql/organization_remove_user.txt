@@ -1,0 +1,10 @@
+mutation
+{
+	organization_remove_user(organization_id:1, remove_user_id: 13, relationship:AUTHOR)
+	{
+		id
+		organization_id
+		user_id
+		relationship
+	}
+}

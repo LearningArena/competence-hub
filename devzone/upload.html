@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Upload files</title>
+<link rel="stylesheet" type="text/css" href = "arena.css"/>
+</head>
+<body>
+
+<!--
+<h1>Upload single file</h1>
+<form name="form1" method="post" enctype="multipart/form-data" action="/upload">
+	<div>
+		<label for="file">File</label>
+		<input name="file" type="file" />
+	</div>
+	<div>
+		<input type="submit" value="Submit" />
+	</div>
+</form>
+-->
+
+
+<h1>Upload multiple file</h1>
+<form name="form2" method="post" enctype="multipart/form-data" action="/uploads">
+	<div>
+		<label for="file">File</label>
+		<input name="file" multiple="multiple" type="file" />
+	</div>
+	<div>
+		<input type="submit" value="Submit" />
+	</div>
+</form>
+
+<script>
+var form = document.querySelector('form');
+form.addEventListener('change', function()
+{
+	const formdata = new FormData(form)
+	for ([key, value] of formdata.entries())
+	{
+		let val;
+		if (value instanceof File)
+		{
+			val = value.name;
+		} else
+		{
+			val = value;
+		}
+		console.log(key + ': ' + val);
+	}
+});
+</script>
+
+
+
+</body>
+</html>

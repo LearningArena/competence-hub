@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>GraphQL APIGUI</title>
+<link rel="stylesheet" type="text/css" href="index.css"/>
+</head>
+
+<body>
+
+
+<nav>
+	<select id="collections"></select>
+	<hr>
+	<div id="components"></div>
+</nav>
+
+
+<main>
+	<nav>
+		<a class="btn" id="home">🏠</a>
+		<a class="btn" id="left" style="width: 20px;">❮</a>
+		<a class="btn" id="middle"></a>
+		<a class="btn" id="right" style="width: 30px;margin-right: 20px;">❯</a>
+
+		<a class="btn" id="add" style="background-color: rgb(220, 255, 184);margin-left: 20px;">➕</a>
+		<a class="btn" id="remover" style="background-color:rgb(255, 178, 178);">🗑️</a>
+
+		<a class="btn" id="print" onclick="myprint(this)" style="margin-left: 20px;">🖨️</a>
+	</nav>
+	<table id="table"></table>
+</main>
+
+
+
+
+<script src="misc.js"></script>
+<script src="Navstate.js"></script>
+<script src="Backend.js"></script>
+<script src="Global.js"></script>
+<script src="index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@jsonurl/jsonurl@1.1.6"></script>
+
+
+</body>
+</html>

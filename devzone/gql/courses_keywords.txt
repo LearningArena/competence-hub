@@ -1,0 +1,16 @@
+query
+{
+	courses
+	{
+		title
+		course_keyword_edges
+		{
+			id
+			keyword
+			{
+				name
+				is_category
+			}
+		}
+	}
+}

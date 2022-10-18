@@ -1,0 +1,9 @@
+mutation
+{
+	course_add(title:"Advanced",seqf:7)
+	{
+		id
+		title
+		seqf
+	}
+}

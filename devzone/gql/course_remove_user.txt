@@ -1,0 +1,10 @@
+mutation
+{
+	course_remove_user(course_id:1, remove_user_id:3, relationship:AUTHOR)
+	{
+		id
+		course_id
+		user_id
+		relationship
+	}
+}

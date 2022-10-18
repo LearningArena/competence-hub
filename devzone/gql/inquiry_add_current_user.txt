@@ -1,0 +1,10 @@
+mutation
+{
+	inquiry_add_current_user(id:1, relationship:AUTHOR)
+	{
+		id
+		inquiry_id
+		user_id
+		relationship
+	}
+}

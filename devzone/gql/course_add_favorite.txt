@@ -1,0 +1,4 @@
+mutation
+{
+	course_add_favorite(id:2042)
+}

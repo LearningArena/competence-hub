@@ -1,0 +1,6 @@
+query
+{
+	LULEA_TEKNISKA_UNIVERSITET:allabolag(orgnr:"2021002841")
+	RISE:allabolag(orgnr:"5564646874")
+	SCA:allabolag(orgnr:"5560126293")
+}

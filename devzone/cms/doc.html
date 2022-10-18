@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Backend CMS2</title>
+<style>
+	html
+	{
+		height: 100%;
+	}
+	body
+	{
+		background-color: rgb(49, 49, 83);
+		color:rgb(188, 229, 188);
+		font-family: 'Courier New', Courier, monospace;
+		display: flex;
+	}
+	body > nav
+	{
+		padding: 10px;
+		background-color: rgb(45, 45, 83);
+		border-right: 1px solid #66F;
+	}
+	body > main
+	{
+		padding: 10px;
+		overflow: auto;
+		height: 800px;
+	}
+	a
+	{
+		color:#66F;
+	}
+	#summery > a
+	{
+		display: block;
+	}
+	article
+	{
+
+	}
+	article > header
+	{
+		font-size: 20px;
+		font-family: 'Courier New', Courier, monospace;
+	}
+	article > section
+	{
+		font-size: 12px;
+		font-family: Verdana, Geneva, Tahoma, sans-serif;
+	}
+	#doc > article
+	{
+		border: 0px;
+	}
+	#doc > article > article > header
+	{
+		font-size: 30px;
+	}
+	#doc > article > article
+	{
+		border: 1px solid rgb(83, 83, 131);
+		margin: 5px;
+		padding: 10px;
+	}
+	#doc > article > header
+	{
+		font-size: 50px;
+		font-weight: bold;
+	}
+</style>
+</head>
+
+<body>
+
+
+<nav>
+	<h1>Collection</h1>
+	<div id="summery"></div>
+</nav>
+<main>
+	<div id="doc"></div>
+</main>
+
+
+
+<script src="api.js"></script>
+<script src="doc.js"></script>
+<script src="htmlgen.js"></script>
+
+</body>
+</html>

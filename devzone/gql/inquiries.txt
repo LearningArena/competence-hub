@@ -1,0 +1,12 @@
+query
+{
+	inquiries
+	{
+		title
+		inquiry_user_edges
+		{
+			relationship
+			user{username}
+		}
+	}
+}
