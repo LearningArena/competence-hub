@@ -341,7 +341,7 @@ namespace SusaNavet
 
 			// Read file containing mapping between or categories and SUSA-navets subjects
 			IList<Category>? categories = new List<Category>{};
-			using (StreamReader r = new StreamReader("../backend_extapi/susa-subject-category-map.json"))
+			using (StreamReader r = new StreamReader("./misc/susa-subject-category-map.json"))
 			{
 				string json = r.ReadToEnd();
 				categories = JsonSerializer.Deserialize<IList<Category>>(json, json_options);
