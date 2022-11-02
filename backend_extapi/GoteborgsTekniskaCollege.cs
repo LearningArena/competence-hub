@@ -30,8 +30,8 @@ namespace GoteborgsTekniskaCollege
 	{
 
 		private static readonly ILogger log = Log.ForContext(typeof(Methods));
-		private const string KM_CAATEGORY_FILE = "../backend_extapi/km-categories.json";
-		private const string GTC_LINK_CATEGORY_FILE = "../backend_extapi/gtc-link-map.json";
+		private const string KM_CATEGORY_FILE = "./misc/km-categories.json";
+		private const string GTC_LINK_CATEGORY_FILE = "./misc/gtc-link-map.json";
 
 		private static Dictionary<string, KmCategory>? kmCategories = null;
 		private static void LoadCategories ()
@@ -40,7 +40,7 @@ namespace GoteborgsTekniskaCollege
 			JsonSerializerOptions json_options = new JsonSerializerOptions();
 			json_options.Converters.Add(new Arena.AutoNumberToStringConverter());
 			kmCategories = new Dictionary<string, KmCategory>{};
-			using (StreamReader reader = new StreamReader(KM_CAATEGORY_FILE))
+			using (StreamReader reader = new StreamReader(KM_CATEGORY_FILE))
 			{
 				string json = reader.ReadToEnd();
 				kmCategories = JsonSerializer.Deserialize<Dictionary<string, KmCategory>>(json);
