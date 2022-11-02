@@ -24,6 +24,7 @@ public static class Arena_Import
 	public static int external_import(Arena_Context context, Extapi.Parser method)
 	{
 		List<Course> courses = Extapi.Externaldata.request_parse(Arena.client, method, Extapi.Endpoints.urls[method]);
+		Log.Information($"Parsed {courses.Count.ToString()} courses from {Extapi.Endpoints.urls[method]}.");
 		DateTime now = DateTime.Now.ToUniversalTime();
 		foreach (Course course in courses.ToList())
 		{
