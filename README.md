@@ -23,7 +23,6 @@ This repo is managed by RISE Reseatch Insititutes of Sweden, area of Lifelong Le
 ||JSON-LD schema.org|
 |Database|[Postgres](https://www.postgresql.org/)|
 |Authentication|[Keycloak](https://www.keycloak.org/)|
-|Metrics/Analytics|[Plausible](https://plausible.io/)|
 |Container| [Docker](https://www.docker.com/)|
 
 [See more](/backend)
