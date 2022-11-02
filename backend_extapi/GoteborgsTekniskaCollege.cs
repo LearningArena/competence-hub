@@ -61,10 +61,10 @@ namespace GoteborgsTekniskaCollege
 			}
 		}
 
-		public static Arena.Course ToArena(Course schemaCourse)
+		public static Arena.Course? ToArena(Course schemaCourse)
 		{
 			// Absolute minimum requirement - link
-			if (!schemaCourse.TryGetValue("url", out var url)) {return null; }
+			if (!schemaCourse.TryGetValue("url", out var url)) { return null; }
 			
 			Arena.Course arenaCourse = new Arena.Course
 			{
@@ -84,20 +84,23 @@ namespace GoteborgsTekniskaCollege
 
 			IValues prop;
 			try {
-				if (schemaCourse.TryGetValue("numberOfCredits", out prop)) { arenaCourse.credits = Int32.Parse(prop.ToString()); }
+				if (schemaCourse.TryGetValue("numberOfCredits", out prop)) {
+					var values = (Values<Int32, IStructuredValue>)prop;
+					if (values.HasValue1) { arenaCourse.credits = values.Value1.First();}
+				}
 			} catch {}
 
 			try {
 				if (schemaCourse.TryGetValue("inLanguage", out prop))
 				{
 					var values = (Values<ILanguage,System.String>)prop;
-					IThing thing = null;
-					String lang = null;
+					IThing? thing = null;
+					String? lang = null;
 					if (values.HasValue1) { thing = values.Value1.First(); } else if (values.HasValue2) { lang = values.Value2.First(); }
-					if (thing != null)
+					if (thing is not null)
 					{
 						arenaCourse.language = thing.Name.First().ToString();
-					} else if (lang != null)
+					} else if (lang is not null)
 					{
 						arenaCourse.language = lang.ToString();
 					}
@@ -107,9 +110,9 @@ namespace GoteborgsTekniskaCollege
 			try {
 				if (schemaCourse.TryGetValue("copyrightHolder", out prop)) {
 					var values = (Values<IOrganization, IPerson>)prop;
-					IThing thing = null;
+					IThing? thing = null;
 					if (values.HasValue1) { thing = values.Value1.First(); } else if (values.HasValue2) { thing = values.Value2.First(); }
-					if (thing != null)
+					if (thing is not null)
 					{
 						arenaCourse.education_provider = thing.Name.First().ToString();
 					}
@@ -119,13 +122,13 @@ namespace GoteborgsTekniskaCollege
 			try {
 				if (schemaCourse.TryGetValue("image", out prop)) {
 					var values = (Values<IImageObject, Uri>)prop;
-					IImageObject img = null;
-					Uri uri = null;
+					IImageObject? img = null;
+					Uri? uri = null;
 					if (values.HasValue1) { img = values.Value1.First(); } else if (values.HasValue2) { uri = values.Value2.First(); }
-					if (img != null)
+					if (img is not null)
 					{
 						arenaCourse.image_feature = img.Url.First().ToString();
-					} else if (uri != null)
+					} else if (uri is not null)
 					{
 						arenaCourse.image_feature = uri.ToString();
 					}
@@ -138,10 +141,16 @@ namespace GoteborgsTekniskaCollege
 					var values = (Values<System.Int32?,System.DateTime?,System.DateTimeOffset?>)prop;
 					if (values.HasValue2)
 					{
-						arenaCourse.time_modified = values.Value2.First().Value.ToUniversalTime();
+						DateTime? dt = values.Value2.First();
+						if (dt is not null) {
+							arenaCourse.time_modified = dt.Value.ToUniversalTime();
+						}
 					} else if (values.HasValue3)
 					{
-						arenaCourse.time_modified = values.Value3.First().Value.DateTime.ToUniversalTime();
+						DateTimeOffset? dto = values.Value3.First();
+						if (dto is not null) {
+							arenaCourse.time_modified = dto.Value.DateTime.ToUniversalTime();
+						}
 					}
 				}
 			} catch {}
@@ -153,10 +162,16 @@ namespace GoteborgsTekniskaCollege
 					var values = (Values<System.Int32?,System.DateTime?,System.DateTimeOffset?>)prop;
 					if (values.HasValue2)
 					{
-						arenaCourse.time_created = values.Value2.First().Value.ToUniversalTime();
+						DateTime? dt = values.Value2.First();
+						if (dt is not null) {
+							arenaCourse.time_created = dt.Value.ToUniversalTime();
+						}
 					} else if (values.HasValue3)
 					{
-						arenaCourse.time_created = values.Value3.First().Value.DateTime.ToUniversalTime();
+						DateTimeOffset? dto = values.Value3.First();
+						if (dto is not null) {
+							arenaCourse.time_created = dto.Value.DateTime.ToUniversalTime();
+						}
 					}
 				}
 			} catch {}
@@ -164,9 +179,9 @@ namespace GoteborgsTekniskaCollege
 			return arenaCourse;
 		}
 
-		public static Course ResolveGraph(JsonElement graph)
+		public static Course? ResolveGraph(JsonElement graph)
 		{
-			Course c = null;
+			Course? c = null;
 			var graphArray = graph.EnumerateArray();
 			JsonElement el;
 			while(graphArray.MoveNext())
@@ -186,23 +201,27 @@ namespace GoteborgsTekniskaCollege
 						// TODO: Generalise for all types
 						// if (Type.GetType("Schema.NET.OrganizationAndPlace, Schema.NET").IsAssignableFrom(Type.GetType("Schema.NET."+el.GetString()+", "+"Schema.NET")) ||
 						// 	Type.GetType("Schema.NET.Person, Schema.NET").IsAssignableFrom(Type.GetType("Schema.NET."+el.GetString()+", "+"Schema.NET")))
-						if (Type.GetType("Schema.NET.LocalBusiness, Schema.NET").Equals(Type.GetType("Schema.NET."+el.GetString()+", "+"Schema.NET")))
+						Type? t = Type.GetType("Schema.NET.LocalBusiness, Schema.NET");
+						if (t is not null && t.Equals(Type.GetType("Schema.NET."+el.GetString()+", "+"Schema.NET")))
 						{
-							LocalBusiness lb = Schema.NET.SchemaSerializer.DeserializeObject<LocalBusiness>(graphArray.Current.ToString());
-							JsonDocument jsonCourse = JsonDocument.Parse(c.ToString());
-							foreach (JsonProperty courseProp in jsonCourse.RootElement.EnumerateObject())
-							{
-								try
+							LocalBusiness? lb = Schema.NET.SchemaSerializer.DeserializeObject<LocalBusiness>(graphArray.Current.ToString());
+							if (c is not null) {
+								JsonDocument jsonCourse = JsonDocument.Parse(c.ToString());
+								foreach (JsonProperty courseProp in jsonCourse.RootElement.EnumerateObject())
 								{
-									JsonElement coursePropVal = JsonDocument.Parse(courseProp.Value.ToString()).RootElement;
-									if (coursePropVal.TryGetProperty("@id", out var courseId) && courseId.ToString().Equals(nodeId.ToString()))
+									try
 									{
-										// Console.WriteLine("\tFound linked course node {0}, replacing ...", courseId.ToString());
-										var localBusiness = new Values<IOrganization, IPerson>(lb, null);
-										bool set_success = c.TrySetValue(courseProp.Name.ToString(), localBusiness);
+										JsonElement coursePropVal = JsonDocument.Parse(courseProp.Value.ToString()).RootElement;
+										if (lb is not null && coursePropVal.TryGetProperty("@id", out var courseId) && courseId.ToString().Equals(nodeId.ToString()))
+										{
+											// Console.WriteLine("\tFound linked course node {0}, replacing ...", courseId.ToString());
+											Schema.NET.IPerson p = new Schema.NET.Person();
+											var localBusiness = new Values<IOrganization, IPerson>(lb, p);
+											bool set_success = c.TrySetValue(courseProp.Name.ToString(), localBusiness);
+										}
+									} catch {
+										// Console.WriteLine("whyisthishappeningtome:", ex.ToString());
 									}
-								} catch {
-									// Console.WriteLine("whyisthishappeningtome:", ex.ToString());
 								}
 							}
 						} else {
@@ -274,9 +293,10 @@ namespace GoteborgsTekniskaCollege
 
 		public static Arena.Course AddCategories(Arena.Course ac)
 		{
-			if (!gtcLinkMaps.ContainsKey(ac.link)) {return ac;}
+			if (gtcLinkMaps is null || !gtcLinkMaps.ContainsKey(ac.link)) {return ac;}
 
-			IList<string> course_categories = gtcLinkMaps[ac.link].categories;
+			IList<string>? course_categories = gtcLinkMaps[ac.link].categories;
+			if (course_categories is null) {return ac;}
 
 			// Add the categories found in the manual mapping file
 			// NOTE: Arena.Course.category is currently just a string where a single course is only a string and
@@ -314,7 +334,7 @@ namespace GoteborgsTekniskaCollege
 			return true;
 		}
 
-		public static Arena.Course LoadSingle(HttpClient client, string url)
+		public static Arena.Course? LoadSingle(HttpClient client, string url)
 		{
 			if (kmCategories is null) {LoadCategories();}
 			Log.Information($"Loading: {url}");
@@ -324,7 +344,7 @@ namespace GoteborgsTekniskaCollege
 			HtmlDocument doc = new HtmlDocument();
 			doc.LoadHtml(response);
 			HtmlNodeCollection a = doc.DocumentNode.SelectNodes("//script[@type='application/ld+json']");
-			Course schemaCourse = null;
+			Course? schemaCourse = null;
 			foreach (HtmlNode link in a) //TODO Handle multiple nodess
 			{
 				// TODO As of this writing Schema.NET is still working on supporting graph, but not yet,
@@ -341,7 +361,12 @@ namespace GoteborgsTekniskaCollege
 				}
 			}
 
-			Arena.Course arenaCourse = ToArena(schemaCourse);
+			Arena.Course? arenaCourse = null;
+			if (schemaCourse is not null)
+			{
+				arenaCourse = ToArena(schemaCourse);
+			}
+			if (arenaCourse is null) { return null; }
 			arenaCourse = AddScrapedData(response, arenaCourse);
 			arenaCourse = AddCategories(arenaCourse);
 
@@ -366,8 +391,8 @@ namespace GoteborgsTekniskaCollege
 			{
 				foreach (HtmlNode link in a)
 				{
-					Arena.Course arenaCourse = LoadSingle(client, link.Attributes["href"].Value);
-					if (CheckRequirements(arenaCourse))
+					Arena.Course? arenaCourse = LoadSingle(client, link.Attributes["href"].Value);
+					if (arenaCourse is not null && CheckRequirements(arenaCourse))
 						courses.Add(arenaCourse);
 					else
 						Log.Information("... discarded.");
@@ -375,13 +400,13 @@ namespace GoteborgsTekniskaCollege
 			}
 			// "Kurs på tom plats" from March 2022 html structure of https://www.goteborgstekniskacollege.se/utbildningar/yrkeshogskola/utbildningar
 			a = doc.DocumentNode.SelectNodes("//ul[@class='free-chairs']/li/a");
-			if (a == null) { Log.Error($"No 'free chairs' courses found at {url}"); }
+			if (a == null) { Log.Warning($"No 'free chairs' courses found at {url}"); }
 			else
 			{
 				foreach (HtmlNode link in a)
 				{
-					Arena.Course arenaCourse = LoadSingle(client, link.Attributes["href"].Value);
-					if (CheckRequirements(arenaCourse))
+					Arena.Course? arenaCourse = LoadSingle(client, link.Attributes["href"].Value);
+					if (arenaCourse is not null && CheckRequirements(arenaCourse))
 					{
 						courses.Add(arenaCourse);
 					}
