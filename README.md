@@ -55,6 +55,16 @@ docker compose -f docker-compose.yml -f arm64.yml up
 and visit [http://localhost:8000/](http://localhost:8000/) for web interface,  
 and [http://localhost:8080/](http://localhost:8080/) for keycloak interface (see .env file for credentials).
 
+## Running
+
+### Windows/Linux
+
+    docker compose up -d
+
+### ARM64 (e.g. Apple M1)
+
+    docker compose -f docker-compose.yml -f arm64.yml up -d
+
 ## Contributing
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on working with the project.
