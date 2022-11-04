@@ -11,7 +11,7 @@ const LearnStart = (props) => {
   const [courses, setCourses] = useState([])
   const [loading, setLoading] = useState(true)
 
-  const { getCurrent, getPrev, getNext, resetPagination, hasPrev, hasNext, ready } = usePagination(PUBLISHED_COURSES, 8, PaginationContext)
+  const { getCurrent, getPage, pageNum, pageCursors, resetPagination, hasPrev, hasNext, ready } = usePagination(PUBLISHED_COURSES, 2, PaginationContext)
 
 
   useEffect(() => {
@@ -38,19 +38,15 @@ const LearnStart = (props) => {
       <div className="sidebar-right posts-sidebar">
         <CategoryList titleText='Kategorier' area='learn' style='list' />
       </div>
-      {hasNext ?
-        (
-          <div className='button-container load-more'>
-            <button className='button align-center load-more' onClick={() => getNext().then(({ loading, error, data }) => {
-              setCourses(courses.concat(data.courses.nodes))
+      <div className='button-container load-more'>
+        {pageCursors.map((_, i) =>
+          <button className={'button ' + (pageNum == i ? 'inactive':'')} disabled={pageNum == i ? true : false} onClick={() => getPage(i).then(
+            ({ loading, error, data }) => {
+              setCourses(data.courses.nodes)
               setLoading(loading)
-            })}>
-              {strings.loadMoreCourses}
-            </button>
-          </div>
-        ) :
-        <></>
-      }
+          })}>{ i+1 }</button>
+        )}
+      </div>
     </>
   )
 }

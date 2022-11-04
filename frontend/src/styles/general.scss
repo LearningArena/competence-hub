@@ -211,6 +211,8 @@ button, input {
 }
 .button-container {
   display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 button {
@@ -232,6 +234,13 @@ button {
   letter-spacing: 0.1em;
   cursor: pointer;
 
+  &.inactive {
+    background-color: $colLearnHov !important;
+    color: $colTextLight !important;
+    h2, h3, h4, h5, p, a {
+      color: $colTextLight !important;
+    }
+  }
 
    h3, h4, h5, p, a {
       margin: 0;
@@ -357,6 +366,10 @@ button.show-more {
 
 button.load-more {
   margin: 2em 1em;
+}
+
+.button-container.load-more {
+  margin: 1em;
 }
 
 /*** POP UP ****/
@@ -1169,8 +1182,6 @@ form {
   .dropdown-sortable {
     width: 100%;
     margin-left: 1.5em;
-    padding-right: 10%;
-      
   }
   .dropdown__control {
     font-style: italic;
@@ -1348,10 +1359,12 @@ table td, table th {
     padding: 2rem;
     margin: 0rem;
 
-  th.last-values {
-    padding: 0!important;
+  th {
+    .last-values {
+      padding: 0!important;
+    }
   }
-  td, th.last-values, th.sortable {
+  td, th.last-values {
     text-align: center!important;
     p {
       font-style: italic;

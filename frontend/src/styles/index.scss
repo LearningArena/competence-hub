@@ -128,7 +128,7 @@ button {
 
 .button {
   display: flex;
-  padding: 1em;
+  padding: 3em;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -152,6 +152,20 @@ button {
     h2, h3, h4, h5, p, a {
       color: $colTextDark !important;
     }
+  }
+
+  &.inactive {
+    background-color: $colLearnHov !important;
+    color: $colTextDark !important;
+    h2, h3, h4, h5, p, a {
+      color: $colTextDark !important;
+    }
+  }
+
+  &.not-active {
+    opacity: 50%;   
+    background-color: $colLearnHov;
+    color: $colTextDark !important;
   }
   
   /* BUTTON, no background with OUTLINE */ 
@@ -1213,12 +1227,6 @@ table {
 
   th {
     font-weight: 400;
-    &.sortable {
-      &::after {
-        content: '*';
-      }
-    }
-    
   }
 
   th, td {
@@ -1459,7 +1467,6 @@ table {
 //SEARCH FILTER
 
 .filter-wrapper {
-  background: $colLearnA;
   padding-bottom: 2rem;
 
   .filter-categories {

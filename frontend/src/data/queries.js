@@ -250,6 +250,15 @@ query Courses($num: Int, $before: String, $after: String, $order: [CourseSortInp
       ${allEducationFields}
       is_my_favorite:has_edge(t:USERS, id:0, relation:FAVORITE)
     }
+    }
+    cursors: courses(
+      order: $order,
+      record_status: APPROVED,
+      where: $filters
+    ) {
+      edges {
+        cursor
+      }
   }
 }
 `
@@ -506,6 +515,61 @@ query {
       start_date
       id
       record_status
+      education_provider
+    }
+  }
+}
+`
+
+export const USER_ORG_EDUCATIONS = gql`
+query UsersOrgEducations($num: Int, $before: String, $after: String, $order: [CourseSortInput!], $filters: CourseFilterInput!, $userid: Int!) {
+  courses(order: $order, first:$num, before:$before, after: $after, where:
+  {and: [
+    $filters,
+    {organization_course_edges:
+      {
+        some:{and:[
+          {organization:{organization_user_edges:
+          {
+            some:{and: [
+              {user:{
+                id:{eq:$userid}
+              }},
+              {relationship:{eq:AUTHOR}}
+            ]
+
+            }
+          }}},
+          {relationship:{eq:AUTHOR}}
+        ]
+        }
+  }}]}) 
+  {
+    pageInfo {
+        hasNextPage
+        hasPreviousPage
+        startCursor
+        endCursor
+    }
+    edges{cursor}
+    nodes {
+      organization {
+        name
+        id
+      }
+      title
+      start_date
+      id
+      record_status
+      education_provider
+    }
+  }
+  cursors: courses(
+    order: $order
+    where: {and: [$filters, {organization_course_edges: {some: {and: [{organization: {organization_user_edges: {some: {and: [{user: {id: {eq: $userid}}}, {relationship: {eq: AUTHOR}}]}}}}, {relationship: {eq: AUTHOR}}]}}}]}
+  ) {
+    edges {
+      cursor
     }
   }
 }
@@ -552,6 +616,8 @@ query {
   }
 }
 `
+
+
 
 export const INQUIRY_BY_ID = gql`
 query InquiryById($id: Int!) {

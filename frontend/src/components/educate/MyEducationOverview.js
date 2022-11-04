@@ -30,7 +30,7 @@ const MyEducationOverview = () => {
   const archivedCourses = data?.courses.nodes?.filter(course => course.record_status === fields.record_status.archived)
   
   const activeColumns = [
-    {content: <h4>{strings.overview.activeCourses}</h4>, class:'wide'},
+    {content: strings.overview.activeCourses, class:'wide'},
     {content: strings.overview.status, class:'sortable'},
     // {content: strings.overview.quotationRequests, class:'sortable'},
     {content: strings.overview.startDate, class:'sortable'},
@@ -39,7 +39,7 @@ const MyEducationOverview = () => {
     {content: '', class: 'last-values'}
   ]
   const archivedColumns = [
-    {content: <h4>{strings.overview.archivedCourses}</h4>, class:'wide'},
+    {content: strings.overview.archivedCourses, class:'wide'},
     {content: strings.overview.status, class:'sortable'},
     // {content: strings.overview.quotationRequests, class:'sortable'},
     {content: strings.overview.startDate, class:'sortable'},
@@ -47,10 +47,6 @@ const MyEducationOverview = () => {
     {content: '', class: 'last-values'},
     {content: '', class: 'last-values'},
   ]
-
-  useEffect(() => {
-    console.log(data)
-  }, [])
 
   const generateCourseRow = (course) => [
     <Link to={'/learn/course/' + course.id}><h3 className='test'>{course.title}</h3></Link>,

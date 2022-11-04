@@ -137,14 +137,31 @@
     }
   
     .tab-nav a.tab-overview {
-      background-color: $colEduA;
+      background-color: $colEduA !important;
       
       &:hover {
         background-color: $colEduHov !important;
-        
         h4 { color: $colTextDark !important;}
       }
   
+      &.active:hover {
+        color: $colTextDark !important;
+        background: $colEduB !important;
+      }
+    }
+
+    .tab-nav a.tab-org-overview {
+      background-color: $colEduB;
+     
+      &:hover {
+        background-color: $colEduHov !important;
+        h4 { color: $colTextDark !important;}
+      }
+
+      &.active {
+        pointer-events: none;
+      }
+
       &.active:hover {
         color: $colTextDark !important;
         background: $colEduB !important;
