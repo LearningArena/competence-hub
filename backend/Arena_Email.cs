@@ -15,6 +15,8 @@ public static class Arena_Email
 {
 	private static readonly ILogger log = Log.ForContext(typeof(Arena_Email));
 	public static PostmarkClient client = null;
+
+	// TODO: Store this elsewhere because its not only for email:
 	public static string HOST_NAME = "";
 	public static string PRODUCT_NAME = "";
 	public static string EMAIL_SUPPORT_ADDRESS = "";
@@ -24,20 +26,19 @@ public static class Arena_Email
 	public static string EMAIL_NOREPLY_ADDRESS = "";
 	public static string action_verify_url = "";
 
-	public static int TemplateId_forgot_password_SE = 0;
-	public static int TemplateId_forgot_password_GB = 0;
-	public static int TemplateId_Quatation_Request_SE = 0;
-	public static int TemplateId_Quatation_Request_GB = 0;
-	public static int TemplateId_Register_Request_SE = 0;
-	public static int TemplateId_Register_Request_GB = 0;
-	public static int TemplateId_AccountVerification_SE = 0;
-	public static int TemplateId_AccountVerification_EN = 0;
-	public static int TemplateId_Copy_quotation_request = 0;
-	public static int TemplateId_Welcome_Email_SE = 0;
-	public static int TemplateId_Welcome_Email_EN = 0;
-	public static int TemplateId_Account_not_verified_SE = 0;
-	public static int TemplateId_Account_not_verified_EN = 0;
-	public static int TemplateId_System_admin_email = 0;
+	public static int POSTMARK_TEMPLATE_8_Reset_password_SE = 0;
+	public static int POSTMARK_TEMPLATE_8_Reset_password_EN = 0;
+	public static int POSTMARK_TEMPLATE_7_Quotation_request_SE = 0;
+	public static int POSTMARK_TEMPLATE_7_Quotation_request_EN = 0;
+	public static int POSTMARK_TEMPLATE_2_Account_verification_SE = 0;
+	public static int POSTMARK_TEMPLATE_2_Account_verification_EN = 0;
+	public static int POSTMARK_TEMPLATE_4_Copy_quotation_request_SE = 0;
+	public static int POSTMARK_TEMPLATE_4_Copy_quotation_request_EN = 0;
+	public static int POSTMARK_TEMPLATE_9_Welcome_mail_SE = 0;
+	public static int POSTMARK_TEMPLATE_9_Welcome_mail_EN = 0;
+	public static int POSTMARK_TEMPLATE_1_Account_not_verified_SE = 0;
+	public static int POSTMARK_TEMPLATE_1_Account_not_verified_EN = 0;
+	public static int POSTMARK_TEMPLATE_10_System_Verification = 0;
 
 
 
@@ -50,6 +51,29 @@ public static class Arena_Email
 		Arena_Email.EMAIL_SUPPORT_ADDRESS = Environment.GetEnvironmentVariable("EMAIL_SUPPORT_ADDRESS");
 		Arena_Email.EMAIL_SUPPORT_NAME    = Environment.GetEnvironmentVariable("EMAIL_SUPPORT_NAME");
 		Arena_Email.EMAIL_NOREPLY_ADDRESS = Environment.GetEnvironmentVariable("EMAIL_NOREPLY_ADDRESS");
+
+		Arena_Email.POSTMARK_TEMPLATE_1_Account_not_verified_EN= Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_1_Account_not_verified_EN"));
+		Arena_Email.POSTMARK_TEMPLATE_1_Account_not_verified_SE= Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_1_Account_not_verified_SE"));
+		Arena_Email.POSTMARK_TEMPLATE_10_System_Verification   = Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_10_System_Verification"));
+		Arena_Email.POSTMARK_TEMPLATE_2_Account_verification_EN= Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_2_Account_verification_EN"));
+		Arena_Email.POSTMARK_TEMPLATE_2_Account_verification_SE= Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_2_Account_verification_SE"));
+		Arena_Email.POSTMARK_TEMPLATE_9_Welcome_mail_EN        = Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_9_Welcome_mail_EN"));
+		Arena_Email.POSTMARK_TEMPLATE_9_Welcome_mail_SE        = Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_9_Welcome_mail_SE"));
+		Arena_Email.POSTMARK_TEMPLATE_7_Quotation_request_EN   = Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_7_Quotation_request_EN"));
+		Arena_Email.POSTMARK_TEMPLATE_7_Quotation_request_SE   = Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_7_Quotation_request_SE"));
+		Arena_Email.POSTMARK_TEMPLATE_8_Reset_password_EN      = Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_8_Reset_password_EN"));
+		Arena_Email.POSTMARK_TEMPLATE_8_Reset_password_SE      = Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_8_Reset_password_SE"));
+
+		//Arena_Email.POSTMARK_TEMPLATE_11_No_reply_reply_EN     = Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_11_No_reply_reply_EN"));
+		//Arena_Email.POSTMARK_TEMPLATE_11_No_reply_reply_SE     = Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_11_No_reply_reply_SE"));
+		//Arena_Email.POSTMARK_TEMPLATE_3_Activation_EN          = Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_3_Activation_EN"));
+		//Arena_Email.POSTMARK_TEMPLATE_3_Activation_SE          = Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_3_Activation_SE"));
+		//Arena_Email.POSTMARK_TEMPLATE_4_Copy_quotation_request_= Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_4_Copy_quotation_request_"));
+		//Arena_Email.POSTMARK_TEMPLATE_4_Copy_quotation_request_= Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_4_Copy_quotation_request_"));
+		//Arena_Email.POSTMARK_TEMPLATE_5_New_inquiry_EN         = Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_5_New_inquiry_EN"));
+		//Arena_Email.POSTMARK_TEMPLATE_5_New_inquiry_SE         = Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_5_New_inquiry_SE"));
+		//Arena_Email.POSTMARK_TEMPLATE_6_New_password_SE        = Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_6_New_password_SE"));
+		//Arena_Email.POSTMARK_TEMPLATE_6_New_password_EN        = Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_6_New_password_EN"));
 	}
 
 	public static void init(string token)
@@ -96,13 +120,13 @@ public static class Arena_Email
 		switch (user.preference_language)
 		{
 			case Country_Code_ISO_3166_1.SE:
-				message.TemplateId = TemplateId_forgot_password_SE;
+				message.TemplateId = POSTMARK_TEMPLATE_8_Reset_password_SE;
 				break;
 			case Country_Code_ISO_3166_1.GB:
-				message.TemplateId = TemplateId_forgot_password_GB;
+				message.TemplateId = POSTMARK_TEMPLATE_8_Reset_password_EN;
 				break;
 			default:
-				message.TemplateId = TemplateId_forgot_password_GB;
+				message.TemplateId = POSTMARK_TEMPLATE_8_Reset_password_EN;
 				break;
 		}
 		return send(message);
@@ -132,13 +156,13 @@ public static class Arena_Email
 			switch (u.preference_language)
 			{
 				case Country_Code_ISO_3166_1.SE:
-					m.TemplateId = TemplateId_Quatation_Request_SE;
+					m.TemplateId = POSTMARK_TEMPLATE_7_Quotation_request_SE;
 					break;
 				case Country_Code_ISO_3166_1.GB:
-					m.TemplateId = TemplateId_Quatation_Request_GB;
+					m.TemplateId = POSTMARK_TEMPLATE_7_Quotation_request_EN;
 					break;
 				default:
-					m.TemplateId = TemplateId_Quatation_Request_GB;
+					m.TemplateId = POSTMARK_TEMPLATE_7_Quotation_request_EN;
 					break;
 			}
 			m.From = EMAIL_NOREPLY_ADDRESS;
@@ -165,11 +189,22 @@ public static class Arena_Email
 		if (check == true)
 		{
 			// Copy quotation request
-			var message_copy = new TemplatedPostmarkMessage();
-			message_copy.From = EMAIL_NOREPLY_ADDRESS;
-			message_copy.To = u.email;
-			message_copy.TemplateId = TemplateId_Copy_quotation_request;
-			message_copy.TemplateModel = new
+			var m = new TemplatedPostmarkMessage();
+			switch (u.preference_language)
+			{
+				case Country_Code_ISO_3166_1.SE:
+					m.TemplateId = POSTMARK_TEMPLATE_4_Copy_quotation_request_SE;
+					break;
+				case Country_Code_ISO_3166_1.GB:
+					m.TemplateId = POSTMARK_TEMPLATE_4_Copy_quotation_request_EN;
+					break;
+				default:
+					m.TemplateId = POSTMARK_TEMPLATE_4_Copy_quotation_request_EN;
+					break;
+			}
+			m.From = EMAIL_NOREPLY_ADDRESS;
+			m.To = u.email;
+			m.TemplateModel = new
 			{
 				product_url = host,
 				product_name = PRODUCT_NAME,
@@ -183,7 +218,7 @@ public static class Arena_Email
 				company_address = host
 			};
 			// TODO: Handle return value
-			send(message_copy);
+			send(m);
 		}
 		return true;
 	}
@@ -199,18 +234,18 @@ public static class Arena_Email
 			switch (user.preference_language)
 			{
 				case Country_Code_ISO_3166_1.SE:
-					m.TemplateId = TemplateId_AccountVerification_SE;
+					m.TemplateId = POSTMARK_TEMPLATE_2_Account_verification_SE;
 					break;
 				case Country_Code_ISO_3166_1.GB:
-					m.TemplateId = TemplateId_AccountVerification_EN;
+					m.TemplateId = POSTMARK_TEMPLATE_2_Account_verification_EN;
 					break;
 				default:
-					m.TemplateId = TemplateId_AccountVerification_EN;
+					m.TemplateId = POSTMARK_TEMPLATE_2_Account_verification_EN;
 					break;
 			}
 			m.From = EMAIL_NOREPLY_ADDRESS;
 			m.To = user.email;
-			m.TemplateId = TemplateId_AccountVerification_EN;
+			m.TemplateId = POSTMARK_TEMPLATE_2_Account_verification_EN;
 			m.TemplateModel = new
 			{
 				product_url = HOST_NAME,
@@ -229,7 +264,7 @@ public static class Arena_Email
 			var m = new TemplatedPostmarkMessage();
 			m.From = EMAIL_NOREPLY_ADDRESS;
 			m.To = "support@kompetensmatchning.se";
-			m.TemplateId = TemplateId_System_admin_email;
+			m.TemplateId = POSTMARK_TEMPLATE_10_System_Verification;
 			m.TemplateModel = new
 			{
 				product_url = HOST_NAME,
@@ -259,18 +294,18 @@ public static class Arena_Email
 			switch (u.preference_language)
 			{
 				case Country_Code_ISO_3166_1.SE:
-					m.TemplateId = TemplateId_Welcome_Email_SE;
+					m.TemplateId = POSTMARK_TEMPLATE_9_Welcome_mail_SE;
 					break;
 				case Country_Code_ISO_3166_1.GB:
-					m.TemplateId = TemplateId_Welcome_Email_EN;
+					m.TemplateId = POSTMARK_TEMPLATE_9_Welcome_mail_EN;
 					break;
 				default:
-					m.TemplateId = TemplateId_Welcome_Email_EN;
+					m.TemplateId = POSTMARK_TEMPLATE_9_Welcome_mail_EN;
 					break;
 			}
 			m.From = EMAIL_NOREPLY_ADDRESS;
 			m.To = u.email;
-			m.TemplateId = TemplateId_Welcome_Email_SE;
+			m.TemplateId = POSTMARK_TEMPLATE_9_Welcome_mail_SE;
 			m.TemplateModel = new
 			{
 				product_url = HOST_NAME,
@@ -291,13 +326,13 @@ public static class Arena_Email
 			switch (u.preference_language)
 			{
 				case Country_Code_ISO_3166_1.SE:
-					m.TemplateId = TemplateId_Account_not_verified_SE;
+					m.TemplateId = POSTMARK_TEMPLATE_1_Account_not_verified_SE;
 					break;
 				case Country_Code_ISO_3166_1.GB:
-					m.TemplateId = TemplateId_Account_not_verified_EN;
+					m.TemplateId = POSTMARK_TEMPLATE_1_Account_not_verified_EN;
 					break;
 				default:
-					m.TemplateId = TemplateId_Account_not_verified_EN;
+					m.TemplateId = POSTMARK_TEMPLATE_1_Account_not_verified_EN;
 					break;
 			}
 			m.From = EMAIL_NOREPLY_ADDRESS;
