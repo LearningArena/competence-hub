@@ -204,7 +204,15 @@
       }
     }
 
-    
+    .sortable {
+      cursor: pointer;
+
+      &:hover {
+        background-clip: content-box;
+        background-color: $colLearnHov !important;
+        color: $colLearnA !important;
+      }
+    }
 
     .tab-nav a.tab-left {
         background: $colEduB;
