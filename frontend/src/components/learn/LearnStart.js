@@ -11,8 +11,7 @@ const LearnStart = (props) => {
   const [courses, setCourses] = useState([])
   const [loading, setLoading] = useState(true)
 
-  const { getCurrent, getPage, pageNum, pageCursors, resetPagination, hasPrev, hasNext, ready } = usePagination(PUBLISHED_COURSES, 2, PaginationContext)
-
+  const { getCurrent, getPage, pageNum, pageCursors, resetPagination, hasPrev, hasNext, ready } = usePagination(PUBLISHED_COURSES, 10, PaginationContext)
 
   useEffect(() => {
     if (!ready) {
@@ -40,7 +39,7 @@ const LearnStart = (props) => {
       </div>
       <div className='button-container load-more'>
         {pageCursors.map((_, i) =>
-          <button className={'button ' + (pageNum == i ? 'inactive':'')} disabled={pageNum == i ? true : false} onClick={() => getPage(i).then(
+          <button key={i} className={'button ' + (pageNum == i ? 'inactive':'')} disabled={pageNum == i ? true : false} onClick={() => getPage(i).then(
             ({ loading, error, data }) => {
               setCourses(data.courses.nodes)
               setLoading(loading)

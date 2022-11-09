@@ -23,10 +23,10 @@ const MyOrgEducationOverview = () => {
   const {showPopup} = useContext(PopupContext)
   const {user} = useContext(AuthContext)
   const history = useHistory()
-  const [activeCourses, setCourses] = useState([])
+  const [courses, setCourses] = useState([])
   const [loading, setLoading] = useState(true)
 
-  const { getCurrent, getPage, pageNum, pageCursors, ready } = usePagination(USER_ORG_EDUCATIONS, 4, PaginationContext)
+  const { getCurrent, getPage, pageNum, pageCursors, ready } = usePagination(USER_ORG_EDUCATIONS, 10, PaginationContext)
 
   useEffect(() => {
     if (!ready) {
@@ -69,11 +69,11 @@ const MyOrgEducationOverview = () => {
   return (
     <div className='content overview org-overview'>
       <Table className='active-educations' columnInfo={columns} content={
-        activeCourses.map(generateCourseRow)
+        courses.map(generateCourseRow)
       }/>
         <div className='button-container load-more'>
         {pageCursors.map((_, i) =>
-          <button className={'button ' + (pageNum == i ? 'inactive':'')} disabled={pageNum == i ? true : false} onClick={() => getPage(i, { variables: { userid: user.id } }).then(
+          <button key={i} className={'button ' + (pageNum == i ? 'inactive':'')} disabled={pageNum == i ? true : false} onClick={() => getPage(i, { variables: { userid: user.id } }).then(
               ({ loading, error, data }) => {
                 setCourses(data.courses.nodes)
                 setLoading(loading)

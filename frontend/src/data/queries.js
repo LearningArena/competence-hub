@@ -508,14 +508,30 @@ mutation InquiryRemove($id: Int!) {
 `
 
 export const MY_EDUCATIONS = gql`
-query {
-  courses( first: 500, current_user_relationship:AUTHOR) {
+query UsersEducations($num: Int, $before: String, $after: String, $order: [CourseSortInput!], $filters: CourseFilterInput!) {
+  courses(order: $order, first: $num, before:$before, after: $after, where: $filters, current_user_relationship:AUTHOR) {
     nodes {
       title
       start_date
       id
       record_status
       education_provider
+    }
+    pageInfo {
+        hasNextPage
+        hasPreviousPage
+        startCursor
+        endCursor
+    }
+  }
+  cursors: courses(
+    order: $order
+    first: 500
+    where: $filters
+    current_user_relationship:AUTHOR
+  ) {
+    edges {
+      cursor
     }
   }
 }
@@ -566,6 +582,7 @@ query UsersOrgEducations($num: Int, $before: String, $after: String, $order: [Co
   }
   cursors: courses(
     order: $order
+    first: 500
     where: {and: [$filters, {organization_course_edges: {some: {and: [{organization: {organization_user_edges: {some: {and: [{user: {id: {eq: $userid}}}, {relationship: {eq: AUTHOR}}]}}}}, {relationship: {eq: AUTHOR}}]}}}]}
   ) {
     edges {

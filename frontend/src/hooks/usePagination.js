@@ -12,6 +12,7 @@ export function usePagination(query, defaultNodeCount = 6, paginationContext) {
   const [fetchedData, setFetchedData] = useState({})
 
   const [lazyQuery, { loading, error, data }] = useLazyQuery(query, {
+    fetchPolicy: 'network-only',
     onCompleted: data => {
       setFetchedData(data)
     }
