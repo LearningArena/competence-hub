@@ -33,6 +33,7 @@ public static class Arena
 	private static readonly ILogger log = Log.ForContext(typeof(Arena));
 	public const int USER_ID_GUEST = 0;
 	public const int USER_ID_UNAUTHORIZED = 0;
+	public const int DEFAULT_ADMIN_ID = 1;
 	public const int MAX_PAGES = 500;
 
 	public static AuthenticationProperties authentication_properties = new AuthenticationProperties

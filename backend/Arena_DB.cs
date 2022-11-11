@@ -1,5 +1,6 @@
 using System.Data;
 using System.Data.Common;
+using System.Linq;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -55,6 +56,33 @@ public static class DB
 			var context = serviceScope.ServiceProvider.GetRequiredService<Arena_Context>();
 			context.Database.Migrate();
 			//Testing.db_add_example(context);
+
+			// add default admin, required to have id be Arena.DEFAULT_ADMIN_ID
+			var adminEmail = Environment.GetEnvironmentVariable("DEFAULT_ADMIN_EMAIL") is string v && v.Length > 0 ? v : "admin@example.com";
+    		if (context.users.Count() == 0)
+			{
+				log.Information($"Adding default admin user with email {adminEmail}.");
+				context.users.Add(
+					new User{
+						id            = Arena.DEFAULT_ADMIN_ID,
+						firstname     = "Default",
+						lastname      = "Admin",
+						username      = adminEmail,
+						email         = adminEmail,
+						preference    = 1, // Offer
+						preference_language = Country_Code_ISO_3166_1.SE,
+						record_status = Record_Status.APPROVED,
+						time_created  = DateTime.UtcNow,
+						time_modified  = DateTime.UtcNow
+					}
+				);
+				context.SaveChanges();
+				// TODO: Skip using id above (and skip line below), and just assume default postgres sequence value (1) is used?
+				context.Database.ExecuteSqlRaw("SELECT SETVAL((SELECT PG_GET_SERIAL_SEQUENCE('\"users\"', 'id')),(SELECT (MAX(\"id\") + 1) FROM \"users\"),FALSE);");
+			} else if (context.users.Where(x => (x.id == Arena.DEFAULT_ADMIN_ID) && (x.email == adminEmail)).FirstOrDefault() == null) {
+				log.Error($"User with id {Arena.DEFAULT_ADMIN_ID} was expected to be default admin with email {adminEmail}. Make sure user with id {Arena.DEFAULT_ADMIN_ID} is the default admin user and check DEFAULT_ADMIN_EMAIL env variable.");
+				System.Environment.Exit(-1);
+			}
 		}
 	}
 
