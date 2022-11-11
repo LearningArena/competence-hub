@@ -52,17 +52,17 @@ public static class Arena_Email
 		Arena_Email.EMAIL_SUPPORT_NAME    = Environment.GetEnvironmentVariable("EMAIL_SUPPORT_NAME");
 		Arena_Email.EMAIL_NOREPLY_ADDRESS = Environment.GetEnvironmentVariable("EMAIL_NOREPLY_ADDRESS");
 
-		Arena_Email.POSTMARK_TEMPLATE_1_Account_not_verified_EN= Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_1_Account_not_verified_EN"));
-		Arena_Email.POSTMARK_TEMPLATE_1_Account_not_verified_SE= Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_1_Account_not_verified_SE"));
-		Arena_Email.POSTMARK_TEMPLATE_10_System_Verification   = Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_10_System_Verification"));
-		Arena_Email.POSTMARK_TEMPLATE_2_Account_verification_EN= Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_2_Account_verification_EN"));
-		Arena_Email.POSTMARK_TEMPLATE_2_Account_verification_SE= Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_2_Account_verification_SE"));
-		Arena_Email.POSTMARK_TEMPLATE_9_Welcome_mail_EN        = Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_9_Welcome_mail_EN"));
-		Arena_Email.POSTMARK_TEMPLATE_9_Welcome_mail_SE        = Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_9_Welcome_mail_SE"));
-		Arena_Email.POSTMARK_TEMPLATE_7_Quotation_request_EN   = Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_7_Quotation_request_EN"));
-		Arena_Email.POSTMARK_TEMPLATE_7_Quotation_request_SE   = Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_7_Quotation_request_SE"));
-		Arena_Email.POSTMARK_TEMPLATE_8_Reset_password_EN      = Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_8_Reset_password_EN"));
-		Arena_Email.POSTMARK_TEMPLATE_8_Reset_password_SE      = Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_8_Reset_password_SE"));
+		Arena_Email.POSTMARK_TEMPLATE_1_Account_not_verified_EN = Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_1_Account_not_verified_EN") ?? POSTMARK_TEMPLATE_1_Account_not_verified_EN.ToString());
+		Arena_Email.POSTMARK_TEMPLATE_1_Account_not_verified_SE = Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_1_Account_not_verified_SE") ?? POSTMARK_TEMPLATE_1_Account_not_verified_SE.ToString());
+		Arena_Email.POSTMARK_TEMPLATE_10_System_Verification    = Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_10_System_Verification")    ?? POSTMARK_TEMPLATE_10_System_Verification.ToString());
+		Arena_Email.POSTMARK_TEMPLATE_2_Account_verification_EN = Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_2_Account_verification_EN") ?? POSTMARK_TEMPLATE_2_Account_verification_EN.ToString());
+		Arena_Email.POSTMARK_TEMPLATE_2_Account_verification_SE = Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_2_Account_verification_SE") ?? POSTMARK_TEMPLATE_2_Account_verification_SE.ToString());
+		Arena_Email.POSTMARK_TEMPLATE_9_Welcome_mail_EN         = Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_9_Welcome_mail_EN")         ?? POSTMARK_TEMPLATE_9_Welcome_mail_EN.ToString());
+		Arena_Email.POSTMARK_TEMPLATE_9_Welcome_mail_SE         = Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_9_Welcome_mail_SE")         ?? POSTMARK_TEMPLATE_9_Welcome_mail_SE.ToString());
+		Arena_Email.POSTMARK_TEMPLATE_7_Quotation_request_EN    = Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_7_Quotation_request_EN")    ?? POSTMARK_TEMPLATE_7_Quotation_request_EN.ToString());
+		Arena_Email.POSTMARK_TEMPLATE_7_Quotation_request_SE    = Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_7_Quotation_request_SE")    ?? POSTMARK_TEMPLATE_7_Quotation_request_SE.ToString());
+		Arena_Email.POSTMARK_TEMPLATE_8_Reset_password_EN       = Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_8_Reset_password_EN")       ?? POSTMARK_TEMPLATE_8_Reset_password_EN.ToString());
+		Arena_Email.POSTMARK_TEMPLATE_8_Reset_password_SE       = Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_8_Reset_password_SE")       ?? POSTMARK_TEMPLATE_8_Reset_password_SE.ToString());
 
 		//Arena_Email.POSTMARK_TEMPLATE_11_No_reply_reply_EN     = Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_11_No_reply_reply_EN"));
 		//Arena_Email.POSTMARK_TEMPLATE_11_No_reply_reply_SE     = Int32.Parse(Environment.GetEnvironmentVariable("POSTMARK_TEMPLATE_11_No_reply_reply_SE"));
