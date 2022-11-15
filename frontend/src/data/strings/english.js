@@ -401,9 +401,13 @@ export const englishStrings = {
   about: {
     pageTitle: 'About Kompetensmatchning',
     about: 'This is Kompetensmatchning',
-    aboutText: 'Kompetensmatchning is a platform and meeting place for competence development specifically targeting employers and education providers in need of or work with competence development in their profession. The platform is initiated in Västra Götaland connecting to the need that are identified within the transportation industry, service and hospitality. Kompetensmatchning is a service developed in collaboration between RISE and Göteborgsregionens kompetensnav.',
-    mission: 'What we want',
-    missionText: 'With Kompetensmatchning we want to offer a meeting place and a platform for exchange: a meeting place that enables employers and education providers with the possibility to meet and collaborate on for instance which types of competence development is in demand, and a platform for exchange where it is easy to find the right type of education for competence development for professionals.',
+    aboutText: 'Kompetensmatchning is a test bed for RISE and is used to work with skills resource management for lifelong learning. Kompetensmatchning is free to use. The code is open source and a link to the repo can be found further down.',
+    background: 'Background',
+    backgroundText: 'Kompetensmatchning was developed in cooperation with Gothenburg Competencehub, Västra Götaland Region and Business Region Gothenburg, with start 2020.',
+    opensource: 'Open source',
+    opensourceText: 'The code for the plattform is open source and can be found here: https://github.com/LearningArena/competence-hub/edit/main/README.md',
+    license: 'License',
+    licenseText: 'The licence for the code is European Union Public Licence (EUPL), and can be found here; https://joinup.ec.europa.eu/collection/eupl/eupl-guidelines-faq-infographics.',
   },
   categories: {
     all: 'All categories',
