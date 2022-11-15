@@ -77,8 +77,6 @@ public static class DB
 					}
 				);
 				context.SaveChanges();
-				// TODO: Skip using id above (and skip line below), and just assume default postgres sequence value (1) is used?
-				context.Database.ExecuteSqlRaw("SELECT SETVAL((SELECT PG_GET_SERIAL_SEQUENCE('\"users\"', 'id')),(SELECT (MAX(\"id\") + 1) FROM \"users\"),FALSE);");
 			} else if (context.users.Where(x => (x.id == Arena.DEFAULT_ADMIN_ID) && (x.email == adminEmail)).FirstOrDefault() == null) {
 				log.Error($"User with id {Arena.DEFAULT_ADMIN_ID} was expected to be default admin with email {adminEmail}. Make sure user with id {Arena.DEFAULT_ADMIN_ID} is the default admin user and check DEFAULT_ADMIN_EMAIL env variable.");
 				System.Environment.Exit(-1);
