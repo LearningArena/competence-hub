@@ -22,8 +22,12 @@ const About = () => {
       <div className='content blue-background'>
           <h3>{strings.about.about}</h3>
           <p>{strings.about.aboutText}</p>
-          <h3>{strings.about.mission}</h3>
-          <p>{strings.about.missionText}</p>
+          <h3>{strings.about.background}</h3>
+          <p>{strings.about.backgroundText}</p>
+          <h3>{strings.about.opensource}</h3>
+          <p>{strings.about.opensourceText}<a href="https://github.com/LearningArena/competence-hub">Github</a>.</p>
+          <h3>{strings.about.license}</h3>
+          <p>{strings.about.licenseText}<a href="https://joinup.ec.europa.eu/collection/eupl/eupl-guidelines-faq-infographics">European Union Public Licence (EUPL)</a>.</p>
       </div>
       <div className='partners'>
           <h3>Samarbetspartners</h3>

@@ -63,4 +63,13 @@ public class Course_Query
 		return q;
 	}
 
+	[HotChocolate.Types.UseOffsetPaging(MaxPageSize = Arena.MAX_PAGES, IncludeTotalCount = true)]
+	[HotChocolate.Data.UseProjection]
+	[HotChocolate.Data.UseFiltering]
+	[HotChocolate.Data.UseSorting]
+	public IQueryable<Course> courses_offset([Service] Arena_Context context, Record_Status? record_status, int? id, int[] keywords, Relationship? current_user_relationship)
+	{
+		return courses(context, record_status, id, keywords, current_user_relationship);
+	}
+
 }
