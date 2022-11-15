@@ -405,9 +405,9 @@ export const englishStrings = {
     background: 'Background',
     backgroundText: 'Kompetensmatchning was developed in cooperation with Gothenburg Competencehub, Västra Götaland Region and Business Region Gothenburg, with start 2020.',
     opensource: 'Open source',
-    opensourceText: 'The code for the plattform is open source and can be found here: https://github.com/LearningArena/competence-hub/edit/main/README.md',
+    opensourceText: 'The code for the plattform is open source and can be found on ',
     license: 'License',
-    licenseText: 'The licence for the code is European Union Public Licence (EUPL), and can be found here; https://joinup.ec.europa.eu/collection/eupl/eupl-guidelines-faq-infographics.',
+    licenseText: 'The licence for the code is ',
   },
   categories: {
     all: 'All categories',
