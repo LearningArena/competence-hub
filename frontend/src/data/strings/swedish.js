@@ -66,7 +66,7 @@ export const swedishStrings = {
   mainTabLearnMobile: 'Sök',
   mainTabEducate: 'Erbjud utbildning',
   mainTabEducateMobile: 'Erbjud',
-  learnStartText: 'Välkommen till Kompetensmatchning. Här kan du enkelt hitta utbildningar som matchar ditt behov av kompetensutveckling. Sök i fritextfältet, använd vårt smarta filter eller klicka runt bland kategorierna för att hitta den utbildning som passar dig.',
+  learnStartText: 'Välkommen! Här kan du som yrkesverksam söka eller göra efterlysningar för utbildningar som matchar just ditt eller din organisations behov av kompetensutveckling.',
   learnStartPostsTitle: 'Publicerade utbildningar',
   favoritePostsTitle: 'Sparade utbildningar',
   loadMoreCourses: 'Ladda fler kurser',

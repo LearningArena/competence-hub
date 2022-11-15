@@ -61,9 +61,13 @@
          
         }
 
-        .tab-nav .tab-educate h2 {
-          line-height: 1em !important;
-       }
+        .tab-nav {
+          .tab-educate, .tab-learn {
+            h2 {
+              line-height: 1em !important;
+            }
+          }
+        }
 
        .navbar .nav-list {
          padding-bottom: 0 !important;
