@@ -1,5 +1,7 @@
-import React from 'react'
-import {ReactComponent as EditIcon} from '../../images/icon-edit.svg'
+import React, { useContext } from 'react'
+import { PaginationContext } from '../../context/PaginationContext'
+import { LanguageContext } from '../../context/LanguageContext'
+
 
 const TableItem = ({info, Icon}) => {
   return (
@@ -12,13 +14,26 @@ const TableItem = ({info, Icon}) => {
 }
 
 const Table = ({columnInfo, content, ...props}) => {
+  const { isDescending, setDescending, sortField, setSortField } = useContext(PaginationContext)
+  const {strings} = useContext(LanguageContext)
+
+  const actions = {
+    setSortCategory: (value) => {
+      setSortField(value)
+    },
+    toggleDescending: () => {
+      setDescending(!isDescending)
+    },
+  }
 
   return (
     <table {...props}>
       <thead>
         <tr>
         {columnInfo && columnInfo.map((col,i) => (
-          <th key={i} className={col.class}>{col.content}</th>
+          <th key={i} className={col.class} onClick={col.sortField ? () => {actions.setSortCategory(col.sortField); actions.toggleDescending();} : null }>
+            {col.content + (JSON.stringify(sortField) === JSON.stringify(col.sortField) ? (isDescending ? ' ↓' : ' ↑') : '')}
+          </th>
         ))}
         </tr>
       </thead>
