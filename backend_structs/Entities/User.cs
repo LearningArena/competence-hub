@@ -6,7 +6,7 @@ using HotChocolate;
 
 namespace Arena;
 
-[HotChocolate.AspNetCore.Authorization.Authorize(Policy = "/Siteadmin")]
+//[HotChocolate.AspNetCore.Authorization.Authorize(Policy = "/Siteadmin")]
 public class User
 {
 	[Key]
