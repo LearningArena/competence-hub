@@ -39,6 +39,15 @@ namespace Extapi
 	{
 
 		private static readonly ILogger log = Log.ForContext(typeof(Externaldata));
+		public static string LOGTYPE_FILE_PREFIX = "Import2File_";
+		public static string NO_URL = "NO_URL";
+		public static string MISSING_TIMES = "MISSING_TIMES";
+		public static string PAST_START = "PAST_START";
+		public static string TIMESPAN_LONG = "TIMESPAN_LONG";
+		public static string NO_DESCRIPTION = "NO_DESCRIPTION";
+		public static string NO_TITLE_OR_DESCR = "NO_TITLE_OR_DESCR";
+		public static string NO_PROVIDER = "NO_PROVIDER";
+		public static string STATS = "STATS";
 
 		static public List<Arena.Course> request_parse(HttpClient client, Parser method, string url)
 		{
