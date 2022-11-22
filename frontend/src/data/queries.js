@@ -250,6 +250,15 @@ query Courses($num: Int, $before: String, $after: String, $order: [CourseSortInp
       ${allEducationFields}
       is_my_favorite:has_edge(t:USERS, id:0, relation:FAVORITE)
     }
+    }
+    cursors: courses(
+      order: $order,
+      record_status: APPROVED,
+      where: $filters
+    ) {
+      edges {
+        cursor
+      }
   }
 }
 `
@@ -499,13 +508,85 @@ mutation InquiryRemove($id: Int!) {
 `
 
 export const MY_EDUCATIONS = gql`
-query {
-  courses( first: 500, current_user_relationship:AUTHOR) {
+query UsersEducations($num: Int, $before: String, $after: String, $order: [CourseSortInput!], $filters: CourseFilterInput!) {
+  courses(order: $order, first: $num, before:$before, after: $after, where: $filters, current_user_relationship:AUTHOR) {
     nodes {
       title
       start_date
       id
       record_status
+      education_provider
+    }
+    pageInfo {
+        hasNextPage
+        hasPreviousPage
+        startCursor
+        endCursor
+    }
+  }
+  cursors: courses(
+    order: $order
+    first: 500
+    where: $filters
+    current_user_relationship:AUTHOR
+  ) {
+    edges {
+      cursor
+    }
+  }
+}
+`
+
+export const USER_ORG_EDUCATIONS = gql`
+query UsersOrgEducations($num: Int, $before: String, $after: String, $order: [CourseSortInput!], $filters: CourseFilterInput!, $userid: Int!) {
+  courses(order: $order, first:$num, before:$before, after: $after, where:
+  {and: [
+    $filters,
+    {organization_course_edges:
+      {
+        some:{and:[
+          {organization:{organization_user_edges:
+          {
+            some:{and: [
+              {user:{
+                id:{eq:$userid}
+              }},
+              {relationship:{eq:AUTHOR}}
+            ]
+
+            }
+          }}},
+          {relationship:{eq:AUTHOR}}
+        ]
+        }
+  }}]}) 
+  {
+    pageInfo {
+        hasNextPage
+        hasPreviousPage
+        startCursor
+        endCursor
+    }
+    edges{cursor}
+    nodes {
+      organization {
+        name
+        id
+      }
+      title
+      start_date
+      id
+      record_status
+      education_provider
+    }
+  }
+  cursors: courses(
+    order: $order
+    first: 500
+    where: {and: [$filters, {organization_course_edges: {some: {and: [{organization: {organization_user_edges: {some: {and: [{user: {id: {eq: $userid}}}, {relationship: {eq: AUTHOR}}]}}}}, {relationship: {eq: AUTHOR}}]}}}]}
+  ) {
+    edges {
+      cursor
     }
   }
 }
@@ -552,6 +633,8 @@ query {
   }
 }
 `
+
+
 
 export const INQUIRY_BY_ID = gql`
 query InquiryById($id: Int!) {

@@ -68,7 +68,7 @@ const LoginPopup = () => {
         </div>
       </Form>
       <div className='additional'>
-        <Link onClick={() => showPopup(<ForgotPassword />)} className='forgot-password'>{strings.forgotPassword}</Link> {strings.signup.or} <Link to='/learn/signup' onClick={hidePopup}>{strings.signup.header}</Link>   
+        <Link to='' onClick={() => showPopup(<ForgotPassword />)} className='forgot-password'>{strings.forgotPassword}</Link> {strings.signup.or} <Link to='/learn/signup' onClick={hidePopup}>{strings.signup.header}</Link>   
       </div>  
     </div>
   )

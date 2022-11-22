@@ -13,6 +13,8 @@ const PaginationContextProvider = (props) => {
   const [path, setPath] = useState("")
   const [totalLoaded, setTotalLoaded] = useState(0)
   const [pageInfo, setPageInfo] = useState({})
+  const [pageNum, setPageNum] = useState(0)
+  const [pageCursors, setPageCursors] = useState([])
 
   //Filter
   const [activeFilters, setActiveFilters] = useState({})
@@ -25,6 +27,8 @@ const PaginationContextProvider = (props) => {
   const resetPagination = () => {
     setTotalLoaded(0)
     setPageInfo({})
+    setPageNum(0)
+    setPageCursors([])
   }
 
   const resetFiltersSorting = () => {
@@ -55,7 +59,7 @@ const PaginationContextProvider = (props) => {
 
 
   return (
-    <PaginationContext.Provider value={{ ready, update, totalLoaded, setTotalLoaded, pageInfo, setPageInfo, 
+    <PaginationContext.Provider value={{ ready, update, totalLoaded, setTotalLoaded, pageInfo, setPageInfo, pageNum, setPageNum, pageCursors, setPageCursors,
     activeFilters, setActiveFilters, isListView, setListView, isDescending, setDescending, sortField, setSortField }}>
       {props.children}
     </PaginationContext.Provider>
