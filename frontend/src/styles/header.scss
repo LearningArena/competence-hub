@@ -14,7 +14,6 @@
 
     .page-header-wrap {
       height: 166px;
-      transition: all 0.5s ease-in-out;
      //display: flex;
       //flex-direction: column;
       justify-content: center;
@@ -85,7 +84,6 @@
     background: $colHeaderBG;
     color: $colTextLight;
     height: 6em;
-    transition: all 0.5s ease-in-out;
   }
   
   h1.page-title {
@@ -100,12 +98,10 @@
     //flex-grow: 3;
     margin: 0 auto; //Center
     margin-top: 5.5em;
-    transition: all 0.5s ease-in-out;
   
     svg {
       height: 4rem;
       margin-bottom: -0.5em;
-      transition: all 0.5s ease-in-out;
 
       .path-top {
         fill: $colEduBG;
@@ -123,7 +119,6 @@
     .page-payoff {
       margin-top: 0;
       height: 2em;
-      transition: all 0.5s ease-in-out, margin-top 0.25s ease 0.25s;
     }
   } //end .page-brand
   
@@ -218,7 +213,6 @@
 
   .page-tab-nav {
     width: 100vw;
-    transition: all 0.5s ease-in-out;
     grid-row: 2;
 
     .flex-pusher {

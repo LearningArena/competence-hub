@@ -241,8 +241,8 @@ export const englishStrings = {
     },
   },
   search : {
-    learnPlaceholder:'Use any word to search for an education here!',
-    eduPlaceholder:'Use any word to search for an inquiry here!',
+    learnPlaceholder:'Search for an education, e.g. leadership',
+    eduPlaceholder:'Search for an inquiry, e.g. leadership',
     result: 'Search result',
     filterHeader: 'Filter search',
     filter: 'Filter',

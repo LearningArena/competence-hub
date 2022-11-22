@@ -411,7 +411,6 @@ div.learn, div.educate {
 }
 .search-bar {
   display: flex;
-
   max-width: 32rem;
   margin: 0 auto;
   margin-top: 0.5rem;
@@ -422,28 +421,39 @@ div.learn, div.educate {
     font-size: 1.1em;
     width: 80%;
     margin: auto;
-    text-align: center;
+    text-align: left;
     height: 2.4em;
-    color: $colTextLight;
+    color: $colTextDark;
     &::placeholder {
-      color: $colTextLight;
+      color: $colTextPlaceholder;
     }
     &:focus::placeholder {
       color: transparent;
     }
+  }
 
-    &.search-submit {
-      width: 20%;
-      display: flex;
-      height: 3em;
-      background: $colLearnD;
-      padding: 0em !important;
-      opacity: 0.5;
-      pointer-events: none;
-      &.active {
-        opacity: 1;
-        pointer-events: all;
-      }
+  button {
+    width: 20%;
+    margin-top: 0;
+    display: flex;
+    background: $colButtonBG;
+    padding: 0em !important;
+    opacity: 0.5;
+    pointer-events: none;
+    &.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    svg path {
+      fill:#fff;
+    }
+  
+    &:hover svg path{
+      fill: $colTextDark;
+    }
+
+    .active svg path{
+      fill: $colLearnA;
     }
   }  
 }

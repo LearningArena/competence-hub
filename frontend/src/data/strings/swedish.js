@@ -244,8 +244,8 @@ export const swedishStrings = {
     },
   },
   search : {
-    learnPlaceholder:'Frisök efter utbildningar här!',
-    eduPlaceholder:'Frisök efter efterlysningar här!',
+    learnPlaceholder:'Sök utbildning, t.ex. ledarskap',
+    eduPlaceholder:'Sök efterlysning, t.ex. ledarskap',
     result: 'Sökresultat',
     filterHeader: 'Filtrera bland utbildningarna',
     filter: 'Filtrera',
