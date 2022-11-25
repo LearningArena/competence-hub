@@ -36,7 +36,16 @@ public class CourseImportJob : IJob
                 {
                     numChanges += Arena_Import.external_import(c, src.Key);//);
                 }
-                catch (Exception ex) { _log.Error($"CourseImportJob, exception for {src.Key} caught: " + ex.Message); }
+                catch (Exception ex) {
+                    _log.Error($"CourseImportJob, exception for {src.Key} caught: " + ex.Message);
+                    _log.Information("{LogType}, {ImportEvent}, {InfoType}, {ID}, {URL}, {More}",
+                        Extapi.Externaldata.LOGTYPE_FILE_PREFIX+src.Key.ToString(),
+                        "Exception",
+                        "",
+                        "",
+                        "",
+                        "{exception : " + ex.Message + "}");
+                }
             }                
         }
 
