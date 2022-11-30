@@ -16,7 +16,7 @@ const FavoriteCourses = () => {
   const [loading, setLoading] = useState(true)
   const category = fields.categoriesList.find(cat => cat.slug === categoryId)
 
-  const { ready, getCurrent, getPrev, getNext, resetPagination, totalLoaded, hasPrev, hasNext } = usePagination(FAVORITE_COURSES, 8, PaginationContext)
+  const { ready, getCurrent, getPage, pageNum, pageCursors } = usePagination(FAVORITE_COURSES, 10, PaginationContext)
 
 
   useEffect(() => {
@@ -38,19 +38,15 @@ const FavoriteCourses = () => {
       ) : (
         <CourseList heading={strings.favoritePostsTitle} courses={courses} hideSearchBar={true} hideFilters={true} />
       )}
-      {hasNext ?
-        (
-          <div className='button-container load-more'>
-            <button className='button align-center load-more' onClick={() => getNext().then(({ loading, error, data }) => {
-              setCourses(courses.concat(data.courses.nodes))
+      <div className='button-container load-more'>
+        {pageCursors.map((_, i) =>
+          <button key={i} className={'button ' + (pageNum == i ? 'inactive':'')} disabled={pageNum == i ? true : false} onClick={() => getPage(i).then(
+            ({ loading, error, data }) => {
+              setCourses(data.courses.nodes)
               setLoading(loading)
-            })}>
-              {strings.loadMoreCourses}
-            </button>
-          </div>
-        ) :
-        <></>
-      }
+          })}>{ i+1 }</button>
+        )}
+      </div>
     </>
   )
 }

@@ -17,7 +17,7 @@ const CategoryCourses = () => {
   const [courses, setCourses] = useState([])
   const [loading, setLoading] = useState(true)
 
-  const { ready, getCurrent, getPrev, getNext, resetPagination, hasPrev, hasNext } = usePagination(COURSE_BY_CATEGORY, 8, PaginationContext)
+  const { ready, getCurrent, getPage, pageNum, pageCursors } = usePagination(COURSE_BY_CATEGORY, 8, PaginationContext)
 
   useEffect(() => {
     if (!ready) {
@@ -41,19 +41,15 @@ const CategoryCourses = () => {
       <div className="sidebar-right posts-sidebar">
         <CategoryList titleText='Kategorier' area='learn' style='list' />
       </div>
-      {hasNext ?
-        (
-          <div className='button-container load-more'>
-            <button className='button align-center load-more' onClick={() => getNext({ variables: { cat: category.slug, record_status: "APPROVED" } }).then(({ loading, error, data }) => {
-              setCourses(courses.concat(data.courses.nodes))
+      <div className='button-container load-more'>
+        {pageCursors.map((_, i) =>
+          <button key={i} className={'button ' + (pageNum == i ? 'inactive':'')} disabled={pageNum == i ? true : false} onClick={() => getPage(i, { variables: { cat: category.slug, record_status: "APPROVED" } }).then(
+            ({ loading, error, data }) => {
+              setCourses(data.courses.nodes)
               setLoading(loading)
-            })}>
-              {strings.loadMoreCourses}
-            </button>
-          </div>
-        ) :
-        <></>
-      }
+          })}>{ i+1 }</button>
+        )}
+      </div>
     </>
   )
 }
