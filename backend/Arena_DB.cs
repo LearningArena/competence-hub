@@ -59,8 +59,10 @@ public static class DB
 
 			// add default admin, required to have id be Arena.DEFAULT_ADMIN_ID
 			var adminEmail = Environment.GetEnvironmentVariable("DEFAULT_ADMIN_EMAIL") is string v && v.Length > 0 ? v : "admin@example.com";
-    		if (context.users.Count() == 0)
-			{
+			if (context.users.Where(x => (x.id == Arena.DEFAULT_ADMIN_ID) && (x.email != adminEmail)).FirstOrDefault() == null) {
+					log.Warning($"User with id {Arena.DEFAULT_ADMIN_ID} was expected to be default admin with email {adminEmail}. Make sure user with id {Arena.DEFAULT_ADMIN_ID} is the default admin user and check DEFAULT_ADMIN_EMAIL env variable.");
+			}
+			if (context.users.Where(x => (x.id == Arena.DEFAULT_ADMIN_ID)).FirstOrDefault() == null) {
 				log.Information($"Adding default admin user with email {adminEmail}.");
 				context.users.Add(
 					new User{
@@ -77,9 +79,6 @@ public static class DB
 					}
 				);
 				context.SaveChanges();
-			} else if (context.users.Where(x => (x.id == Arena.DEFAULT_ADMIN_ID) && (x.email == adminEmail)).FirstOrDefault() == null) {
-				log.Error($"User with id {Arena.DEFAULT_ADMIN_ID} was expected to be default admin with email {adminEmail}. Make sure user with id {Arena.DEFAULT_ADMIN_ID} is the default admin user and check DEFAULT_ADMIN_EMAIL env variable.");
-				System.Environment.Exit(-1);
 			}
 		}
 	}
