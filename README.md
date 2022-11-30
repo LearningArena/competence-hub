@@ -54,6 +54,8 @@ docker compose -f docker-compose.yml -f arm64.yml up
 and visit [http://localhost:8000/](http://localhost:8000/) for web interface,  
 and [http://localhost:8080/](http://localhost:8080/) for keycloak interface (see .env file for credentials).
 
+A default admin user will be created with username "admin" and password "default". These credentials can be changed by logging in to keycloak using the credentials specified in the .env file.
+
 ## Running
 
 ### Windows/Linux
