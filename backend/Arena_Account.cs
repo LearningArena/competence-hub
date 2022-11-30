@@ -1,5 +1,8 @@
 using System;
 using System.Linq;
+using System.Data;
+using System.Collections.Generic;
+using System.Security.Claims;
 using Serilog;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -46,6 +49,37 @@ public static class Arena_Account
 		Primitive_Result result = Keycloak.change_password(Arena.config_keycloak_admincli, new_password, token.access_token, user_guid);
 		if (result != Primitive_Result.SUCCESS) {return result;}
 		context.http_context.HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme).Wait();
+		return Primitive_Result.SUCCESS;
+	}
+
+
+
+	static public Primitive_Result example1_register(Arena_Context context, string email, string password)
+	{
+		User user = context.users.Where(x => x.email == email).FirstOrDefault();
+		if(user != null){return Primitive_Result.EMAIL_ALREADY_EXISTS;}
+		user = new User
+		{
+			salthash = Misc.Passwords.create(password),
+			email = email
+		};
+		context.users.Add(user);
+		context.SaveChanges();
+		return Primitive_Result.SUCCESS;
+	}
+	static public Primitive_Result example1_login(Arena_Context context, string email, string password)
+	{
+		User user = context.users.Where(x => x.email == email).FirstOrDefault();
+		if(user == null){return Primitive_Result.NOT_FOUND;}
+		bool match = Misc.Passwords.verify(password, user.salthash);
+		if(match == false){return Primitive_Result.PASSWORD_MISMATCH;}
+		var claims = new List<Claim>
+		{
+			new Claim(Arena_Claims.ARENA_USER_ID, user.id.ToString()),
+		};
+		var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+		var principal = new ClaimsPrincipal(identity);
+		context.http_context.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, Arena.authentication_properties);
 		return Primitive_Result.SUCCESS;
 	}
 

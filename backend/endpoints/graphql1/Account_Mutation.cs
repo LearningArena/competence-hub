@@ -179,4 +179,16 @@ public class Account_Mutation
 	public async Task<bool> impersonate([Service] Arena_Context context, int id) => await context.impersonate(id);
 	public async Task<bool> impersonate_revert([Service] Arena_Context context)  => await context.impersonate(-1);
 
+
+
+	public Primitive_Result example1_register([Service] Arena_Context context, string email, string password)
+	{
+		return Arena_Account.example1_register(context, email, password);
+	}
+
+	public Primitive_Result example1_login([Service] Arena_Context context, string email, string password)
+	{
+		return Arena_Account.example1_login(context, email, password);
+	}
+
 }
