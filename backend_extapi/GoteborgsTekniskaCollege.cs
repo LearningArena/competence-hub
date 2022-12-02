@@ -373,7 +373,7 @@ namespace GoteborgsTekniskaCollege
 			return arenaCourse;
 		}
 
-		public static List<Arena.Course> request_parse(HttpClient client, string url)
+		public static List<Arena.Course> request_parse(HttpClient client, Extapi.Parser method, string url)
 		{
 			if (kmCategories is null) {LoadCategories();}
 			if (gtcLinkMaps is null) {LoadLinkMaps();}
@@ -393,8 +393,10 @@ namespace GoteborgsTekniskaCollege
 				{
 					Arena.Course? arenaCourse = LoadSingle(client, link.Attributes["href"].Value);
 					if (arenaCourse is not null && CheckRequirements(arenaCourse))
+					{
+						arenaCourse.import_source = method.ToString();
 						courses.Add(arenaCourse);
-					else
+					} else
 						Log.Information("... discarded.");
 				}
 			}
@@ -408,6 +410,7 @@ namespace GoteborgsTekniskaCollege
 					Arena.Course? arenaCourse = LoadSingle(client, link.Attributes["href"].Value);
 					if (arenaCourse is not null && CheckRequirements(arenaCourse))
 					{
+						arenaCourse.import_source = method.ToString();
 						courses.Add(arenaCourse);
 					}
 					else
