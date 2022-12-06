@@ -36,14 +36,12 @@ const CourseItem = ({course, ListView}) => {
 
       if (isPinned) {
         unpinCourseGQL(vars).then(res => {
-          console.log(res)
           setPinned(false)
         }).catch(err => {
           console.log(err)
         })
       } else {
         pinCourseGQL(vars).then(res => {
-          console.log(res)
           setPinned(true)
         }).catch(err => {
           console.log(err)

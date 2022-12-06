@@ -134,6 +134,18 @@ query CourseByCategory($cat: String!, $record_status: Record_Status = null, $num
       ${allEducationFields}
     }
   }
+  cursors: courses(
+    order: $order,
+    first: 500,
+    record_status: APPROVED,
+    where: {and: [$filters, {
+      category:{contains: $cat}
+    }]}
+  ) {
+    edges {
+      cursor
+    }
+  }
 }
 `
 
@@ -156,6 +168,22 @@ query CourseSearch($query: String!, $record_status: Record_Status = null, $num: 
     }
     nodes {
       ${allEducationFields}
+    }
+  }
+  cursors: courses(
+    order: $order,
+    first: 500,
+    record_status: APPROVED,
+    where: {and: [$filters, {
+    or: [
+        {title:{contains: $query}}
+        {description:{contains: $query}}
+        {subtitle:{contains: $query}}
+        {verbs:{contains: $query}}
+      ]}]}
+  ) {
+    edges {
+      cursor
     }
   }
 }
@@ -224,6 +252,14 @@ query {
       ${allEducationFields}
     }
   }
+  cursors: courses(
+    order: {id: ASC},
+    first: 500
+  ) {
+    edges {
+      cursor
+    }
+  }
 }
 `
 /* ORGINIAL QUERY
@@ -253,6 +289,7 @@ query Courses($num: Int, $before: String, $after: String, $order: [CourseSortInp
     }
     cursors: courses(
       order: $order,
+      first: 500,
       record_status: APPROVED,
       where: $filters
     ) {
@@ -276,6 +313,17 @@ query FavoriteCourses($num: Int, $before: String, $after: String, $order: [Cours
     nodes {
       ${allEducationFields}
       is_my_favorite:has_edge(t:USERS, id:0, relation:FAVORITE)
+    }
+  }
+  cursors: courses(
+    current_user_relationship: FAVORITE
+    order: $order,
+    first: 500,
+    record_status: APPROVED,
+    where: $filters
+  ) {
+    edges {
+      cursor
     }
   }
 }

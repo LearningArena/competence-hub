@@ -14,7 +14,7 @@ const SearchResults = () => {
   const [courses, setCourses] = useState([])
   const [loading, setLoading] = useState(true)
 
-  const { ready, getCurrent, getPrev, getNext, resetPagination, hasPrev, hasNext } = usePagination(COURSE_SEARCH, 8, PaginationContext)
+  const { ready, getCurrent, getPage, pageNum, pageCursors } = usePagination(COURSE_SEARCH, 8, PaginationContext)
 
   useEffect(() => {
     if (!ready) {
@@ -34,19 +34,15 @@ const SearchResults = () => {
         <p>Loading</p> :
         <CourseList courses={courses} />
       }
-      {hasNext ?
-        (
-          <div className='button-container load-more'>
-            <button className='button align-center load-more' onClick={() => getNext({ variables: { query, record_status: "APPROVED" } }).then(({ loading, error, data }) => {
-              setCourses(courses.concat(data.courses.nodes))
+      <div className='button-container load-more'>
+        {pageCursors.map((_, i) =>
+          <button key={i} className={'button ' + (pageNum == i ? 'inactive':'')} disabled={pageNum == i ? true : false} onClick={() => getPage(i, { variables: {query} }).then(
+            ({ loading, error, data }) => {
+              setCourses(data.courses.nodes)
               setLoading(loading)
-            })}>
-              {strings.loadMoreCourses}
-            </button>
-          </div>
-        ) :
-        <></>
-      }
+          })}>{ i+1 }</button>
+        )}
+      </div>
     </div>
   )
 }
