@@ -323,7 +323,7 @@ namespace SusaNavet
 		public static string organisation_forms = "folkhögskola,högskoleutbildning,kvalificerad yrkesutbildning,vuxenutbildning,yrkeshögskoleutbildning";
 		private static readonly ILogger log = Log.ForContext(typeof(Susa));
 
-		public static List<Arena.Course> request_parse(HttpClient client, string url)
+		public static List<Arena.Course> request_parse(HttpClient client, Extapi.Parser method, string url)
 		{
 			List<Arena.Course> courses = new List<Arena.Course>{};
 
@@ -516,6 +516,8 @@ namespace SusaNavet
 						if (tag is not null)
 							course.language = tag;
 					}
+
+					course.import_source = method.ToString();
 
 					Arena.Course? duplicate = courses.Where(previous => 
 							previous.title == course.title && 
