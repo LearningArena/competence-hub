@@ -40,7 +40,7 @@ namespace Arena
 			{
 				new Extpoint{id = 1, url="https://susanavet2.skolverket.se/api/1.1/infos/?configuration=kurs", parser=Extapi.Parser.SUSA_NAVET},
 				new Extpoint{id = 2, url="https://learning4professionals.se/search?show=24", parser=Extapi.Parser.LEARNING_4_PROFESSIONALS},
-				new Extpoint{id = 3, url="https://www.goteborgstekniskacollege.se/utbildningar/yrkeshogskola/utbildningar", parser=Extapi.Parser.GOTEBORGS_TEKNISKA_COLLAGE},
+				new Extpoint{id = 3, url="https://www.goteborgstekniskacollege.se/utbildningar/yrkeshogskola/utbildningar", parser=Extapi.Parser.GOTEBORGS_TEKNISKA_COLLEGE},
 			};
 		}
 	};

@@ -10,7 +10,7 @@ namespace Extapi
 	public enum Parser
 	{
 		UNKNOWN,
-		GOTEBORGS_TEKNISKA_COLLAGE,
+		GOTEBORGS_TEKNISKA_COLLEGE,
 		//MDH courses
 		LEARNING_4_PROFESSIONALS,
 		SUSA_NAVET,
@@ -25,7 +25,7 @@ namespace Extapi
 	{
 		// TODO: Get this information from database instead:
 		public static readonly Dictionary<Parser, string> urls = new Dictionary<Parser, string>{
-			{Parser.GOTEBORGS_TEKNISKA_COLLAGE, "https://www.goteborgstekniskacollege.se/utbildningar/yrkeshogskola/utbildningar"},
+			{Parser.GOTEBORGS_TEKNISKA_COLLEGE, "https://www.goteborgstekniskacollege.se/utbildningar/yrkeshogskola/utbildningar"},
 			{Parser.LEARNING_4_PROFESSIONALS, "https://learning4professionals.se/search?show=24"},
 			{Parser.SUSA_NAVET, "https://susanavet2.skolverket.se/api/1.1"},
 			{Parser.MIUN, "https://www.miun.se/api/edu"}
@@ -55,7 +55,7 @@ namespace Extapi
 			log.Information("Request and parsing {method}", method);
 			switch(method)
 			{
-			case Parser.GOTEBORGS_TEKNISKA_COLLAGE:
+			case Parser.GOTEBORGS_TEKNISKA_COLLEGE:
 				courses = GoteborgsTekniskaCollege.Methods.request_parse(client, method, url);
 				break;
 			case Parser.LEARNING_4_PROFESSIONALS:

@@ -12,7 +12,7 @@ var record_statuses = ['DRAFT', 'UNAPPROVED','APPROVED', 'NEEDVERIFICATION', 'RU
 var record_statuses_s = {'DRAFT':'⚫', 'UNAPPROVED':'❌','APPROVED':'✔️', 'NEEDVERIFICATION':'🟡', 'RUBBISH':'🗑️', 'GENERATED':'⚙️', 'ARCHIVED':'🗃️'};
 var arena_graphql_endpoint = window.location.origin + '/graphql';
 var ARENA_RELATIONS = ['UNKNOWN', 'FAVORITE', 'AUTHOR', 'MEMBER'];
-var ARENA_PARSE_PROCEDURES = ['UNKNOWN', 'GOTEBORGS_TEKNISKA_COLLAGE', 'LEARNING_4_PROFESSIONALS', 'SUSA_NAVET'];
+var ARENA_PARSE_PROCEDURES = ['UNKNOWN', 'GOTEBORGS_TEKNISKA_COLLEGE', 'LEARNING_4_PROFESSIONALS', 'SUSA_NAVET'];
 
 var arena_graphql_update_lookup = 
 {
