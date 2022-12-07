@@ -20,6 +20,21 @@ public static class Arena_Import
 			else
 				return null;
 		}
+
+	private static void PublishCourses(Arena_Context context, List<Course> courses)
+	{
+		// Currently publishing all generated courses.
+		// Do we want to do additional filtering here before publishing?
+		foreach (Course course in courses.ToList())
+		{
+			if (course.record_status == Record_Status.GENERATED)
+			{
+				course.record_status = Record_Status.APPROVED;
+				context.courses.Update(course);
+			}
+		}
+		context.SaveChanges();
+	}
 	
 	public static int external_import(Arena_Context context, Extapi.Parser method)
 	{
@@ -152,6 +167,7 @@ public static class Arena_Import
 				numOCE++;
 			}
 		}
+		PublishCourses(context, courses);
 		context.SaveChanges();
 		Log.Information($"Linked {numOCE.ToString()}/{courses.Count.ToString()} new courses to orgs, of which {numNewOrgs.ToString()} are newly generated.");
 		return courses.Count;
