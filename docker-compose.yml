@@ -31,6 +31,8 @@ services:
 
   backend:
     build: .
+    volumes:
+      - ./media:/media
     environment:
       - keycloak_admincli_resource=${keycloak_admincli_resource}
       - keycloak_admincli_auth_server_url=${keycloak_admincli_auth_server_url}
