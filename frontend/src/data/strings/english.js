@@ -21,7 +21,7 @@ export const englishStrings = {
     orgNumber: 'Organisation number',
     orgName: "Organisation's name",
     language: 'Language preference',
-    usage: 'How do you intend to use Kompetensmatchning?',
+    usage: 'How do you intend to use this site?',
     gdpr: 'I accept that our data is stored according to GDPR.',
     usageAlternatives: {
       search: 'Look for educations',
@@ -32,7 +32,7 @@ export const englishStrings = {
       english: 'English',
       swedish: 'Swedish'
     },
-   emailPreference: 'I wish to receive news letters from Kompetensmatchning on the given email address',
+   emailPreference: 'I wish to receive news letters from this service to the given email address',
     password: 'Choose password',
     repeatPassword: 'Repeat password',
     confirmPassword: 'Confirm password',
@@ -51,7 +51,7 @@ export const englishStrings = {
       usage: 'Choose an alternative from the list',
     },
     almostReadyHeader:'Almost ready: Account verification',
-    almostReadyText: 'Kompetensmatchning is verifying your organisationnumber with your personal information. We will inform you when it is ready.',
+    almostReadyText: 'This service is verifying your organisationnumber with your personal information. We will inform you when it is ready.',
     almostReadyConfirmation: 'I understand',
   },
   resetPassword: {
@@ -63,7 +63,7 @@ export const englishStrings = {
   mainTabLearn: 'Search education',
   mainTabEducate: 'Offer education',
 
-  learnStartText: 'Welcome to Kompetensmatchning. Here you can easily find educations that match your need for competence development. Search in the free text field, use our smart filters or click around among the categories to find the education that suits you.',
+  learnStartText: 'Description of the website and its use',
   learnStartPostsTitle: 'Published courses',
   favoritePostsTitle: 'Saved educations',
   offerOverview: 'Overview',
@@ -215,7 +215,7 @@ export const englishStrings = {
       level: 'Which level is the education at?',
       seqf: 'Enter MYH-certified SeQF level (https://www.seqf.se/sv/Sa-funkar-det/Ansokan/)',
       pace: 'enter study pace',
-      usage: 'Kompetensmatchningen.se is a platform for companies that search or/and offer for educations and courses, you can always change this preference in a your account settings.',
+      usage: 'Are you offering or looking for educations?',
       format: 'Enter study form',
       start: 'Enter start date (if relevant)',
       registerDate: 'Enter final registration date (if relevant)',
@@ -275,9 +275,9 @@ export const englishStrings = {
     url:'http://www.website.com/education/course1',
   },
   offer : {
-    frontTitle:'SWEDISH COMPANIES NEED YOUR EDUCATION',
-    frontText:'Our goal is to promote lifelong learning. We want companies and organizations in Sweden to be able to easily find educations so they can continue to train and further develop their employees.',
-    partnerTitle: 'SOME OF THE COMPANIES THAT WENT BEFORE YOU',
+    frontTitle:'FRONT TITLE',
+    frontText:'Front text',
+    partnerTitle: 'PARTER TITLE',
   },
   request : {
     activeHeader: 'Active inquiries',
@@ -331,13 +331,16 @@ export const englishStrings = {
     }
   },
   footer : {
-    title: 'Kompetensmatchning IS DEVELOPED BY RISE',
-    description: 'Komptensmatchning is a service developed in collaboration between RISE and Göteborgsregionens kompetensnav.  RISE research institutes of Sweden is Swedens science and innovation partner. Rise is an independent science institute that offers unique expertise and about 100 test and demonstration-environments for future proof technologies, products and services.',
+    title: 'Footer title',
+    description: 'Footer description',
     moreInfo: 'more information',
     cookies: 'Cookies',
     faq: 'FAQ',
     contact: 'Contact us',
     privacy: 'Privacy',
+    web: 'www.example.com',
+    email: 'info@example.com',
+    phone: '010-00 00 000',
   },
   privacy : {
     heading: 'Privacy',
@@ -399,11 +402,11 @@ export const englishStrings = {
   releasenotes: englishReleasenotes,
 
   about: {
-    pageTitle: 'About Kompetensmatchning',
-    about: 'This is Kompetensmatchning',
-    aboutText: 'Kompetensmatchning is a platform and meeting place for competence development specifically targeting employers and education providers in need of or work with competence development in their profession. The platform is initiated in Västra Götaland connecting to the need that are identified within the transportation industry, service and hospitality. Kompetensmatchning is a service developed in collaboration between RISE and Göteborgsregionens kompetensnav.',
+    pageTitle: 'About this page',
+    about: 'This is an example site',
+    aboutText: 'About text',
     mission: 'What we want',
-    missionText: 'With Kompetensmatchning we want to offer a meeting place and a platform for exchange: a meeting place that enables employers and education providers with the possibility to meet and collaborate on for instance which types of competence development is in demand, and a platform for exchange where it is easy to find the right type of education for competence development for professionals.',
+    missionText: 'Mission text',
   },
   categories: {
     all: 'All categories',

@@ -4,11 +4,16 @@ import '../../styles/responsive.scss'
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import Navbar from './Navbar'
-import riselogo from '../../images/rise_logo_rgb_pos_vit.png'
+import riselogo from '../../images/logos/rise_logo_rgb_pos_vit.png'
 import vglogo from '../../images/logos/2.png'
 import { LanguageContext } from '../../context/LanguageContext'
 
 const PageHeader = () => {
+  let partnerLogos = null
+  try {
+    partnerLogos = require('rise-frontend').partnerLogos
+  } catch (e) {
+  }
 
   const {strings} = useContext(LanguageContext)
 
@@ -41,10 +46,10 @@ const PageHeader = () => {
             <div className='rise-footer-wrap'>
               <div className='rise-logo col-1'>
                 <div className='rise-logo-border'>
-                <img src={vglogo} className='rise-logo-img-1'></img> 
+                <img src={ partnerLogos ? partnerLogos.partner2 : vglogo} className='rise-logo-img-1'></img> 
                 </div>
                 <div className='rise-logo-border'>
-                <img src={riselogo} className='rise-logo-img-2'></img>
+                <img src={ partnerLogos ? partnerLogos.riseLogo : riselogo} className='rise-logo-img-2'></img>
                 </div>
               </div>
               <div className='about-rise col-2'>
@@ -52,10 +57,10 @@ const PageHeader = () => {
               </div>
               <div className='contact-rise col-3'>
                 <h5>{strings.footer.moreInfo}</h5>
-              <a href="https://www.ri.se/sv"><p>www.ri.se</p></a>
+              <a href={'https://'+strings.footer.web}><p>{strings.footer.web}</p></a>
               <h5 className='contact'>{strings.footer.contact}</h5>
-              <p>010-51 65 193</p>
-              <a href="mailto:kontakt@kompetensmatchning.se"><p>kontakt@kompetensmatchning.se</p></a>
+              <p>{strings.footer.phone}</p>
+              <a href={'mailto:'+strings.footer.email}><p>{strings.footer.email}</p></a>
               </div>
             </div>
           </div>
