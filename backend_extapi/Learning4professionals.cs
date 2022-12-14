@@ -160,12 +160,13 @@ namespace Learning4professionals
 
 		public static Arena.Course AddCategories(Arena.Course ac)
 		{
-			if (!l4pLinkMaps.ContainsKey(ac.link)) {
+			if (l4pLinkMaps is null || !l4pLinkMaps.ContainsKey(ac.link)) {
 				Log.Warning($"No categorization for for course: {ac.link}, add to file {L4P_LINK_CATEGORY_FILE}");
 				return ac;
 			}
 
-			IList<string> course_categories = l4pLinkMaps[ac.link].categories;
+			IList<string>? course_categories = l4pLinkMaps[ac.link].categories;
+			if (course_categories is null) {return ac;}
 
 			// Add the categories found in the manual mapping file
 			// NOTE: Arena.Course.category is currently just a string where a single course is only a string and
@@ -200,7 +201,7 @@ namespace Learning4professionals
 			return true;
 		}
 
-		public static List<Arena.Course> request_parse(HttpClient client, string url)
+		public static List<Arena.Course> request_parse(HttpClient client, Extapi.Parser method, string url)
 		{
 			LoadCategories();
 			LoadLinkMaps();
@@ -222,7 +223,7 @@ namespace Learning4professionals
 				}
 				foreach (Match match in mc)
 				{
-					String path = null;
+					String? path = null;
 					try
 					{
 						if (match.Groups.Count > 1 && match.Groups[1].Captures.Count > 0 && match.Groups[1].Captures[0].ToString().Length > 0)
@@ -233,13 +234,15 @@ namespace Learning4professionals
 					{
 						Log.Warning("Problems finding course paths: " + ex.Message);
 					}
-					if (path != null)
+					if (path is not null)
 					{
 						Arena.Course course = request_parse1(client, "https://learning4professionals.se" + path);
 						course = AddCategories(course);
 						if (CheckRequirements(course))
+						{
+							course.import_source = method.ToString();
 							courses.Add(course);
-						else
+						} else
 							Log.Information("... discarded.");
 					}
 				}

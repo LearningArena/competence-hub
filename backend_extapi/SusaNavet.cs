@@ -323,7 +323,7 @@ namespace SusaNavet
 		public static string organisation_forms = "folkhögskola,högskoleutbildning,kvalificerad yrkesutbildning,vuxenutbildning,yrkeshögskoleutbildning";
 		private static readonly ILogger log = Log.ForContext(typeof(Susa));
 
-		public static List<Arena.Course> request_parse(HttpClient client, string url)
+		public static List<Arena.Course> request_parse(HttpClient client, Extapi.Parser method, string url)
 		{
 			List<Arena.Course> courses = new List<Arena.Course>{};
 
@@ -350,6 +350,8 @@ namespace SusaNavet
 			int sleep_length = 1000; // Time to sleep after each request (ms)
 			int pages = events?.page?.totalPages ?? 0;
 			int page = 1;
+			int coursesProcessed = 0;
+			int coursesApproved = 0;
 			do
 			{
 				log.Information($"SUSA_NAVET request and parse page {page} of {pages}");
@@ -357,25 +359,31 @@ namespace SusaNavet
 				HashSet<string> provider_ids = new HashSet<string>();
 
 				if (events?.content_list is null) { return courses; }
+				coursesProcessed += events.content_list.Count();
 
 				//Filter out all incomplete courses and get info and provider ids
+				string courseUrl = "";
 				foreach (Content doc in events.content_list.ToList())
 				{
 					if (doc.content?.educationEvent is null) { return courses; }
 					// Ensure the course has a url
 					if (doc.content.educationEvent.url?.url_list?.Count <= 0 && doc.content.educationEvent.application?.url?.url_list?.Count != 2)
 					{
+						log.Information("{LogType}, {ImportEvent}, {InfoType}, {ID}, {URL}, {More}", Extapi.Externaldata.LOGTYPE_FILE_PREFIX+"SUSA", "CourseDiscarded", Extapi.Externaldata.NO_URL, doc.content.educationEvent.identifier ?? "", "", "");
 						events.content_list.Remove(doc);
 						continue;
 					}
+					courseUrl = ((doc.content.educationEvent.application?.url is not null) ? doc.content.educationEvent.application.url.url_list?.LastOrDefault()?.content : doc.content.educationEvent.url?.url_list?[0].content) ?? "";
 					// Ensure valid start and end dates
 					if (doc.content.educationEvent.execution?.end is null || doc.content.educationEvent.execution?.start is null)
 					{
+						log.Information("{LogType}, {ImportEvent}, {InfoType}, {ID}, {URL}, {More}", Extapi.Externaldata.LOGTYPE_FILE_PREFIX+"SUSA", "CourseDiscarded", Extapi.Externaldata.MISSING_TIMES, doc.content.educationEvent.identifier ?? "", courseUrl, "");
 						events.content_list.Remove(doc);
 						continue;
 					}
 					if (doc.content.educationEvent.execution.end < doc.content.educationEvent.execution.start || doc.content.educationEvent.execution.start < DateTime.Now)
 					{
+						log.Information("{LogType}, {ImportEvent}, {InfoType}, {ID}, {URL}, {More}", Extapi.Externaldata.LOGTYPE_FILE_PREFIX+"SUSA", "CourseDiscarded", Extapi.Externaldata.PAST_START, doc.content.educationEvent.identifier ?? "", courseUrl, "");
 						events.content_list.Remove(doc);
 						continue;
 					}
@@ -383,6 +391,7 @@ namespace SusaNavet
 					int course_length_days = (doc.content.educationEvent.execution.end - doc.content.educationEvent.execution.start).Days;
 					if (course_length_days > max_course_length)
 					{
+						log.Information("{LogType}, {ImportEvent}, {InfoType}, {ID}, {URL}, {More}", Extapi.Externaldata.LOGTYPE_FILE_PREFIX+"SUSA", "CourseDiscarded", Extapi.Externaldata.TIMESPAN_LONG, doc.content.educationEvent.identifier ?? "", courseUrl, "");
 						events.content_list.Remove(doc);
 						continue;
 					}
@@ -435,7 +444,11 @@ namespace SusaNavet
 
 					// Get the info document for the course
 					Content? info = infos?.content_list?.Where(d => d.content.educationInfo.identifier.ToString() == doc.content?.educationEvent?.education?.ToString()).FirstOrDefault();
-					if (info?.content?.educationInfo?.description?.string_list?[0].content is null) { continue; } // Don't continue if the course has no description
+					if (info?.content?.educationInfo?.description?.string_list?[0].content is null) {
+						// Don't continue if the course has no description
+						log.Information("{LogType}, {ImportEvent}, {InfoType}, {ID}, {URL}, {More}", Extapi.Externaldata.LOGTYPE_FILE_PREFIX+"SUSA", "CourseDiscarded", Extapi.Externaldata.NO_DESCRIPTION, doc.content.educationEvent.identifier ?? "", courseUrl, "");
+						continue;
+					}
 
 					// Get the provider document for the course
 					Content? provider = providers?.content_list?.Where(d => d.content.educationProvider.identifier.ToString() == doc.content?.educationEvent?.provider?[0].ToString()).FirstOrDefault();
@@ -462,13 +475,19 @@ namespace SusaNavet
 					addInfo(ref course, info, categories);
 
 					// Discard the course if there is no title or description after going through event and info
-					if (course.title is null || course.description is null) { continue; }
+					if (course.title is null || course.description is null) {
+						log.Information("{LogType}, {ImportEvent}, {InfoType}, {ID}, {URL}, {More}", Extapi.Externaldata.LOGTYPE_FILE_PREFIX+"SUSA", "CourseDiscarded", Extapi.Externaldata.NO_TITLE_OR_DESCR, doc.content.educationEvent.identifier ?? "", courseUrl, "");
+						continue;
+					}
 
 					// Add content from provider document to course
 					addProvider(ref course, provider);
 
 					// Discard the course if there is no education provider
-					if (course.education_provider is null) { continue; }
+					if (course.education_provider is null) {
+						log.Information("{LogType}, {ImportEvent}, {InfoType}, {ID}, {URL}, {More}", Extapi.Externaldata.LOGTYPE_FILE_PREFIX+"SUSA", "CourseDiscarded", Extapi.Externaldata.NO_PROVIDER, doc.content.educationEvent.identifier ?? "", courseUrl, "");
+						continue;
+					}
 
 					if (doc.content.educationEvent.application?.url is not null)
 					{
@@ -479,7 +498,10 @@ namespace SusaNavet
 						course.link = doc.content.educationEvent.url?.url_list?[0].content;
 					}
 					// Discard course if there is no url after last step
-					if (course.link is null) { continue; }
+					if (course.link is null) {
+						log.Information("{LogType}, {ImportEvent}, {InfoType}, {ID}, {URL}, {More}", Extapi.Externaldata.LOGTYPE_FILE_PREFIX+"SUSA", "CourseDiscarded", Extapi.Externaldata.NO_URL, doc.content.educationEvent.identifier ?? "", courseUrl, "");
+						continue;
+					}
 
 					if (doc.content.educationEvent.paceOfStudy?.percentage is not null)
 					{
@@ -494,6 +516,8 @@ namespace SusaNavet
 						if (tag is not null)
 							course.language = tag;
 					}
+
+					course.import_source = method.ToString();
 
 					Arena.Course? duplicate = courses.Where(previous => 
 							previous.title == course.title && 
@@ -512,6 +536,7 @@ namespace SusaNavet
 					if (duplicate is null)
 					{
 						courses.Add(course);
+						coursesApproved += 1;
 						continue;
 					}
 
@@ -535,6 +560,9 @@ namespace SusaNavet
 					events = JsonSerializer.Deserialize<SusaNavet.Documents>(result, json_options);
 				}
 			} while (page <= pages);
+
+			log.Information("{LogType}, {ImportEvent}, {InfoType}, {ID}, {URL}, {More}", Extapi.Externaldata.LOGTYPE_FILE_PREFIX+"SUSA", "Stats", Extapi.Externaldata.STATS, "", "", "{total_processed_courses : " + coursesProcessed.ToString() + "}");
+			log.Information("{LogType}, {ImportEvent}, {InfoType}, {ID}, {URL}, {More}", Extapi.Externaldata.LOGTYPE_FILE_PREFIX+"SUSA", "Stats", Extapi.Externaldata.STATS, "", "", "{total_approved_courses : "  + coursesApproved.ToString()  + "}");
 
 			return courses;
 		}

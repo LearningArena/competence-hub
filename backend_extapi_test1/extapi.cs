@@ -22,7 +22,7 @@ var test = (Extapi.Parser p) =>
 
 
 
-test(Extapi.Parser.GOTENBORGS_TEKNISKA_COLLAGE);
+test(Extapi.Parser.GOTEBORGS_TEKNISKA_COLLEGE);
 //test(Extapi.Parser.SUSA_NAVET);
 //test(Extapi.Parser.LEARNING_4_PROFESSIONALS);
 //test(Extapi.Parser.MIUN);

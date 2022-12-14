@@ -1,6 +1,6 @@
 mutation
 {
-	a:external_import(method:GOTENBORGS_TEKNISKA_COLLAGE)
+	a:external_import(method:GOTEBORGS_TEKNISKA_COLLEGE)
 	b:external_import(method:LEARNING_4_PROFESSIONALS)
 	c:external_import(method:SUSA_NAVET)
 }

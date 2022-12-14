@@ -253,7 +253,7 @@ const EducationForm = ({jsonData, formData, setFormData, submitForm}) => {
           <SingleLineInput id='teachers' popupText={strings.course.popup.teacher} text={strings.course.teacher} placeholder={strings.placeholders.teacher}/>
         </div>
         <div className='column-right'>
-          <SingleLineInput id='price'  popupText={strings.course.popup.price} text={strings.course.price} placeholder={strings.placeholders.price}/><span class="currency">SEK</span>
+          <SingleLineInput id='price' popupText={strings.course.popup.price} text={strings.course.price} placeholder={strings.placeholders.price}/><span className="currency">SEK</span>
           <MultiDropdownInput classNamePrefix='dropdown' id='language' text={strings.course.language} placeholder={strings.course.chooseCategory}
             items={[
               {value: fields.languages.swedish.slug, label: strings.course.languageList[fields.languages.swedish.id]},

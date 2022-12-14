@@ -440,6 +440,21 @@
       },
       "notBefore": 0,
       "groups": []
+    },
+    {
+      "id": "00000000-0000-0000-0000-000000000000",
+      "username": "admin",
+      "email": "admin@example.com",
+      "enabled": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "default"
+        }
+      ],
+      "realmRoles": [
+        "default-roles-arenarealm"
+      ]
     }
   ],
   "scopeMappings": [

@@ -73,7 +73,7 @@ public static class Methods
 {
 	private static readonly ILogger log = Log.ForContext(typeof(Methods));
 
-	public static List<Arena.Course> request_parse(HttpClient client, string url)
+	public static List<Arena.Course> request_parse(HttpClient client, Extapi.Parser method, string url)
 	{
 		List<Arena.Course> courses = new List<Arena.Course>();
 		HttpRequestMessage req = new HttpRequestMessage(HttpMethod.Post, url);
@@ -152,6 +152,8 @@ public static class Methods
 			{
 				c.record_status = Record_Status.GENERATED;
 			}
+
+			c.import_source = method.ToString();
 
 			courses.Add(c);
 		}

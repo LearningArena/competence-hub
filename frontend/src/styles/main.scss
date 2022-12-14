@@ -66,6 +66,10 @@
       width: calc(33.3334% + 3.5em);
     }
 
+    &.four-tabs a {
+      width: calc(25% + 3.5em);
+    }
+
     .tab-left {
   
       margin-right: -3.5em;
@@ -179,8 +183,7 @@
 .tab-content {
   flex: 1 1 auto;
   .content {
-  background-color: $colEduB;
-  padding-top: 1em;
+    padding-top: 1em;
     .list-variables {
       display: flex;
       flex-direction: row;
@@ -207,6 +210,12 @@
       background-color: $colEduB;
       padding: 2em;
     }
+  }
+  .overview {
+    background-color: $colEduA;
+  }
+  .org-overview {
+    background-color: $colEduB;
   }
 }
 
