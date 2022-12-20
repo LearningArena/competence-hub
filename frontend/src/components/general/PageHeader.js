@@ -94,7 +94,6 @@ const PageHeader = () => {
   
     // <header className={`page-header sticky-parent' ${isSticky ? ' sticky' : ''}`} ref={ref}>
       <header className='page-header'>
-        <Sticky>
           <div className='page-header-wrap'>
             <BrowserView viewClassName='page-header-menu'>
               <Navbar classes='header-nav nav-left' items={[
@@ -124,7 +123,6 @@ const PageHeader = () => {
               <Link className={`tab tab-educate ${location.pathname === educateUrl ? 'active' : ''}`} onClick={forceLogin} to={location.pathname === educateUrl ? '/educate' : educateUrl}><h2>{isMobileOnly ? strings.mainTabEducateMobile : strings.mainTabEducate }</h2></Link>
              </div>
           </div>
-          </Sticky>
     </header>
   )
 }

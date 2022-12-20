@@ -63,7 +63,7 @@ export const englishStrings = {
   mainTabLearn: 'Search education',
   mainTabEducate: 'Offer education',
 
-  learnStartText: 'Welcome to Kompetensmatchning. Here you can easily find educations that match your need for competence development. Search in the free text field, use our smart filters or click around among the categories to find the education that suits you.',
+  learnStartText: "Welcome! Here you can search or make requests for training that matches your or your organisation's need for competence development.",
   learnStartPostsTitle: 'Published courses',
   favoritePostsTitle: 'Saved educations',
   offerOverview: 'Overview',
@@ -243,8 +243,8 @@ export const englishStrings = {
     },
   },
   search : {
-    learnPlaceholder:'Use any word to search after an education here!',
-    eduPlaceholder:'Use any word to search after an inquiry here!',
+    learnPlaceholder:'Search for an education, e.g. leadership',
+    eduPlaceholder:'Search for an inquiry, e.g. leadership',
     result: 'Search result',
     filterHeader: 'Filter search',
     filter: 'Filter',

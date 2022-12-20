@@ -3,6 +3,7 @@ import { useContext } from 'react'
 import { useState } from 'react'
 import { useHistory, useLocation, useParams, useRouteMatch } from 'react-router-dom'
 import { LanguageContext } from '../../../context/LanguageContext'
+import {ReactComponent as SearchIcon} from '../../../images/icon-magnifier.svg'
 
 const SearchBar = ({placeHolderText}) => {
 
@@ -14,6 +15,9 @@ const SearchBar = ({placeHolderText}) => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault()
+    if (!searchQuery){
+      return;
+    }
     console.log(searchQuery)
     history.push(`/learn/search/${searchQuery}`)
   }
@@ -26,7 +30,7 @@ const SearchBar = ({placeHolderText}) => {
     <div className='search-bar-container'>
       <form className='search-bar' onSubmit={handleSubmit}>
         <input type='text' value={searchQuery} placeholder={placeHolderText} onChange={handleChange}></input>
-        <input type='submit' value='Sök' className={'button search-submit ' + (searchQuery ? 'active' : '')}></input>
+        <button className='button active'><SearchIcon /></button>
       </form>
     </div>
   )
