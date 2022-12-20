@@ -14,13 +14,16 @@
   background: $colLearnBG;
 
   p.start-search-text {
-    
+      color: $colTextDark;
       margin: 0em 1em;
       text-align: center;
+      font-size: 1.3em;
+      padding-bottom: 2em;
   }
 
   .search-bar input.search-submit {
-      background: $colEduD;
+      background: $colEduE;
+      color: $colTextLight;
   }
 
   .button.icon-only.pinned {

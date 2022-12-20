@@ -71,8 +71,7 @@ const LearnMain = () => {
         {title: strings.sidemenuMyAccount, url: match.url + '/account'},
         // {title: strings.sidemenuOrgAccount, url: match.url + '/organisationskonto'},
       ] : [
-        {title: strings.sidemenuStart, url: match.url + '/utbildningar'},
-        {title: strings.signup.header, url: match.url + '/signup'},
+        
       ]}/>
       </BrowserView>
       <MobileOnlyView viewClassName="mobile-view">

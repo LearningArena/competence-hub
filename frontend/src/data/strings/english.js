@@ -62,7 +62,6 @@ export const englishStrings = {
   },
   mainTabLearn: 'Search education',
   mainTabEducate: 'Offer education',
-
   learnStartText: 'Description of the website and its use',
   learnStartPostsTitle: 'Published courses',
   favoritePostsTitle: 'Saved educations',
@@ -243,8 +242,8 @@ export const englishStrings = {
     },
   },
   search : {
-    learnPlaceholder:'Use any word to search after an education here!',
-    eduPlaceholder:'Use any word to search after an inquiry here!',
+    learnPlaceholder:'Search for an education, e.g. leadership',
+    eduPlaceholder:'Search for an inquiry, e.g. leadership',
     result: 'Search result',
     filterHeader: 'Filter search',
     filter: 'Filter',
