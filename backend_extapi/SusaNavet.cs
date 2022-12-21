@@ -673,7 +673,7 @@ namespace SusaNavet
 		{
 			var random = new Random();
 			string category = categories[random.Next(categories.Count)];
-			List<string> image_paths = new List<string>(Directory.GetFiles($"../media/{category}/"));
+			List<string> image_paths = new List<string>(Directory.GetFiles($"../media/category-images/{category}/"));
 			string image_path = image_paths[random.Next(image_paths.Count)];
 			course.image_feature = image_path.Substring(2);
 		}
