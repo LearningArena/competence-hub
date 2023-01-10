@@ -21,7 +21,7 @@ export const englishStrings = {
     orgNumber: 'Organisation number',
     orgName: "Organisation's name",
     language: 'Language preference',
-    usage: 'How do you intend to use Kompetensmatchning?',
+    usage: 'How do you intend to use this site?',
     gdpr: 'I accept that our data is stored according to GDPR.',
     usageAlternatives: {
       search: 'Look for educations',
@@ -32,7 +32,7 @@ export const englishStrings = {
       english: 'English',
       swedish: 'Swedish'
     },
-   emailPreference: 'I wish to receive news letters from Kompetensmatchning on the given email address',
+   emailPreference: 'I wish to receive news letters from this service to the given email address',
     password: 'Choose password',
     repeatPassword: 'Repeat password',
     confirmPassword: 'Confirm password',
@@ -51,7 +51,7 @@ export const englishStrings = {
       usage: 'Choose an alternative from the list',
     },
     almostReadyHeader:'Almost ready: Account verification',
-    almostReadyText: 'Kompetensmatchning is verifying your organisationnumber with your personal information. We will inform you when it is ready.',
+    almostReadyText: 'This service is verifying your organisationnumber with your personal information. We will inform you when it is ready.',
     almostReadyConfirmation: 'I understand',
   },
   resetPassword: {
@@ -62,8 +62,7 @@ export const englishStrings = {
   },
   mainTabLearn: 'Search education',
   mainTabEducate: 'Offer education',
-
-  learnStartText: "Welcome! Here you can search or make requests for training that matches your or your organisation's need for competence development.",
+  learnStartText: 'Description of the website and its use',
   learnStartPostsTitle: 'Published courses',
   favoritePostsTitle: 'Saved educations',
   offerOverview: 'Overview',
@@ -217,7 +216,7 @@ export const englishStrings = {
       level: 'Which level is the education at?',
       seqf: 'Enter MYH-certified SeQF level (https://www.seqf.se/sv/Sa-funkar-det/Ansokan/)',
       pace: 'enter study pace',
-      usage: 'Kompetensmatchningen.se is a platform for companies that search or/and offer for educations and courses, you can always change this preference in a your account settings.',
+      usage: 'Are you offering or looking for educations?',
       format: 'Enter study form',
       start: 'Enter start date (if relevant)',
       registerDate: 'Enter final registration date (if relevant)',
@@ -277,9 +276,9 @@ export const englishStrings = {
     url:'http://www.website.com/education/course1',
   },
   offer : {
-    frontTitle:'SWEDISH COMPANIES NEED YOUR EDUCATION',
-    frontText:'Our goal is to promote lifelong learning. We want companies and organizations in Sweden to be able to easily find educations so they can continue to train and further develop their employees.',
-    partnerTitle: 'SOME OF THE COMPANIES THAT WENT BEFORE YOU',
+    frontTitle:'FRONT TITLE',
+    frontText:'Front text',
+    partnerTitle: 'PARTER TITLE',
   },
   request : {
     activeHeader: 'Active inquiries',
@@ -333,13 +332,16 @@ export const englishStrings = {
     }
   },
   footer : {
-    title: 'Kompetensmatchning IS DEVELOPED BY RISE',
-    description: 'Komptensmatchning is a service developed in collaboration between RISE and Göteborgsregionens kompetensnav.  RISE research institutes of Sweden is Swedens science and innovation partner. Rise is an independent science institute that offers unique expertise and about 100 test and demonstration-environments for future proof technologies, products and services.',
+    title: 'Footer title',
+    description: 'Footer description',
     moreInfo: 'more information',
     cookies: 'Cookies',
     faq: 'FAQ',
     contact: 'Contact us',
     privacy: 'Privacy',
+    web: 'www.example.com',
+    email: 'info@example.com',
+    phone: '010-00 00 000',
   },
   privacy : {
     heading: 'Privacy',
@@ -401,11 +403,14 @@ export const englishStrings = {
   releasenotes: englishReleasenotes,
 
   about: {
-    pageTitle: 'About Kompetensmatchning',
-    about: 'This is Kompetensmatchning',
-    aboutText: 'Kompetensmatchning is a test bed for RISE and is used to work with skills resource management for lifelong learning. Kompetensmatchning is free to use. The code is open source and a link to the repo can be found further down.',
+    pageTitle: 'About this page',
+    about: 'This is an example site',
+    aboutText: 'About text',
+    mission: 'What we want',
+    missionText: 'Mission text',
+    aboutText: 'Some info about this site',
     background: 'Background',
-    backgroundText: 'Kompetensmatchning was developed in cooperation with Gothenburg Competencehub, Västra Götaland Region and Business Region Gothenburg, with start 2020.',
+    backgroundText: 'Text describing the background for the web site',
     opensource: 'Open source',
     opensourceText: 'The code for the plattform is open source and can be found on ',
     license: 'License',

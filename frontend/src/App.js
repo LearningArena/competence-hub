@@ -22,7 +22,6 @@ import Cookies from './components/general/Cookies';
 import ReleaseNotes from './components/general/ReleaseNotes';
 import JSONAddEducation from './components/educate/JSONAddEducation';
 import OrgReminder from './components/accounts/OrgReminder';
-import LandingPage from './components/general/LandingPage';
 import RestrictedRoute from './components/general/RestrictedRoute';
 import LoginRoute from './components/general/LoginRoute';
 import {
@@ -38,13 +37,6 @@ function App() {
 
   const [authPassword, setAuthPassword] = useState(localStorage.getItem('authentication'))
   
-  // if (authPassword !== 'ocali') 
-  // return (
-  //   <div className='App'>
-  //     <LandingPage setAuthPassword={setAuthPassword}/>
-  //   </div>
-  // )
-  // else
   return (
     <div className={`App ${isMobile ? 'mobile-view' : 'desktop-view'}`}> 
       <PageHeader />
