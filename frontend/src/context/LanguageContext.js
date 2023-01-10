@@ -12,9 +12,12 @@ import { swedishStrings } from '../data/strings/swedish'
 * @param {...object} objects - Objects to merge
 * @returns {object} New object with merged key/values
 */
+
 const mergeDeep = (...objects) => {
   const isObject = obj => obj && typeof obj === 'object';
   
+  objects = objects.filter(obj => obj != null);
+
   return objects.reduce((prev, obj) => {
     Object.keys(obj).forEach(key => {
       const pVal = prev[key];
@@ -49,10 +52,6 @@ const LanguageContextProvider = (props) => {
   const [strings, setStrings] = useState(mergeDeep(swedishStrings, swedishRISEStrings))
   const [language, setLanguageInternal] = useState('SE')
 
-
-  useEffect(() => {
-    console.log("Swedish rise strings are", swedishRISEStrings)
-  })
 
   useEffect(() => {
     const storedLanguage = localStorage.getItem('language')
