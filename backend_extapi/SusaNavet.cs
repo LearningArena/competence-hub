@@ -331,7 +331,16 @@ namespace SusaNavet
 			susa_endpoint += $"&size={num_courses_per_page}";
 			susa_endpoint += $"&organisationForm={organisation_forms}";
 
-			string result = client.GetStringAsync(susa_endpoint).Result;
+			string result;
+			try
+			{
+				result = client.GetStringAsync(susa_endpoint).Result;
+			}
+			catch (Exception e)
+			{
+				log.Warning($"SUSA Import ended early due to an exception:\n{e}");
+				return courses;
+			}
 
 			JsonSerializerOptions json_options = new JsonSerializerOptions();
 			json_options.Converters.Add(new Arena.AutoNumberToStringConverter());
@@ -417,7 +426,15 @@ namespace SusaNavet
 				{
 					string info_string = $"{url}/infos?configuration=kurs&id={string.Join(",", info_ids)}&size={num_courses_per_page}";
 					log.Information($"Requesting infos with url: {info_string}");
-					result = client.GetStringAsync(info_string).Result;
+					try
+					{
+						result = client.GetStringAsync(info_string).Result;
+					}
+					catch (Exception e)
+					{
+						log.Warning($"SUSA Import ended early due to an exception:\n{e}");
+						break;
+					}
 					log.Information($"Sleeping for {sleep_length / 1000} seconds.");
 					Thread.Sleep(sleep_length);
 					infos = JsonSerializer.Deserialize<SusaNavet.Documents>(result, json_options);
@@ -432,7 +449,15 @@ namespace SusaNavet
 				{
 					string provider_string = $"{url}/providers?configuration=kurs&id={string.Join(",", provider_ids)}&size={num_courses_per_page}";
 					log.Information($"Requesting providers with url: {provider_string}");
-					result = client.GetStringAsync(provider_string).Result;
+					try
+					{
+						result = client.GetStringAsync(provider_string).Result;
+					}
+					catch (Exception e)
+					{
+						log.Warning($"SUSA Import ended early due to an exception:\n{e}");
+						break;
+					}
 					log.Information($"Sleeping for {sleep_length / 1000} seconds.");
 					Thread.Sleep(sleep_length);
 					providers = JsonSerializer.Deserialize<SusaNavet.Documents>(result, json_options);
@@ -554,7 +579,15 @@ namespace SusaNavet
 				{
 					string event_string = $"{susa_endpoint}&page={page}";
 					log.Information($"Requesting new events with url: {event_string}");
-					result = client.GetStringAsync(event_string).Result;
+					try
+					{
+						result = client.GetStringAsync(event_string).Result;
+					}
+					catch (Exception e)
+					{
+						log.Warning($"SUSA Import ended early due to an exception:\n{e}");
+						break;
+					}
 					log.Information($"Sleeping for {sleep_length / 1000} seconds.");
 					Thread.Sleep(sleep_length);
 					events = JsonSerializer.Deserialize<SusaNavet.Documents>(result, json_options);
