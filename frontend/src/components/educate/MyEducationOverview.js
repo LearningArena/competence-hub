@@ -28,7 +28,7 @@ const MyEducationOverview = () => {
   //const category = dummyCategories.find(cat => cat.id === data.categoryID)
   const [courses, setCourses] = useState([])
 
-  const { getCurrent, getPage, pageNum, pageCursors, ready } = usePagination(MY_EDUCATIONS, 10, PaginationContext)
+  const { PaginationControls, getCurrent, ready } = usePagination(MY_EDUCATIONS, 10, PaginationContext)
 
   useEffect(() => {
     if (!ready) {
@@ -41,6 +41,10 @@ const MyEducationOverview = () => {
         setLoading(false)
       })
   }, [ready])
+
+  const updateCourses = (data) => {
+    setCourses(data.courses.nodes)
+  }
 
   const columns = [
     {content: strings.course.title, class:'sortable', sortField: 'title'},
@@ -70,13 +74,7 @@ const MyEducationOverview = () => {
         courses.map(generateCourseRow)
       }/>
       <div className='button-container load-more'>
-        {pageCursors.map((_, i) =>
-          <button key={i} className={'button ' + (pageNum == i ? 'inactive':'')} disabled={pageNum == i ? true : false} onClick={() => getPage(i).then(
-            ({ loading, error, data }) => {
-              setCourses(data.courses.nodes)
-              setLoading(loading)
-          })}>{ i+1 }</button>
-        )}
+        <PaginationControls updateFunc={updateCourses} />
       </div>
     </div>
 

@@ -16,8 +16,11 @@ const FavoriteCourses = () => {
   const [loading, setLoading] = useState(true)
   const category = fields.categoriesList.find(cat => cat.slug === categoryId)
 
-  const { ready, getCurrent, getPage, pageNum, pageCursors } = usePagination(FAVORITE_COURSES, 10, PaginationContext)
+  const { PaginationControls, ready, getCurrent, } = usePagination(FAVORITE_COURSES, 10, PaginationContext)
 
+  const updateCourses = (data) => {
+    setCourses(data.courses.nodes)
+  }
 
   useEffect(() => {
     if (!ready) {
@@ -39,13 +42,7 @@ const FavoriteCourses = () => {
         <CourseList heading={strings.favoritePostsTitle} courses={courses} hideSearchBar={true} hideFilters={true} />
       )}
       <div className='button-container load-more'>
-        {pageCursors.map((_, i) =>
-          <button key={i} className={'button ' + (pageNum == i ? 'inactive':'')} disabled={pageNum == i ? true : false} onClick={() => getPage(i).then(
-            ({ loading, error, data }) => {
-              setCourses(data.courses.nodes)
-              setLoading(loading)
-          })}>{ i+1 }</button>
-        )}
+        <PaginationControls updateFunc={updateCourses} />
       </div>
     </>
   )

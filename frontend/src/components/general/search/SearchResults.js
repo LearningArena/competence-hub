@@ -14,7 +14,7 @@ const SearchResults = () => {
   const [courses, setCourses] = useState([])
   const [loading, setLoading] = useState(true)
 
-  const { ready, getCurrent, getPage, pageNum, pageCursors } = usePagination(COURSE_SEARCH, 8, PaginationContext)
+  const { PaginationControls, ready, getCurrent, } = usePagination(COURSE_SEARCH, 8, PaginationContext)
 
   useEffect(() => {
     if (!ready) {
@@ -28,6 +28,10 @@ const SearchResults = () => {
       })
   }, [ready])
 
+  const updateCourses = (data) => {
+    setCourses(data.courses.nodes)
+  }
+
   return (
     <div>
       {loading ?
@@ -35,13 +39,7 @@ const SearchResults = () => {
         <CourseList courses={courses} />
       }
       <div className='button-container load-more'>
-        {pageCursors.map((_, i) =>
-          <button key={i} className={'button ' + (pageNum == i ? 'inactive':'')} disabled={pageNum == i ? true : false} onClick={() => getPage(i, { variables: {query} }).then(
-            ({ loading, error, data }) => {
-              setCourses(data.courses.nodes)
-              setLoading(loading)
-          })}>{ i+1 }</button>
-        )}
+        <PaginationControls variables={{query}} updateFunc={updateCourses} />
       </div>
     </div>
   )
