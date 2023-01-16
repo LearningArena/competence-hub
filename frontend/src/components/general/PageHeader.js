@@ -44,6 +44,14 @@ const NavLanguage = () => {
 }
 
 const PageHeader = () => {
+  let RISEBrand = null
+  // const RISEBrand = lazy(() => import('rise-frontend'));
+
+  try {
+    RISEBrand = require('rise-frontend').RISEBrand
+  } catch (e) {
+  }
+  
   const location = useLocation()
   //TBS
   const {learnUrl, educateUrl} = useContext(NavContext)
@@ -99,7 +107,7 @@ const PageHeader = () => {
               <Navbar classes='header-nav nav-left' items={[
                 {'render' : navAbout}
               ]}/>
-              <PageBrand />
+                { RISEBrand ? <RISEBrand /> : <PageBrand />} 
               <Navbar classes='header-nav nav-right' items={[
                 {'render' : currentUser},
                 {'render' : navLogIn},
@@ -108,7 +116,7 @@ const PageHeader = () => {
             </BrowserView>
             
             <MobileOnlyView viewClassName='page-header-menu mobile-header-menu'>
-            <PageBrand />
+            { RISEBrand ? <RISEBrand /> : <PageBrand />} 
             <BurgerNavButton/>
               <Navbar classes={`header-nav mobile-header-nav burger-nav ${openBurger}`} items={[
                   {'render' : navAbout},

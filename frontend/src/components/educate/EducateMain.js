@@ -22,7 +22,6 @@ import SignupSuccess from '../accounts/SignupSuccess'
 import MyEducationOffers from './MyEducationOffers'
 import AccountUser from '../accounts/AccountUser'
 import OrgUser from '../accounts/AccountOrg'
-import EducateStartPage from './EducateStartPage'
 import RequestList from './RequestList'
 
 const EducateMain = () => {
@@ -107,7 +106,6 @@ const EducateMain = () => {
           </Route>
           <Route exact path={`${match.path}`}>
             <Redirect to={`${match.path}/myeducation`}/>
-            {/* <EducateStartPage /> */}
           </Route>
           <Route path='*'>
             <FileNotFound />

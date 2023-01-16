@@ -201,7 +201,7 @@ namespace Learning4professionals
 			return true;
 		}
 
-		public static List<Arena.Course> request_parse(HttpClient client, string url)
+		public static List<Arena.Course> request_parse(HttpClient client, Extapi.Parser method, string url)
 		{
 			LoadCategories();
 			LoadLinkMaps();
@@ -239,8 +239,10 @@ namespace Learning4professionals
 						Arena.Course course = request_parse1(client, "https://learning4professionals.se" + path);
 						course = AddCategories(course);
 						if (CheckRequirements(course))
+						{
+							course.import_source = method.ToString();
 							courses.Add(course);
-						else
+						} else
 							Log.Information("... discarded.");
 					}
 				}

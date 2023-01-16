@@ -10,7 +10,7 @@ namespace Extapi
 	public enum Parser
 	{
 		UNKNOWN,
-		GOTENBORGS_TEKNISKA_COLLAGE,
+		GOTEBORGS_TEKNISKA_COLLEGE,
 		//MDH courses
 		LEARNING_4_PROFESSIONALS,
 		SUSA_NAVET,
@@ -25,7 +25,7 @@ namespace Extapi
 	{
 		// TODO: Get this information from database instead:
 		public static readonly Dictionary<Parser, string> urls = new Dictionary<Parser, string>{
-			{Parser.GOTENBORGS_TEKNISKA_COLLAGE, "https://www.goteborgstekniskacollege.se/utbildningar/yrkeshogskola/utbildningar"},
+			{Parser.GOTEBORGS_TEKNISKA_COLLEGE, "https://www.goteborgstekniskacollege.se/utbildningar/yrkeshogskola/utbildningar"},
 			{Parser.LEARNING_4_PROFESSIONALS, "https://learning4professionals.se/search?show=24"},
 			{Parser.SUSA_NAVET, "https://susanavet2.skolverket.se/api/1.1"},
 			{Parser.MIUN, "https://www.miun.se/api/edu"}
@@ -39,6 +39,15 @@ namespace Extapi
 	{
 
 		private static readonly ILogger log = Log.ForContext(typeof(Externaldata));
+		public static string LOGTYPE_FILE_PREFIX = "Import2File_";
+		public static string NO_URL = "NO_URL";
+		public static string MISSING_TIMES = "MISSING_TIMES";
+		public static string PAST_START = "PAST_START";
+		public static string TIMESPAN_LONG = "TIMESPAN_LONG";
+		public static string NO_DESCRIPTION = "NO_DESCRIPTION";
+		public static string NO_TITLE_OR_DESCR = "NO_TITLE_OR_DESCR";
+		public static string NO_PROVIDER = "NO_PROVIDER";
+		public static string STATS = "STATS";
 
 		static public List<Arena.Course> request_parse(HttpClient client, Parser method, string url)
 		{
@@ -46,17 +55,17 @@ namespace Extapi
 			log.Information("Request and parsing {method}", method);
 			switch(method)
 			{
-			case Parser.GOTENBORGS_TEKNISKA_COLLAGE:
-				courses = GoteborgsTekniskaCollege.Methods.request_parse(client, url);
+			case Parser.GOTEBORGS_TEKNISKA_COLLEGE:
+				courses = GoteborgsTekniskaCollege.Methods.request_parse(client, method, url);
 				break;
 			case Parser.LEARNING_4_PROFESSIONALS:
-				courses = Learning4professionals.Methods.request_parse(client, url);
+				courses = Learning4professionals.Methods.request_parse(client, method, url);
 				break;
 			case Parser.SUSA_NAVET:
-				courses = SusaNavet.Susa.request_parse(client, url);
+				courses = SusaNavet.Susa.request_parse(client, method, url);
 				break;
 			case Parser.MIUN:
-				courses = MIUN.Methods.request_parse(client, url);
+				courses = MIUN.Methods.request_parse(client, method, url);
 				break;
 			default:
 				break;

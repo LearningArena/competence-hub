@@ -31,6 +31,8 @@ services:
 
   backend:
     build: .
+    volumes:
+      - ./media:/media
     environment:
       - keycloak_admincli_resource=${keycloak_admincli_resource}
       - keycloak_admincli_auth_server_url=${keycloak_admincli_auth_server_url}
@@ -46,6 +48,7 @@ services:
       - POSTGRES_PASSWORD=${BACKEND_POSTGRES_PASSWORD}
       - POSTGRES_PORT=5432
       - POSTGRES_USER=${BACKEND_POSTGRES_USER}
+      - DEFAULT_ADMIN_EMAIL=${DEFAULT_ADMIN_EMAIL}
     restart: always
     ports:
       - 8000:8000

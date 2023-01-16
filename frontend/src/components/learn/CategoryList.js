@@ -58,7 +58,7 @@ const toggleMobCats = () => {
         <div className='cats-wrap'>
         <div id='all-cats' className={"cat-item" + activeAllcats}>
           <Link to={'/learn/utbildningar'} className='cat-item-link'>
-             <span className='cat-image'><img src={require('../../data/dummy/img/ikon-all.svg')} alt="all-image"/></span>
+             <span className='cat-image'><img src={require('../../data/dummy/img/ikon-all.svg').default} alt="all-image"/></span>
       
             <span className='cat-title'><h3>{strings.categories.all}</h3></span>
            </Link>

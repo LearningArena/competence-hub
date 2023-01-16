@@ -17,7 +17,7 @@ namespace Arena.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.0-preview.1.22076.6")
+                .HasAnnotation("ProductVersion", "7.0.0-preview.4.22229.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -130,6 +130,9 @@ namespace Arena.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("image_teacher")
+                        .HasColumnType("text");
+
+                    b.Property<string>("import_source")
                         .HasColumnType("text");
 
                     b.Property<bool>("is_favorite")

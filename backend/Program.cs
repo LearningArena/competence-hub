@@ -10,19 +10,16 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Serilog;
+using Serilog.Filters;
 using Misc;
 using Quartz;
 
 
 //Arena_Sink.startbeats();
 Log.Logger = new LoggerConfiguration()
-	//.Filter.ByExcluding(Matching.FromSource("Microsoft"))
-	//.MinimumLevel.Verbose()
 	.WriteTo.Console()
 	.WriteTo.Serilog_WS_Sink()
 	.CreateBootstrapLogger();
-	//.CreateLogger();
-
 
 {
 	string s = "\n";
@@ -77,8 +74,14 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(new WebApplicationO
 
 builder.Host.UseSerilog((ctx, lc) => lc.
 	WriteTo.Console().
-	WriteTo.Serilog_WS_Sink()
-	);
+	WriteTo.Serilog_WS_Sink().
+	WriteTo.Logger(lc => lc
+		.Filter.ByIncludingOnly(Serilog.Filters.Matching.WithProperty<string>("LogType", w => w.StartsWith(Extapi.Externaldata.LOGTYPE_FILE_PREFIX)))
+		.WriteTo.File("log_import_.csv",
+						outputTemplate: "{Timestamp:yyyy-MM-dd'T'HH:mm:sszzz}, {Level:u3}, {Message:lj}{NewLine}",
+						rollingInterval: RollingInterval.Month,
+						retainedFileCountLimit: 3))
+);
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddControllers();
 builder.Services.AddTransient<IPrincipal>(provider => provider.GetService<IHttpContextAccessor>().HttpContext.User);
@@ -114,7 +117,7 @@ builder.Services.AddQuartz(q =>
     q.AddTrigger(opts => opts
         .ForJob(courseImportJobKey)
         .WithIdentity("CourseImportJob-trigger")
-		.WithCronSchedule("0 45 4 ? * *")); // Twice a week at 04:45 (SUSA finishes at 03:45). Format "<sec> <min> <hour> <day-month> <month> <day-week>"
+		.WithCronSchedule("0 45 4 ? * *")); // TODO: Twice a week at 04:45 (SUSA finishes at 03:45). Format "<sec> <min> <hour> <day-month> <month> <day-week>"
 });
 builder.Services.AddQuartz(q =>
 {

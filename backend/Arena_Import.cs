@@ -20,6 +20,21 @@ public static class Arena_Import
 			else
 				return null;
 		}
+
+	private static void PublishCourses(Arena_Context context, List<Course> courses)
+	{
+		// Currently publishing all generated courses.
+		// Do we want to do additional filtering here before publishing?
+		foreach (Course course in courses.ToList())
+		{
+			if (course.record_status == Record_Status.GENERATED)
+			{
+				course.record_status = Record_Status.APPROVED;
+				context.courses.Update(course);
+			}
+		}
+		context.SaveChanges();
+	}
 	
 	public static int external_import(Arena_Context context, Extapi.Parser method)
 	{
@@ -65,23 +80,18 @@ public static class Arena_Import
 		}
 		context.SaveChanges();
 
-		// Add course_user_edges to new courses
-		// TODO: Add some default admin or don't add these edges at all?
-		int ? user_id = null;
-		try { user_id = context.current_user_id(); } catch { user_id = null; }
-		if (user_id != null) {
-			foreach (Course course in courses.ToList())
+		// Add course_user_edges to new courses, connected to default admin user
+		foreach (Course course in courses.ToList())
+		{
+			Course_User_Edge e = new Course_User_Edge
 			{
-				Course_User_Edge e = new Course_User_Edge
-				{
-					course_id = course.id,
-					user_id = user_id.GetValueOrDefault(),
-					relationship = Relationship.AUTHOR
-				};
-				context.course_user_edges.Add(e);
-			}
-			context.SaveChanges();
+				course_id = course.id,
+				user_id = Arena.DEFAULT_ADMIN_ID,
+				relationship = Relationship.AUTHOR
+			};
+			context.course_user_edges.Add(e);
 		}
+		context.SaveChanges();
 
 		// Add organization_course_edges to new courses
 		Dictionary<string, int> domainOrgidCache =  new Dictionary<string, int>();
@@ -112,18 +122,26 @@ public static class Arena_Import
 				while(result == Primitive_Result.REQUEST_COOLDOWN);
 				if (result == Primitive_Result.SUCCESS)
 				{
-					// eniro found org info
-					//Organization neworg = result.Item2;
-					// Already exists? Try searching by orgid or website, considered unique
+					// Eniro found org info
+					// Already exists in arena? Try searching by orgid or website, considered unique
 					Organization existing_org = context.organizations.FirstOrDefault(t => t.orgid == neworg.orgid);
 					if (existing_org is null)
 						existing_org = context.organizations.FirstOrDefault(t => t.website == neworg.website);
 					if (existing_org is null)
 					{
+						// couldn't find, add
 						context.organizations.Add(neworg);
 						context.SaveChanges();
 						orgDbId = neworg.id;
 						numNewOrgs++;
+						// also add user edge to new org
+						Organization_User_Edge edge = new Organization_User_Edge
+						{
+							organization_id = orgDbId,
+							user_id = Arena.DEFAULT_ADMIN_ID,
+							relationship = Relationship.AUTHOR
+						};
+						context.organization_user_edges.Add(edge);
 					}
 					else
 						orgDbId = existing_org.id;
@@ -138,7 +156,7 @@ public static class Arena_Import
 			}
 			if (orgDbId != NO_ORG)
 			{
-				// we found/created org, create edge
+				// we found/created org, create course edge
 				Organization_Course_Edge e = new Organization_Course_Edge
 				{
 					course_id = course.id,
@@ -149,6 +167,7 @@ public static class Arena_Import
 				numOCE++;
 			}
 		}
+		PublishCourses(context, courses);
 		context.SaveChanges();
 		Log.Information($"Linked {numOCE.ToString()}/{courses.Count.ToString()} new courses to orgs, of which {numNewOrgs.ToString()} are newly generated.");
 		return courses.Count;
