@@ -1,19 +1,22 @@
 import React from 'react'
+import { useContext } from 'react'
+import { Link } from 'react-router-dom';
+import { LanguageContext } from '../../context/LanguageContext'
 import siteLogo from '../../images/logos/site_logo.png'
 
 const PageBrand = () => {
+  const {strings} = useContext(LanguageContext)
+
   return (
-
-    <div className='page-brand'>
-          <span className="page-logo">
-            <a href="https://kompetensmatchning.se/">
-              <img className='page-logo-icon' src={siteLogo}/>
-            </a>
-          </span>
-          <a href="https://kompetensmatchning.se/"><h1 className="page-title">Website title</h1></a>
-          <a href="https://kompetensmatchning.se/"><p className="page-payoff">Website subtitle</p></a>
-    </div>
-
+    <Link to='/'>
+      <div className='page-brand'>
+        <span className="page-logo">
+        <img className='page-logo-icon' src={siteLogo}/>
+        </span>
+        <h1 className="page-title">Kompetensmatchning</h1>
+        <p className="page-payoff">{strings.catchphrase}</p>
+      </div>
+    </Link>
   )
 }
 

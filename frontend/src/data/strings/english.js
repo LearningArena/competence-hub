@@ -3,6 +3,7 @@ import { englishReleasenotes } from "./english/releasenotes";
 import { fields } from "../fields";
 
 export const englishStrings = {
+  catchphrase: "Arena for lifelong learning",
   sidemenuStart: 'Educations',
   sidemenuCategories: 'Categories',
   sidemenuMyAccount: 'My account',
@@ -247,6 +248,7 @@ export const englishStrings = {
     result: 'Search result',
     filterHeader: 'Filter search',
     filter: 'Filter',
+    searchButtonAria: 'Search for an education',
   },
   placeholders : {
     title:'Fill in your title',
@@ -403,6 +405,7 @@ export const englishStrings = {
   releasenotes: englishReleasenotes,
 
   about: {
+    aboutLink: 'About',
     pageTitle: 'About this page',
     about: 'This is an example site',
     aboutText: 'About text',

@@ -39,7 +39,7 @@ export const swedishFaq = {
       questions: [
         {
           q: 'Hur hanterar ni kakor?',
-          a: 'Du kan läsa mer om våran kakor policy här: <a href=\"www.kompetensmatchning.se/cookies\">www.kompetensmatchning.se/cookies</a>'
+          a: 'Du kan läsa mer om våran kakor policy här: <a href=\"/cookies\">www.kompetensmatchning.se/cookies</a>'
         }
       ]
     }

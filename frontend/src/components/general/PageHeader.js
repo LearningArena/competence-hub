@@ -77,7 +77,7 @@ const PageHeader = () => {
   }
 
   //Nav items
-  const navAbout = <Link to={'/about'} ><h3>Om</h3></Link>
+  const navAbout = <Link to={'/about'} ><h3>{strings.about.aboutLink}</h3></Link>
   const currentUser = user ? <h3>{strings.loggedAs} {user.firstname} {user.lastname}</h3> :  <Link to='/learn/signup'><h3>{strings.signup.header}</h3></Link>
   const navLogIn = user ? (
     <>
