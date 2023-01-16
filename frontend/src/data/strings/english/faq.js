@@ -39,7 +39,7 @@ export const englishFaq = {
         questions: [
           {
             q: 'What is your cookie policy?',
-            a: 'You can read more about our cookie policy here: <a href=\"www.kompetensmatchning.se/cookies\">www.kompetensmatchning.se/cookies</a>'
+            a: 'You can read more about our cookie policy here: <a href=\"/cookies\">www.kompetensmatchning.se/cookies</a>'
           }
         ]
       }

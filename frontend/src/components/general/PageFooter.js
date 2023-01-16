@@ -4,7 +4,7 @@ import '../../styles/responsive.scss'
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import Navbar from './Navbar'
-import riselogo from '../../images/rise_logo_rgb_pos_vit.png'
+import riselogo from '../../images/rise_logo_rgb_pos.png'
 import vglogo from '../../images/logos/2.png'
 import { LanguageContext } from '../../context/LanguageContext'
 

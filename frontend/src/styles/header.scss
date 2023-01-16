@@ -91,6 +91,8 @@
   }
   
   .page-brand {
+    position: relative;
+    z-index: 1; //making sure that it stays on top of the flex-pusher
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -160,6 +162,16 @@
         h3 {
             padding: 0 0.5em;
         }
+
+        button {
+          h3 {
+            transition: all 0.25s ease-in-out;
+
+            &:hover {
+              color: $colButtonHov;
+            }
+          }
+        }
       }
   
     
@@ -209,6 +221,12 @@
     padding-left: 0.5em;
     padding-right: 0.5em;
     border-right: none;
+    cursor:pointer;
+    transition: all 0.25s ease-in-out;
+
+    &:hover {
+      color: $colButtonHov;
+    }
   }
 
   .page-tab-nav {

@@ -3,6 +3,7 @@ import { englishReleasenotes } from "./english/releasenotes";
 import { fields } from "../fields";
 
 export const englishStrings = {
+  catchphrase: "Arena for lifelong learning",
   sidemenuStart: 'Educations',
   sidemenuCategories: 'Categories',
   sidemenuMyAccount: 'My account',
@@ -248,6 +249,7 @@ export const englishStrings = {
     result: 'Search result',
     filterHeader: 'Filter search',
     filter: 'Filter',
+    searchButtonAria: 'Search for an education',
   },
   placeholders : {
     title:'Fill in your title',
@@ -401,6 +403,7 @@ export const englishStrings = {
   releasenotes: englishReleasenotes,
 
   about: {
+    aboutLink: 'About',
     pageTitle: 'About Kompetensmatchning',
     about: 'This is Kompetensmatchning',
     aboutText: 'Kompetensmatchning is a test bed for RISE and is used to work with skills resource management for lifelong learning. Kompetensmatchning is free to use. The code is open source and a link to the repo can be found further down.',

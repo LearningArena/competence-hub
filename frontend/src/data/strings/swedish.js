@@ -5,6 +5,7 @@ import { swedishReleasenotes } from "./swedish/releasenotes";
 import { swedishPrivacy } from "./swedish/privacy";
 
 export const swedishStrings = {
+  catchphrase: 'Arena för livslångt lärande',
   sidemenuStart: 'Utbildningar',
   sidemenuCategories: 'Kategorier',
   sidemenuMyAccount: 'Konton',
@@ -251,6 +252,7 @@ export const swedishStrings = {
     result: 'Sökresultat',
     filterHeader: 'Filtrera bland utbildningarna',
     filter: 'Filtrera',
+    searchButtonAria: 'Sök efter utbildning',
   },
   placeholders : {
     title:'Fyll i titeln här',
@@ -393,6 +395,7 @@ export const swedishStrings = {
     },
   },
   about: {
+    aboutLink: 'Om',
     pageTitle: 'Om Kompetensmatchning',
     about: 'Detta är Kompetensmatchning',
     aboutText: 'Kompetensmatchning är en testbädd för RISE och används i arbetet med kompetensförsörjning för livslångt lärande. Kompetensmatchning är fri att använda. Koden för plattformen är öppen och tillgänglig, se länk till repot längre ner.  ',

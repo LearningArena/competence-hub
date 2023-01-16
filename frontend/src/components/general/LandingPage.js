@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Form, SingleLineInput } from '../educate/FormInputs'
 import PageBrand from './PageBrand'
 import partner1 from '../../images/logos/gr-kompetensnav-2.png'
-import riselogo from '../../images/rise_logo_rgb_pos_vit.png'
+import riselogo from '../../images/rise_logo_rgb_pos.png'
 
 const LandingPage = ({setAuthPassword}) => {
 
