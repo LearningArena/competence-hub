@@ -665,15 +665,25 @@ namespace SusaNavet
 				{
 					course.category = $"[\"{string.Join("\",\"", course_categories)}\"]";
 				}
-				addCourseImage(ref course, course_categories);
 			}
+			addCourseImage(ref course, course_categories);
 		}
 
 		private static void addCourseImage(ref Arena.Course course, List<string> categories)
 		{
 			var random = new Random();
-			string category = categories[random.Next(categories.Count)];
-			List<string> image_paths = new List<string>(Directory.GetFiles($"../media/category-images/{category}/"));
+			List<string> image_paths = new List<string>();
+			// Use specific category folder for categorized courses
+			if (categories.Count() > 0)
+			{
+				string category = categories[random.Next(categories.Count)];
+				image_paths = new List<string>(Directory.GetFiles($"../media/category-images/{category}/"));
+			}
+			// If there are no categories, use all images
+			if (categories.Count() == 0)
+			{
+				image_paths = new List<string>(Directory.GetFiles($"../media/category-images/", "*.*", SearchOption.AllDirectories));
+			}
 			string image_path = image_paths[random.Next(image_paths.Count)];
 			course.image_feature = image_path.Substring(2);
 		}
