@@ -11,11 +11,10 @@ const LearnStart = (props) => {
   const [courses, setCourses] = useState([])
   const [loading, setLoading] = useState(true)
 
-  const { getCurrent, getPage, pageNum, pageCursors, resetPagination, hasPrev, hasNext, ready } = usePagination(PUBLISHED_COURSES, 10, PaginationContext)
+  const { PaginationControls, getCurrent, ready } = usePagination(PUBLISHED_COURSES, 10, PaginationContext)
 
   useEffect(() => {
     if (!ready) {
-      setLoading(true)
       return
     }
     getCurrent({ variables: { record_status: "APPROVED" } })
@@ -24,6 +23,10 @@ const LearnStart = (props) => {
         setLoading(false)
       })
   }, [ready])
+
+  const updateCourses = (data) => {
+    setCourses(data.courses.nodes)
+  }
 
   return (
     <>
@@ -38,13 +41,7 @@ const LearnStart = (props) => {
         <CategoryList titleText='Kategorier' area='learn' style='list' />
       </div>
       <div className='button-container load-more'>
-        {pageCursors.map((_, i) =>
-          <button key={i} className={'button ' + (pageNum == i ? 'inactive':'')} disabled={pageNum == i ? true : false} onClick={() => getPage(i).then(
-            ({ loading, error, data }) => {
-              setCourses(data.courses.nodes)
-              setLoading(loading)
-          })}>{ i+1 }</button>
-        )}
+        <PaginationControls updateFunc={updateCourses} />
       </div>
     </>
   )

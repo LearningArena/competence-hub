@@ -50,6 +50,34 @@ export function usePagination(query, defaultNodeCount = 6, paginationContext) {
     }
   })
 
+  const PaginationButton = (props) => {
+    return <button key={props.page} className={'button ' + (pageNum == props.page ? 'inactive':'')} disabled={pageNum == props.page ? true : false} onClick={() => getPage(props.page, {variables: props.variables}).then(
+      ({ loading, error, data }) => {
+        props.updateFunc(data)
+    })}>{ props.children }</button>
+  }
+
+  const PaginationControls = (props) => {
+    const indices = Array.from(Array(pageCursors.length).keys())
+    const firstThree = indices.slice(0, 3)
+    const middleThree = indices.slice(pageNum >= 2 ? pageNum - 2 : 0, pageNum + 3)
+    const lastThree = indices.slice(-3)
+    const allButtons = [...new Set([...firstThree, ...middleThree, ...lastThree])]
+    return (
+      <div>
+        { pageNum > 0 ? <PaginationButton page={pageNum-1} updateFunc={props.updateFunc}>{'<'}</PaginationButton> : <></>}
+        {allButtons.map((val, i) => {
+          return (
+            <span key={i}>
+              { allButtons[i]-allButtons[i-1] > 1 ? <span><strong>&nbsp;. . .&nbsp;</strong></span> : <></>}
+              <PaginationButton page={val} variables={props.variables} updateFunc={props.updateFunc}>{ val+1 }</PaginationButton>
+            </span>
+          )
+        })}
+        { pageNum < indices[indices.length-1] ? <PaginationButton page={pageNum+1} updateFunc={props.updateFunc}>{'>'}</PaginationButton> : <></>}
+      </div>
+    )
+  }
 
   useEffect(() => {
     update()
@@ -60,19 +88,11 @@ export function usePagination(query, defaultNodeCount = 6, paginationContext) {
     return lazyQuery({ variables: { num: totalLoaded ? totalLoaded : defaultNodeCount, filters: Object.keys(activeFilters).length > 0 ? buildFilterQuery(activeFilters) : dummyFilter, order: buildOrderQuery(sortField, isDescending) , ...variables } })
   }
 
-  const getPrev = ({ variables } = {}) => {
-    return lazyQuery({ variables: { before: pageInfo.startCursor, num: totalLoaded ? totalLoaded : defaultNodeCount, filters: Object.keys(activeFilters).length > 0 ? buildFilterQuery(activeFilters) : dummyFilter, order: buildOrderQuery(sortField, isDescending), ...variables } })
-  }
-
-  const getNext = ({ variables } = {}) => {
-    return lazyQuery({ variables: { after: pageInfo.endCursor, num: totalLoaded ? totalLoaded : defaultNodeCount, filters: Object.keys(activeFilters).length > 0 ? buildFilterQuery(activeFilters) : dummyFilter, order: buildOrderQuery(sortField, isDescending), ...variables } })
-  }
-
   const getPage = (pageNum, { variables } = {}) => {
     setPageNum(pageNum)
     return lazyQuery({ variables: { ...(pageNum != 0) && {after: pageCursors[pageNum].cursor}, num: defaultNodeCount, filters: Object.keys(activeFilters).length > 0 ? buildFilterQuery(activeFilters) : dummyFilter, order: buildOrderQuery(sortField, isDescending), ...variables } })
   }
 
-  return { ready, getCurrent, getPrev, getNext, getPage, pageNum, setPageNum, pageCursors, resetPagination, totalLoaded, hasPrev: pageInfo.hasPreviousPage, hasNext: pageInfo.hasNextPage }
+  return { ready, PaginationControls, getCurrent, getPage, pageNum, setPageNum, pageCursors, resetPagination, totalLoaded, hasPrev: pageInfo.hasPreviousPage, hasNext: pageInfo.hasNextPage }
 }
 

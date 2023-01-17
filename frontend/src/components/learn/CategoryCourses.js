@@ -17,7 +17,7 @@ const CategoryCourses = () => {
   const [courses, setCourses] = useState([])
   const [loading, setLoading] = useState(true)
 
-  const { ready, getCurrent, getPage, pageNum, pageCursors } = usePagination(COURSE_BY_CATEGORY, 8, PaginationContext)
+  const { PaginationControls, ready, getCurrent,} = usePagination(COURSE_BY_CATEGORY, 8, PaginationContext)
 
   useEffect(() => {
     if (!ready) {
@@ -31,6 +31,10 @@ const CategoryCourses = () => {
       })
   }, [ready])
 
+  const updateCourses = (data) => {
+    setCourses(data.courses.nodes)
+  }
+
   return (
     <>
       {loading ? (
@@ -42,13 +46,7 @@ const CategoryCourses = () => {
         <CategoryList titleText='Kategorier' area='learn' style='list' />
       </div>
       <div className='button-container load-more'>
-        {pageCursors.map((_, i) =>
-          <button key={i} className={'button ' + (pageNum == i ? 'inactive':'')} disabled={pageNum == i ? true : false} onClick={() => getPage(i, { variables: { cat: category.slug, record_status: "APPROVED" } }).then(
-            ({ loading, error, data }) => {
-              setCourses(data.courses.nodes)
-              setLoading(loading)
-          })}>{ i+1 }</button>
-        )}
+        <PaginationControls variables={{cat: category.slug, record_status: "APPROVED" }} updateFunc={updateCourses} />
       </div>
     </>
   )

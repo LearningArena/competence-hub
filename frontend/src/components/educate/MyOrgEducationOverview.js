@@ -26,7 +26,7 @@ const MyOrgEducationOverview = () => {
   const [courses, setCourses] = useState([])
   const [loading, setLoading] = useState(true)
 
-  const { getCurrent, getPage, pageNum, pageCursors, ready } = usePagination(USER_ORG_EDUCATIONS, 10, PaginationContext)
+  const { PaginationControls, getCurrent, ready } = usePagination(USER_ORG_EDUCATIONS, 10, PaginationContext)
 
   useEffect(() => {
     if (!ready) {
@@ -40,6 +40,9 @@ const MyOrgEducationOverview = () => {
       })
   }, [ready])
 
+  const updateCourses = (data) => {
+    setCourses(data.courses.nodes)
+  }
   
   const columns = [
     {content: strings.course.title, class:'sortable', sortField: 'title'},
@@ -71,14 +74,8 @@ const MyOrgEducationOverview = () => {
       <Table className='active-educations' columnInfo={columns} content={
         courses.map(generateCourseRow)
       }/>
-        <div className='button-container load-more'>
-        {pageCursors.map((_, i) =>
-          <button key={i} className={'button ' + (pageNum == i ? 'inactive':'')} disabled={pageNum == i ? true : false} onClick={() => getPage(i, { variables: { userid: user.id } }).then(
-              ({ loading, error, data }) => {
-                setCourses(data.courses.nodes)
-                setLoading(loading)
-          })}>{ i+1 }</button>
-        )}
+      <div className='button-container load-more'>
+        <PaginationControls variables={{userid: user.id}} updateFunc={updateCourses} />
       </div>
     </div>
   )
