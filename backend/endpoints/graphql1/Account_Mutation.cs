@@ -91,7 +91,7 @@ public class Account_Mutation
 			//Keycloak_Response_Register r = new Keycloak_Response_Register { };
 			//r.errorMessage = "error:" + token1.error + ". error_description:" + token1.error_description;
 			//r.status = token1.status;
-			return Primitive_Result.KEYCLOAK_REGISTER_ACCESS_TOKEN_NULL;
+			return Primitive_Result.KEYCLOAK_ACCESS_TOKEN_NULL;
 		}
 		Keycloak_Response_Register result = Keycloak.register(Arena.config_keycloak_admincli, token1.access_token, email, password, firstname, lastname);
 		if (result.status != HttpStatusCode.Created)
@@ -101,7 +101,7 @@ public class Account_Mutation
 		Keycloak_Access_Token token2 = Keycloak.login(Arena.config_keycloak_arenaclient, email, password);
 		if (token2.access_token == null)
 		{
-			return Primitive_Result.KEYCLOAK_LOGIN_ACCESS_TOKEN_NULL;
+			return Primitive_Result.KEYCLOAK_ACCESS_TOKEN_NULL;
 		}
 		Keycloak_Userinfo userinfo = Keycloak.userinfo(Arena.config_keycloak_admincli, token2.access_token);
 		if (userinfo.sub == null)
@@ -165,7 +165,7 @@ public class Account_Mutation
 		bool success = Arena_Email.postmark_register(user, orgid);
 		if (success == false)
 		{
-			return Primitive_Result.EMAIL_FAILED;
+			return Primitive_Result.REGISTER_SEND_EMAIL_FAIL;
 		}
 		return Primitive_Result.SUCCESS;
 	}
