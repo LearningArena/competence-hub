@@ -94,10 +94,16 @@ public class Account_Mutation
 			return Primitive_Result.KEYCLOAK_ACCESS_TOKEN_NULL;
 		}
 		Keycloak_Response_Register result = Keycloak.register(Arena.config_keycloak_admincli, token1.access_token, email, password, firstname, lastname);
-		if (result.status != HttpStatusCode.Created)
+		switch(result.status)
 		{
+		case HttpStatusCode.Created:
+			break;
+		case HttpStatusCode.Conflict:
+			return Primitive_Result.EMAIL_ALREADY_EXISTS;
+		default:
 			return Primitive_Result.KEYCLOAK_NOT_CREATED;
 		}
+		
 		Keycloak_Access_Token token2 = Keycloak.login(Arena.config_keycloak_arenaclient, email, password);
 		if (token2.access_token == null)
 		{

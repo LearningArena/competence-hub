@@ -19,6 +19,7 @@ public enum Primitive_Result
 	UNAPPROVED,
 	NEED_VERIFICATION,
 	SUCCESS_SEND_EMAIL_FAIL,
+	EMAIL_ALREADY_EXISTS,
 	
 	[Description("You are not logged in")]
 	LOGIN_REQUIRED,

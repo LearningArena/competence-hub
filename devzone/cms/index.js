@@ -42,6 +42,7 @@ function query_generate_get(navstate)
 			let cc1 = Global.dollarfx_graphql1[cnamev[0]](cnamev, args);
 			let cc2 = Global.dollarfx_graphql2[cnamev[0]](cnamev, args);
 			q_edges += `${cc1}:${cc2} `;
+			console.log(q_edges);
 			continue;
 		}
 		q_fields += cname + ' ';

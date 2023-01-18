@@ -116,7 +116,7 @@ const Signup = () => {
     })
 
     signupQuery({variables: formattedData}).then(res => {
-      const status = res?.data?.register?.status
+      const status = res?.data?.register;
       if (status === 'CONFLICT') {
         setErrors({...errors, confirm: strings.signup.errors.usernameTaken(signupData.email)})
       } else {
