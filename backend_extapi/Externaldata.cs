@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Net;
+using System;
 
 namespace Extapi
 {
@@ -75,11 +76,19 @@ namespace Extapi
 
 		// Generic onversion of text elements with html to formatted text, useable for any imported external data
 		static public string HtmlToPrettyString(string htmlString) {
-			htmlString = Regex.Replace(htmlString, @"<br.*?>|<p>", "\n"); // replace break and paragraph start with linebreak
-			htmlString = Regex.Replace(htmlString, @"<li>", "\n- ");      // replace list items with linebreaks and hyphen
-			htmlString = Regex.Replace(htmlString, @"<.+?>", "");         // remove remaing tags
-   			htmlString = WebUtility.HtmlDecode(htmlString);               // decode e.g. ampersands
-			htmlString = Regex.Replace(htmlString, @"\n\s*\n", "\n");     // replace multiple linebreaks with single linebreak
+			htmlString = Regex.Replace(htmlString, @"<br.*?>|<p>", "\n");     // replace break and paragraph start with linebreak
+			htmlString = Regex.Replace(htmlString, @"<li>", "\n- ");          // replace list items with linebreaks and hyphen
+			htmlString = Regex.Replace(htmlString, @"<.+?>", "");             // remove remaing tags
+   			htmlString = WebUtility.HtmlDecode(htmlString);                   // decode e.g. ampersands
+			htmlString = Regex.Replace(htmlString, @"\n\s*\n", "\n");         // replace multiple linebreaks with single linebreak
+			htmlString = Regex.Replace(htmlString, @"<!\[CDATA\[ | ]]>", ""); // remove XHTML XML tag
+			// Search for weird content during development:
+			// MatchCollection mc = Regex.Matches(htmlString, @"[^A-Za-zŽžÀ-ÿ0-9\s\.,;:\-%\/\(\)&?!]½");
+			// if (mc.Count > 0) {
+			// 	foreach (Match m in mc) {log.Information(m.ToString());}
+			// 	log.Information($"\nAFTER:\n{htmlString}");
+			// 	Environment.Exit(1);
+			// }
 			return htmlString.Trim();
 		}
 
