@@ -159,13 +159,13 @@ public class Account_Mutation
 		
 		if (new EmailAddressAttribute().IsValid(email) == false)
 		{
-			return Primitive_Result.SUCCESS_REGISTER_NO_EMAIL;
+			return Primitive_Result.SUCCESS_EMAIL_INVALID;
 		}
 
 		bool success = Arena_Email.postmark_register(user, orgid);
 		if (success == false)
 		{
-			return Primitive_Result.REGISTER_SEND_EMAIL_FAIL;
+			return Primitive_Result.SUCCESS_SEND_EMAIL_FAIL;
 		}
 		return Primitive_Result.SUCCESS;
 	}
