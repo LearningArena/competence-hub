@@ -35,7 +35,7 @@ public class Course_Mutation
 	{
 		int r; //The number of state entries written to the database.
 		int user_id = context.current_user_id(Record_Status.APPROVED);
-		if (user_id <= 0) {throw HCExceptions.e(Primitive_Result.LOGIN_REQUIRED);}
+		if (user_id == 0) {throw HCExceptions.e(Primitive_Result.LOGIN_REQUIRED);}
 
 		// Get the first org from the current user if no organization_id is provided
 		if (organization_id == null)
@@ -159,7 +159,7 @@ public class Course_Mutation
 	public IQueryable<Course> course_copy([Service] Arena_Context context, int id)
 	{
 		int user_id = context.current_user_id();
-		if (user_id <= 0){throw HCExceptions.e(Primitive_Result.LOGIN_REQUIRED);}
+		if (user_id == 0){throw HCExceptions.e(Primitive_Result.LOGIN_REQUIRED);}
 		if (context.is_siteadmin() == false)
 		{
 			int has_edge = DB.has_edge(context.Database.GetDbConnection(), Table.USERS, user_id, Relationship.AUTHOR, Table.COURSES, id);
@@ -183,7 +183,7 @@ public class Course_Mutation
 		int? seqf, int? hours, int? hogskolapoang, int? yrkeshogskolepoang, int? type, Record_Status? record_status, int? organization_id, int id)
 	{
 		int user_id = context.current_user_id();
-		if (user_id <= 0){throw HCExceptions.e(Primitive_Result.LOGIN_REQUIRED);}
+		if (user_id == 0){throw HCExceptions.e(Primitive_Result.LOGIN_REQUIRED);}
 		if (context.is_siteadmin() == false)
 		{
 			int has_edge = DB.has_edge(context.Database.GetDbConnection(), Table.USERS, user_id, Relationship.AUTHOR, Table.COURSES, id);
@@ -240,7 +240,7 @@ public class Course_Mutation
 	public Course convert_image_course([Service] Arena_Context context, int id)
 	{
 		int user_id = context.current_user_id();
-		if (user_id <= 0){throw HCExceptions.e(Primitive_Result.LOGIN_REQUIRED);}
+		if (user_id == 0){throw HCExceptions.e(Primitive_Result.LOGIN_REQUIRED);}
 		if (context.is_siteadmin() == false){throw HCExceptions.e(Primitive_Result.ADMIN_REQUIRED);}
 		Course course = context.courses.FirstOrDefault(t => t.id == id);
 		if (course == null) {throw HCExceptions.e(Primitive_Result.NOT_FOUND);}

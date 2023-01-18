@@ -22,7 +22,7 @@ public class Inquiry_Mutation
 	{
 		int r; //The number of state entries written to the database.
 		int user_id = context.current_user_id(Record_Status.APPROVED);
-		if (user_id <= 0) {throw HCExceptions.e(Primitive_Result.LOGIN_REQUIRED);}
+		if (user_id == 0) {throw HCExceptions.e(Primitive_Result.LOGIN_REQUIRED);}
 		
 		using var transaction = context.Database.BeginTransaction();
 		log.Information("Transaction begin for user {id}", user_id);
@@ -74,7 +74,7 @@ public class Inquiry_Mutation
 	string title, string description, string category, string name_of_contact_person, string email_of_contact_person, string phonenumber_of_contact_person, string location, string studypace)
 	{
 		int user_id = context.current_user_id();
-		if (user_id <= 0){throw HCExceptions.e(Primitive_Result.LOGIN_REQUIRED);}
+		if (user_id == 0){throw HCExceptions.e(Primitive_Result.LOGIN_REQUIRED);}
 		if (context.is_siteadmin() == false)
 		{
 			int has_edge = DB.has_edge(context.Database.GetDbConnection(), Table.USERS, user_id, Relationship.AUTHOR, Table.INQUIRIES, id);
