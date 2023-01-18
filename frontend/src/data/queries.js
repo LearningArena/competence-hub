@@ -393,10 +393,7 @@ mutation Register(
     org_image_logo:$org_image_logo,
     org_phonenumber:$org_phonenumber,
     org_website:$org_website
-  ) {
-    errorMessage
-    status
-  }
+  )
 }
 `
 
