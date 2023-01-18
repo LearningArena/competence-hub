@@ -45,9 +45,9 @@ const MyEducationRequests = () => {
           <Route exact path={`${match.path}`}>
             <Redirect to={`${match.path}/overview`} />
           </Route>
-          <Route path={`${match.path}/overview`}>
+          {/* <Route path={`${match.path}/overview`}>
             <MyRequestsOverview />
-          </Route>
+          </Route> */}
           <FullOrgInfoRoute path={`${match.path}/add`}>
             <AddRequest />
           </FullOrgInfoRoute>
