@@ -17,7 +17,7 @@ public class Extpoint_Mutation
 	public IQueryable<Extpoint> extpoints_update([Service] Arena_Context context, int id, string name, string url, Extapi.Parser? parser)
 	{
 		int user_id = context.current_user_id();
-		if (user_id <= 0){throw HCExceptions.e(Primitive_Result.LOGIN_REQUIRED);}
+		if (user_id == 0){throw HCExceptions.e(Primitive_Result.LOGIN_REQUIRED);}
 		if (context.is_siteadmin() == false){throw HCExceptions.e(Primitive_Result.ADMIN_REQUIRED);}
 		Extpoint extpoint = context.extpoints.FirstOrDefault(t => t.id == id);
 		if (extpoint == null) {throw HCExceptions.e(Primitive_Result.NOT_FOUND);}
@@ -33,7 +33,7 @@ public class Extpoint_Mutation
 	public IQueryable<Extpoint> extpoints_add([Service] Arena_Context context, string url)
 	{
 		int user_id = context.current_user_id();
-		if (user_id <= 0) {throw HCExceptions.e(Primitive_Result.LOGIN_REQUIRED);}
+		if (user_id == 0) {throw HCExceptions.e(Primitive_Result.LOGIN_REQUIRED);}
 		if (context.is_siteadmin() == false){throw HCExceptions.e(Primitive_Result.ADMIN_REQUIRED);}
 		Extpoint o = new Extpoint
 		{

@@ -16,7 +16,7 @@ public class Pair_Mutation
 	public int pair([Service] Arena_Context context, Table t1, int id1, Relationship relation, Table t2, int id2)
 	{
 		int user_id = context.current_user_id();
-		if (user_id <= 0) { return -1; }
+		if (user_id == 0) { return -1; }
 		DbConnection conn = context.Database.GetDbConnection();
 		// Setting restriction to Relationship.UNKNOWN disables restriction.
 		// Setting restriction to Relationship.AUTHOR enables restriction such that user_id must be a AUTHOR of (t1,id1) and (t2,id2).
@@ -30,7 +30,7 @@ public class Pair_Mutation
 	public int unpair([Service] Arena_Context context, Table t1, int id1, Relationship relation, Table t2, int id2)
 	{
 		int user_id = context.current_user_id();
-		if (user_id <= 0) { return -1; }
+		if (user_id == 0) { return -1; }
 		DbConnection conn = context.Database.GetDbConnection();
 		// Setting restriction to Relationship.UNKNOWN disables restriction.
 		// Setting restriction to Relationship.AUTHOR enables restriction such that user_id must be a AUTHOR of (t1,id1) and (t2,id2).
