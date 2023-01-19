@@ -72,4 +72,21 @@ public class Course_Query
 		return courses(context, record_status, id, keywords, current_user_relationship);
 	}
 
+	public IQueryable<string> course_providers([Service] Arena_Context context, Record_Status? record_Status)
+	{
+		IQueryable<string> q = context.courses
+			.Where(x => x.record_status == record_Status)
+			.Select(x => x.education_provider)
+			.Distinct();
+		return q;
+	}
+
+	public IQueryable<string> course_locations([Service] Arena_Context context, Record_Status? record_Status)
+	{
+		IQueryable<string> q = context.courses
+			.Where(x => x.record_status == record_Status)
+			.Select(x => x.city)
+			.Distinct();
+		return q;
+	}
 }
