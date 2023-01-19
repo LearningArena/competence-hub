@@ -191,28 +191,12 @@ query CourseSearch($query: String!, $record_status: Record_Status = null, $num: 
 
 export const LIST_EDUCATION_PROVIDERS = gql`
 query {
-  courses(record_status: APPROVED)
-  {
-    nodes {
-      course_user_edges {
-        relationship
-      }
-      education_provider
-    }
-  }
+  course_providers(record_status: APPROVED)
 }
 `
 export const LIST_EDUCATION_LOCATIONS = gql`
 query {
-  courses(record_status: APPROVED)
-  {
-    nodes {
-      course_user_edges {
-        relationship
-      }
-      city
-    }
-  }
+  course_locations(record_status: APPROVED)
 }
 `
 
