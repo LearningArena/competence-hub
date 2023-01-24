@@ -3,7 +3,6 @@ import React from 'react'
 import { useContext } from 'react'
 import { useEffect } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
-import { AuthContext } from '../../context/AuthContext'
 import { LanguageContext } from '../../context/LanguageContext'
 import { PopupContext } from '../../context/PopupContext'
 import { fields } from '../../data/fields'
@@ -19,7 +18,6 @@ const EditEducation = ({formData, setFormData}) => {
 
   const history = useHistory()
   const {strings} = useContext(LanguageContext)
-  const {organization} = useContext(AuthContext)
   const educationId = parseInt(useParams().educationId)
   const {error, data} = useQuery(COURSE_BY_ID, {
     variables: {id: educationId}
@@ -36,10 +34,9 @@ const EditEducation = ({formData, setFormData}) => {
       let category = makeMultiValue(strings.categories, categoryJson)
       let language = makeMultiValue(strings.languages, filteredData.language)
 
-      const overwriteOrgFields = {education_provider: organization?.name, image_provider: organization?.image_logo}
       const record_status = {value: filteredData.record_status, label: strings.course.statuses[filteredData.record_status]}
       //const {credits} = formActions.formatFloats(filteredData,['credits'])
-      setFormData(prev => ({...prev, ...filteredData, id:educationId, category, language, record_status, ...overwriteOrgFields}))
+      setFormData(prev => ({...prev, ...filteredData, id:educationId, category, language, record_status}))
 
     }
   }, [data])
