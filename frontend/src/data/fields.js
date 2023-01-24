@@ -76,10 +76,10 @@ const categories = {
 
 const languages = {
   swedish: {
-    id: 0, slug: 'svenska'
+    id: 0, slug: 'sv'
   },
   english: {
-    id: 1, slug: 'engelska'
+    id: 1, slug: 'en'
   },
 }
 
