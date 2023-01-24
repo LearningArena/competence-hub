@@ -10,16 +10,16 @@ bioteachers
 category
 city
 credits
-id
 description
 diplomas
-hours
 education_provider
-seqf
 email_of_contact_person
 end_date
+hours
+id
 image_feature
 image_provider
+import_source
 is_favorite
 language
 level
@@ -29,18 +29,18 @@ name_of_contact_person
 online
 prerequisite
 price
+record_status
 required_tools
 registration_end_date
 start_date
 seqf
 studyform
-yrkeshogskolepoang
 studypace
-record_status
 subtitle
 teachers
 title
 verbs
+yrkeshogskolepoang
 `
 
 const allInquiryFields = `

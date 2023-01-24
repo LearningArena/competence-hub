@@ -29,6 +29,7 @@ const EditEducation = ({formData, setFormData}) => {
     if (data) {
       const filteredData = formActions.parseDates(formActions.filterUnused(data.courses.nodes[0]), dateFields)
       console.log(data.courses.nodes[0], filteredData)
+      const import_source = filteredData.import_source
       const categoryJson = filteredData.category
 
       let category = makeMultiValue(strings.categories, categoryJson)
@@ -36,7 +37,7 @@ const EditEducation = ({formData, setFormData}) => {
 
       const record_status = {value: filteredData.record_status, label: strings.course.statuses[filteredData.record_status]}
       //const {credits} = formActions.formatFloats(filteredData,['credits'])
-      setFormData(prev => ({...prev, ...filteredData, id:educationId, category, language, record_status}))
+      setFormData(prev => ({...prev, ...filteredData, id:educationId, category, language, record_status, import_source}))
 
     }
   }, [data])
