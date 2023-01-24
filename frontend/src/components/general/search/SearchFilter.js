@@ -103,8 +103,8 @@ const SearchFilter = () => {
   const filterCategories = [
     {id:'category', name: strings.course.category, type: 'dropdown', items: categoriesList.map(cat => ({value: cat.slug, label: strings.categories[cat.slug]}))},
     {id:'language', name: strings.course.language, type: 'dropdown', items: [
-      {value: 'SE', label: 'Svenska'},
-      {value: 'GB', label: 'Engelska'},
+      {value: fields.languages.swedish.slug, label: strings.languages[fields.languages.swedish.slug]},
+      {value: fields.languages.english.slug, label: strings.languages[fields.languages.english.slug]},
     ]},
     {id:'city', name: strings.course.city, type: 'dropdown', items: dataEducationLocations?.course_locations.map(item => ({value:item, label:item}))},
     {id:'education_provider', name: strings.course.provider, type: 'dropdown', items: dataEducationProviders?.course_providers.map(item => ({value:item, label:item}))},
