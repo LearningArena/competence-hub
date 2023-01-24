@@ -79,31 +79,40 @@ public class Account_Mutation
 		return context.http_context.HttpContext.User.Identity.IsAuthenticated;
 	}
 
-	public async Task<Keycloak_Response_Register> register([Service] Arena_Context context, string email, string password, string firstname, string lastname, string orgname, string orgid, int? preference, Country_Code_ISO_3166_1? preference_language, string org_address, string org_description, string org_email, string org_image_logo, string org_phonenumber, string org_website)
+	public Primitive_Result register([Service] Arena_Context context, string email, string password, string firstname, string lastname, string orgname, string orgid, int? preference, Country_Code_ISO_3166_1? preference_language, string org_address, string org_description, string org_email, string org_image_logo, string org_phonenumber, string org_website)
 	{
-		if (Misc.Regexs.organisationsnummer.IsMatch(orgid) == false) { return null; }
+		if (Misc.Regexs.organisationsnummer.IsMatch(orgid) == false)
+		{
+			return Primitive_Result.REGISTER_ORGID_INVALID;
+		}
 		Keycloak_Access_Token token1 = Keycloak.token(Arena.config_keycloak_admincli);
 		if (token1.access_token == null)
 		{
-			Keycloak_Response_Register r = new Keycloak_Response_Register { };
-			r.errorMessage = "error:" + token1.error + ". error_description:" + token1.error_description;
-			r.status = token1.status;
-			return r;
+			//Keycloak_Response_Register r = new Keycloak_Response_Register { };
+			//r.errorMessage = "error:" + token1.error + ". error_description:" + token1.error_description;
+			//r.status = token1.status;
+			return Primitive_Result.KEYCLOAK_ACCESS_TOKEN_NULL;
 		}
 		Keycloak_Response_Register result = Keycloak.register(Arena.config_keycloak_admincli, token1.access_token, email, password, firstname, lastname);
-		if (result.status != HttpStatusCode.Created)
+		switch(result.status)
 		{
-			return result;
+		case HttpStatusCode.Created:
+			break;
+		case HttpStatusCode.Conflict:
+			return Primitive_Result.EMAIL_ALREADY_EXISTS;
+		default:
+			return Primitive_Result.KEYCLOAK_NOT_CREATED;
 		}
+		
 		Keycloak_Access_Token token2 = Keycloak.login(Arena.config_keycloak_arenaclient, email, password);
 		if (token2.access_token == null)
 		{
-			return new Keycloak_Response_Register { };
+			return Primitive_Result.KEYCLOAK_ACCESS_TOKEN_NULL;
 		}
 		Keycloak_Userinfo userinfo = Keycloak.userinfo(Arena.config_keycloak_admincli, token2.access_token);
 		if (userinfo.sub == null)
 		{
-			return new Keycloak_Response_Register { };
+			return Primitive_Result.KEYCLOAK_USERINFO_SUB_NULL;
 		}
 		User user = new User
 		{
@@ -118,7 +127,7 @@ public class Account_Mutation
 			time_created = DateTime.UtcNow,
 		};
 		context.users.Add(user);
-		await context.SaveChangesAsync();
+		context.SaveChanges();
 
 		if (orgid != null)
 		{
@@ -140,7 +149,7 @@ public class Account_Mutation
 					record_status = Record_Status.NEEDVERIFICATION
 				};
 				context.organizations.Add(organization);
-				await context.SaveChangesAsync();
+				context.SaveChanges();
 				relationship = Relationship.AUTHOR;
 			}
 			Organization_User_Edge edge = new Organization_User_Edge
@@ -150,14 +159,21 @@ public class Account_Mutation
 				relationship = relationship
 			};
 			context.organization_user_edges.Add(edge);
-			await context.SaveChangesAsync();
+			context.SaveChanges();
 		}
-		var foo = new EmailAddressAttribute();
-		if (foo.IsValid(email))
+
+		
+		if (new EmailAddressAttribute().IsValid(email) == false)
 		{
-			Arena_Email.postmark_register(user, orgid);
+			return Primitive_Result.SUCCESS_EMAIL_INVALID;
 		}
-		return result;
+
+		bool success = Arena_Email.postmark_register(user, orgid);
+		if (success == false)
+		{
+			return Primitive_Result.SUCCESS_SEND_EMAIL_FAIL;
+		}
+		return Primitive_Result.SUCCESS;
 	}
 
 	public bool forgot_password_email([Service] Arena_Context context, string email)
