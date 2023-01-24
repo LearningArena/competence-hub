@@ -116,8 +116,8 @@ const Signup = () => {
     })
 
     signupQuery({variables: formattedData}).then(res => {
-      const status = res?.data?.register?.status
-      if (status === 'CONFLICT') {
+      const status = res?.data?.register;
+      if (status === 'EMAIL_ALREADY_EXISTS') {
         setErrors({...errors, confirm: strings.signup.errors.usernameTaken(signupData.email)})
       } else {
         history.push(match.url + '/success')
