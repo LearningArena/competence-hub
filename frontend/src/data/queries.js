@@ -3,9 +3,6 @@ const { gql } = require("@apollo/client")
 //TODO(Johan): A boolean (publish) field will be added to replace a publish state in (status).
 export const allEducationFields = `
 
-course_user_edges {
-  relationship
-}
 bioteachers
 category
 city
@@ -77,43 +74,28 @@ title
 // `
 
 export const COURSE_OWNERS = gql`
-query CourseOwners($id: Int!) {
-  courses(id: $id) {
+query CourseOwners($id: Int!)
+{
+  users(where: {
+    course_user_edges:{
+      some:{
+        course_id: {eq:$id}
+      }}
+    }) {
     nodes {
-      course_user_edges {
-        user {
-          firstname
-          lastname
-          username
-          email
-          id
-        }
-      }
-    }
-  }
-}
-`
-
-export const ORG_BY_ID = gql`
-query OrgOwner($id: Int!){
-	organizations(id: $id) {
-    nodes {
+      firstname
+      lastname
+      username
       id
-      name
-      orgid
-      organization_user_edges
-      { 
-        user_id
-        relationship
-      }
+      email
     }
   }
 }
-`
+` 
 
  export const COURSE_ADD_OWNER = gql`
   mutation CourseAddUser($course_id: Int!, $new_user_id: Int!) {
-    pair(t1: $new_user_id, relation: AUTHOR, t2:COURSES, id2: $course_id)  
+    pair(t1:USERS, id1: $new_user_id, relation: AUTHOR, t2:COURSES, id2: $course_id)  
   }  
   `
 
@@ -194,9 +176,6 @@ query {
   courses(record_status: APPROVED)
   {
     nodes {
-      course_user_edges {
-        relationship
-      }
       education_provider
     }
   }
@@ -207,9 +186,6 @@ query {
   courses(record_status: APPROVED)
   {
     nodes {
-      course_user_edges {
-        relationship
-      }
       city
     }
   }
@@ -400,43 +376,24 @@ mutation Register(
 }
 `
 
-export const ALL_USERS = gql`
-query {
-  users {
+export const ORG_USERS = gql`
+query OrgUsers($id: Int!)
+{
+  users(where: {
+    organization_user_edges:{
+      some:{
+        organization_id: {eq:$id}
+      }}
+    }) {
     nodes {
       firstname
       lastname
-      email
       id
-      username
-      organization_user_edges {
-        organization_id
-        organization {
-          name
-        }
-      }
+      email
     }
   }
 }
-`
-
-export const ORG_USERS = gql`
-query OrgUsers($id: Int!){
-	organizations(where:{id:{eq:$id}}) {
-		nodes {
-      organization_user_edges {
-        relationship
-        user{
-          firstname
-          lastname
-          id
-          email
-        }
-      }
-    }
-	}
-}
-`
+` 
 
 export const QUOTATION_REQUEST = gql`
 mutation QuotationRequest($send_copy: Boolean!, $course_id: Int!, $request_message_value: String) {
