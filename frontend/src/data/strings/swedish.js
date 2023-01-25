@@ -168,6 +168,7 @@ export const swedishStrings = {
     other: 'annat',
     choosePace: 'Välj studietakt ...',
     language: 'Studiespråk',
+    import_source: 'Importkälla',
     chooseLanguage: 'Välj språk ...',
     languageList: [
       'Svenska',

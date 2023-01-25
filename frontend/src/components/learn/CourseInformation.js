@@ -5,17 +5,14 @@ import { useParams } from 'react-router-dom'
 import ReactDOMServer from 'react-dom/server';
 import { LanguageContext } from '../../context/LanguageContext'
 import { COURSE_BY_ID } from '../../data/queries'
-import { ReactComponent as StarIcon } from '../../images/icon-star.svg'
+import { fields } from '../../data/fields'
 import { ReactComponent as InvoiceIcon } from '../../images/icon-invoice.svg'
 import { ReactComponent as LinkIcon } from '../../images/icon-link.svg'
 import {ReactComponent as ArrowIcon } from '../../images/icon_arrow.svg'
-import {ReactComponent as PinIcon } from '../../images/icon-pinned.svg'
-import {ReactComponent as ShareIcon } from '../../images/icon-share.svg'
 import { formatDate } from '../../util/date'
 import { useState } from 'react'
 import { PopupContext } from '../../context/PopupContext'
 import RequestInvoicePopup from './RequestInvoicePopup'
-import { getCategoryString } from '../../util/category'
 import { parseMultiValue } from '../../util/input'
 
 
@@ -159,6 +156,7 @@ const CourseInformation = ({courseInfo}) => {
             <TitledItem title={strings.course.category} text={parseMultiValue(strings.categories, courseInfo.category)} />
             <TitledItem title={strings.course.provider} text={courseInfo.education_provider} />
             <TitledItem title={strings.course.language} text={parseMultiValue(strings.languages, courseInfo.language)} />
+            <TitledItem title={strings.course.import_source} text={fields.import_sources[courseInfo.import_source].name} />
           </ul>
           
         </div>

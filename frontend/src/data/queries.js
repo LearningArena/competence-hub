@@ -22,6 +22,7 @@ image_feature
 image_provider
 is_favorite
 language
+import_source
 level
 link
 literature
