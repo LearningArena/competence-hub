@@ -454,6 +454,9 @@
       ],
       "realmRoles": [
         "default-roles-arenarealm"
+      ],
+      "groups": [
+        "Siteadmin"
       ]
     }
   ],
