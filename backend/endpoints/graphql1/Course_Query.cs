@@ -75,7 +75,7 @@ public class Course_Query
 	public IQueryable<string> course_providers([Service] Arena_Context context, Record_Status? record_status)
 	{
 		IQueryable<string> q = context.courses
-			.Where(x => x.record_status == record_status)
+			.Where(x => x.record_status == record_status && !String.IsNullOrEmpty(x.education_provider))
 			.Select(x => x.education_provider)
 			.Distinct();
 		return q;
@@ -84,7 +84,7 @@ public class Course_Query
 	public IQueryable<string> course_locations([Service] Arena_Context context, Record_Status? record_status)
 	{
 		IQueryable<string> q = context.courses
-			.Where(x => x.record_status == record_status)
+			.Where(x => x.record_status == record_status && !String.IsNullOrEmpty(x.city))
 			.Select(x => x.city)
 			.Distinct();
 		return q;
