@@ -3,6 +3,7 @@ import { englishReleasenotes } from "./english/releasenotes";
 import { fields } from "../fields";
 
 export const englishStrings = {
+  siteTitle: 'CompetenceHub',
   catchphrase: "Arena for lifelong learning",
   sidemenuStart: 'Educations',
   sidemenuCategories: 'Categories',

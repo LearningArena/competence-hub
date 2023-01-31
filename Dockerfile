@@ -36,6 +36,7 @@ COPY ./frontend ./
 # Run npm
 ARG DOMAIN=localhost:8000
 ENV REACT_APP_DOMAIN=$DOMAIN
+ENV REACT_APP_SERVICE_NAME=CompetenceHub
 ENV REACT_APP_GQL_URL=/graphql
 RUN npm install
 RUN npm run build

@@ -5,6 +5,7 @@ import { swedishReleasenotes } from "./swedish/releasenotes";
 import { swedishPrivacy } from "./swedish/privacy";
 
 export const swedishStrings = {
+  siteTitle: 'CompetenceHub',
   catchphrase: 'Arena för livslångt lärande',
   sidemenuStart: 'Utbildningar',
   sidemenuCategories: 'Kategorier',
