@@ -88,11 +88,13 @@ const EducationForm = ({jsonData, formData, setFormData, submitForm}) => {
 
   let importDisabled = false
   if (formData) {
-    importDisabled = formData.import_source === undefined ? (
-      false
-    ) : (
-      true
-    )
+    importDisabled = (formData.import_source === undefined || formData.import_source === '') ? (false) : (true)
+  }
+  const ImportWarning = () => {
+    if (formData.import_source === undefined || formData.import_source === '')
+      return null
+    else
+      return (<span>{ strings.course.maindetailsImportWarning }</span>)
   }
 
   // const [menuPlace, setMenuPlace] = useState('bottom')
@@ -152,6 +154,7 @@ const EducationForm = ({jsonData, formData, setFormData, submitForm}) => {
     </StickyFormButtons>
     <div className='form-margin'>
       <h4>{strings.course.maindetailsHeader}</h4>
+      <ImportWarning/>
       <div className='columns'>
         <div className='column-left'>
           <SingleLineInput id='title' disabled={importDisabled} limit={50} popupText={strings.course.popup.title} text={strings.course.title} placeholder={strings.placeholders.title}/>

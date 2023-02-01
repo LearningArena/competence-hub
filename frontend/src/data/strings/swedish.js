@@ -112,6 +112,7 @@ export const swedishStrings = {
     levelHeader: 'Nivå',
     formatHeader: 'Format',
     maindetailsHeader: 'Detaljer om utbildningen',
+    maindetailsImportWarning: 'Kursdata importerad - de flesta detaljerna kan ej förändras!',
     description: 'Beskrivning',
     content: 'Kursens innehåll',
     tools:'Verktyg',

@@ -108,6 +108,7 @@ export const englishStrings = {
     formatHeader: 'Format',
     datefreq:'Date och frequency',
     maindetailsHeader: 'Table of content main',
+    maindetailsImportWarning: 'Course data imported - most info not editable!',
     description: 'Description',
     content: 'Course content',
     tools:'Required tools',
