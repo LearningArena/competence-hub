@@ -53,19 +53,13 @@ const Signup = () => {
       if (loading) return null;
       if (error) return `Error! ${error}`;
       if (orgNameData.organizations.nodes[0] && orgNameData.organizations.nodes[0].name) {
-        console.log("Orgname", orgId, orgNameData.organizations.nodes[0].name)
         setExistingOrg(true)
         setExistingOrgName(orgNameData.organizations.nodes[0].name)
       } else {
         setExistingOrg(false)
         setExistingOrgName("")
-        return null
       }
-      return (
-        <>
-        { orgNameData.organizations[0].name }
-        </>
-      )
+      return null
   }
 
   useEffect(() => {
@@ -135,7 +129,7 @@ const Signup = () => {
           <SingleLineInput required id='firstname' text={strings.signup.firstName} placeholder={strings.signup.placeholders.firstName} />
           <SingleLineInput required id='lastname' text={strings.signup.lastName} placeholder={strings.signup.placeholders.lastName} />
           <SingleLineInput required id='email' type='email' text={strings.email} placeholder={strings.signup.placeholders.email} />
-          <SingleLineInput required id='orgname' text={strings.signup.orgName} placeholder={strings.signup.placeholders.orgName} />
+          <SingleLineInput required id='orgname' text={strings.signup.orgName} placeholder={strings.signup.placeholders.orgName} value={isExistingOrg ? existingOrgName : null} />
           <SingleLineInput required id='orgid_se' text={strings.signup.orgNumber} placeholder={strings.signup.placeholders.orgNumber} />
           {isValidOrg ? <OrgName orgId={formData.orgid_se}/> : null }
           <DropdownInput id='preference' popupText={strings.course.popup.usage} text={strings.signup.usage} placeholder={strings.signup.placeholders.usage}
