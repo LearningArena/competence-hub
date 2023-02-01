@@ -88,10 +88,10 @@ const import_sources = {
     id: 0, name: 'SUSA-navet'
   },
   GOTEBORGS_TEKNISKA_COLLEGE: {
-    id: 1, slug: 'Göteborgs Tekniska College'
+    id: 1, name: 'Göteborgs Tekniska College'
   },
   LEARNING_4_PROFESSIONALS: {
-    id: 2, slug: 'Learning 4 Professionals'
+    id: 2, name: 'Learning 4 Professionals'
   }
 }
 
