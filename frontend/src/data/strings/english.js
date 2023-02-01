@@ -164,6 +164,7 @@ export const englishStrings = {
     other: 'other',
     choosePace: 'Choose study pace...',
     language: 'Study language',
+    import_source: 'Import source',
     chooseLanguage: 'Choose language...',
     languageList: [
       'Swedish',
