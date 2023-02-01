@@ -37,6 +37,8 @@ This repo is managed by RISE Reseatch Insititutes of Sweden, area of Lifelong Le
 
 ## Quick start
 
+### Startup
+
 The quick way to start up the platform requires installing [Docker](https://docs.docker.com/get-docker/), and then using the supplied compose file.
 ```
 docker compose up
@@ -56,15 +58,19 @@ and [http://localhost:8080/](http://localhost:8080/) for keycloak interface (see
 
 A default admin user will be created with username "admin" and password "default". These credentials can be changed by logging in to keycloak using the credentials specified in the .env file.
 
-## Running
+### Import courses
 
-### Windows/Linux
-
-    docker compose up -d
-
-### ARM64 (e.g. Apple M1)
-
-    docker compose -f docker-compose.yml -f arm64.yml up -d
+Currently set up for scheduled night runs - see backend/Program.cs  
+To trigger manually
+- Go to graphql web tool at [http://localhost:8000/graphql/index.html](http://localhost:8000/graphql/index.html)
+- Login by entering query
+```
+mutation{login(username:"admin@example.com",password:"default")}
+```
+- Start import from SUSA-navet by entering
+```
+mutation {external_import(method:SUSA_NAVET)}
+```
 
 ## Contributing
 
