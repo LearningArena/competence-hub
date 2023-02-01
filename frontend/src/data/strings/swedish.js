@@ -117,7 +117,7 @@ export const swedishStrings = {
     description: 'Beskrivning',
     content: 'Kursens innehåll',
     tools:'Verktyg',
-    url:'Webblänk till orginalkurs',
+    url:'Webblänk till originalkurs',
     prerequisites:'Förkunskaper',
     literature:'Kurslitteratur',
     teachers:'Utbildare',

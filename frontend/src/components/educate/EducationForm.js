@@ -276,7 +276,7 @@ const EducationForm = ({jsonData, formData, setFormData, submitForm}) => {
         </div>
       </div>
       <MultiLineInput id='bioteachers' disabled={importDisabled} popupText={strings.course.popup.teacherBio}  text={strings.course.teacherBio} placeholder={strings.placeholders.teacherBio}/>
-      <ImageInput id='image_feature' disabled={importDisabled} popupText={strings.course.popup.featureImage} text={strings.course.featureImage}/>
+      <ImageInput id='image_feature' popupText={strings.course.popup.featureImage} text={strings.course.featureImage}/>
       <span className= 'upload-specifications'>Supported file formats: JPG, JPEG, PNG. Minimum recommended resolution 600x400.</span>
 
       <h4>{strings.course.contactHeader}</h4>
