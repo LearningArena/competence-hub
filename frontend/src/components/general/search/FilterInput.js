@@ -34,7 +34,7 @@ const FilterInput = ({strings, filter, filters, setFilters}) => {
 
   return (
     <li className='filter-input'>
-      <span className='label'>{strings.search.filter} <b>{filter.name}</b></span>
+      <span className='label'><b>{filter.name}</b></span>
       {filter.type === 'dropdown' ? (
         <Select 
           className='dropdown'
