@@ -39,7 +39,7 @@ const Signup = () => {
     if (formData.orgid_se.length < 1) {
       return
     }
-    const validOrgNr = RegExp('^[0-9]{6}-[0-9]{4}$').test(formData.orgid_se)
+    const validOrgNr = RegExp('^[0-9]{6}-?[0-9]{4}$').test(formData.orgid_se)
     if (validOrgNr) {
       setErrors({})
       setValidOrg(true)
@@ -49,7 +49,7 @@ const Signup = () => {
   }, [formData.orgid_se])
 
   function OrgName( {orgId} ) {
-      const {loading, error, data: orgNameData} = useQuery(ORG_NAME_BY_ORGID, {variables: {orgid: orgId}})
+      const {loading, error, data: orgNameData} = useQuery(ORG_NAME_BY_ORGID, {variables: {orgid: orgId.replaceAll('-', '')}})
       if (loading) return null;
       if (error) return `Error! ${error}`;
       if (orgNameData.organizations.nodes[0] && orgNameData.organizations.nodes[0].name) {
