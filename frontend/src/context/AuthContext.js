@@ -18,6 +18,7 @@ const AuthContextProvider = (props) => {
   const [signupOrg, setSignupOrg] = useState()
   const [userLoaded, setUserLoaded] = useState(false)
   const [organization, setOrganization] = useState()
+  const [allUserOrganizations, setAllUserOrganizations] = useState()
   const [isAuthor, setIsAuthor] = useState(false)
   const [passwordResetMode, setPasswordResetMode] = useState(false)
   //const {showPopup} = useContext(PopupContext)
@@ -59,11 +60,15 @@ const AuthContextProvider = (props) => {
 
   useEffect(() => {
     let org = orgQuery.data?.my_org_by_author?.nodes?.[0]
+    let orgs = {author:[], member:[]}
+    orgs.author = orgQuery.data?.my_org_by_author?.nodes
+    orgs.member = orgQuery.data?.my_org_by_member?.nodes
     if (!!!org) {
       org = orgQuery.data?.my_org_by_member?.nodes?.[0]
     }
-    if (org) {
+    if (orgs) {
       setOrganization(org)
+      setAllUserOrganizations(orgs)
     } else {
       console.log('no org')
     }
@@ -140,7 +145,7 @@ const AuthContextProvider = (props) => {
   const orgHasMissingFields = () => organization.image_logo === null
 
   return (
-    <AuthContext.Provider value={{user, updateAuth, updateSignupOrg, signupOrg, logout, organization, userLoaded, orgHasMissingFields,passwordResetMode, isAuthor}}>
+    <AuthContext.Provider value={{user, updateAuth, updateSignupOrg, signupOrg, logout, organization, allUserOrganizations, userLoaded, orgHasMissingFields,passwordResetMode, isAuthor}}>
       {props.children}
     </AuthContext.Provider>
   )

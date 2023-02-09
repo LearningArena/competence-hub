@@ -29,10 +29,9 @@ const EducateMain = () => {
   const location = useLocation()
   const {setEducateUrl} = useContext(NavContext)
   const {strings} = useContext(LanguageContext)
-  const {user} = useContext(AuthContext)
+  const {user, organization, allUserOrganizations} = useContext(AuthContext)
 
   useEffect(() => {
-    console.log(location.pathname)
     setEducateUrl(location.pathname)
   }, [location.pathname, setEducateUrl])
 
@@ -54,34 +53,33 @@ const EducateMain = () => {
     )
   }
 
+  const generateOrgRow = (org, author) => {
+    return (
+        {title: org.name, url: '?org=' + org.id}
+    )
+  }
+
   return (
     <div className='educate-main tab-main'>
-      <BrowserView viewClassName="broswer-view">
-        <SideMenu placement='right' items={true ? [
-          {title: strings.sidemenuMyEducations, url: match.url + '/myeducation'},
-          // {title: strings.sidemenuRequests, url: match.url + '/efterlysningar'},
-          // {title: strings.sidemenuFavAds, url: match.url + '/myads'},
-        
-          {title: strings.sidemenuMyAccount, url: match.url + '/account'},
-          // {title: strings.sidemenuOrgAccount, url: match.url + '/organisationskonto'}, 
-          //{title: strings.signup.header, url: match.url + '/signup'},
-        ] : [
-          // {title: strings.signup.header, url: match.url + '/signup'},
-        ]}/>
+      <BrowserView viewClassName="browser-view">
+        <SideMenu placement='left' items={[
+          {title: strings.publishedCoursesOverview, url: '?filter=published'},
+          {title: strings.draftCoursesOverview, url: '?filter=draft'},
+          {title: strings.archivedCoursesOverview, url: '?filter=archived'}
+        ]
+        }/>
+        <SideMenu placement='right' items={
+          [ <h2 className='centered-header'>"Woop"</h2>,
+            ...allUserOrganizations.author.map(generateOrgRow),
+          ...allUserOrganizations.member.map(generateOrgRow)]
+        }/>
       </BrowserView>
       <MobileOnlyView viewClassName="mobile-view">
         <BurgerNavButton/>
-        <SideMenu placement={`right mobile-menu ${openBurger}`} items={user ? [
-            {title: strings.sidemenuMyEducations, url: match.url + '/myeducation'},
-            // {title: strings.sidemenuRequests, url: match.url + '/efterlysningar'},
-            // {title: strings.sidemenuFavAds, url: match.url + '/myads'},
-           
-            {title: strings.sidemenuMyAccount, url: match.url + '/account'},
-            // {title: strings.sidemenuOrgAccount, url: match.url + '/organisationskonto'}, 
-            //{title: strings.signup.header, url: match.url + '/signup'},
-          ] : [
-            // {title: strings.signup.header, url: match.url + '/signup'},
-      ]}/>
+        <SideMenu placement={`right mobile-menu ${openBurger}`} items={ 
+          [...allUserOrganizations.author.map(generateOrgRow),
+          ...allUserOrganizations.member.map(generateOrgRow)]
+      }/>
       </MobileOnlyView>
       <div className="content-main">
         <Switch>

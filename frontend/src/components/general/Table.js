@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import { PaginationContext } from '../../context/PaginationContext'
-import { LanguageContext } from '../../context/LanguageContext'
 
 
 const TableItem = ({info, Icon}) => {
@@ -15,7 +14,6 @@ const TableItem = ({info, Icon}) => {
 
 const Table = ({columnInfo, content, ...props}) => {
   const { isDescending, setDescending, sortField, setSortField } = useContext(PaginationContext)
-  const {strings} = useContext(LanguageContext)
 
   const actions = {
     setSortCategory: (value) => {

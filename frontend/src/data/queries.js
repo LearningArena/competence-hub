@@ -37,6 +37,7 @@ studyform
 yrkeshogskolepoang
 studypace
 record_status
+time_modified
 subtitle
 teachers
 title
@@ -524,6 +525,17 @@ query OrgNameByOrgId($orgid: String!) {
    }
 }
 `
+
+export const ORG_INFO_BY_ID = gql`
+query OrgInfoByOrgId($id: Int!) {
+  organizations(where:{id:{eq:$id}}) {
+    nodes {
+      name
+      image_logo
+     }
+   }
+}
+`
 export const COURSE_DELETE = gql`
 mutation CourseRemove($id: Int!) {
   record_remove_unsafe(id: $id, table:COURSES)
@@ -543,6 +555,7 @@ query UsersEducations($num: Int, $before: String, $after: String, $order: [Cours
       title
       start_date
       id
+      time_modified
       record_status
       education_provider
     }
@@ -558,6 +571,60 @@ query UsersEducations($num: Int, $before: String, $after: String, $order: [Cours
     first: 500
     where: $filters
     current_user_relationship:AUTHOR
+  ) {
+    edges {
+      cursor
+    }
+  }
+}
+`
+export const ORG_EDUCATIONS = gql`
+query OrgEducations($num: Int, $record_status: Record_Status = null, $before: String, $after: String, $order: [CourseSortInput!], $filters: CourseFilterInput!, $orgid: Int!) {
+  courses(order: $order, record_status: $record_status, first:$num, before:$before, after: $after, where:
+  {and: [
+    $filters,
+    {organization_course_edges:
+      {
+        some:{and: [
+          {organization:{
+            id:{eq:$orgid}
+          }}
+          ]
+        }
+  }}]}) 
+  {
+    pageInfo {
+        hasNextPage
+        hasPreviousPage
+        startCursor
+        endCursor
+    }
+    edges{cursor}
+    nodes {
+      organization {
+        name
+        id
+      }
+      title
+      start_date
+      id
+      record_status
+      education_provider
+    }
+  }
+  cursors: courses(
+    order: $order
+    record_status: $record_status
+    first: 500
+    where: {and: [
+      $filters, 
+      {organization_course_edges: 
+        {
+          some:{and: [
+            {organization:{
+              id:{eq:$orgid}
+            }}
+    ] } } } ] } 
   ) {
     edges {
       cursor

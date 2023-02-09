@@ -1356,6 +1356,17 @@ table td, table th {
 
 .overview table{
 
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+  }
+
+  button {
+    text-align: left;
+  }
+
     display: block;
     padding: 2rem;
     margin: 0rem;
@@ -1366,7 +1377,8 @@ table td, table th {
     }
   }
   td, th.last-values {
-    text-align: center!important;
+    vertical-align: top;
+    text-align: left!important;
     p {
       font-style: italic;
       font-size: 0.8em;

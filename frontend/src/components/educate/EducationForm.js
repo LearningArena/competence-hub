@@ -1,11 +1,9 @@
 import React from 'react'
 import { useEffect } from 'react'
-import { useState } from 'react'
 import { useContext } from 'react'
 import { LanguageContext } from '../../context/LanguageContext'
 import { formActions } from './FormActions'
 import {allEducationFields} from '../../data/queries'
-import { dummyCategories } from '../../data/dummy/courses'
 import { CheckboxInput, DateInput, DropdownInput, Form, ImageInput, MultiDropdownInput, MultiLineInput, SingleLineInput } from './FormInputs'
 import { fields } from '../../data/fields'
 import StickyFormButtons from './StickyFormButtons'
@@ -22,12 +20,14 @@ import {
   isMobile,
   isMobileOnly
 } from "react-device-detect"
+import { useQuery } from '@apollo/client'
 
 const EducationForm = ({jsonData, formData, setFormData, submitForm}) => {
 
   const {strings} = useContext(LanguageContext)
   const {showPopup} = useContext(PopupContext)
   const {organization} = useContext(AuthContext)
+
   const integerFields = ['online', 'level', 'yrkeshogskolepoang', 'hours', 'price', 'seqf']
   const floatFields = ['credits']
   const dateFields = ['start_date', 'end_date', 'registration_end_date']

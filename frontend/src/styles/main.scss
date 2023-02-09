@@ -345,8 +345,6 @@ div.learn, div.educate {
 }
 
 
-
-
 .sidemenu {
   display: flex;
   flex-direction: column;
@@ -405,6 +403,14 @@ div.learn, div.educate {
       pointer-events: none;
   }
 }
+
+.educate-main {
+  .sidemenu .left .active {
+    background: $colArrowRight !important;
+    
+  }
+}
+
 
 //SEARCH BAR
 .search-bar-container {

@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { useContext } from 'react'
 import { Link, Redirect, Route, Switch, useLocation, useRouteMatch } from 'react-router-dom'
 import { LanguageContext } from '../../context/LanguageContext'
-import { AuthContext } from '../../context/AuthContext'
 import FullOrgInfoRoute from '../general/FullOrgInfoRoute'
 import AddEducation from './AddEducation'
 import EditEducation from './EditEducation'
@@ -17,7 +16,6 @@ const MyEducationOffers = () => {
   const {strings} = useContext(LanguageContext)
   const [formData, setFormData] = useState()
   const [editFormData, setEditFormData] = useState()
-  const {isAuthor} = useContext(AuthContext)
 
   const addActiveClass = (i, urls) => {
       return (
@@ -26,14 +24,12 @@ const MyEducationOffers = () => {
   }
 
   const addTabClass = () => {
-    if (!isAuthor && !editFormData) return 'two-tabs'
-    if (isAuthor && editFormData) return 'four-tabs'
+    if (editFormData) return 'three-tabs'
     else return 'two-tabs'
   }
 
   const urls = [
     `${match.url}/overview`,
-    isAuthor ? `${match.url}/orgoverview` : '',
     `${match.url}/add`,
     editFormData ? `${match.url}/edit/${editFormData.id}` : '' 
   ]
@@ -42,9 +38,8 @@ const MyEducationOffers = () => {
     <div >
       <div className={'tab-nav ' + addTabClass()}>
         <Link className={'tab-left tab-overview ' + addActiveClass(0, urls)} to={urls[0]}><h4>{strings.offerOverview}</h4></Link>
-        { isAuthor ? <Link className={'tab-center tab-org-overview ' + addActiveClass(1, urls)} to={urls[1]}><h4>{strings.offerOrgOverview}</h4></Link> : null }
-        <Link className={(editFormData ? 'tab-center' : 'tab-right') + ' tab-new ' + addActiveClass(2, urls)} to={urls[2]}><h4>{strings.offerAdd}</h4></Link>
-        { editFormData ? <Link className={'tab-right tab-edit ' + addActiveClass(3, urls)} to={urls[3]}><h4>{strings.courseEdit}</h4></Link> : null }
+        <Link className={(editFormData ? 'tab-center' : 'tab-right') + ' tab-new ' + addActiveClass(1, urls)} to={urls[1]}><h4>{strings.offerAdd}</h4></Link>
+        { editFormData ? <Link className={'tab-right tab-edit ' + addActiveClass(2, urls)} to={urls[2]}><h4>{strings.courseEdit}</h4></Link> : null }
       </div>
       <div className="tab-content">
         <Switch>
@@ -52,12 +47,12 @@ const MyEducationOffers = () => {
             <Redirect to={`${match.path}/overview`} />
           </Route>
           <Route path={`${match.path}/overview`}>
-            <MyEducationOverview />
+            <MyEducationOverview/>
           </Route>
           <Route path={`${match.path}/orgoverview`}>
             <MyOrgEducationOverview />
           </Route>
-          <FullOrgInfoRoute path={`${match.path}/add/:educationId?`}>
+          <FullOrgInfoRoute path={`${match.path}/add/:orgId?`}>
             <AddEducation formData={formData} setFormData={setFormData} />
           </FullOrgInfoRoute>
           <Route path={`${match.path}/edit/:educationId`}>
