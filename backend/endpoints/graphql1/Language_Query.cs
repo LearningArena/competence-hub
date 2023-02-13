@@ -17,7 +17,6 @@ public class Language_Query
 	private readonly Serilog.ILogger log = Log.ForContext<Keyword_Query>();
 
 	[HotChocolate.Types.UsePaging(MaxPageSize = Arena.MAX_PAGES, IncludeTotalCount = true)]
-	[HotChocolate.Data.UseProjection]
 	[HotChocolate.Data.UseFiltering]
 	[HotChocolate.Data.UseSorting]
 	public IQueryable<Language> languages([Service] Arena_Context context, Record_Status? record_status, int? id)

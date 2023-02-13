@@ -11,7 +11,6 @@ public class User_Mutation
 {
 	private readonly Serilog.ILogger log = Log.ForContext<User_Mutation>();
 
-	[HotChocolate.Data.UseProjection]
 	public IQueryable<User> users_update([Service] Arena_Context context, int id,
 		int? preference,
 		string firstname,

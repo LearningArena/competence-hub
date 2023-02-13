@@ -26,7 +26,6 @@ namespace Arena
 		private readonly Serilog.ILogger log = Log.ForContext<Inquiry_Query>();
 
 		[HotChocolate.Types.UsePaging(MaxPageSize = Arena.MAX_PAGES, IncludeTotalCount = true)]
-		[HotChocolate.Data.UseProjection]
 		[HotChocolate.Data.UseFiltering]
 		[HotChocolate.Data.UseSorting]
 		public IQueryable<Inquiry> inquiries([Service] Arena_Context context, Record_Status? record_status, int? id, Relationship? current_user_relationship)
