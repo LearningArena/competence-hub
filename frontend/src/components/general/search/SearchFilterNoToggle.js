@@ -35,12 +35,36 @@ const SearchFilterNoToggle = () => {
 
   const { activeFilters, setActiveFilters } = useContext(PaginationContext)
 
-  const [filters, setFilters] = useState([])
 
   const {strings}  = useContext(LanguageContext)
   const {data: dataEducationProviders} = useQuery(LIST_EDUCATION_PROVIDERS)
   const {data: dataEducationLocations} = useQuery(LIST_EDUCATION_LOCATIONS)
   const {categoriesList} = fields
+
+  const getUniqueValues = (list, key) => {
+    if (list && list.courses.nodes) {
+      const providers = list.courses.nodes
+        .map(item => item[key])
+        .filter(item => item !== null)
+      const uniqueProviders = [...new Set(providers)]
+      return uniqueProviders.map(item => ({value:item, label:item}))
+    } else {
+      return []
+    }
+  }
+
+  const filterCategories = [
+    {id:'category', name: strings.course.category, type: 'dropdown', items: categoriesList.map(cat => ({value: cat.slug, label: strings.categories[cat.slug]}))},
+    {id:'language', name: strings.course.language, type: 'dropdown', items: [
+      {value: 'SE', label: 'Svenska'},
+      {value: 'GB', label: 'Engelska'},
+    ]},
+    {id:'city', name: strings.course.city, type: 'dropdown', items: getUniqueValues(dataEducationLocations, 'city')},
+    {id:'education_provider', name: strings.course.provider, type: 'dropdown', items: getUniqueValues(dataEducationProviders, 'education_provider')},
+  ]
+
+  const [filters, setFilters] = useState(filterCategories)
+
 
   useEffect(() => {
     if (history.location.state) {
@@ -98,31 +122,6 @@ const SearchFilterNoToggle = () => {
   function isObject(object) {
     return object != null && typeof object === 'object';
   }
-
-
-
-
-  const getUniqueValues = (list, key) => {
-    if (list && list.courses.nodes) {
-      const providers = list.courses.nodes
-        .map(item => item[key])
-        .filter(item => item !== null)
-      const uniqueProviders = [...new Set(providers)]
-      return uniqueProviders.map(item => ({value:item, label:item}))
-    } else {
-      return []
-    }
-  }
-
-  const filterCategories = [
-    {id:'category', name: strings.course.category, type: 'dropdown', items: categoriesList.map(cat => ({value: cat.slug, label: strings.categories[cat.slug]}))},
-    {id:'language', name: strings.course.language, type: 'dropdown', items: [
-      {value: 'SE', label: 'Svenska'},
-      {value: 'GB', label: 'Engelska'},
-    ]},
-    {id:'city', name: strings.course.city, type: 'dropdown', items: getUniqueValues(dataEducationLocations, 'city')},
-    {id:'education_provider', name: strings.course.provider, type: 'dropdown', items: getUniqueValues(dataEducationProviders, 'education_provider')},
-  ]
 
   
   if (isMobileOnly) {
