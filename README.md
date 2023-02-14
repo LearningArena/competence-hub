@@ -8,7 +8,7 @@ The main function is to help educational organizations register/present their of
 
 This repo is an outcome of a pilot within a Swedish [research project](https://www.vinnova.se/p/pilot-digital-infrastruktur-kll/), funded by Sweden's innovation agency. It is a proof-of-concept looking at issues surrounding digital cooperation and infrastructure within the context of professional education / skills development.
 
-This repo is managed by RISE Reseatch Insititutes of Sweden, area of Lifelong Learning, contact [@ollenyman](https://github.com/ollenyman).
+This repo is managed by RISE Reseatch Insititutes of Sweden, area of Lifelong Learning, contact [@ollenyman](https://github.com/ollenyman) at [support@kompetensmatchning.se](mailto:support@kompetensmatchning.se).
 
 ## [Backend](/backend)
 |||
