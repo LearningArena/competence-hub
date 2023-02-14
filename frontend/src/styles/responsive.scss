@@ -326,12 +326,13 @@
       .page-logo {
          grid-row: 1/3;
          margin-top: -2em;
-         svg {
-            width: 5rem;
-            height: 3em;
-            padding: 0 0.5em !important;
-            margin-bottom: 0;
-         }
+      }
+      
+      .page-logo-icon {
+         width: 5rem;
+         height: 3em;
+         padding: 0 0.5em !important;
+         margin-bottom: 0;
       }
    
       h1.page-title {
