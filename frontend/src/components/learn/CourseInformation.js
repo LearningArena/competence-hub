@@ -207,7 +207,7 @@ const CourseInformation = ({courseInfo}) => {
         
       
         
-        <span className='contact-email'><strong>{strings.course.contactEmail}</strong><a href={'"mailto:' + courseInfo.email_of_contact_person + '"'}> {courseInfo.email_of_contact_person}</a></span>
+        <span className='contact-email'><strong>{strings.course.contactEmail}</strong><a href={'mailto:' + courseInfo.email_of_contact_person}> {courseInfo.email_of_contact_person}</a></span>
       </div>
     </div>
   )
