@@ -13,7 +13,7 @@ public class Extpoint_Mutation
 {
 	private readonly Serilog.ILogger log = Log.ForContext<Extpoint_Mutation>();
 
-	[HotChocolate.Data.UseProjection]
+
 	public IQueryable<Extpoint> extpoints_update([Service] Arena_Context context, int id, string name, string url, Extapi.Parser? parser)
 	{
 		int user_id = context.current_user_id();
@@ -29,7 +29,7 @@ public class Extpoint_Mutation
 	}
 
 
-	[HotChocolate.Data.UseProjection]
+
 	public IQueryable<Extpoint> extpoints_add([Service] Arena_Context context, string url)
 	{
 		int user_id = context.current_user_id();

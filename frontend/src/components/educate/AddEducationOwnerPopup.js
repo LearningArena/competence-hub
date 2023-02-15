@@ -6,7 +6,7 @@ import { useState } from 'react'
 import { AuthContext } from '../../context/AuthContext'
 import { LanguageContext } from '../../context/LanguageContext'
 import { PopupContext } from '../../context/PopupContext'
-import { ALL_USERS, COURSE_ADD_OWNER, COURSE_OWNERS, ORG_USERS } from '../../data/queries'
+import { COURSE_ADD_OWNER, COURSE_OWNERS, ORG_USERS } from '../../data/queries'
 import { DropdownInput, Form } from './FormInputs'
 
 const AddEducationOwnerPopup = ({course}) => {
@@ -14,32 +14,35 @@ const AddEducationOwnerPopup = ({course}) => {
   const {strings} = useContext(LanguageContext)
   const {hidePopup} = useContext(PopupContext)
   const {organization} = useContext(AuthContext)
-  //const {data} = useQuery(ALL_USERS)
   const {data} = useQuery(ORG_USERS, {variables: {id: organization.id}})
   const [addOwnerGQL, mutationData] = useMutation(COURSE_ADD_OWNER, {refetchQueries: [
     {query: COURSE_OWNERS, variables: {id:course.id}}
   ]})
   const {data: ownerData} = useQuery(COURSE_OWNERS, {variables: {id:course.id}})
   //const users = data?.users ?? []
-  const users = data?.organizations.nodes?.[0]?.organization_user_edges.map(v => v.user) ?? []
-  const owners = ownerData?.courseById?.course_user_edges ?? []
-  const usersExceptOwners = users.filter(user => {
-    return !owners.some(owner => {
-      return owner.user.id === user.id
-    })
-  })
+  const [users, setUsers] = useState([])
+  const [owners, setOwners] = useState([])
+  const [usersExceptOwners, setUsersExceptOwners] = useState([])
   const [formData, setFormData] = useState({})
 
 
   useEffect(() => {
-    console.log(data)
+    setUsers(data?.users?.nodes ?? [])
   }, [data])
   // useEffect(() => {
   //   console.log(formData)
   // }, [formData])
-  // useEffect(() => {
-  //   console.log(ownerData)
-  // }, [ownerData])
+  useEffect(() => {
+    setOwners(ownerData?.users?.nodes ?? [])
+  }, [ownerData])
+  useEffect(() => {
+    setUsersExceptOwners(users.filter(user => {
+      return !owners.some(owner => {
+        console.log("Setting", user.id, owner.id)
+        return owner.id === user.id
+      })
+    }))
+  }, [users, owners])
 
   const handleChange = (evt) => {
     const selectedUser = users.find(user => {
@@ -72,8 +75,8 @@ const AddEducationOwnerPopup = ({course}) => {
     </div>
     <h5>{strings.popup.AddEducationOwnerPopup.owner}</h5>
     <ul>
-      {owners.map(({user}) => (
-        <li>{user.firstname} {user.lastname}, {user.username}</li>
+      {owners.map((user) => (
+        <li key={user.username}>{user.firstname} {user.lastname}, {user.username}</li>
       ))}
     </ul>
     <Form formData={formData} setFormData={setFormData} onSubmit={handleSubmit}>

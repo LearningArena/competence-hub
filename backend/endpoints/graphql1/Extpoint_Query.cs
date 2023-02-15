@@ -14,7 +14,6 @@ public class Extpoint_Query
 	private readonly Serilog.ILogger log = Log.ForContext<Extpoint_Query>();
 
 	[HotChocolate.Types.UsePaging(MaxPageSize = Arena.MAX_PAGES, IncludeTotalCount = true)]
-	[HotChocolate.Data.UseProjection]
 	[HotChocolate.Data.UseFiltering]
 	[HotChocolate.Data.UseSorting]
 	public IQueryable<Extpoint> extpoints([Service] Arena_Context context, Record_Status? record_status, int? id)

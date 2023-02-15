@@ -18,7 +18,6 @@ public class Course_Mutation
 	private readonly Serilog.ILogger log = Log.ForContext<Course_Mutation>();
 
 
-	[HotChocolate.Data.UseProjection]
 	public IQueryable<Course> course_add([Service] Arena_Context context, string title, float? credits, DateTime? start_date,
 		DateTime? end_date, DateTime? registration_start_date, DateTime? registration_end_date, Studyform? studyform, string required_tools, string prerequisite, string literature, int? level,
 		string verbs, string studypace, int? price, int? online, string diplomas, string description, string subtitle,
@@ -155,7 +154,6 @@ public class Course_Mutation
 	
 	
 	[HotChocolate.Data.UseFirstOrDefault]
-	[HotChocolate.Data.UseProjection]
 	public IQueryable<Course> course_copy([Service] Arena_Context context, int id)
 	{
 		int user_id = context.current_user_id();
@@ -174,7 +172,6 @@ public class Course_Mutation
 	}
 
 
-	[HotChocolate.Data.UseProjection]
 	public IQueryable<Course> courses_update([Service] Arena_Context context, string title, float? credits, DateTime? start_date,
 		DateTime? end_date, DateTime? registration_start_date, DateTime? registration_end_date, Studyform? studyform, string required_tools, string prerequisite, string literature, int? level,
 		string verbs, string studypace, int? price, int? online, string diplomas, string description, string subtitle,
