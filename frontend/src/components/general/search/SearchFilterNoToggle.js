@@ -8,11 +8,6 @@ import FadeIn from 'react-fade-in'
 import { fields } from '../../../data/fields'
 import { PaginationContext } from '../../../context/PaginationContext'
 import {
-  BrowserView,
-  MobileView,
-  MobileOnlyView,
-  isBrowser,
-  isMobile,
   isMobileOnly
 } from "react-device-detect"
 
@@ -41,26 +36,14 @@ const SearchFilterNoToggle = () => {
   const {data: dataEducationLocations} = useQuery(LIST_EDUCATION_LOCATIONS)
   const {categoriesList} = fields
 
-  const getUniqueValues = (list, key) => {
-    if (list && list.courses.nodes) {
-      const providers = list.courses.nodes
-        .map(item => item[key])
-        .filter(item => item !== null)
-      const uniqueProviders = [...new Set(providers)]
-      return uniqueProviders.map(item => ({value:item, label:item}))
-    } else {
-      return []
-    }
-  }
-
   const filterCategories = [
     {id:'category', name: strings.course.category, type: 'dropdown', items: categoriesList.map(cat => ({value: cat.slug, label: strings.categories[cat.slug]}))},
     {id:'language', name: strings.course.language, type: 'dropdown', items: [
-      {value: 'SE', label: 'Svenska'},
-      {value: 'GB', label: 'Engelska'},
+      {value: fields.languages.swedish.slug, label: strings.languages[fields.languages.swedish.slug]},
+      {value: fields.languages.english.slug, label: strings.languages[fields.languages.english.slug]},
     ]},
-    {id:'city', name: strings.course.city, type: 'dropdown', items: getUniqueValues(dataEducationLocations, 'city')},
-    {id:'education_provider', name: strings.course.provider, type: 'dropdown', items: getUniqueValues(dataEducationProviders, 'education_provider')},
+    {id:'city', name: strings.course.city, type: 'dropdown', items: dataEducationLocations?.course_locations.map(item => ({value:item, label:item}))},
+    {id:'education_provider', name: strings.course.provider, type: 'dropdown', items: dataEducationProviders?.course_providers.map(item => ({value:item, label:item}))},
   ]
 
   const [filters, setFilters] = useState(filterCategories)
