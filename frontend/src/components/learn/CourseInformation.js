@@ -156,7 +156,7 @@ const CourseInformation = ({courseInfo}) => {
             <TitledItem title={strings.course.category} text={parseMultiValue(strings.categories, courseInfo.category)} />
             <TitledItem title={strings.course.provider} text={courseInfo.education_provider} />
             <TitledItem title={strings.course.language} text={parseMultiValue(strings.languages, courseInfo.language)} />
-            <TitledItem title={strings.course.import_source} text={fields.import_sources[courseInfo.import_source].name} />
+            <TitledItem title={strings.course.import_source} text={fields.import_sources[courseInfo.import_source]?.name} />
           </ul>
           
         </div>
