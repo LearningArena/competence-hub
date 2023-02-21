@@ -62,7 +62,7 @@ A default admin user will be created with username "admin" and password "default
 
 Currently set up for scheduled night runs - see backend/Program.cs  
 To trigger manually
-- Go to graphql web tool at [http://localhost:8000/graphql/index.html](http://localhost:8000/graphql/index.html)
+- Go to graphql web tool at [http://localhost:8000/graphql](http://localhost:8000/graphql)
 - Login by entering query
 ```
 mutation{login(username:"admin@example.com",password:"default")}
