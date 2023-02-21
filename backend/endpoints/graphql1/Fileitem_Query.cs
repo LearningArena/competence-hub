@@ -24,7 +24,6 @@ public class Fileitem_Query
 	private readonly Serilog.ILogger log = Log.ForContext<Fileitem_Query>();
 
 	[HotChocolate.Types.UsePaging(MaxPageSize = Arena.MAX_PAGES, IncludeTotalCount = true)]
-	[HotChocolate.Data.UseProjection]
 	[HotChocolate.Data.UseFiltering]
 	[HotChocolate.Data.UseSorting]
 	public IQueryable<Fileitem> fileitems([Service] Arena_Context context, Record_Status? record_status, int? id)

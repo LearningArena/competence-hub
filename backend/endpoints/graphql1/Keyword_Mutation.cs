@@ -13,7 +13,6 @@ public class Keyword_Mutation
 {
 	private readonly Serilog.ILogger log = Log.ForContext<Keyword_Mutation>();
 
-	[HotChocolate.Data.UseProjection]
 	public IQueryable<Keyword> keywords_update([Service] Arena_Context context, int id, string name, Record_Status? record_status)
 	{
 		if (context.is_siteadmin() == false) {return null;}
@@ -26,7 +25,6 @@ public class Keyword_Mutation
 		return context.keywords.Where(x => x.id == id);
 	}
 
-	[HotChocolate.Data.UseProjection]
 	public IQueryable<Keyword> keywords_add([Service] Arena_Context context, string name)
 	{
 		if (context.is_siteadmin() == false){return null;}

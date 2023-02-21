@@ -106,7 +106,7 @@ export const ImageInput = (props) => {
 //   )
 // }
 export const DropdownInput = (props) => {
-  const {id, text, items, placeholder, popupText, ...rest} = props
+  const {id, disabled, text, items, placeholder, popupText, ...rest} = props
   const {data} = useContext(FormContext)
   const newItems = items.map(item => ({value:item.value,label:item.text}))
   const value = data?.formData?.[id]
@@ -122,6 +122,7 @@ export const DropdownInput = (props) => {
   return (
     <InputCommon key={id} {...props}>
         <Select
+          isDisabled={disabled}
           options={newItems}
           placeholder={placeholder}
           id={id}
@@ -136,12 +137,13 @@ export const DropdownInput = (props) => {
   )
 }
 export const MultiDropdownInput = (props) => {
-  const {id, text, items, placeholder, popupText, ...rest} = props
+  const {id, disabled, text, items, placeholder, popupText, ...rest} = props
   const {data} = useContext(FormContext)
   const value = (typeof data.formData[id] === 'string') ? [{value:data.formData[id], label:data.formData[id]}] : data.formData[id]
   return (
     <InputCommon key={id} {...props}>
         <Select
+          isDisabled={disabled}
           options={items}
           placeholder={placeholder}
           isMulti

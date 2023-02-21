@@ -15,7 +15,6 @@ public class Organization_Mutation
 {
 	private readonly Serilog.ILogger log = Log.ForContext<Organization_Mutation>();
 
-	[HotChocolate.Data.UseProjection]
 	public IQueryable<Organization> organizations_update([Service] Arena_Context context, int id, string name, string address, string image_logo, string description, string phonenumber, string website, string email)
 	{
 		int user_id = context.current_user_id();
@@ -40,7 +39,7 @@ public class Organization_Mutation
 	}
 
 
-	[HotChocolate.Data.UseProjection]
+
 	public IQueryable<Organization> organizations_add([Service] Arena_Context context, string orgid, string name, string address, string image_logo, string description, string phonenumber, string website, string email)
 	{
 		int user_id = context.current_user_id(Record_Status.APPROVED);

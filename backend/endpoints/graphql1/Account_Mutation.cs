@@ -85,6 +85,7 @@ public class Account_Mutation
 		{
 			return Primitive_Result.REGISTER_ORGID_INVALID;
 		}
+		orgid = orgid.Replace("-", "");
 		Keycloak_Access_Token token1 = Keycloak.token(Arena.config_keycloak_admincli);
 		if (token1.access_token == null)
 		{

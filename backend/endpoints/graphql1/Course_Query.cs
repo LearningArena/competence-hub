@@ -15,7 +15,6 @@ public class Course_Query
 	private readonly Serilog.ILogger log = Log.ForContext<Course_Query>();
 
 	[HotChocolate.Types.UsePaging(MaxPageSize = Arena.MAX_PAGES, IncludeTotalCount = true)]
-	[HotChocolate.Data.UseProjection]
 	[HotChocolate.Data.UseFiltering]
 	[HotChocolate.Data.UseSorting]
 	public IQueryable<Course> courses([Service] Arena_Context context, Record_Status? record_status, int? id, int[] keywords, Relationship? current_user_relationship)
@@ -64,7 +63,6 @@ public class Course_Query
 	}
 
 	[HotChocolate.Types.UseOffsetPaging(MaxPageSize = Arena.MAX_PAGES, IncludeTotalCount = true)]
-	[HotChocolate.Data.UseProjection]
 	[HotChocolate.Data.UseFiltering]
 	[HotChocolate.Data.UseSorting]
 	public IQueryable<Course> courses_offset([Service] Arena_Context context, Record_Status? record_status, int? id, int[] keywords, Relationship? current_user_relationship)

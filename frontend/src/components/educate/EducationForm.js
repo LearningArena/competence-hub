@@ -85,6 +85,17 @@ const EducationForm = ({jsonData, formData, setFormData, submitForm}) => {
     )
   }
 
+  let importDisabled = false
+  if (formData) {
+    importDisabled = (formData.import_source === undefined || formData.import_source === '') ? (false) : (true)
+  }
+  const ImportWarning = () => {
+    if (formData.import_source === undefined || formData.import_source === '')
+      return null
+    else
+      return (<span>{ strings.course.maindetailsImportWarning }</span>)
+  }
+
   // const [menuPlace, setMenuPlace] = useState('bottom')
 
   let menuPlace = "top";
@@ -141,57 +152,58 @@ const EducationForm = ({jsonData, formData, setFormData, submitForm}) => {
       </div>
       <button className="button" onClick={handleSubmit}><h3>{strings.addEducation.save}</h3></button>
     </StickyFormButtons>
-    <div className= 'form-margin'>
+    <div className='form-margin'>
       <h4>{strings.course.maindetailsHeader}</h4>
+      <ImportWarning/>
       <div className='columns'>
         <div className='column-left'>
-          <SingleLineInput id='title' limit={50} popupText={strings.course.popup.title} text={strings.course.title} placeholder={strings.placeholders.title}/>
+          <SingleLineInput id='title' disabled={importDisabled} limit={50} popupText={strings.course.popup.title} text={strings.course.title} placeholder={strings.placeholders.title}/>
           {/* <SingleLineInput disabled id='education_provider' popupText={strings.course.popup.provider} text={strings.course.provider} placeholder={strings.placeholders.provider}/> */}
-          <DropdownInput className='dropdown' id='education_provider' menuPlacement={menuPlace} placeholder={strings.placeholders.provider}
+          <DropdownInput disabled={importDisabled} className='dropdown' id='education_provider' menuPlacement={menuPlace} placeholder={strings.placeholders.provider}
           items={allUserOrganizations.author?.map(item => {return {
               value: item.name, text: item.name }})
            } 
         />
         </div>
         <div className='column-right'>
-          <SingleLineInput id='link' popupText={strings.course.popup.link} text={strings.course.url} placeholder={strings.placeholders.url}/>
+          <SingleLineInput id='link' disabled={importDisabled} popupText={strings.course.popup.link} text={strings.course.url} placeholder={strings.placeholders.url}/>
           <div>
             <label>{strings.course.providerLogo}</label>
             <img src={formData?.image_provider}/>
           </div>
         </div> 
       </div>
-      <MultiLineInput id='subtitle' limit={200} popupText={strings.course.popup.subtitle}text={strings.course.summary} placeholder={strings.placeholders.summary} />
+      <MultiLineInput id='subtitle' disabled={importDisabled} limit={200} popupText={strings.course.popup.subtitle}text={strings.course.summary} placeholder={strings.placeholders.summary} />
       <h4>{strings.course.contentHeader}</h4> 
-      <MultiLineInput id='description' limit={700} popupText={strings.course.popup.description} text={strings.course.description} placeholder={strings.placeholders.description}/>
+      <MultiLineInput id='description' disabled={importDisabled} limit={700} popupText={strings.course.popup.description} text={strings.course.description} placeholder={strings.placeholders.description}/>
       <div className='columns'>
         <div className='column-left'>
-          <SingleLineInput id='required_tools' popupText={strings.course.popup.tools} text={strings.course.tools} placeholder={strings.placeholders.tools}/>
-          <SingleLineInput id='prerequisite' popupText={strings.course.popup.prerequisites} text={strings.course.prerequisites} placeholder={strings.placeholders.prerequisite}/>
+          <SingleLineInput id='required_tools' disabled={importDisabled} popupText={strings.course.popup.tools} text={strings.course.tools} placeholder={strings.placeholders.tools}/>
+          <SingleLineInput id='prerequisite' disabled={importDisabled} popupText={strings.course.popup.prerequisites} text={strings.course.prerequisites} placeholder={strings.placeholders.prerequisite}/>
         </div>
         <div className='column-right'>
-          <SingleLineInput id='literature' popupText={strings.course.popup.literature} text={strings.course.literature} placeholder={strings.placeholders.literature}/>
-          <SingleLineInput id='verbs' popupText={strings.course.popup.verbs} text={strings.course.verbs} placeholder={strings.placeholders.verbs}/>
+          <SingleLineInput id='literature' disabled={importDisabled} popupText={strings.course.popup.literature} text={strings.course.literature} placeholder={strings.placeholders.literature}/>
+          <SingleLineInput id='verbs' disabled={importDisabled} popupText={strings.course.popup.verbs} text={strings.course.verbs} placeholder={strings.placeholders.verbs}/>
         </div>
       </div>   
 
       <div className='columns'>
         <div className='column-left'>
           <h5>{strings.course.scopeHeader}</h5>
-          <SingleLineInput id='credits' popupText={strings.course.popup.credits} text={strings.course.credits} placeholder={strings.placeholders.credits}/>
-          <SingleLineInput id='yrkeshogskolepoang' popupText={strings.course.popup.creditsprof} text={strings.course.creditsprof} placeholder={strings.placeholders.creditsprof}/>
-          <SingleLineInput id='hours' popupText={strings.course.popup.hours} text={strings.course.hours} placeholder={strings.placeholders.hours}/>
+          <SingleLineInput id='credits' disabled={importDisabled} popupText={strings.course.popup.credits} text={strings.course.credits} placeholder={strings.placeholders.credits}/>
+          <SingleLineInput id='yrkeshogskolepoang' disabled={importDisabled} popupText={strings.course.popup.creditsprof} text={strings.course.creditsprof} placeholder={strings.placeholders.creditsprof}/>
+          <SingleLineInput id='hours' disabled={importDisabled} popupText={strings.course.popup.hours} text={strings.course.hours} placeholder={strings.placeholders.hours}/>
         </div>
         <div className='column-right'>
           <h5>{strings.course.levelHeader}</h5> 
-          <DropdownInput id='level' popupText={strings.course.popup.level} text={strings.course.level} placeholder={strings.course.chooseLevel}
+          <DropdownInput id='level' disabled={importDisabled} popupText={strings.course.popup.level} text={strings.course.level} placeholder={strings.course.chooseLevel}
             items={[
               {value:"0", text:strings.course.levels.basic},
               {value:"1", text:strings.course.levels.medium},
               {value:"2", text:strings.course.levels.advanced},
             ]} 
           />
-          <DropdownInput id='seqf' popupText={strings.course.popup.seqf} text={strings.course.seqf} placeholder={strings.course.chooseSeqf}
+          <DropdownInput id='seqf' disabled={importDisabled} popupText={strings.course.popup.seqf} text={strings.course.seqf} placeholder={strings.course.chooseSeqf}
             items={[
               {value:"1", text:strings.course.seqfList.one},
               {value:"2", text:strings.course.seqfList.two},
@@ -209,17 +221,17 @@ const EducationForm = ({jsonData, formData, setFormData, submitForm}) => {
         <h5>{strings.course.datefreq}</h5>
           <div className='column-left-double'>
             <div className={'leftone' + fieldClass}>
-              <DateInput id='start_date' popupText={strings.course.popup.start} text={strings.course.start}/>
+              <DateInput id='start_date' disabled={importDisabled} popupText={strings.course.popup.start} text={strings.course.start}/>
             </div>
             <div className={'lefttwo' + fieldClass}>
-              <DateInput id='end_date' popupText={strings.course.popup.end} text={strings.course.end}/>
+              <DateInput id='end_date' disabled={importDisabled} popupText={strings.course.popup.end} text={strings.course.end}/>
             </div>
           </div>
-          <DateInput id='registration_end_date' popupText={strings.course.popup.registerDate} text={strings.course.registerDate}/>
+          <DateInput id='registration_end_date' disabled={importDisabled} popupText={strings.course.popup.registerDate} text={strings.course.registerDate}/>
         </div>
         <div className='column-right'>
         <h5>{strings.course.formatHeader}</h5> 
-          <DropdownInput id='studypace' popupText={strings.course.popup.pace} text={strings.course.pace} placeholder={strings.course.choosePace}
+          <DropdownInput id='studypace' disabled={importDisabled} popupText={strings.course.popup.pace} text={strings.course.pace} placeholder={strings.course.choosePace}
             items={[
               {value:'100%', text:'100%'},
               {value:'50%', text:'50%'},
@@ -228,7 +240,7 @@ const EducationForm = ({jsonData, formData, setFormData, submitForm}) => {
               {value:'other', text:strings.course.other},
             ]}
           />
-          <DropdownInput id='online' popupText={strings.course.popup.format} text={strings.course.format} placeholder={strings.course.chooseFormat}
+          <DropdownInput id='online' disabled={importDisabled} popupText={strings.course.popup.format} text={strings.course.format} placeholder={strings.course.chooseFormat}
             items={[
               {value:"0", text:strings.course.formats.onlocation},
               {value:"1", text:strings.course.formats.distance},
@@ -244,34 +256,34 @@ const EducationForm = ({jsonData, formData, setFormData, submitForm}) => {
       <h4>{strings.course.detailHeader}</h4>
       <div className='columns'>
         <div className='column-left'>
-          <MultiDropdownInput classNamePrefix='dropdown' id='category' popupText={strings.course.popup.category} text={strings.course.category} placeholder={strings.course.chooseCategory}
+          <MultiDropdownInput classNamePrefix='dropdown' id='category' disabled={importDisabled} popupText={strings.course.popup.category} text={strings.course.category} placeholder={strings.course.chooseCategory}
             items={categoriesList.map(cat => ({value:cat.slug, label:strings.categories[cat.slug]}))}
           />
-          <SingleLineInput id='diplomas' popupText={strings.course.popup.certificates}  text={strings.course.certificates} placeholder={strings.placeholders.certificates}/>
-          <SingleLineInput id='teachers' popupText={strings.course.popup.teacher} text={strings.course.teacher} placeholder={strings.placeholders.teacher}/>
+          <SingleLineInput id='diplomas' disabled={importDisabled} popupText={strings.course.popup.certificates}  text={strings.course.certificates} placeholder={strings.placeholders.certificates}/>
+          <SingleLineInput id='teachers' disabled={importDisabled} popupText={strings.course.popup.teacher} text={strings.course.teacher} placeholder={strings.placeholders.teacher}/>
         </div>
         <div className='column-right'>
-          <SingleLineInput id='price' popupText={strings.course.popup.price} text={strings.course.price} placeholder={strings.placeholders.price}/><span className="currency">SEK</span>
-          <MultiDropdownInput classNamePrefix='dropdown' id='language' text={strings.course.language} placeholder={strings.course.chooseCategory}
+          <SingleLineInput id='price' disabled={importDisabled} popupText={strings.course.popup.price} text={strings.course.price} placeholder={strings.placeholders.price}/><span className="currency">SEK</span>
+          <MultiDropdownInput classNamePrefix='dropdown' id='language' disabled={importDisabled} text={strings.course.language} placeholder={strings.course.chooseCategory}
             items={[
               {value: fields.languages.swedish.slug, label: strings.course.languageList[fields.languages.swedish.id]},
               {value: fields.languages.english.slug, label: strings.course.languageList[fields.languages.english.id]},
             ]}
           />
-          <SingleLineInput id='city'  popupText={strings.course.popup.city} text={strings.course.city} placeholder={strings.placeholders.city}/>
+          <SingleLineInput id='city' disabled={importDisabled} popupText={strings.course.popup.city} text={strings.course.city} placeholder={strings.placeholders.city}/>
         </div>
       </div>
-      <MultiLineInput id='bioteachers' popupText={strings.course.popup.teacherBio}  text={strings.course.teacherBio} placeholder={strings.placeholders.teacherBio}/>
+      <MultiLineInput id='bioteachers' disabled={importDisabled} popupText={strings.course.popup.teacherBio}  text={strings.course.teacherBio} placeholder={strings.placeholders.teacherBio}/>
       <ImageInput id='image_feature' popupText={strings.course.popup.featureImage} text={strings.course.featureImage}/>
       <span className= 'upload-specifications'>Supported file formats: JPG, JPEG, PNG. Minimum recommended resolution 600x400.</span>
 
       <h4>{strings.course.contactHeader}</h4>
       <div className='columns'>
         <div className='column-left'>
-          <SingleLineInput id='name_of_contact_person' popupText={strings.course.popup.contactPerson} text={strings.course.contactPerson} placeholder={strings.placeholders.contactPerson}/>
+          <SingleLineInput id='name_of_contact_person' disabled={importDisabled} popupText={strings.course.popup.contactPerson} text={strings.course.contactPerson} placeholder={strings.placeholders.contactPerson}/>
         </div>
         <div className='column-right'>
-          <SingleLineInput id='email_of_contact_person' popupText={strings.course.popup.contactEmail} text={strings.course.contactEmail} placeholder={strings.placeholders.contactEmail}/>
+          <SingleLineInput id='email_of_contact_person' disabled={importDisabled} popupText={strings.course.popup.contactEmail} text={strings.course.contactEmail} placeholder={strings.placeholders.contactEmail}/>
         </div>
       </div>
       <div className='columns'>

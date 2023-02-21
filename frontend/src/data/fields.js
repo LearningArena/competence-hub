@@ -83,6 +83,18 @@ const languages = {
   },
 }
 
+const import_sources = {
+  SUSA_NAVET: {
+    id: 0, name: 'SUSA-navet'
+  },
+  GOTEBORGS_TEKNISKA_COLLEGE: {
+    id: 1, name: 'Göteborgs Tekniska College'
+  },
+  LEARNING_4_PROFESSIONALS: {
+    id: 2, name: 'Learning 4 Professionals'
+  }
+}
+
 //For convenience, this can be used to iterate through categories
 const categoriesList = Object.values(categories)
 
@@ -93,5 +105,6 @@ export const fields = {
   categories,
   categoriesList,
   languages,
+  import_sources,
   record_status,
 }

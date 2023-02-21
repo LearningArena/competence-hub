@@ -70,7 +70,7 @@ const AuthContextProvider = (props) => {
       setOrganization(org)
       setAllUserOrganizations(orgs)
     } else {
-      console.log('no org')
+      //console.log('no org')
     }
   }, [orgQuery.data])
 
@@ -135,7 +135,7 @@ const AuthContextProvider = (props) => {
   // const orgHasMissingFields = () => Object.entries(organization)
   //   .filter(entry => entry[1] === null)
   //   .map(entry => entry[0])
-  const orgHasMissingFields = () => organization.image_logo === null
+  const orgHasMissingFields = () => organization.name === null
 
   return (
     <AuthContext.Provider value={{user, updateAuth, updateSignupOrg, signupOrg, logout, organization, allUserOrganizations, userLoaded, orgHasMissingFields,passwordResetMode, isAuthor}}>

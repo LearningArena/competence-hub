@@ -16,7 +16,6 @@ public class Fileitem_Mutation
 {
 	private readonly Serilog.ILogger log = Log.ForContext<Fileitem_Mutation>();
 
-	[HotChocolate.Data.UseProjection]
 	public IQueryable<Fileitem> fileitems_update([Service] Arena_Context context, int id, string name)
 	{
 		int user_id = context.current_user_id();
@@ -36,7 +35,7 @@ public class Fileitem_Mutation
 	}
 
 
-	[HotChocolate.Data.UseProjection]
+
 	public IQueryable<Fileitem> fileitems_add([Service] Arena_Context context, string name)
 	{
 		if (context.is_siteadmin() == false){throw HCExceptions.e(Primitive_Result.ADMIN_REQUIRED);}
