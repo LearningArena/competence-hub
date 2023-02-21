@@ -4,7 +4,7 @@
 		"id"            : {"edit":"raw", "filter":"input", "htmltype":"number", "prefix":"", "width":"80px"},
 		"record_status" : {"edit":"option", "filter":"option", "htmltype":"string", "prefix":"💡"},
 		"time_created"  : {"edit":"input", "filter":"input", "htmltype":"datetime", "prefix":"📅"},
-		"time_modifed"  : {"edit":"input", "filter":"input", "htmltype":"datetime", "prefix":"📅"},
+		"time_modified" : {"edit":"input", "filter":"input", "htmltype":"datetime", "prefix":"📅"},
 		"title"         : {"edit":"input", "filter":"input", "htmltype":"string", "prefix":""},
 		"name"          : {"edit":"input", "filter":"input", "htmltype":"string", "prefix":""},
 		"firstname"     : {"edit":"input", "filter":"input", "htmltype":"string", "prefix":""},
