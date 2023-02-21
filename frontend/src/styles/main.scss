@@ -404,13 +404,14 @@ div.learn, div.educate {
   }
 }
 
-.educate-main {
-  .sidemenu .left .active {
-    background: $colArrowRight !important;
-    
-  }
-}
 
+.sidemenu.left .active {
+  background: $colArrowRight;
+  h3 {
+    color: $colEduBG;
+  }
+  
+}
 
 //SEARCH BAR
 .search-bar-container {

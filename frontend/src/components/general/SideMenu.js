@@ -51,6 +51,9 @@ const SideMenu = ({items, placement}) => {
     <div className={'sidemenu ' + placement}>
       {isMobileOnly ? BurgerNavButton : ''}
       {items.map(item => {
+        if (item.heading) {
+          return (<h2 key={item.heading} className='centered-header'>{item.heading}</h2>)
+        }
         let idSlug = Slugify(item.title ? item.title : "");
         let isActive = false
         let newSearch

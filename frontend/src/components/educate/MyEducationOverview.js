@@ -48,6 +48,9 @@ const MyEducationOverview = (props) => {
       return
     }
     const values = queryString.parse(search)
+    if (!values.org) {
+      return
+    }
     getCurrent({variables: { orgid: parseInt(values.org), record_status: values.filter ? filters[values.filter] : fields.record_status.approved}})
       .then(({ loading, error, data }) => {
         setCourses(data.courses.nodes)
@@ -85,10 +88,10 @@ const MyEducationOverview = (props) => {
       // <p className={rowClass+'text'}>{strings.course.statuses[course.record_status]}</p>,
       <p className='text'>{strings.overview.lastChangedBy(formatDate(course.time_modified), "author")}</p>,
       <div className='buttons'>
-        <div><button className='button icon-button icon-only table'><EditIcon onClick={() => history.push('/educate/myeducation/edit/' + course.id)} />{ strings.overview.edit }</button><br/></div>
-        <div><button className='button icon-button icon-only table'><CopyIcon onClick={() => history.push('/educate/myeducation/add/' + course.id)} />{ strings.overview.duplicate }</button><br/></div>
-        <div><button className='button icon-button icon-only table'><OwnerIcon onClick={() => showPopup(<AddEducationOwnerPopup course={course} />, 'popup-basic noscroll')} />{ strings.overview.reassign }</button></div>
-        <div><button className='button icon-button icon-only table'><BinIcon onClick={() => showPopup(<ConfirmDeleteCoursePopup course={course}/>)} />{ strings.overview.remove }</button></div>
+        <div><button className='button icon-button icon-only table' onClick={() => history.push('/educate/myeducation/edit/' + course.id)}><EditIcon />{ strings.overview.edit }</button><br/></div>
+        <div><button className='button icon-button icon-only table' onClick={() => history.push('/educate/myeducation/add/' + course.id)}><CopyIcon />{ strings.overview.duplicate }</button><br/></div>
+        <div><button className='button icon-button icon-only table' onClick={() => showPopup(<AddEducationOwnerPopup course={course} />, 'popup-basic noscroll')}><OwnerIcon/>{ strings.overview.reassign }</button></div>
+        <div><button className='button icon-button icon-only table' onClick={() => showPopup(<ConfirmDeleteCoursePopup course={course}/>)}><BinIcon />{ strings.overview.remove }</button></div>
       </div>
     ]
   }

@@ -549,7 +549,7 @@ mutation InquiryRemove($id: Int!) {
 `
 
 export const MY_EDUCATIONS = gql`
-query UsersEducations($num: Int, $before: String, $after: String, $order: [CourseSortInput!], $filters: CourseFilterInput!) {
+query UsersEducations($num: Int, $before: String, $after: String, $order: [CourseSortInput!], $filters: CourseFilterInput) {
   courses(order: $order, first: $num, before:$before, after: $after, where: $filters, current_user_relationship:AUTHOR) {
     nodes {
       title
@@ -558,6 +558,7 @@ query UsersEducations($num: Int, $before: String, $after: String, $order: [Cours
       time_modified
       record_status
       education_provider
+      time_modified
     }
     pageInfo {
         hasNextPage
@@ -610,6 +611,7 @@ query OrgEducations($num: Int, $record_status: Record_Status = null, $before: St
       id
       record_status
       education_provider
+      time_modified
     }
   }
   cursors: courses(
@@ -825,6 +827,7 @@ mutation AddCourse(
   $description: String
   $diplomas: String
   $education_provider: String
+  $education_provider_id: Int
   $email_of_contact_person: String
   $end_date: DateTime
   $image_feature: String
@@ -856,6 +859,7 @@ mutation AddCourse(
     category: $category,
     city: $city,
     education_provider: $education_provider,
+    organization_id: $education_provider_id,
     name_of_contact_person: $name_of_contact_person,
     email_of_contact_person: $email_of_contact_person,
     image_feature: $image_feature,
