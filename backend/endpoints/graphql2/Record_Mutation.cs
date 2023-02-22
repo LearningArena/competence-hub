@@ -66,7 +66,7 @@ public class Record_Mutation
 		if(context.is_siteadmin() == false)
 		{
 			user_id = context.current_user_id();
-			if (user_id <= 0) {return -1;}
+			if (user_id == 0) {return -1;}
 		}
 		int r = 0;
 		for(int i = 0; i < ids.Length; ++i)
@@ -89,7 +89,7 @@ public class Record_Mutation
 		if(context.is_siteadmin() == false)
 		{
 			user_id = context.current_user_id();
-			if (user_id <= 0) {return -1;}
+			if (user_id == 0) {return -1;}
 		}
 		return DB.record_update1(conn, user_id, table, id, values);
 	}

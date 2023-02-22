@@ -4,16 +4,10 @@ import { LanguageContext } from '../../../context/LanguageContext'
 import { useQuery } from '@apollo/client'
 import { LIST_EDUCATION_PROVIDERS, LIST_EDUCATION_LOCATIONS } from '../../../data/queries'
 import FilterInput from './FilterInput'
-import FilterItem from './FilterItem'
 import FadeIn from 'react-fade-in'
 import { fields } from '../../../data/fields'
 import { PaginationContext } from '../../../context/PaginationContext'
 import {
-  BrowserView,
-  MobileView,
-  MobileOnlyView,
-  isBrowser,
-  isMobile,
   isMobileOnly
 } from "react-device-detect"
 
@@ -30,18 +24,30 @@ import {
     }, deps);
   };
 
-const SearchFilter = () => {
+const SearchFilterNoToggle = () => {
 
   const history = useHistory()
 
   const { activeFilters, setActiveFilters } = useContext(PaginationContext)
 
-  const [filters, setFilters] = useState([])
 
   const {strings}  = useContext(LanguageContext)
   const {data: dataEducationProviders} = useQuery(LIST_EDUCATION_PROVIDERS)
   const {data: dataEducationLocations} = useQuery(LIST_EDUCATION_LOCATIONS)
   const {categoriesList} = fields
+
+  const filterCategories = [
+    {id:'category', name: strings.course.category, type: 'dropdown', items: categoriesList.map(cat => ({value: cat.slug, label: strings.categories[cat.slug]}))},
+    {id:'language', name: strings.course.language, type: 'dropdown', items: [
+      {value: fields.languages.swedish.slug, label: strings.languages[fields.languages.swedish.slug]},
+      {value: fields.languages.english.slug, label: strings.languages[fields.languages.english.slug]},
+    ]},
+    {id:'city', name: strings.course.city, type: 'dropdown', items: dataEducationLocations?.course_locations.map(item => ({value:item, label:item}))},
+    {id:'education_provider', name: strings.course.provider, type: 'dropdown', items: dataEducationProviders?.course_providers.map(item => ({value:item, label:item}))},
+  ]
+
+  const [filters, setFilters] = useState(filterCategories)
+
 
   useEffect(() => {
     if (history.location.state) {
@@ -100,24 +106,6 @@ const SearchFilter = () => {
     return object != null && typeof object === 'object';
   }
 
-  const filterCategories = [
-    {id:'category', name: strings.course.category, type: 'dropdown', items: categoriesList.map(cat => ({value: cat.slug, label: strings.categories[cat.slug]}))},
-    {id:'language', name: strings.course.language, type: 'dropdown', items: [
-      {value: fields.languages.swedish.slug, label: strings.languages[fields.languages.swedish.slug]},
-      {value: fields.languages.english.slug, label: strings.languages[fields.languages.english.slug]},
-    ]},
-    {id:'city', name: strings.course.city, type: 'dropdown', items: dataEducationLocations?.course_locations.map(item => ({value:item, label:item}))},
-    {id:'education_provider', name: strings.course.provider, type: 'dropdown', items: dataEducationProviders?.course_providers.map(item => ({value:item, label:item}))},
-  ]
-
-  const toggleFilter = (title) => {
-    console.log('toggle', title)
-    if (filters.some(e => title.name === e.name)) {
-      setFilters(filters.filter(item => item.name !== title.name))
-    } else {
-      setFilters([...filters, title])
-    }
-  }
   
   if (isMobileOnly) {
     return (
@@ -142,25 +130,17 @@ const SearchFilter = () => {
         <div className='filter-header'>
           <h3>{strings.search.filterHeader}</h3>
         </div>
-        <ul className='filter-categories'>
-          {filterCategories.map((item, index) => (
-            <FilterItem key={index} title={item.name} active={filters.some(e => item.name === e.name)} toggleFilter={() => toggleFilter(item)} />
-          ))}
-        </ul>
-        {filters.length > 0 &&
         <ul className='filter-selector'>
-          {filters.map((filter,index) => (
+          {filterCategories.map((filter,index) => (
             <FadeIn key={index}>
               <FilterInput strings={strings} filter={filter} filters={filters} setFilters={setFilters} />
             </FadeIn>
           ))}
         </ul>
-        }
       </div>
-
     </div>
   )
   }
 }
 
-export default SearchFilter
+export default SearchFilterNoToggle

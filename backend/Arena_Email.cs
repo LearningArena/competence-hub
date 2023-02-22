@@ -88,9 +88,17 @@ public static class Arena_Email
 		// Raises if token is invalid:
 		// PostmarkDotNet.Exceptions.PostmarkValidationException : The Server Token you provided in the X-Postmark-Server-Token request header was invalid. Please verify that you are using a valid token.
 		// TODO: Handle exception here:
-		PostmarkResponse result = client.SendMessageAsync(message).Result;
-		log.Information("{@PostmarkResponse}", result);
-		return result.Status == PostmarkStatus.Success;
+		try
+		{
+			PostmarkResponse result = client.SendMessageAsync(message).Result;
+			log.Information("{@PostmarkResponse}", result);
+			return result.Status == PostmarkStatus.Success;
+		}
+		catch(Exception e)
+		{
+			log.Information("{@PostmarkResponseException}", e);
+		}
+		return false;
 	}
 
 	public static bool send_forgot_password_email(Arena_Context context, string email)
@@ -218,7 +226,8 @@ public static class Arena_Email
 				company_address = host
 			};
 			// TODO: Handle return value
-			send(m);
+			bool result = send(m);
+			if (result == false) {return false;}
 		}
 		return true;
 	}
@@ -226,7 +235,7 @@ public static class Arena_Email
 
 
 
-	public static void postmark_register(User user, string orgid)
+	public static bool postmark_register(User user, string orgid)
 	{
 		log.Information("Sending email for {@User} and {orgid}", user, orgid);
 		{
@@ -256,7 +265,8 @@ public static class Arena_Email
 				company_name = COMPANY_NAME,
 				company_address = COMPANY_ADDRESS
 			};
-			send(m);
+			bool result = send(m);
+			if (result == false) {return false;}
 		}
 
 		// System admin email
@@ -276,16 +286,17 @@ public static class Arena_Email
 				company_name = COMPANY_NAME,
 				company_address = COMPANY_ADDRESS
 			};
-			send(m);
+			bool result = send(m);
+			if (result == false) {return false;}
 		}
-
+		return true;
 	}
 
 
 
 
 
-	public static void send_verify_email(User u, Record_Status status)
+	public static bool send_verify_email(User u, Record_Status status)
 	{
 		log.Information("Sending verify email for {@User} with {@Record_Status}", u, status);
 		if (status == Record_Status.APPROVED)
@@ -318,7 +329,8 @@ public static class Arena_Email
 				company_name = COMPANY_NAME,
 				company_address = COMPANY_ADDRESS
 			};
-			send(m);
+			bool result = send(m);
+			if (result == false) {return false;}
 		}
 		else if (status == Record_Status.UNAPPROVED)
 		{
@@ -347,8 +359,10 @@ public static class Arena_Email
 				company_name = COMPANY_NAME,
 				company_address = COMPANY_ADDRESS
 			};
-			var result_unverified_se = send(m);
+			bool result = send(m);
+			if (result == false) {return false;}
 		}
+		return true;
 	}
 
 

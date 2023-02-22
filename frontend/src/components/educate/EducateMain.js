@@ -59,7 +59,7 @@ const EducateMain = () => {
       <BrowserView viewClassName="broswer-view">
         <SideMenu placement='right' items={true ? [
           {title: strings.sidemenuMyEducations, url: match.url + '/myeducation'},
-          {title: strings.sidemenuRequests, url: match.url + '/efterlysningar'},
+          // {title: strings.sidemenuRequests, url: match.url + '/efterlysningar'},
           // {title: strings.sidemenuFavAds, url: match.url + '/myads'},
         
           {title: strings.sidemenuMyAccount, url: match.url + '/account'},
@@ -73,7 +73,7 @@ const EducateMain = () => {
         <BurgerNavButton/>
         <SideMenu placement={`right mobile-menu ${openBurger}`} items={user ? [
             {title: strings.sidemenuMyEducations, url: match.url + '/myeducation'},
-            {title: strings.sidemenuRequests, url: match.url + '/efterlysningar'},
+            // {title: strings.sidemenuRequests, url: match.url + '/efterlysningar'},
             // {title: strings.sidemenuFavAds, url: match.url + '/myads'},
            
             {title: strings.sidemenuMyAccount, url: match.url + '/account'},
@@ -91,10 +91,10 @@ const EducateMain = () => {
           <Route path={`${match.path}/organisationskonto`}>
             <OrgUser />
           </Route>
-          <Route path={`${match.path}/efterlysningar`}>
-              {/* <SearchBar placeHolderText={strings.search.eduPlaceholder} /> */}
+          {/* <Route path={`${match.path}/efterlysningar`}>
+               <SearchBar placeHolderText={strings.search.eduPlaceholder} /> 
               <RequestList />
-          </Route>
+          </Route> */}
           <Route path={`${match.path}/myeducation`}>
             <MyEducationOffers />
           </Route>

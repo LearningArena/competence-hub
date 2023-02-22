@@ -20,8 +20,8 @@ public class Record_Query
 		{
 			id2 = context.current_user_id();
 		}
-		if(id1 <= 0) {return false;}
-		if(id2 <= 0) {return false;}
+		if(id1 == 0) {return false;}
+		if(id2 == 0) {return false;}
 		return DB.has_edge(context.Database.GetDbConnection(), t1, id1, relation, t2, id2) > 0;
 	}
 

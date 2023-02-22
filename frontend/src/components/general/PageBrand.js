@@ -13,7 +13,7 @@ const PageBrand = () => {
         <span className="page-logo">
         <img className='page-logo-icon' src={siteLogo}/>
         </span>
-        <h1 className="page-title">Kompetensmatchning</h1>
+        <h1 className="page-title">{strings.siteTitle}</h1>
         <p className="page-payoff">{strings.catchphrase}</p>
       </div>
     </Link>

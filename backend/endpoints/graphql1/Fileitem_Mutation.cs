@@ -16,11 +16,10 @@ public class Fileitem_Mutation
 {
 	private readonly Serilog.ILogger log = Log.ForContext<Fileitem_Mutation>();
 
-	[HotChocolate.Data.UseProjection]
 	public IQueryable<Fileitem> fileitems_update([Service] Arena_Context context, int id, string name)
 	{
 		int user_id = context.current_user_id();
-		if (user_id <= 0){throw HCExceptions.e(Primitive_Result.LOGIN_REQUIRED);}
+		if (user_id == 0){throw HCExceptions.e(Primitive_Result.LOGIN_REQUIRED);}
 		if (context.is_siteadmin() == false)
 		{
 			int has_edge = DB.has_edge(context.Database.GetDbConnection(), Table.USERS, user_id, Relationship.AUTHOR, Table.FILEITEMS, id);
@@ -36,7 +35,7 @@ public class Fileitem_Mutation
 	}
 
 
-	[HotChocolate.Data.UseProjection]
+
 	public IQueryable<Fileitem> fileitems_add([Service] Arena_Context context, string name)
 	{
 		if (context.is_siteadmin() == false){throw HCExceptions.e(Primitive_Result.ADMIN_REQUIRED);}

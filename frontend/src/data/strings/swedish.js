@@ -5,6 +5,7 @@ import { swedishReleasenotes } from "./swedish/releasenotes";
 import { swedishPrivacy } from "./swedish/privacy";
 
 export const swedishStrings = {
+  siteTitle: 'CompetenceHub',
   catchphrase: 'Arena för livslångt lärande',
   sidemenuStart: 'Utbildningar',
   sidemenuCategories: 'Kategorier',
@@ -112,10 +113,11 @@ export const swedishStrings = {
     levelHeader: 'Nivå',
     formatHeader: 'Format',
     maindetailsHeader: 'Detaljer om utbildningen',
+    maindetailsImportWarning: 'Kursdata importerad - de flesta detaljerna kan ej förändras!',
     description: 'Beskrivning',
     content: 'Kursens innehåll',
     tools:'Verktyg',
-    url:'Webblänk till orginalkurs',
+    url:'Webblänk till originalkurs',
     prerequisites:'Förkunskaper',
     literature:'Kurslitteratur',
     teachers:'Utbildare',
@@ -168,6 +170,7 @@ export const swedishStrings = {
     other: 'annat',
     choosePace: 'Välj studietakt ...',
     language: 'Studiespråk',
+    import_source: 'Importkälla',
     chooseLanguage: 'Välj språk ...',
     languageList: [
       'Svenska',

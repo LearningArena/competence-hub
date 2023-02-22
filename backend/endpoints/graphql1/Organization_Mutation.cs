@@ -15,11 +15,10 @@ public class Organization_Mutation
 {
 	private readonly Serilog.ILogger log = Log.ForContext<Organization_Mutation>();
 
-	[HotChocolate.Data.UseProjection]
 	public IQueryable<Organization> organizations_update([Service] Arena_Context context, int id, string name, string address, string image_logo, string description, string phonenumber, string website, string email)
 	{
 		int user_id = context.current_user_id();
-		if (user_id <= 0){throw HCExceptions.e(Primitive_Result.LOGIN_REQUIRED);}
+		if (user_id == 0){throw HCExceptions.e(Primitive_Result.LOGIN_REQUIRED);}
 		if (context.is_siteadmin() == false)
 		{
 			int has_edge = DB.has_edge(context.Database.GetDbConnection(), Table.USERS, user_id, Relationship.AUTHOR, Table.ORGANIZATIONS, id);
@@ -40,11 +39,11 @@ public class Organization_Mutation
 	}
 
 
-	[HotChocolate.Data.UseProjection]
+
 	public IQueryable<Organization> organizations_add([Service] Arena_Context context, string orgid, string name, string address, string image_logo, string description, string phonenumber, string website, string email)
 	{
 		int user_id = context.current_user_id(Record_Status.APPROVED);
-		if (user_id <= 0) {throw HCExceptions.e(Primitive_Result.LOGIN_REQUIRED);}
+		if (user_id == 0) {throw HCExceptions.e(Primitive_Result.LOGIN_REQUIRED);}
 		//if (Arena_Stringstandard.check_organisationsnummer.IsMatch(orgid) == false) { return null; }
 		Organization o = new Organization
 		{

@@ -39,7 +39,7 @@ const Signup = () => {
     if (formData.orgid_se.length < 1) {
       return
     }
-    const validOrgNr = RegExp('^[0-9]{6}-[0-9]{4}$').test(formData.orgid_se)
+    const validOrgNr = RegExp('^[0-9]{6}-?[0-9]{4}$').test(formData.orgid_se)
     if (validOrgNr) {
       setErrors({})
       setValidOrg(true)
@@ -49,23 +49,17 @@ const Signup = () => {
   }, [formData.orgid_se])
 
   function OrgName( {orgId} ) {
-      const {loading, error, data: orgNameData} = useQuery(ORG_NAME_BY_ORGID, {variables: {orgid: orgId}})
+      const {loading, error, data: orgNameData} = useQuery(ORG_NAME_BY_ORGID, {variables: {orgid: orgId.replaceAll('-', '')}})
       if (loading) return null;
       if (error) return `Error! ${error}`;
       if (orgNameData.organizations.nodes[0] && orgNameData.organizations.nodes[0].name) {
-        console.log("Orgname", orgId, orgNameData.organizations.nodes[0].name)
         setExistingOrg(true)
         setExistingOrgName(orgNameData.organizations.nodes[0].name)
       } else {
         setExistingOrg(false)
         setExistingOrgName("")
-        return null
       }
-      return (
-        <>
-        { orgNameData.organizations[0].name }
-        </>
-      )
+      return null
   }
 
   useEffect(() => {
@@ -116,8 +110,8 @@ const Signup = () => {
     })
 
     signupQuery({variables: formattedData}).then(res => {
-      const status = res?.data?.register?.status
-      if (status === 'CONFLICT') {
+      const status = res?.data?.register;
+      if (status === 'EMAIL_ALREADY_EXISTS') {
         setErrors({...errors, confirm: strings.signup.errors.usernameTaken(signupData.email)})
       } else {
         history.push(match.url + '/success')
@@ -135,7 +129,7 @@ const Signup = () => {
           <SingleLineInput required id='firstname' text={strings.signup.firstName} placeholder={strings.signup.placeholders.firstName} />
           <SingleLineInput required id='lastname' text={strings.signup.lastName} placeholder={strings.signup.placeholders.lastName} />
           <SingleLineInput required id='email' type='email' text={strings.email} placeholder={strings.signup.placeholders.email} />
-          <SingleLineInput required id='orgname' text={strings.signup.orgName} placeholder={strings.signup.placeholders.orgName} />
+          <SingleLineInput required id='orgname' text={strings.signup.orgName} placeholder={strings.signup.placeholders.orgName} value={isExistingOrg ? existingOrgName : null} />
           <SingleLineInput required id='orgid_se' text={strings.signup.orgNumber} placeholder={strings.signup.placeholders.orgNumber} />
           {isValidOrg ? <OrgName orgId={formData.orgid_se}/> : null }
           <DropdownInput id='preference' popupText={strings.course.popup.usage} text={strings.signup.usage} placeholder={strings.signup.placeholders.usage}

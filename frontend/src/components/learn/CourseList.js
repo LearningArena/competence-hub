@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { LanguageContext } from '../../context/LanguageContext'
 import { PaginationContext } from '../../context/PaginationContext'
-import SearchFilter from '../general/search/SearchFilter'
+import SearchFilter from '../general/search/SearchFilterNoToggle'
 import SearchBar from '../general/search/SearchBar'
 import PostSort from '../general/PostSort'
 import CourseItem from './CourseItem'
