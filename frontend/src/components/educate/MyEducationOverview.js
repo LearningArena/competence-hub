@@ -85,7 +85,7 @@ const MyEducationOverview = (props) => {
     return [
       <div><Link to={'/learn/course/' + course.id}><h3 className='test'>{course.title}</h3></Link>{course.import_source!== null ? strings.course.importedFrom + ' ' + course.import_source.replace('_', ' ') : ''}</div>,
       // <p className={rowClass+'text'}>{strings.course.statuses[course.record_status]}</p>,
-      <p className='text'>{strings.overview.lastChangedBy(formatDate(course.time_modified), "author")}</p>,
+      <p className='text'>{formatDate(course.time_modified)}</p>,
       <div className='buttons'>
         <div><button className='button icon-button icon-only table' onClick={() => history.push('/educate/myeducation/edit/' + course.id)}><EditIcon />{ strings.overview.edit }</button><br/></div>
         <div><button className='button icon-button icon-only table' onClick={() => history.push('/educate/myeducation/add/' + course.id)}><CopyIcon />{ strings.overview.duplicate }</button><br/></div>
