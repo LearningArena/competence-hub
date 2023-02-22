@@ -30,7 +30,7 @@ const SearchBar = ({placeHolderText}) => {
     <div className='search-bar-container'>
       <form className='search-bar' onSubmit={handleSubmit}>
         <input type='text' value={searchQuery} placeholder={placeHolderText} onChange={handleChange}></input>
-        <button className='button active' aria-label={strings.search.searchButtonAria}><SearchIcon /></button>
+        <button className='button active search-submit' aria-label={strings.search.searchButtonAria}><SearchIcon /></button>
       </form>
     </div>
   )
