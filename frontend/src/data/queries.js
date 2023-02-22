@@ -19,7 +19,6 @@ image_provider
 import_source
 is_favorite
 language
-import_source
 level
 link
 literature
@@ -576,6 +575,7 @@ query OrgEducations($num: Int, $record_status: Record_Status = null, $before: St
       record_status
       education_provider
       time_modified
+      import_source
     }
   }
   cursors: courses(

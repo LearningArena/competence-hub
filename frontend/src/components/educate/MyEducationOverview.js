@@ -82,9 +82,8 @@ const MyEducationOverview = (props) => {
   ]
 
   const generateCourseRow = (course) => {
-    const rowClass = course.record_status !== fields.record_status.archived ? 'active-educatons' : 'archived-educations'
     return [
-      <div><Link to={'/learn/course/' + course.id}><h3 className='test'>{course.title}</h3></Link>{strings.course.publishedBy}</div>,
+      <div><Link to={'/learn/course/' + course.id}><h3 className='test'>{course.title}</h3></Link>{course.import_source!== null ? strings.course.importedFrom + ' ' + course.import_source.replace('_', ' ') : ''}</div>,
       // <p className={rowClass+'text'}>{strings.course.statuses[course.record_status]}</p>,
       <p className='text'>{strings.overview.lastChangedBy(formatDate(course.time_modified), "author")}</p>,
       <div className='buttons'>
