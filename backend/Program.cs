@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Security.Principal;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Hosting;
@@ -11,6 +12,9 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Filters;
+using Serilog.Sinks.PostgreSQL;
+using Serilog.Sinks.PostgreSQL.ColumnWriters;
+using NpgsqlTypes;
 using Misc;
 using Quartz;
 
@@ -72,6 +76,16 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(new WebApplicationO
 	WebRootPath = "../wwwroot"
 });
 
+string connectionString = "SERVER=" + Environment.GetEnvironmentVariable("POSTGRES_HOST") +
+						";PORT=" + Environment.GetEnvironmentVariable("POSTGRES_PORT") +
+						";DATABASE=" + Environment.GetEnvironmentVariable("POSTGRES_DB") +
+						";USER ID=" + Environment.GetEnvironmentVariable("POSTGRES_USER") +
+						";PASSWORD=" + Environment.GetEnvironmentVariable("POSTGRES_PASSWORD");
+IDictionary<string, ColumnWriterBase> columnWriters = new Dictionary<string, ColumnWriterBase>
+{
+    { "message", new RenderedMessageColumnWriter(NpgsqlDbType.Text) },
+	{ "raise_date", new TimestampColumnWriter(NpgsqlDbType.TimestampTz) }
+};
 builder.Host.UseSerilog((ctx, lc) => lc.
 	WriteTo.Console().
 	WriteTo.Serilog_WS_Sink().
@@ -80,7 +94,16 @@ builder.Host.UseSerilog((ctx, lc) => lc.
 		.WriteTo.File("log_import_.csv",
 						outputTemplate: "{Timestamp:yyyy-MM-dd'T'HH:mm:sszzz}, {Level:u3}, {Message:lj}{NewLine}",
 						rollingInterval: RollingInterval.Month,
-						retainedFileCountLimit: 3))
+						retainedFileCountLimit: 3)).
+	WriteTo.Logger(lc => lc
+		.Filter.ByIncludingOnly(Serilog.Filters.Matching.WithProperty<string>("LogType", w => w.StartsWith(Extapi.Externaldata.LOGTYPE_SYSTEM_PREFIX)))
+		.WriteTo.PostgreSQL(
+						connectionString,
+						"log",
+						columnWriters,
+						needAutoCreateTable: true,
+						useCopy: false
+						))
 );
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddControllers();

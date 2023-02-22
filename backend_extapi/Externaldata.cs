@@ -41,6 +41,7 @@ namespace Extapi
 
 		private static readonly ILogger log = Log.ForContext(typeof(Externaldata));
 		public static string LOGTYPE_FILE_PREFIX = "Import2File_";
+		public static string LOGTYPE_SYSTEM_PREFIX = "SystemLog_";
 		public static string NO_URL = "NO_URL";
 		public static string MISSING_TIMES = "MISSING_TIMES";
 		public static string PAST_START = "PAST_START";
