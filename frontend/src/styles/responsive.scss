@@ -310,6 +310,7 @@
       margin-top: 1em;
       grid-row: 1/3;
       z-index: 9960;
+      padding: 1em; //hack
 
       //COVER FOR THE DROPDOWN MENU:
       &:before {
