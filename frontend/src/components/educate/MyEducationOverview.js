@@ -83,14 +83,14 @@ const MyEducationOverview = (props) => {
 
   const generateCourseRow = (course) => {
     return [
-      <div><Link to={'/learn/course/' + course.id}><h3 className='test'>{course.title}</h3></Link>{course.import_source!== null ? strings.course.importedFrom + ' ' + course.import_source.replace('_', ' ') : ''}</div>,
+      <div><Link to={'/learn/course/' + course.id}><h3 className='test'>{course.title}</h3></Link><div className='import-text'>{course.import_source!== null ? strings.course.importedFrom + ' ' + course.import_source.replace('_', ' ') : ''}</div></div>,
       // <p className={rowClass+'text'}>{strings.course.statuses[course.record_status]}</p>,
-      <p className='text'>{formatDate(course.time_modified)}</p>,
+      <p className='date'>{formatDate(course.time_modified)}</p>,
       <div className='buttons'>
-        <div><button className='button icon-button icon-only table' onClick={() => history.push('/educate/myeducation/edit/' + course.id)}><EditIcon />{ strings.overview.edit }</button><br/></div>
-        <div><button className='button icon-button icon-only table' onClick={() => history.push('/educate/myeducation/add/' + course.id)}><CopyIcon />{ strings.overview.duplicate }</button><br/></div>
-        <div><button className='button icon-button icon-only table' onClick={() => showPopup(<AddEducationOwnerPopup course={course} />, 'popup-basic noscroll')}><OwnerIcon/>{ strings.overview.reassign }</button></div>
-        <div><button className='button icon-button icon-only table' onClick={() => showPopup(<ConfirmDeleteCoursePopup course={course}/>)}><BinIcon />{ strings.overview.remove }</button></div>
+        <div><button className='button icon-button icon-with-text table' onClick={() => history.push('/educate/myeducation/edit/' + course.id)}><EditIcon /><div className='button-text'>{ strings.overview.edit }</div></button><br/></div>
+        <div><button className='button icon-button icon-with-text table' onClick={() => history.push('/educate/myeducation/add/' + course.id)}><CopyIcon /><div className='button-text'>{ strings.overview.duplicate }</div></button><br/></div>
+        <div><button className='button icon-button icon-with-text table' onClick={() => showPopup(<AddEducationOwnerPopup course={course} />, 'popup-basic noscroll')}><OwnerIcon/><div className='button-text'>{ strings.overview.reassign }</div></button></div>
+        <div><button className='button icon-button icon-with-text table' onClick={() => showPopup(<ConfirmDeleteCoursePopup course={course}/>)}><BinIcon /><div className='button-text'>{ strings.overview.remove }</div></button></div>
       </div>
     ]
   }

@@ -457,10 +457,10 @@ export const englishStrings = {
     lastChanged: 'Modified date',
     lastChangedBy: (date, name) =>  `Last changed ${date}`,
     organizations: 'Organizations',
-    edit: 'edit',
-    duplicate: 'create copy (draft)',
-    reassign: 'change owner',
-    remove: 'remove',
+    edit: 'Edit',
+    duplicate: 'Create copy (draft)',
+    reassign: 'Change owner',
+    remove: 'Remove',
   },
   popup: {
     OrgReminderPopup: {

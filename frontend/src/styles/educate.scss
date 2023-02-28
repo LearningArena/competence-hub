@@ -25,7 +25,7 @@
       }
     }
 
-    .button:not(.icon-only):hover {
+    .button:not(.icon-only):not(.icon-with-text):hover {
         background-color: $colEduHov !important;
     }
     
@@ -452,10 +452,10 @@
   }
   .active-educations, .archived-educations {
     td, th.last-values, th.sortable h3 {
-        color: $colEduD;
-        &:hover {
-          color: $colLearnC;
-        }
+        color: $colEduE;
+        // &:hover {
+        //   color: $colLearnC;
+        // }
     }
     th, td {
       border-bottom: $colEduD solid 2px;

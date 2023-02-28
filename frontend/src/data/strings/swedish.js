@@ -454,10 +454,10 @@ export const swedishStrings = {
     lastChanged: 'Redigeringsdatum',
     lastChangedBy: (date) =>  `Senast redigerad ${date}`,
     organizations: 'Organisationer',
-    edit: 'redigera',
-    duplicate: 'skapa kopia (utkast)',
-    reassign: 'ändra ägare',
-    remove: 'ta bort',
+    edit: 'Redigera',
+    duplicate: 'Skapa kopia (utkast)',
+    reassign: 'Ändra ägare',
+    remove: 'Ta bort',
   },
   popup: {
     OrgReminderPopup: {
