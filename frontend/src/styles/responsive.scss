@@ -282,15 +282,13 @@
 
    .search-submit {
       &.button {
-         background: $colEduD!important;
-         //border-radius: 1px!important;
-         width: 80%;
-         border-top-left-radius: 0px!important;
-         border-top-right-radius: 0px!important;
-         border-bottom-right-radius: 0px!important;
-         border-bottom-left-radius: 0px!important;     
+         width: 100%;
+         height: 3em;
       }
    }
+  .search-bar {
+      margin-bottom: 0px;
+  }
 
    .page-header {
       opacity: 0.99; //z-index hack
@@ -304,6 +302,8 @@
    }
 
    .page-brand {
+      opacity: 0.99; //z-index hack
+      position:static;
       display: grid;
       grid-template-columns: 5em auto;
       grid-template-rows: 1fr 1fr;
@@ -317,8 +317,6 @@
          position: absolute;
          width: 100vw;
          height: 100px;
-         top: 0px;
-         left: 0;
          background: $colHeaderBG;
          z-index: -1;
       }
@@ -583,11 +581,14 @@
 
    .search-bar {
       flex-direction: column;
-      margin: 1em 0 !important;
-      max-width: 100vw;
       input {
-         margin: 0 auto 1em auto;
+         width: 100%;
       }
+   }
+
+   .search-bar-container {
+      width: 80vw;
+      min-width: 80vw;
    }
 
    //Posts
