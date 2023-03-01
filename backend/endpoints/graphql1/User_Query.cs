@@ -25,27 +25,23 @@ public class User_Query
 
 	
 	[HotChocolate.Types.UsePaging(MaxPageSize = Arena.MAX_PAGES, IncludeTotalCount = true)]
-	[HotChocolate.Data.UseProjection]
 	[HotChocolate.Data.UseFiltering]
 	[HotChocolate.Data.UseSorting]
-	public IQueryable<User> users([Service] Arena_Context context, Record_Status? record_status, int? id, string guid)
+	public IQueryable<User> users([Service] Arena_Context context)
 	{
+		if(context.current_user_id() == Arena.USER_ID_GUEST)
+		{
+			return null;
+		}
+		Record_Status? record_status = null;
 		if (context.is_siteadmin() == false)
 		{
 			record_status = Record_Status.APPROVED;
 		}
 		IQueryable<User> q = context.users;
-		if (id != null)
-		{
-			q = q.Where(x => x.id == id);
-		}
 		if (record_status != null)
 		{
 			q = q.Where(x => x.record_status == record_status);
-		}
-		if (guid != null)
-		{
-			q = q.Where(x => x.keycloak_guid == Guid.Parse(guid));
 		}
 		return q;
 	}

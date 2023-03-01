@@ -67,7 +67,7 @@ const LearnMain = () => {
        <SideMenu placement='left' items={user ? [
         {title: strings.sidemenuStart, url: match.url + '/utbildningar'},
         {title: strings.sidemenuFavEducations, url: match.url + '/sparade-utbildningar'},
-        {title: strings.sidemenuMyAds, url: match.url + '/myrequests'},
+        // {title: strings.sidemenuMyAds, url: match.url + '/myrequests'},
         {title: strings.sidemenuMyAccount, url: match.url + '/account'},
         // {title: strings.sidemenuOrgAccount, url: match.url + '/organisationskonto'},
       ] : [
@@ -79,7 +79,7 @@ const LearnMain = () => {
         <SideMenu placement={`left mobile-menu ${openBurger}`} items={user ? [
         {title: strings.sidemenuStart, url: match.url + '/utbildningar'},
         {title: strings.sidemenuFavEducations, url: match.url + '/sparade-utbildningar'},
-        {title: strings.sidemenuMyAds, url: match.url + '/myrequests'},
+        // {title: strings.sidemenuMyAds, url: match.url + '/myrequests'},
         {title: strings.sidemenuMyAccount, url: match.url + '/account'},
         // {title: strings.sidemenuOrgAccount, url: match.url + '/organisationskonto'},
       ] : [
@@ -113,9 +113,9 @@ const LearnMain = () => {
           <Route path={`${match.path}/sparade-utbildningar`}>
             <LearnFavorites />
           </Route>
-          <RestrictedRoute path={`${match.path}/myrequests`}>
+          {/* <RestrictedRoute path={`${match.path}/myrequests`}>
             <MyEducationRequests />
-          </RestrictedRoute>
+          </RestrictedRoute> */}
           <Route exact path={`${match.path}/signup`}>
             <Signup />
           </Route>

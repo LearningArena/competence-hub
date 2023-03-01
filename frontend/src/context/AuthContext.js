@@ -6,7 +6,7 @@ import { useState } from 'react'
 import { createContext } from 'react'
 import { ConsoleView } from 'react-device-detect'
 import ChangePasswordPopup from '../components/general/ChangePasswordPopup'
-import { AUTHTEST, CURRENT_USER, CURRENT_USER_ORG, LOGOUT, USER_CLAIMS, ORG_BY_ID } from '../data/queries'
+import { AUTHTEST, CURRENT_USER, CURRENT_USER_ORG, LOGOUT, USER_CLAIMS } from '../data/queries'
 import { LanguageContext } from './LanguageContext'
 import { PopupContext } from './PopupContext'
 
@@ -26,7 +26,6 @@ const AuthContextProvider = (props) => {
   const userClaims = useQuery(USER_CLAIMS)
   const orgQuery = useQuery(CURRENT_USER_ORG)
   const [gqlLogout, logoutData] = useMutation(LOGOUT)
-  const orgData = useQuery (ORG_BY_ID, {variables: {id:organization?.id}})
   const {setLanguage, language} = useContext(LanguageContext)
 
   // Set current user context user 
@@ -59,13 +58,16 @@ const AuthContextProvider = (props) => {
 
   useEffect(() => {
     let org = orgQuery.data?.my_org_by_author?.nodes?.[0]
+    if (org) {
+      setIsAuthor(true)
+    }
     if (!!!org) {
       org = orgQuery.data?.my_org_by_member?.nodes?.[0]
     }
     if (org) {
       setOrganization(org)
     } else {
-      console.log('no org')
+      //console.log('no org')
     }
   }, [orgQuery.data])
 
@@ -78,13 +80,6 @@ const AuthContextProvider = (props) => {
   } else if (error) {
     console.log(error)
   }
-
-  useEffect(() => {
-      const edges = orgData.data?.organizations?.nodes?.[0]?.organization_user_edges ?? []
-      const author = edges.filter(({user_id, relationship}) =>
-      user_id === user?.id && relationship === "AUTHOR")
-      author.length > 0 ? setIsAuthor(true) : setIsAuthor(false)
-  }, [orgData.data])
 
   useEffect(() => {
       //console.log("User is author: ", isAuthor)
@@ -137,7 +132,7 @@ const AuthContextProvider = (props) => {
   // const orgHasMissingFields = () => Object.entries(organization)
   //   .filter(entry => entry[1] === null)
   //   .map(entry => entry[0])
-  const orgHasMissingFields = () => organization.image_logo === null
+  const orgHasMissingFields = () => organization.name === null
 
   return (
     <AuthContext.Provider value={{user, updateAuth, updateSignupOrg, signupOrg, logout, organization, userLoaded, orgHasMissingFields,passwordResetMode, isAuthor}}>

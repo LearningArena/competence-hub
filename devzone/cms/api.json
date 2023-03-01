@@ -4,7 +4,7 @@
 		"id"            : {"edit":"raw", "filter":"input", "htmltype":"number", "prefix":"", "width":"80px"},
 		"record_status" : {"edit":"option", "filter":"option", "htmltype":"string", "prefix":"💡"},
 		"time_created"  : {"edit":"input", "filter":"input", "htmltype":"datetime", "prefix":"📅"},
-		"time_modifed"  : {"edit":"input", "filter":"input", "htmltype":"datetime", "prefix":"📅"},
+		"time_modified" : {"edit":"input", "filter":"input", "htmltype":"datetime", "prefix":"📅"},
 		"title"         : {"edit":"input", "filter":"input", "htmltype":"string", "prefix":""},
 		"name"          : {"edit":"input", "filter":"input", "htmltype":"string", "prefix":""},
 		"firstname"     : {"edit":"input", "filter":"input", "htmltype":"string", "prefix":""},
@@ -83,10 +83,6 @@
 		"user"          : {"default":"r", "Siteadmin":"rw", "AUTHOR":"r-"},
 		"organization"  : {"default":"r", "Siteadmin":"rw", "AUTHOR":"r-"},
 		"content"       : {"default":"r", "Siteadmin":"rw", "AUTHOR":"r-"},
-		"descriptions"  : {"default":"r", "Siteadmin":"rw", "AUTHOR":"r-"},
-		"users"         : {"default":"r", "Siteadmin":"rw", "AUTHOR":"r-"},
-		"courses"       : {"default":"r", "Siteadmin":"rw", "AUTHOR":"r-"},
-		"keywords"      : {"default":"r", "Siteadmin":"rw", "AUTHOR":"r-"},
 		"dummy"         : {"default":"r", "Siteadmin":"rw", "AUTHOR":"r-"}
 	},
 
@@ -129,10 +125,10 @@
 	"collections":
 	{
 		"UNKNOWN"        : [],
-		"COURSES"        : ["$selection", "id", "record_status", "title", "description", "price", "time_modified", "time_created", "$sync", "$cursor", "$r;USERS", "$r;KEYWORDS", "$r;ORGANIZATIONS"],
+		"COURSES"        : ["$selection", "id", "record_status", "title", "time_modified", "time_created", "description", "price", "$sync", "$cursor", "$r;USERS", "$r;KEYWORDS", "$r;ORGANIZATIONS"],
 		"INQUIRIES"      : ["$selection", "id", "record_status", "title", "time_modified", "time_created", "$r;USERS", "$r;KEYWORDS"],
-		"USERS"          : ["$selection", "id", "record_status", "email", "firstname", "lastname", "time_modified", "time_created", "$r;COURSES", "$r;INQUIRIES", "$r;ORGANIZATIONS"],
-		"ORGANIZATIONS"  : ["$selection", "id", "record_status", "name", "users", "descriptions", "time_modified", "time_created", "$r;USERS", "$r;COURSES"],
+		"USERS"          : ["$selection", "id", "record_status", "email", "time_modified", "time_created", "firstname", "lastname", "$r;COURSES", "$r;INQUIRIES", "$r;ORGANIZATIONS"],
+		"ORGANIZATIONS"  : ["$selection", "id", "record_status", "name", "time_modified", "time_created", "$r;USERS", "$r;COURSES"],
 		"KEYWORDS"       : ["$selection", "id", "record_status", "name"],
 		"CONTENTS"       : ["$selection", "id", "record_status", "name", "content", "language_id", "attribute_id"],
 		"LANGUAGES"      : ["$selection", "id", "record_status", "name"],

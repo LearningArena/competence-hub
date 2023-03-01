@@ -3,6 +3,7 @@ import { englishReleasenotes } from "./english/releasenotes";
 import { fields } from "../fields";
 
 export const englishStrings = {
+  siteTitle: 'CompetenceHub',
   catchphrase: "Arena for lifelong learning",
   sidemenuStart: 'Educations',
   sidemenuCategories: 'Categories',
@@ -108,6 +109,7 @@ export const englishStrings = {
     formatHeader: 'Format',
     datefreq:'Date och frequency',
     maindetailsHeader: 'Table of content main',
+    maindetailsImportWarning: 'Course data imported - most info not editable!',
     description: 'Description',
     content: 'Course content',
     tools:'Required tools',
@@ -164,6 +166,7 @@ export const englishStrings = {
     other: 'other',
     choosePace: 'Choose study pace...',
     language: 'Study language',
+    import_source: 'Import source',
     chooseLanguage: 'Choose language...',
     languageList: [
       'Swedish',

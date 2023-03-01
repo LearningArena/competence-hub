@@ -31,7 +31,9 @@ Global.dollarfx_graphql1 =
 {
 	"$ebox" : (cnamev, args) =>
 	{
-		return `edged_${cnamev[1]}_${cnamev[2]}_${cnamev[3]}`;
+		let c2 = cnamev[2];
+		if (c2[0] == '-') {c2 = 'N' + c2.slice(1);}
+		return `edged_${cnamev[1]}_${c2}_${cnamev[3]}`;
 	}
 };
 

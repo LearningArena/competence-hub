@@ -5,6 +5,8 @@ using System.Reflection;
 using System.Threading;
 using System.Text.RegularExpressions;
 using Serilog;
+using System.IO;
+
 namespace Arena;
 
 
@@ -35,6 +37,49 @@ public static class Arena_Import
 		}
 		context.SaveChanges();
 	}
+
+	private static List<string> ParseCategories(Course course)
+	{
+		List<string> categories = new List<string>();
+		if (course.category == null)
+		{
+			return categories;
+		}
+		if (!course.category.Contains(","))
+		{
+			categories.Add(course.category);
+		}
+		else if (course.category.Contains(","))
+		{
+			categories = course.category.Split(',').Select(s => s.Trim( new Char[] { ' ', '"', '[', ']' } )).ToList();
+		}
+		return categories;
+	}
+
+	private static void AddImages(Arena_Context context, List<Course> courses)
+	{
+		foreach (Course course in courses.Where(c => c.image_feature == null))
+		{
+			var random = new Random();
+			List<string> categories = ParseCategories(course);
+			List<string> image_paths = new List<string>();
+			// Use specific category folder for categorized courses
+			if (categories.Count() > 0)
+			{
+				string category = categories[random.Next(categories.Count)];
+				image_paths = new List<string>(Directory.GetFiles($"../media/category-images/{category}/"));
+			}
+			// If there are no categories, use all images
+			if (categories.Count() == 0)
+			{
+				image_paths = new List<string>(Directory.GetFiles($"../media/category-images/", "*.*", SearchOption.AllDirectories));
+			}
+			string image_path = image_paths[random.Next(image_paths.Count)];
+			course.image_feature = image_path.Substring(2);
+			context.courses.Update(course);
+		}
+		context.SaveChanges();
+	}
 	
 	public static int external_import(Arena_Context context, Extapi.Parser method)
 	{
@@ -61,8 +106,10 @@ public static class Arena_Import
 					if (excluded_properties.Contains(property.Name)) { continue; }
 					var new_value = property.GetValue(course);
 					if (new_value != null && (property.GetValue(existing_course) == null || !property.GetValue(existing_course).Equals(new_value)))
+					{
 						prop_changed = true;
-					property.SetValue(existing_course, new_value);
+						property.SetValue(existing_course, new_value);
+					}
 				}
 				if (course.record_status == Record_Status.ARCHIVED)
 				{
@@ -167,6 +214,7 @@ public static class Arena_Import
 				numOCE++;
 			}
 		}
+		AddImages(context, courses);
 		PublishCourses(context, courses);
 		context.SaveChanges();
 		Log.Information($"Linked {numOCE.ToString()}/{courses.Count.ToString()} new courses to orgs, of which {numNewOrgs.ToString()} are newly generated.");

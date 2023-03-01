@@ -76,11 +76,23 @@ const categories = {
 
 const languages = {
   swedish: {
-    id: 0, slug: 'svenska'
+    id: 0, slug: 'sv'
   },
   english: {
-    id: 1, slug: 'engelska'
+    id: 1, slug: 'en'
   },
+}
+
+const import_sources = {
+  SUSA_NAVET: {
+    id: 0, name: 'SUSA-navet'
+  },
+  GOTEBORGS_TEKNISKA_COLLEGE: {
+    id: 1, name: 'Göteborgs Tekniska College'
+  },
+  LEARNING_4_PROFESSIONALS: {
+    id: 2, name: 'Learning 4 Professionals'
+  }
 }
 
 //For convenience, this can be used to iterate through categories
@@ -93,5 +105,6 @@ export const fields = {
   categories,
   categoriesList,
   languages,
+  import_sources,
   record_status,
 }
