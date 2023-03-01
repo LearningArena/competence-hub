@@ -303,7 +303,7 @@
 
    .page-brand {
       opacity: 0.99; //z-index hack
-      position:static;
+      //position:static;
       display: grid;
       grid-template-columns: 5em auto;
       grid-template-rows: 1fr 1fr;
