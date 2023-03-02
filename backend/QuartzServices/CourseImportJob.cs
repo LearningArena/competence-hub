@@ -45,6 +45,8 @@ public class CourseImportJob : IJob
                         "",
                         "",
                         "{exception : " + ex.Message + "}");
+                    _log.Information("{LogType}: {message}", Extapi.Externaldata.LOGTYPE_SYSTEM_PREFIX+"CourseImportJob", "Import exception: "  + ex.Message);
+			        Log.CloseAndFlush();
                 }
             }                
         }
