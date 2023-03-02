@@ -19,7 +19,6 @@ image_provider
 import_source
 is_favorite
 language
-import_source
 level
 link
 literature
@@ -34,6 +33,7 @@ start_date
 seqf
 studyform
 studypace
+time_modified
 subtitle
 teachers
 title
@@ -488,6 +488,17 @@ query OrgNameByOrgId($orgid: String!) {
    }
 }
 `
+
+export const ORG_INFO_BY_ID = gql`
+query OrgInfoByOrgId($id: Int!) {
+  organizations(where:{id:{eq:$id}}) {
+    nodes {
+      name
+      image_logo
+     }
+   }
+}
+`
 export const COURSE_DELETE = gql`
 mutation CourseRemove($id: Int!) {
   record_remove_unsafe(id: $id, table:COURSES)
@@ -501,14 +512,16 @@ mutation InquiryRemove($id: Int!) {
 `
 
 export const MY_EDUCATIONS = gql`
-query UsersEducations($num: Int, $before: String, $after: String, $order: [CourseSortInput!], $filters: CourseFilterInput!) {
+query UsersEducations($num: Int, $before: String, $after: String, $order: [CourseSortInput!], $filters: CourseFilterInput) {
   courses(order: $order, first: $num, before:$before, after: $after, where: $filters, current_user_relationship:AUTHOR) {
     nodes {
       title
       start_date
       id
+      time_modified
       record_status
       education_provider
+      time_modified
     }
     pageInfo {
         hasNextPage
@@ -522,6 +535,62 @@ query UsersEducations($num: Int, $before: String, $after: String, $order: [Cours
     first: 500
     where: $filters
     current_user_relationship:AUTHOR
+  ) {
+    edges {
+      cursor
+    }
+  }
+}
+`
+export const ORG_EDUCATIONS = gql`
+query OrgEducations($num: Int, $record_status: Record_Status = null, $before: String, $after: String, $order: [CourseSortInput!], $filters: CourseFilterInput!, $orgid: Int!) {
+  courses(order: $order, record_status: $record_status, first:$num, before:$before, after: $after, where:
+  {and: [
+    $filters,
+    {organization_course_edges:
+      {
+        some:{and: [
+          {organization:{
+            id:{eq:$orgid}
+          }}
+          ]
+        }
+  }}]}) 
+  {
+    pageInfo {
+        hasNextPage
+        hasPreviousPage
+        startCursor
+        endCursor
+    }
+    edges{cursor}
+    nodes {
+      organization {
+        name
+        id
+      }
+      title
+      start_date
+      id
+      record_status
+      education_provider
+      time_modified
+      import_source
+    }
+  }
+  cursors: courses(
+    order: $order
+    record_status: $record_status
+    first: 500
+    where: {and: [
+      $filters, 
+      {organization_course_edges: 
+        {
+          some:{and: [
+            {organization:{
+              id:{eq:$orgid}
+            }}
+    ] } } } ] } 
   ) {
     edges {
       cursor
@@ -722,6 +791,7 @@ mutation AddCourse(
   $description: String
   $diplomas: String
   $education_provider: String
+  $education_provider_id: Int
   $email_of_contact_person: String
   $end_date: DateTime
   $image_feature: String
@@ -753,6 +823,7 @@ mutation AddCourse(
     category: $category,
     city: $city,
     education_provider: $education_provider,
+    organization_id: $education_provider_id,
     name_of_contact_person: $name_of_contact_person,
     email_of_contact_person: $email_of_contact_person,
     image_feature: $image_feature,

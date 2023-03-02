@@ -345,8 +345,6 @@ div.learn, div.educate {
 }
 
 
-
-
 .sidemenu {
   display: flex;
   flex-direction: column;
@@ -372,7 +370,7 @@ div.learn, div.educate {
     left: 0; 
       a {
         padding-left: 1em;
-        clip-path: polygon(0% 0%, 90% 0%, 90% 50%, 90% 100%, 0% 100%);
+        clip-path: polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%);
       }
       .active {
         right: 0px;
@@ -389,13 +387,14 @@ div.learn, div.educate {
       a {
         padding-right: 1em;
         text-align: right;
-        clip-path: polygon(10% 0%, 100% 0%, 100% 100%, 10% 100%, 10% 50%);
+        clip-path: polygon(10% 0%, 100% 0%, 100% 100%, 10% 100%, 0% 50%);
       }
     .active {
       background-color: $colArrowRight;
       clip-path: polygon(10% 0%, 100% 0%, 100% 100%, 10% 100%, 0% 50%);
       h3 {
         color: $colEduBG;
+        margin-left: 1em;
       }
     }
   }
@@ -404,6 +403,15 @@ div.learn, div.educate {
   #menu-sparade-efterlysningar {
       pointer-events: none;
   }
+}
+
+
+.sidemenu.left .active {
+  background: $colArrowRight;
+  h3 {
+    color: $colEduBG;
+  }
+  
 }
 
 //SEARCH BAR

@@ -330,6 +330,36 @@ button.icon-only, .button.icon-only {
     }
 }
 
+button.icon-with-text, .button.icon-with-text {
+    background-color: none !important;
+    background: transparent !important;
+    color: $colEduE;
+    font-style: italic;
+    border: none !important;
+      text-transform: none !important;
+
+    &:hover {
+      background: transparent !important;
+      color: $colEduHov !important;
+    }
+
+    svg path {
+      fill: $colEduD;
+    }
+  
+    &:hover svg path{
+        fill: $colEduHov;
+    }
+
+    .active svg path{
+        fill: $colEduA;
+    }
+
+    .button-text {
+      margin-left: 0.5em;
+    }
+}
+
 button.link-button {
   width: auto;
 
@@ -1355,25 +1385,49 @@ table td, table th {
 
 .overview table{
 
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+  }
+
+  button {
+    text-align: left;
+  }
+
     display: block;
     padding: 2rem;
     margin: 0rem;
 
   th {
+    color: $colEduD;
     .last-values {
       padding: 0!important;
     }
   }
   td, th.last-values {
-    text-align: center!important;
+    vertical-align: top;
+    text-align: left!important;
     p {
       font-style: italic;
       font-size: 0.8em;
+      &.date {
+        font-style: normal;
+        font-size: 1em;
+        color: $colEduD;
+        margin: 0.4em 0 !important;
+      }
+    }
+    .import-text {
+      font-style: italic;
+      color: $colEduD;
+      font-size: 1em;
     }
     h3 {
       margin: 0.4em 0 !important;
       text-align: left !important;
-      font-size: 0.8em;
+      font-size: 1em;
       font-weight: bold;
       color: $colEduD;
       &:hover {
@@ -1387,7 +1441,6 @@ table td, table th {
     padding-bottom: 0.5em;
     justify-items: center;
     align-content: center;
-    text-align: center;
     h4 {
       margin: 0em;
     }

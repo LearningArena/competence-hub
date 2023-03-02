@@ -1,5 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { LanguageContext } from '../../context/LanguageContext'
+import { useParams, useLocation } from 'react-router-dom'
+import { AuthContext } from '../../context/AuthContext'
+import queryString from 'query-string'
 import { dummyCourses, dummyCategories } from '../../data/dummy/courses'
 import { swedishStrings } from '../../data/strings/swedish'
 import { formActions } from './FormActions'
@@ -10,7 +13,7 @@ import {ReactComponent as CopyIcon} from '../../images/icon-copy.svg'
 import Table from '../general/Table'
 import { useQuery } from '@apollo/client'
 import {formatDate} from '../../util/date'
-import { CURRENT_USER, MY_EDUCATIONS } from '../../data/queries'
+import { CURRENT_USER, MY_EDUCATIONS, ORG_EDUCATIONS } from '../../data/queries'
 import { PaginationContext } from '../../context/PaginationContext'
 import { usePagination } from '../../hooks/usePagination'
 import { Link, useHistory } from 'react-router-dom'
@@ -18,29 +21,55 @@ import { fields } from '../../data/fields'
 import { PopupContext } from '../../context/PopupContext'
 import ConfirmDeleteCoursePopup from './ConfirmDeleteCoursePopup'
 import AddEducationOwnerPopup from './AddEducationOwnerPopup'
+import { valueFromAST } from 'graphql'
 
-const MyEducationOverview = () => {
+const MyEducationOverview = (props) => {
 
   const {strings} = useContext(LanguageContext)
   const {showPopup} = useContext(PopupContext)
   const history = useHistory()
+  const { search } = useLocation()
+  const {user, organization, allUserOrganizations} = useContext(AuthContext)
   const [loading, setLoading] = useState(true)
   //const category = dummyCategories.find(cat => cat.id === data.categoryID)
   const [courses, setCourses] = useState([])
 
-  const { PaginationControls, getCurrent, ready } = usePagination(MY_EDUCATIONS, 10, PaginationContext)
+  const { PaginationControls, getCurrent, ready } = usePagination(ORG_EDUCATIONS, 10, PaginationContext)
+
+  const filters =  {
+    draft: fields.record_status.draft, 
+    published: fields.record_status.approved, 
+    archived: fields.record_status.archived
+  }
 
   useEffect(() => {
     if (!ready) {
       setLoading(true)
       return
     }
-    getCurrent()
+    const values = queryString.parse(search)
+    if (!values.org) {
+      return
+    }
+    getCurrent({variables: { orgid: parseInt(values.org), record_status: values.filter ? filters[values.filter] : fields.record_status.approved}})
       .then(({ loading, error, data }) => {
         setCourses(data.courses.nodes)
         setLoading(false)
       })
-  }, [ready])
+  }, [ready, search])
+
+  useEffect(() => {
+    const values = queryString.parse(search)
+    history.push({search: '?' + new URLSearchParams({filter: values.filter ? values.filter : 'published', org: values.org ? values.org : organization.id}).toString()})
+  }, [search])
+
+  // useEffect(() => {
+  //   console.log("orgid", orgId)
+  //   if (!orgId) {
+  //     history.push({search: '?' + new URLSearchParams({filter: 'published'}).toString()})
+  //   }
+  // }, [orgId])
+
 
   const updateCourses = (data) => {
     setCourses(data.courses.nodes)
@@ -48,23 +77,21 @@ const MyEducationOverview = () => {
 
   const columns = [
     {content: strings.course.title, class:'sortable', sortField: 'title'},
-    {content: strings.overview.status, class:'sortable', sortField: 'record_status'},
-    {content: strings.overview.startDate, class:'sortable', sortField: 'start_date'},
-    {content: '', class: 'last-values one'},
-    {content: '', class: 'last-values'},
+    {content: strings.overview.lastChanged, class:'sortable', sortField: 'time_modified'},
     {content: '', class: 'last-values'}
   ]
 
   const generateCourseRow = (course) => {
-    const rowClass = course.record_status !== fields.record_status.archived ? 'active-educatons' : 'archived-educations'
     return [
-      <Link to={'/learn/course/' + course.id}><h3 className='test'>{course.title}</h3></Link>,
-      <p className={rowClass+'text'}>{strings.course.statuses[course.record_status]}</p>,
-      <p className='text'>{course.start_date && formatDate(course.start_date)}</p>,
-      <button className='button icon-button icon-only table'><EditIcon onClick={() => history.push('/educate/myeducation/edit/' + course.id)} /></button>,
-      <button className='button icon-button icon-only table'><CopyIcon onClick={() => history.push('/educate/myeducation/add/' + course.id)} /></button>,
-      <button className='button icon-button icon-only table'><OwnerIcon onClick={() => showPopup(<AddEducationOwnerPopup course={course} />, 'popup-basic noscroll')} /></button>,
-      <button className='button icon-button icon-only table'><BinIcon onClick={() => showPopup(<ConfirmDeleteCoursePopup course={course}/>)} /></button>
+      <div><Link to={'/learn/course/' + course.id}><h3 className='test'>{course.title}</h3></Link><div className='import-text'>{course.import_source!== null ? strings.course.importedFrom + ' ' + course.import_source.replace('_', ' ') : ''}</div></div>,
+      // <p className={rowClass+'text'}>{strings.course.statuses[course.record_status]}</p>,
+      <p className='date'>{formatDate(course.time_modified)}</p>,
+      <div className='buttons'>
+        <div><button className='button icon-button icon-with-text table' onClick={() => history.push('/educate/myeducation/edit/' + course.id)}><EditIcon /><div className='button-text'>{ strings.overview.edit }</div></button><br/></div>
+        <div><button className='button icon-button icon-with-text table' onClick={() => history.push('/educate/myeducation/add/' + course.id)}><CopyIcon /><div className='button-text'>{ strings.overview.duplicate }</div></button><br/></div>
+        <div><button className='button icon-button icon-with-text table' onClick={() => showPopup(<AddEducationOwnerPopup course={course} />, 'popup-basic noscroll')}><OwnerIcon/><div className='button-text'>{ strings.overview.reassign }</div></button></div>
+        <div><button className='button icon-button icon-with-text table' onClick={() => showPopup(<ConfirmDeleteCoursePopup course={course}/>)}><BinIcon /><div className='button-text'>{ strings.overview.remove }</div></button></div>
+      </div>
     ]
   }
 

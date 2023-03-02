@@ -11,6 +11,7 @@ import { makeMultiValue } from '../../util/input'
 import CourseInformation from '../learn/CourseInformation'
 import AddEducation from './AddEducation'
 import EducationForm from './EducationForm'
+import { AuthContext } from '../../context/AuthContext'
 import { formActions } from './FormActions'
 import StickyFormButtons from './StickyFormButtons'
 
@@ -18,6 +19,7 @@ const EditEducation = ({formData, setFormData}) => {
 
   const history = useHistory()
   const {strings} = useContext(LanguageContext)
+  const {allUserOrganizations} = useContext(AuthContext)
   const educationId = parseInt(useParams().educationId)
   const {error, data} = useQuery(COURSE_BY_ID, {
     variables: {id: educationId}
@@ -35,9 +37,11 @@ const EditEducation = ({formData, setFormData}) => {
       let category = makeMultiValue(strings.categories, categoryJson)
       let language = makeMultiValue(strings.languages, filteredData.language)
 
+      const education_provider= {value: filteredData.education_provider, label: filteredData.education_provider}
+      const image_provider= allUserOrganizations.author.find(el => el.name === formData?.education_provider?.value)?.image_logo
       const record_status = {value: filteredData.record_status, label: strings.course.statuses[filteredData.record_status]}
       //const {credits} = formActions.formatFloats(filteredData,['credits'])
-      setFormData(prev => ({...prev, ...filteredData, id:educationId, category, language, record_status, import_source}))
+      setFormData(prev => ({...prev, ...filteredData, id:educationId, category, language, education_provider, image_provider, record_status, import_source}))
 
     }
   }, [data])

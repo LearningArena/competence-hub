@@ -1,11 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useEffect } from 'react'
-import { useState } from 'react'
 import { useContext } from 'react'
 import { LanguageContext } from '../../context/LanguageContext'
 import { formActions } from './FormActions'
 import {allEducationFields} from '../../data/queries'
-import { dummyCategories } from '../../data/dummy/courses'
 import { CheckboxInput, DateInput, DropdownInput, Form, ImageInput, MultiDropdownInput, MultiLineInput, SingleLineInput } from './FormInputs'
 import { fields } from '../../data/fields'
 import StickyFormButtons from './StickyFormButtons'
@@ -22,16 +20,19 @@ import {
   isMobile,
   isMobileOnly
 } from "react-device-detect"
+import { useQuery } from '@apollo/client'
 
 const EducationForm = ({jsonData, formData, setFormData, submitForm}) => {
 
   const {strings} = useContext(LanguageContext)
   const {showPopup} = useContext(PopupContext)
-  const {organization} = useContext(AuthContext)
+  const {allUserOrganizations} = useContext(AuthContext)
+  const [orgIndex, setOrgIndex] = useState()
+
   const integerFields = ['online', 'level', 'yrkeshogskolepoang', 'hours', 'price', 'seqf']
   const floatFields = ['credits']
   const dateFields = ['start_date', 'end_date', 'registration_end_date']
-  const dropdownFields = ['level', 'seqf', 'studypace', 'online', 'frequensType', 'record_status']
+  const dropdownFields = ['level', 'seqf', 'studypace', 'online', 'frequensType', 'record_status', 'education_provider']
   const multiDropdownFields = ['category', 'language']
   const {categoriesList} = fields
 
@@ -45,8 +46,8 @@ const EducationForm = ({jsonData, formData, setFormData, submitForm}) => {
   const initForm = () => {
       setFormData({
         ...initValues, 
-      education_provider: organization?.name,
-      image_provider: organization?.image_logo,
+      education_provider: {value: allUserOrganizations.author?.[0].name, label: allUserOrganizations.author?.[0].name},
+      image_provider: allUserOrganizations.author?.[0].image_logo,
       record_status: {value: fields.record_status.draft, label: strings.course.statuses[fields.record_status.draft]}
       })
     }
@@ -58,12 +59,10 @@ const EducationForm = ({jsonData, formData, setFormData, submitForm}) => {
   }, [])
 
   useEffect(() => {
-    setFormData(prevData => ({
-      ...prevData,
-      education_provider: organization?.name,
-      image_provider: organization?.image_logo
-    }))
-  }, [organization])
+    if (formData?.education_provider) {
+      setFormData({...formData, image_provider: allUserOrganizations.author.find(el => el.name === formData?.education_provider?.value)?.image_logo})
+    }
+  }, [formData?.education_provider])
 
   useEffect(() => {
     if (jsonData) {
@@ -112,7 +111,7 @@ const EducationForm = ({jsonData, formData, setFormData, submitForm}) => {
   const formatData = (formData) => joinLanguages(formActions.formatFormData(formData, {
     dropdownFields,integerFields,dateFields,multiDropdownFields,floatFields
   }))
-
+  
   useEffect(() => console.log(formData, parseMultiValue(strings.categories, formatData(formData)?.category)), [formData])
 
   const showPreview = (evt) => {
@@ -128,6 +127,7 @@ const EducationForm = ({jsonData, formData, setFormData, submitForm}) => {
   const handleSubmit = (evt) => {
     evt.preventDefault()
     const filteredFormData = formatData(formData)
+    console.log("We are submitting with", filteredFormData)
     submitForm(filteredFormData)
     initForm()
   }
@@ -158,7 +158,12 @@ const EducationForm = ({jsonData, formData, setFormData, submitForm}) => {
       <div className='columns'>
         <div className='column-left'>
           <SingleLineInput id='title' disabled={importDisabled} limit={50} popupText={strings.course.popup.title} text={strings.course.title} placeholder={strings.placeholders.title}/>
-          <SingleLineInput id='education_provider' disabled={importDisabled} popupText={strings.course.popup.provider} text={strings.course.provider} placeholder={strings.placeholders.provider}/>
+          {/* <SingleLineInput disabled id='education_provider' popupText={strings.course.popup.provider} text={strings.course.provider} placeholder={strings.placeholders.provider}/> */}
+          <DropdownInput disabled={importDisabled} className='dropdown' id='education_provider' menuPlacement={menuPlace} placeholder={strings.placeholders.provider}
+          items={allUserOrganizations.author?.map(item => {return {
+              value: item.name, text: item.name }})
+           } 
+        />
         </div>
         <div className='column-right'>
           <SingleLineInput id='link' disabled={importDisabled} popupText={strings.course.popup.link} text={strings.course.url} placeholder={strings.placeholders.url}/>
@@ -214,13 +219,6 @@ const EducationForm = ({jsonData, formData, setFormData, submitForm}) => {
       <div className='columns'>
         <div className='column-left'>
         <h5>{strings.course.datefreq}</h5>
-          {/* <DropdownInput id='frequensType' text={strings.course.frequensType} placeholder={strings.placeholders.frequensType}
-            items={[
-              {value:'0', text:strings.course.frequensItems.date},
-              {value:'1', text:strings.course.frequensItems.other},
-            ]} 
-          />
-          <SingleLineInput className={'revert' + fieldClass} id='otherFrequensType' text={strings.course.otherFrequensType} placeholder={strings.placeholders.otherFrequensType}/> */}
           <div className='column-left-double'>
             <div className={'leftone' + fieldClass}>
               <DateInput id='start_date' disabled={importDisabled} popupText={strings.course.popup.start} text={strings.course.start}/>

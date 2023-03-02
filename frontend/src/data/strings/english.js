@@ -62,6 +62,9 @@ export const englishStrings = {
     confirm: 'You will shortly receive an e-mail to reset your password. If you have not, please check your e-mail.',
     send: 'Send',
   },
+  publishedCoursesOverview: 'Published courses',
+  draftCoursesOverview: 'Drafts',
+  archivedCoursesOverview: 'Archived courses',
   mainTabLearn: 'Search education',
   mainTabEducate: 'Offer education',
   learnStartText: 'Description of the website and its use',
@@ -94,7 +97,9 @@ export const englishStrings = {
     publish: 'publish',
   },
   course: {
-    title: 'Title of education',
+    title: 'Name of education',
+    publishedBy: 'Published by',
+    importedFrom: 'Imported from',
     summary: 'Summary',
     credits: 'Higher education credits',
     creditsprof: 'Yrkeshögskola credits',
@@ -283,7 +288,7 @@ export const englishStrings = {
   offer : {
     frontTitle:'FRONT TITLE',
     frontText:'Front text',
-    partnerTitle: 'PARTER TITLE',
+    partnerTitle: 'PARTNER TITLE',
   },
   request : {
     activeHeader: 'Active inquiries',
@@ -449,8 +454,13 @@ export const englishStrings = {
     status: 'status',
     quotationRequests: 'quotation requests',
     startDate: 'starting date',
-    edit: 'edit',
-    remove: 'remove',
+    lastChanged: 'Modified date',
+    lastChangedBy: (date, name) =>  `Last changed ${date}`,
+    organizations: 'Organizations',
+    edit: 'Edit',
+    duplicate: 'Create copy (draft)',
+    reassign: 'Change owner',
+    remove: 'Remove',
   },
   popup: {
     OrgReminderPopup: {
