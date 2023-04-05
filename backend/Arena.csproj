@@ -6,6 +6,7 @@
   <ItemGroup>
     <Compile Include="../backend_structs/**/*.cs" />
     <Compile Include="../backend_extapi/**/*.cs" />
+    <PackageReference Include="HttpClientToCurl" Version="1.9.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.3">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
