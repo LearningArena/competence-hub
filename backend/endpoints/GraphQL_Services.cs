@@ -20,6 +20,7 @@ public static class GraphQL_Services
 			.AddType<User_Extension>()
 			.AddType<Course_Extension>()
 			.AddQueryType()
+			.AddTypeExtension<Chatbot_Query>()
 			.AddTypeExtension<Course_Query>()
 			.AddTypeExtension<User_Query>()
 			.AddTypeExtension<Account_Query>()
