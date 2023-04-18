@@ -92,6 +92,15 @@ export const ImageInput = (props) => {
     </InputCommon>
   )
 }
+export const FileInput = (props) => {
+  const {id, text, popupText, ...rest} = props
+  const {data} = useContext(FormContext)
+  return (
+    <InputCommon key={id} {...props}>
+      <input className='choose-file' type="file" id={id} onChange={data.handleFileChange} {...rest}/>
+    </InputCommon>
+  )
+}
 // export const DropdownInput = (props) => {
 //   const {id, data, text, items, placeholder, popupText, ...rest} = props
 //   return (
