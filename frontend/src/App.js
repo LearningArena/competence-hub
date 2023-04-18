@@ -15,6 +15,7 @@ import { LanguageContext } from './context/LanguageContext';
 import { NavContext } from './context/NavContext';
 import GqlTest from './GqlTest';
 import About from './components/general/About';
+import VagledningMain from './components/vagledning/VagledningMain';
 import Faq from './components/general/Faq';
 import Privacy from './components/general/Privacy';
 import Contact from './components/general/Contact';
@@ -52,6 +53,9 @@ function App() {
           </RestrictedRoute>
           <Route path='/about'>
             <About />
+          </Route>
+          <Route path='/vagledning'>
+            <VagledningMain />
           </Route>
           <Route exact path='/'>
             <Redirect to='/learn' />
