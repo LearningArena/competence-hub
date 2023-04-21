@@ -8,7 +8,6 @@ const CVMain = () => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault()
-    console.log("We are submitting with CVStart")
   }
 
   return (

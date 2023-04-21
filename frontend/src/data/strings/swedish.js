@@ -487,19 +487,25 @@ export const swedishStrings = {
   vagledning: {
     ingress: 'Välj utgångsläge för vägledning',
     haveCV: 'Jag har ett CV',
-    haveAd: 'Jag har hittat ett drömjobb'
-  },
-  cv: {
-    pageTitle: 'Dina kompetenser',
-    aboutText: 'För att kunna matcha dig mot jobbannonsen behöver vi tillgång till ditt CV och personliga brev. Ladda upp dem nedan.',
-    about: 'CV och personligt brev',
-    uploadSpec: 'Tillåtna filformat: TXT, RTF.',
-    cvFile: 'Dokument för analys',
-    next: 'Nästa',
-    analyzeText: 'Text som kommer att laddas upp för analys:',
-    popup: {
-      cvFile: 'Ladda upp ditt CV och personligt brev här genom att välja TXT eller RTF filer från din dator för analys',
+    haveAd: 'Jag har hittat ett drömjobb',
+    cv: {
+      pageTitle: 'Dina kompetenser',
+      aboutText: 'För att kunna matcha dig mot jobbannonsen behöver vi tillgång till ditt CV och personliga brev. Ladda upp dem nedan.',
+      about: 'CV och personligt brev',
+      uploadSpec: 'Tillåtna filformat: TXT, RTF.',
+      cvFile: 'Dokument för analys',
+      next: 'Nästa',
+      analyzeText: 'Text som kommer att laddas upp för analys:',
+      popup: {
+        cvFile: 'Ladda upp ditt CV och personligt brev här genom att välja TXT eller RTF filer från din dator för analys',
+      },
+      dataProcessText: 'Genom att klicka "Nästa" godkänner du lagring och hantering av din data, för att kunna möjliggöra analys.'
     },
-    dataProcessText: 'Genom att klicka "Nästa" godkänner du lagring och hantering av din data, för att kunna möjliggöra analys.',
-  }
+    matching: {
+      cvCompetenceMatch: 'Utifrån de kompetenser vi identifierat rekommenderar vi listade yrken nedan. Välj vilka du vill matchas mot för befintliga jobbannonser eller förfina din matchning.',
+      competencies: 'Kompetenser',
+      traits: 'Egenskaper',
+      ocuupations: 'Yrken'
+    }
+  },
 } //END SwedishStrings
