@@ -17,7 +17,7 @@ import LanguageContextProvider from './context/LanguageContext'
 import PopupContextProvider from './context/PopupContext'
 import AuthContextProvider from './context/AuthContext'
 import PaginationContextProvider from './context/PaginationContext'
-import CVContextProvider from './context/CVContext'
+import GuidanceContextProvider from './context/GuidanceContext'
 
 
 ReactDOM.render(
@@ -30,9 +30,9 @@ ReactDOM.render(
             <AuthContextProvider>
               <PopupContextProvider>
                 <PaginationContextProvider>
-                  <CVContextProvider>
+                  <GuidanceContextProvider>
                     <App />
-                  </CVContextProvider>
+                  </GuidanceContextProvider>
                 </PaginationContextProvider>
               </PopupContextProvider>
             </AuthContextProvider>

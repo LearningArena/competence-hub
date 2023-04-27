@@ -3,7 +3,7 @@ import { LanguageContext } from '../../context/LanguageContext'
 import { useContext } from 'react'
 import { Link, Route, Switch, useRouteMatch } from 'react-router-dom'
 import CVStart from './CVStart'
-import Competence from './Competence'
+import Matcher from './Matcher'
 import { BrowserView } from "react-device-detect"
 import SideMenu from '../general/SideMenu'
 
@@ -26,7 +26,7 @@ const VagledningMain = () => {
             <CVStart />
           </Route>
           <Route path={`${match.path}/competence`}>
-            <Competence />
+            <Matcher />
           </Route>
           <Route exact path={`${match.path}`}>
             <div className='vagledning-main'>

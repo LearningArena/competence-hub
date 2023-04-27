@@ -503,9 +503,10 @@ export const swedishStrings = {
     },
     matching: {
       cvCompetenceMatch: 'Utifrån de kompetenser vi identifierat rekommenderar vi listade yrken nedan. Välj vilka du vill matchas mot för befintliga jobbannonser eller förfina din matchning.',
-      competencies: 'Kompetenser',
+      competences: 'Kompetenser',
       traits: 'Egenskaper',
-      ocuupations: 'Yrken'
+      occupations: 'Yrken',
+      occupationGroups: 'Yrkesgrupper'
     }
   },
 } //END SwedishStrings
