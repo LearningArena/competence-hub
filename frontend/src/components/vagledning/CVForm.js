@@ -91,17 +91,17 @@ const CVForm = ({ formData, setFormData, submitForm }) => {
   return (
     <>
       <Form className='add-edu'>
-        <h2>{strings.vagledning.cv.pageTitle}</h2>
-        <h3>{strings.vagledning.cv.about}</h3>
-        <p>{strings.vagledning.cv.aboutText}</p>
-
-        <FileInput id='cv_file' onChange={handleChange} popupText={strings.vagledning.cv.popup.cvFile} text={strings.vagledning.cv.cvFile} multiple />
+        <FileInput id='cv_file' onChange={handleChange} popupText={strings.vagledning.cv.popup.uploadInstr} text={strings.vagledning.cv.step1Instr} multiple />
         <span className='upload-specifications'>{strings.vagledning.cv.uploadSpec}</span>
 
         {currentCV && <h3>{strings.vagledning.cv.analyzeText}</h3>}
         {currentCV && <pre>{currentCV}</pre>}
 
-        <span className='upload-specifications'>{strings.vagledning.cv.dataProcessText}</span>
+        <label style={{verticalAlign: 'super'}}>
+          <input type="checkbox" />
+          <span>{strings.vagledning.cv.dataProcessText}</span>
+        </label>
+
         <button className='button save-button' onClick={handleClick}>{strings.vagledning.cv.next}</button>
       </Form>
     </>

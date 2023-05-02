@@ -15,10 +15,10 @@ const VagledningMain = () => {
   return (
     <div className='educate-main tab-main'>
       <BrowserView viewClassName="broswer-view">
-        <SideMenu placement='left' items={[
+        {/* <SideMenu placement='left' items={[
           { title: strings.sidemenuCV, url: match.url + '/cv' },
           { title: strings.sidemenuCompetence, url: match.url + '/competence' },
-        ]} />
+        ]} /> */}
       </BrowserView>
       <div className='content-main'>
         <Switch>

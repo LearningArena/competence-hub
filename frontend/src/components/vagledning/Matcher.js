@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { LanguageContext } from '../../context/LanguageContext'
 import { GuidanceContext } from '../../context/GuidanceContext'
+import ProgressTable from '../general/ProgressTable'
 import { CheckboxInput, Form } from '../educate/FormInputs'
 import { taxonomyGraphql } from '../../util/arbetsformedlingen'
 
@@ -13,6 +14,7 @@ const Matcher = () => {
   const { occupations, setOccupations } = useContext(GuidanceContext)
   const { occupationGroups, setOccupationGroups } = useContext(GuidanceContext)
   const history = useHistory()
+  const [oGroupSkills, setOGroupSkills] = useState([])
   const [errors, setErrors] = useState({})
   const [formData, setFormData] = useState({})
 
@@ -43,10 +45,17 @@ const Matcher = () => {
     setOccupationGroups(newGroups);
     // Get related skills
     const fetchRelatedSkills = async () => {
+      console.log("query MyQuery{concepts(id:\"" + event.target.getAttribute('data-tax-id') + "\"){id preferred_label type related(type:\"skill\",limit:50){id type preferred_label}}}")
       const taxData = await taxonomyGraphql("query MyQuery{concepts(id:\"" + event.target.getAttribute('data-tax-id') + "\"){id preferred_label type related(type:\"skill\",limit:50){id type preferred_label}}}", '', '');
-      taxData.data.concepts[0].related.forEach(skill => {
-        console.log(skill.preferred_label);
-      });
+      setOGroupSkills(taxData.data.concepts[0].related.map(s => {
+            return {
+              "label": s.preferred_label,
+              "concept_taxonomy_id": s.id,
+              "vagledning_active": false
+            }
+          }
+        )
+      )
     }
     fetchRelatedSkills();
   }
@@ -71,11 +80,17 @@ const Matcher = () => {
 
   return (
     <div>
-      <Form formData={formData} setFormData={setFormData} errors={errors} className='register-user' onSubmit={handleSubmit}>
-        <div className='learn-start'>
-          <div>
-            {strings.vagledning.matching.cvCompetenceMatch}
-          </div>
+      <h2>{strings.vagledning.cv.pageTitle}</h2>
+
+      <ProgressTable currentStep='2' totalSteps='4' />
+
+      <div className='learn-start'>
+        <h3>{strings.vagledning.matching.step2Header}</h3>
+        <div>
+          {strings.vagledning.matching.step2Instr}
+        </div>
+
+        <Form formData={formData} setFormData={setFormData} errors={errors} className='register-user' onSubmit={handleSubmit}>
           {/* <div>
             <h3>{strings.vagledning.matching.competences}</h3>
             {PersonTagInput(cvData.cvCompetences)}
@@ -96,9 +111,17 @@ const Matcher = () => {
             <h3>{strings.vagledning.matching.occupationGroups} från cv-kompetenser (JobEd OccupationsMatchByText)</h3>
             {PersonTagInput(occupationGroups, handleOccupationGroupChange)}
           </div>
-        </div>
-        <button className='button'>{strings.vagledning.cv.next}</button>
-      </Form>
+          <div>
+            <h3>{strings.vagledning.matching.competences} från {strings.vagledning.matching.occupationGroups} (Taxonomy ssyk-level-4 related skills)</h3>
+            <ul>
+              {oGroupSkills.map((skill, index) => {
+                return <li key={index}>{skill.label}</li>;
+              })}
+            </ul>
+          </div>    
+          <button className='button'>{strings.vagledning.cv.next}</button>
+        </Form>
+      </div>
     </div>
   )
 }

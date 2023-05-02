@@ -489,20 +489,23 @@ export const swedishStrings = {
     haveCV: 'Jag har ett CV',
     haveAd: 'Jag har hittat ett drömjobb',
     cv: {
-      pageTitle: 'Dina kompetenser',
-      aboutText: 'För att kunna matcha dig mot jobbannonsen behöver vi tillgång till ditt CV och personliga brev. Ladda upp dem nedan.',
-      about: 'CV och personligt brev',
+      bubbleHeader: 'Hej!',
+      bubbleText1: 'Står du mitt i yrkeslivet, med behov  att byta jobb, men är osäker på vad du är behörig till - eller kanske nyfiken på vilket jobb som skulle kunna passa just dig?',
+      bubbleText2: 'Infoga då ditt CV här nedan och testa jobbmatcharen!',
+      pageTitle: 'Testa jobbmatcharen',
+      step1Header: 'Steg 1 - Ladda upp ditt CV',
+      step1Instr: 'För att kunna matcha dig mot jobbannonsen behöver vi tillgång till ditt CV och personliga brev. Ladda upp dem nedan.',
       uploadSpec: 'Tillåtna filformat: TXT, RTF.',
-      cvFile: 'Dokument för analys',
-      next: 'Nästa',
+      next: 'Börja matchning',
       analyzeText: 'Text som kommer att laddas upp för analys:',
       popup: {
-        cvFile: 'Ladda upp ditt CV och personligt brev här genom att välja TXT eller RTF filer från din dator för analys',
+        uploadInstr: 'Välj bland filer',
       },
-      dataProcessText: 'Genom att klicka "Nästa" godkänner du lagring och hantering av din data, för att kunna möjliggöra analys.'
+      dataProcessText: 'Jag samtycker till insamling och bearbetning av data, i enlighet med GDPR, för att kunna nyttja tillhandahållna tjänster, samt möjliggöra analys och framtida förbättringar av hemsidan.'
     },
     matching: {
-      cvCompetenceMatch: 'Utifrån de kompetenser vi identifierat rekommenderar vi listade yrken nedan. Välj vilka du vill matchas mot för befintliga jobbannonser eller förfina din matchning.',
+      step2Header: 'Steg 2 - Välj yrken',
+      step2Instr: 'Utifrån de kompetenser vi identifierat rekommenderar vi listade yrken nedan. Välj vilka du vill matchas mot för befintliga jobbannonser eller förfina din matchning.',
       competences: 'Kompetenser',
       traits: 'Egenskaper',
       occupations: 'Yrken',
