@@ -1,4 +1,5 @@
 import React from 'react'
+import '../../styles/vagledning.scss'
 import { LanguageContext } from '../../context/LanguageContext'
 import { useContext } from 'react'
 import { Link, Route, Switch, useRouteMatch } from 'react-router-dom'

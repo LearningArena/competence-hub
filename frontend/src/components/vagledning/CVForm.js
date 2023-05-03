@@ -102,7 +102,9 @@ const CVForm = ({ formData, setFormData, submitForm }) => {
           <span>{strings.vagledning.cv.dataProcessText}</span>
         </label>
 
-        <button className='button save-button' onClick={handleClick}>{strings.vagledning.cv.next}</button>
+        <div style={{textAlign: 'center'}}>
+          <button className='button save-button' onClick={handleClick}>{strings.vagledning.cv.next}</button>
+        </div>
       </Form>
     </>
   )

@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom'
 import { LanguageContext } from '../../context/LanguageContext'
 import { GuidanceContext } from '../../context/GuidanceContext'
 import ProgressTable from '../general/ProgressTable'
+import StepHeader from '../general/StepHeader'
 import { CheckboxInput, Form } from '../educate/FormInputs'
 import { taxonomyGraphql } from '../../util/arbetsformedlingen'
 
@@ -84,8 +85,8 @@ const Matcher = () => {
 
       <ProgressTable currentStep='2' totalSteps='4' />
 
-      <div className='learn-start'>
-        <h3>{strings.vagledning.matching.step2Header}</h3>
+      <div className='vagledning-start'>
+        <StepHeader currentStep='2' text={strings.vagledning.matching.step2Header} />
         <div>
           {strings.vagledning.matching.step2Instr}
         </div>
