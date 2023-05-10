@@ -21,7 +21,7 @@ const ProgressTable = (props) => {
   };
 
   return (
-    <table style={{width: '100%', tableLayout: 'fixed'}}>
+    <table style={{width: '100%', tableLayout: 'fixed', margin: '0px'}}>
       <tbody>{renderTableRows()}</tbody>
     </table>
   );
