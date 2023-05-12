@@ -510,6 +510,11 @@ export const swedishStrings = {
       traits: 'Egenskaper',
       occupations: 'Yrken',
       occupationGroups: 'Yrkesgrupper'
+    },
+    matchResult: {
+      step3Header: 'Steg 3 - Välj annonser',
+      step3Instr: 'Utifrån de yrken du valt och de kompetenser vi identifierat rekommenderar vi jobbannonserna nedan. Välj vilka du vill matchas mot för rekommenderad väg framåt eller förfina din matchning.',
+      ads: 'Annonser'
     }
-  },
+  }
 } //END SwedishStrings

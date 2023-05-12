@@ -30,11 +30,11 @@ export const jobadEnrichTextDocuments = async (docHeadline, docText) => {
 
 export const jobedOccupationsMatchByText = async (inputText) => {
     try {
-        console.log("https://jobed-connect-api.jobtechdev.se/v1/occupations/match-by-text?limit=10&offset=0&input_text="+encodeURIComponent(inputText))
-        const response = await fetch("https://jobed-connect-api.jobtechdev.se/v1/occupations/match-by-text?limit=10&offset=0&input_text="+encodeURIComponent(inputText), {
+        console.log("https://jobed-connect-api.jobtechdev.se/v1/occupations/match-by-text?limit=10&offset=0&input_text="+encodeURIComponent(inputText)+"&include_metadata=true")
+        const response = await fetch("https://jobed-connect-api.jobtechdev.se/v1/occupations/match-by-text?limit=10&offset=0&input_text="+encodeURIComponent(inputText)+"&include_metadata=true", {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'accept': 'application/json'
         },
         redirect: 'follow'
       });
@@ -51,7 +51,7 @@ export const taxonomyGraphql = async (query, variables, operationName) => {
       const response = await fetch("https://taxonomy.api.jobtechdev.se/v1/taxonomy/graphql?query="+encodeURIComponent(query), {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json'
+        'accept': 'application/json'
       },
       redirect: 'follow'
     });
@@ -62,19 +62,28 @@ export const taxonomyGraphql = async (query, variables, operationName) => {
   }
 };
 
-// export const jobsearchSearch = async (occupationName, occupationGroups, freetext, relevanceThreshold) => {
-//   try {
-//       console.log()
-//       const response = await fetch("", {
-//       method: 'GET',
-//       headers: {
-//         'Content-Type': 'application/json'
-//       },
-//       redirect: 'follow'
-//     });
-//     const data = await response.json();
-//     return data;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+// TODO: use skillids when/if available
+// TODO: freetext seems to work by AND function - how/when to use?
+// TODO: relevance sounds interesting, but is always 1?
+export const jobsearchSearch = async (occupationNameIds, occupationGroupIds, skillIds, freetext, limit) => {
+  try {
+    const searchUrl = "https://jobsearch.api.jobtechdev.se/search?" +
+      occupationNameIds.map(x => "occupation-name=" + x).join("&") +"&" +
+      occupationGroupIds.map(x => "occupation-group=" + x).join("&") +
+      "&offset=0&limit=" + limit.toString()
+    console.log('URL: ' + searchUrl)
+    const response = await fetch(searchUrl, {
+      method: 'GET',
+      headers: {
+        'accept': 'application/json',
+        'x-feature-freetext-bool-method': 'or'
+      },
+      redirect: 'follow'
+    });
+    // console.log('RESPONSE: ' + response)
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};

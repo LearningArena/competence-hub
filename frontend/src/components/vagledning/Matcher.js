@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import { LanguageContext } from '../../context/LanguageContext'
 import { GuidanceContext } from '../../context/GuidanceContext'
@@ -73,10 +73,9 @@ const Matcher = () => {
     )
   }
 
-  const handleSubmit = (evt) => {
-    console.log('handleSubmit')
-    // To Be Continued ...
-    history.push('/vagledning')
+  const handleSubmit = async (evt) => {
+    console.log('handleSubmit processing?')
+    history.push('/vagledning/matchresult')
   }
 
   return (

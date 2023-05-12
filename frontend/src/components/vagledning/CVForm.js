@@ -61,6 +61,7 @@ const CVForm = ({ formData, setFormData, submitForm }) => {
               return {
                 "label": o.occupation_label,
                 "concept_taxonomy_id": o.concept_taxonomy_id,
+                "definition": o.definition,
                 "metadata": o.metadata,
                 "vagledning_active": true
               }
@@ -71,6 +72,7 @@ const CVForm = ({ formData, setFormData, submitForm }) => {
           return {
             "label": o.occupation_group.occupation_group_label,
             "concept_taxonomy_id": o.occupation_group.concept_taxonomy_id,
+            "definition": o.definition,
             "ssyk": o.occupation_group.ssyk,
             "vagledning_active": true
           }
@@ -83,7 +85,7 @@ const CVForm = ({ formData, setFormData, submitForm }) => {
         }
       };
       fetchCVEnrichment();
-      history.push('/vagledning/competence')
+      history.push('/vagledning/matcher')
     }
   }
 
