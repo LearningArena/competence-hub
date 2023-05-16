@@ -1,9 +1,11 @@
 import React from 'react'
+import '../../styles/vagledning.scss'
 import { LanguageContext } from '../../context/LanguageContext'
 import { useContext } from 'react'
 import { Link, Route, Switch, useRouteMatch } from 'react-router-dom'
 import CVStart from './CVStart'
 import Matcher from './Matcher'
+import MatchResult from './MatchResult'
 import { BrowserView } from "react-device-detect"
 import SideMenu from '../general/SideMenu'
 
@@ -25,8 +27,11 @@ const VagledningMain = () => {
           <Route path={`${match.path}/cv`}>
             <CVStart />
           </Route>
-          <Route path={`${match.path}/competence`}>
+          <Route path={`${match.path}/matcher`}>
             <Matcher />
+          </Route>
+          <Route path={`${match.path}/matchresult`}>
+            <MatchResult />
           </Route>
           <Route exact path={`${match.path}`}>
             <div className='vagledning-main'>
