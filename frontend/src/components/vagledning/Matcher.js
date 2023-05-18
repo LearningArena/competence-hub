@@ -14,36 +14,40 @@ const Matcher = () => {
   const { competences, setCompetences } = useContext(GuidanceContext)
   const { occupations, setOccupations } = useContext(GuidanceContext)
   const { occupationGroups, setOccupationGroups } = useContext(GuidanceContext)
+  const { occupationFields } = useContext(GuidanceContext)
   const history = useHistory()
   const [oGroupSkills, setOGroupSkills] = useState([])
   const [errors, setErrors] = useState({})
   const [formData, setFormData] = useState({})
 
   const handleCompetenceChange = (event) => {
-    const currentIndex = competences.findIndex((competences) => competences.label === event.target.id);
-    const updatedCompetence = Object.assign({}, competences[currentIndex]);
+    const idKey = event.target.id
+    const updatedCompetence = Object.assign({}, competences[idKey]);
     updatedCompetence.vagledning_active = !updatedCompetence.vagledning_active;
-    const newCompetences = competences.slice();
-    newCompetences[currentIndex] = updatedCompetence;
-    setCompetences(newCompetences);
+    setCompetences(prevState => ({
+      ...prevState,
+      [idKey]: updatedCompetence
+    }));
   };
 
   const handleOccupationChange = (event) => {
-    const currentIndex = occupations.findIndex((occupations) => occupations.label === event.target.id);
-    const updatedOccupation = Object.assign({}, occupations[currentIndex]);
+    const idKey = event.target.getAttribute('data-tax-id')
+    const updatedOccupation = Object.assign({}, occupations[idKey]);
     updatedOccupation.vagledning_active = !updatedOccupation.vagledning_active;
-    const newOccupations = occupations.slice();
-    newOccupations[currentIndex] = updatedOccupation;
-    setOccupations(newOccupations);
+    setOccupations(prevState => ({
+      ...prevState,
+      [idKey]: updatedOccupation
+    }));
   };
 
   const handleOccupationGroupChange = (event) => {
-    const currentIndex = occupationGroups.findIndex((occupationGroups) => occupationGroups.label === event.target.id);
-    const updatedGroup = Object.assign({}, occupationGroups[currentIndex]);
+    const idKey = event.target.getAttribute('data-tax-id')
+    const updatedGroup = Object.assign({}, occupationGroups[idKey]);
     updatedGroup.vagledning_active = !updatedGroup.vagledning_active;
-    const newGroups = occupationGroups.slice();
-    newGroups[currentIndex] = updatedGroup;
-    setOccupationGroups(newGroups);
+    setOccupationGroups(prevState => ({
+      ...prevState,
+      [idKey]: updatedGroup
+    }))
     // Get related skills
     const fetchRelatedSkills = async () => {
       console.log("query MyQuery{concepts(id:\"" + event.target.getAttribute('data-tax-id') + "\"){id preferred_label type related(type:\"skill\",limit:50){id type preferred_label}}}")
@@ -64,11 +68,11 @@ const Matcher = () => {
   const PersonTagInput = (tags, changeHandler) => {
     return (
       <div className='cats-wrap'>
-        {tags.map((item, index) => (
-          <div key={index} className='cat-title'>
-            <CheckboxInput id={item.label} data-tax-id={item.concept_taxonomy_id} checked={item.vagledning_active} onChange={changeHandler} text={item.label} />
-          </div>
-        ))}
+        {Object.entries(tags).map(([key, item], index) => {
+          return  <div key={index} className='cat-title'>
+                    <CheckboxInput id={item.label} data-tax-id={item.concept_taxonomy_id} checked={item.vagledning_active} onChange={changeHandler} text={item.label} />
+                  </div>
+        })}
       </div>
     )
   }
@@ -118,7 +122,15 @@ const Matcher = () => {
                 return <li key={index}>{skill.label}</li>;
               })}
             </ul>
-          </div>    
+          </div>
+          <div>
+            <h3>{strings.vagledning.matching.occupationFields} från {strings.vagledning.matching.occupationGroups} och {strings.vagledning.matching.occupationNames} (Taxonomy ssyk-level-4,occupation-name related occupation-fields)</h3>
+            <ul>
+              {Object.entries(occupationFields).map(([key, f], index) => {
+                return <li key={index}>{f.label}</li>;
+              })}
+            </ul>
+          </div>
           <button className='button'>{strings.vagledning.cv.next}</button>
         </Form>
       </div>

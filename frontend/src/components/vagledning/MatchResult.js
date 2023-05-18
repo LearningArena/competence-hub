@@ -22,11 +22,11 @@ const MatchResult = () => {
   useEffect(() => {
     const fetchAds = async () => {
       const jobsearchData = await jobsearchSearch(
-        occupations.map(x => x.concept_taxonomy_id),
-        occupationGroups.map(x => x.concept_taxonomy_id),
+        Object.entries(occupations).map(([key, x], index) => (x.vagledning_active ? x.concept_taxonomy_id : '')),
+        Object.entries(occupationGroups).map(([key, x], index) => (x.vagledning_active ? x.concept_taxonomy_id : '')),
         [],//skills.map(x => x.concept_taxonomy_id),
-        'currently unused freetext',
-        10
+        // 'currently unused freetext parameter',
+        25
       );
       console.log(jobsearchData)
       setAds(jobsearchData.hits.map(x => {
@@ -118,9 +118,9 @@ const MatchResult = () => {
         <i>cv enrichment competencies:</i>
         <div className='cv enrichment competencies'>
           <ul>
-            {competences.map((competence, index) => (
-              <li key={index}>- {competence.label}</li>
-            ))}
+            {Object.entries(competences).map(([key, competence], index) => {
+              return <li key={index}>- {competence.label}</li>
+            })}
           </ul>
         </div>
       </div>

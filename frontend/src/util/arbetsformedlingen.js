@@ -30,7 +30,6 @@ export const jobadEnrichTextDocuments = async (docHeadline, docText) => {
 
 export const jobedOccupationsMatchByText = async (inputText) => {
     try {
-        console.log("https://jobed-connect-api.jobtechdev.se/v1/occupations/match-by-text?limit=10&offset=0&input_text="+encodeURIComponent(inputText)+"&include_metadata=true")
         const response = await fetch("https://jobed-connect-api.jobtechdev.se/v1/occupations/match-by-text?limit=10&offset=0&input_text="+encodeURIComponent(inputText)+"&include_metadata=true", {
         method: 'POST',
         headers: {
@@ -47,7 +46,6 @@ export const jobedOccupationsMatchByText = async (inputText) => {
 
 export const taxonomyGraphql = async (query, variables, operationName) => {
   try {
-      console.log("https://taxonomy.api.jobtechdev.se/v1/taxonomy/graphql?query="+encodeURIComponent(query))
       const response = await fetch("https://taxonomy.api.jobtechdev.se/v1/taxonomy/graphql?query="+encodeURIComponent(query), {
       method: 'GET',
       headers: {
@@ -62,14 +60,15 @@ export const taxonomyGraphql = async (query, variables, operationName) => {
   }
 };
 
-// TODO: use skillids when/if available
+// TODO: test skillids when/if available
 // TODO: freetext seems to work by AND function - how/when to use?
 // TODO: relevance sounds interesting, but is always 1?
-export const jobsearchSearch = async (occupationNameIds, occupationGroupIds, skillIds, freetext, limit) => {
+export const jobsearchSearch = async (occupationNameIds, occupationGroupIds, skillIds, limit) => {
   try {
     const searchUrl = "https://jobsearch.api.jobtechdev.se/search?" +
       occupationNameIds.map(x => "occupation-name=" + x).join("&") +"&" +
       occupationGroupIds.map(x => "occupation-group=" + x).join("&") +
+      skillIds.map(x => "skill=" + x).join("&") +
       "&offset=0&limit=" + limit.toString()
     console.log('URL: ' + searchUrl)
     const response = await fetch(searchUrl, {

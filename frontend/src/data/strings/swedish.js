@@ -508,8 +508,10 @@ export const swedishStrings = {
       step2Instr: 'Utifrån de kompetenser vi identifierat rekommenderar vi listade yrken nedan. Välj vilka du vill matchas mot för befintliga jobbannonser eller förfina din matchning.',
       competences: 'Kompetenser',
       traits: 'Egenskaper',
+      occupationNames: 'Yrkesnamn',
       occupations: 'Yrken',
-      occupationGroups: 'Yrkesgrupper'
+      occupationGroups: 'Yrkesgrupper',
+      occupationFields: 'Yrkesområden'
     },
     matchResult: {
       step3Header: 'Steg 3 - Välj annonser',

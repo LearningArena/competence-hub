@@ -11,12 +11,14 @@ const GuidanceContextProvider = (props) => {
       cvOccupations: [],
       cvTraits: []
     })
-  const [competences, setCompetences] = useState([])
-  const [occupations, setOccupations] = useState([])
-  const [occupationGroups, setOccupationGroups] = useState([])
+  const [competences, setCompetences] = useState({})
+  const [skills, setSkills] = useState({})
+  const [occupations, setOccupations] = useState({})
+  const [occupationGroups, setOccupationGroups] = useState({})
+  const [occupationFields, setOccupationFields] = useState({})
 
   return (
-    <GuidanceContext.Provider value={{ cvData, setCVData, competences, setCompetences, occupations, setOccupations, occupationGroups, setOccupationGroups }}>
+    <GuidanceContext.Provider value={{ cvData, setCVData, competences, setCompetences, skills, setSkills, occupations, setOccupations, occupationGroups, setOccupationGroups, occupationFields, setOccupationFields }}>
       {props.children}
     </GuidanceContext.Provider>
   )

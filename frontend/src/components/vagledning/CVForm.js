@@ -13,6 +13,7 @@ const CVForm = ({ formData, setFormData, submitForm }) => {
   const { competences, setCompetences } = useContext(GuidanceContext)
   const { occupations, setOccupations } = useContext(GuidanceContext)
   const { occupationGroups, setOccupationGroups } = useContext(GuidanceContext)
+  const { occupationFields, setOccupationFields } = useContext(GuidanceContext)
   const [currentCV, setCurrentCV] = useState('')
   const history = useHistory()
 
@@ -38,51 +39,93 @@ const CVForm = ({ formData, setFormData, submitForm }) => {
                   cvOccupations: [],
                   cvTraits: []
                 })
+      //TODO: Move into backend?
 
-      // First use JobAd API to extract comptences and traits
+      // Fetch all cv-derived data needed before user gets involved
       const fetchCVEnrichment = async () => {
+        let newState = {}
+
+        // First use JobAd API to extract comptences and traits
         const jobadData = await jobadEnrichTextDocuments('', currentCV);
-        console.log(jobadData)
-        setCompetences(jobadData[0].enriched_candidates.competencies.map(c => {
-              return {
-                "label": c.concept_label,
-                "concept_taxonomy_id": '', //TODO: Ask JobTech why it's missing!
-                "term": c.term,
-                "prediction": c.prediction,
-                "vagledning_active": true
-              }
-            }
-          )
-        )
-        // Then use JobEd API to find occupations and occupation groups
-        const jobedData = await jobedOccupationsMatchByText(jobadData[0].enriched_candidates.competencies.map(c => c.term).join(' '));
-        console.log(jobedData)
-        setOccupations(jobedData.related_occupations.map(o => {
-              return {
-                "label": o.occupation_label,
-                "concept_taxonomy_id": o.concept_taxonomy_id,
-                "definition": o.definition,
-                "metadata": o.metadata,
-                "vagledning_active": true
-              }
-            }
-          )
-        )
-        setOccupationGroups(jobedData.related_occupations.map(o => {
+        newState = jobadData[0].enriched_candidates.competencies.reduce((obj, item) => {
           return {
-            "label": o.occupation_group.occupation_group_label,
-            "concept_taxonomy_id": o.occupation_group.concept_taxonomy_id,
-            "definition": o.definition,
-            "ssyk": o.occupation_group.ssyk,
-            "vagledning_active": true
+            ...obj,
+            [item.concept_label]: {
+                "label": item.concept_label,
+                "concept_taxonomy_id": '', //TODO: Ask JobTech why it's missing!
+                "term": item.term,
+                "prediction": item.prediction,
+                "vagledning_active": true
+              },
           }
-        }))
-        // Then use AF Taxonomy to find related skills from occupation groups
-        if (jobedData.related_occupations.length > 0) {
-          console.log(jobedData.related_occupations[Math.floor(jobedData.related_occupations.length / 2)].occupation_group);  
-          const taxData = await taxonomyGraphql("query MyQuery{concepts(id:\"" + jobedData.related_occupations[Math.floor(jobedData.related_occupations.length / 2)].occupation_group.concept_taxonomy_id + "\"){id preferred_label type related(type:\"skill\",limit:50){id type preferred_label}}}", '', '');
-          console.log(taxData)
+        }, newState)
+        setCompetences(newState)
+
+        // Then use JobEd API to find occupations (occupation-name) and occupation groups (ssyk-level-4)
+        newState = {}
+        const jobedData = await jobedOccupationsMatchByText(jobadData[0].enriched_candidates.competencies.map(c => c.term).join(' '));
+        newState = jobedData.related_occupations.reduce((obj, item) => {
+          return {
+            ...obj,
+            [item.concept_taxonomy_id]: {
+                "label": item.occupation_label,
+                "concept_taxonomy_id": item.concept_taxonomy_id,
+                "definition": '',
+                "metadata": item.metadata,
+                "vagledning_active": true
+              },
+          }
+        }, newState)
+        setOccupations(newState)
+        newState = {}
+        newState = jobedData.related_occupations.reduce((obj, item) => {
+          return {
+            ...obj,
+            [item.occupation_group.concept_taxonomy_id]: {
+                "label": item.occupation_group.occupation_group_label,
+                "concept_taxonomy_id": item.occupation_group.concept_taxonomy_id,
+                "definition": '',
+                "ssyk": item.occupation_group.ssyk,
+                "vagledning_active": true
+              },
+          }
+        }, newState)
+        setOccupationGroups(newState)
+
+        // Then use AF Taxonomy to find related occupation fields from occupations ...
+        newState = {}
+        let newData = await taxonomyGraphql("query MyQuery{concepts(id:[" + jobedData.related_occupations.map(o => `"${o.concept_taxonomy_id}"`).join(",") + "]){id preferred_label type related(type:\"occupation-field\",limit:50){id type preferred_label}}}", '', '');
+        for (let i = 0; i < newData.data.concepts.length; i++) {
+          if (newData.data.concepts[i].related.length > 0) {
+            newState = newData.data.concepts[i].related.reduce((obj, f) => {
+              return {
+                ...obj,
+                [f["id"]]: {
+                    "label": f.preferred_label,
+                    "concept_taxonomy_id": f.id,
+                    "vagledning_active": true
+                  },
+              }
+            }, newState)
+          }
         }
+        // ... and occupation names
+        newData = await taxonomyGraphql("query MyQuery{concepts(id:[" + jobedData.related_occupations.map(o => `"${o.occupation_group.concept_taxonomy_id}"`).join(",") + "]){id preferred_label type related(type:\"occupation-field\",limit:50){id type preferred_label}}}", '', '');
+        for (let i = 0; i < newData.data.concepts.length; i++) {
+          if (newData.data.concepts[i].related.length > 0) {
+            newState = newData.data.concepts[i].related.reduce((obj, item) => {
+              return {
+                ...obj,
+                [item["id"]]: {
+                    "label": item.preferred_label,
+                    "concept_taxonomy_id": item.id,
+                    "vagledning_active": true
+                  },
+              }
+            }, newState)
+          }
+        }
+        setOccupationFields(newState)
       };
       fetchCVEnrichment();
       history.push('/vagledning/matcher')
