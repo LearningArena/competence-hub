@@ -12,11 +12,11 @@ const Matcher = () => {
 
   const { strings } = useContext(LanguageContext)
   const { competences, setCompetences } = useContext(GuidanceContext)
+  const { skills, setSkills } = useContext(GuidanceContext)
   const { occupations, setOccupations } = useContext(GuidanceContext)
   const { occupationGroups, setOccupationGroups } = useContext(GuidanceContext)
-  const { occupationFields } = useContext(GuidanceContext)
+  const { occupationFields, setOccupationFields } = useContext(GuidanceContext)
   const history = useHistory()
-  const [oGroupSkills, setOGroupSkills] = useState([])
   const [errors, setErrors] = useState({})
   const [formData, setFormData] = useState({})
 
@@ -40,6 +40,16 @@ const Matcher = () => {
     }));
   };
 
+  const handleSkillChange = (event) => {
+    const idKey = event.target.getAttribute('data-tax-id')
+    const updatedSkill = Object.assign({}, skills[idKey]);
+    updatedSkill.vagledning_active = !updatedSkill.vagledning_active;
+    setSkills(prevState => ({
+      ...prevState,
+      [idKey]: updatedSkill
+    }));
+  };
+
   const handleOccupationGroupChange = (event) => {
     const idKey = event.target.getAttribute('data-tax-id')
     const updatedGroup = Object.assign({}, occupationGroups[idKey]);
@@ -50,20 +60,32 @@ const Matcher = () => {
     }))
     // Get related skills
     const fetchRelatedSkills = async () => {
-      console.log("query MyQuery{concepts(id:\"" + event.target.getAttribute('data-tax-id') + "\"){id preferred_label type related(type:\"skill\",limit:50){id type preferred_label}}}")
+      let newState = {... skills}
       const taxData = await taxonomyGraphql("query MyQuery{concepts(id:\"" + event.target.getAttribute('data-tax-id') + "\"){id preferred_label type related(type:\"skill\",limit:50){id type preferred_label}}}", '', '');
-      setOGroupSkills(taxData.data.concepts[0].related.map(s => {
-            return {
-              "label": s.preferred_label,
-              "concept_taxonomy_id": s.id,
+      newState = taxData.data.concepts[0].related.reduce((obj, item) => {
+        return {
+          ...obj,
+          [item.id]: {
+              "label": item.preferred_label,
+              "concept_taxonomy_id": item.id,
               "vagledning_active": false
-            }
-          }
-        )
-      )
+            },
+        }
+      }, newState)
+      setSkills(newState)
     }
     fetchRelatedSkills();
   }
+
+  const handleOccupationFieldChange = (event) => {
+    const idKey = event.target.getAttribute('data-tax-id')
+    const updatedField = Object.assign({}, occupationFields[idKey]);
+    updatedField.vagledning_active = !updatedField.vagledning_active;
+    setOccupationFields(prevState => ({
+      ...prevState,
+      [idKey]: updatedField
+    }));
+  };
 
   const PersonTagInput = (tags, changeHandler) => {
     return (
@@ -95,14 +117,6 @@ const Matcher = () => {
         </div>
 
         <Form formData={formData} setFormData={setFormData} errors={errors} className='register-user' onSubmit={handleSubmit}>
-          {/* <div>
-            <h3>{strings.vagledning.matching.competences}</h3>
-            {PersonTagInput(cvData.cvCompetences)}
-          </div>
-          <div>
-            <h3>{strings.vagledning.matching.traits}</h3>
-            {PersonTagInput(cvData.cvTraits)}
-          </div> */}
           <div>
             <h3>{strings.vagledning.matching.competences} från cv-text (JobAd EnrichTextDocuments)</h3>
             {PersonTagInput(competences, handleCompetenceChange)}
@@ -113,23 +127,21 @@ const Matcher = () => {
           </div>
           <div>
             <h3>{strings.vagledning.matching.occupationGroups} från cv-kompetenser (JobEd OccupationsMatchByText)</h3>
+            <p>Klicka för att addera relaterade skills!</p>
             {PersonTagInput(occupationGroups, handleOccupationGroupChange)}
           </div>
           <div>
-            <h3>{strings.vagledning.matching.competences} från {strings.vagledning.matching.occupationGroups} (Taxonomy ssyk-level-4 related skills)</h3>
-            <ul>
-              {oGroupSkills.map((skill, index) => {
-                return <li key={index}>{skill.label}</li>;
-              })}
-            </ul>
+            <h3>Skills från {strings.vagledning.matching.occupationGroups} (Taxonomy ssyk-level-4 related skills)</h3>
+            {PersonTagInput(skills, handleSkillChange)}
           </div>
           <div>
             <h3>{strings.vagledning.matching.occupationFields} från {strings.vagledning.matching.occupationGroups} och {strings.vagledning.matching.occupationNames} (Taxonomy ssyk-level-4,occupation-name related occupation-fields)</h3>
-            <ul>
+            {/* <ul>
               {Object.entries(occupationFields).map(([key, f], index) => {
                 return <li key={index}>{f.label}</li>;
               })}
-            </ul>
+            </ul> */}
+            {PersonTagInput(occupationFields, handleOccupationFieldChange)}
           </div>
           <button className='button'>{strings.vagledning.cv.next}</button>
         </Form>

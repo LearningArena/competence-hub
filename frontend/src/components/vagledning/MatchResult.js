@@ -12,23 +12,34 @@ const MatchResult = () => {
 
   const { strings } = useContext(LanguageContext)
   const { competences } = useContext(GuidanceContext)
+  const { skills } = useContext(GuidanceContext)
   const { occupations } = useContext(GuidanceContext)
   const { occupationGroups } = useContext(GuidanceContext)
+  const { occupationFields } = useContext(GuidanceContext)
   const history = useHistory()
   const [ads, setAds] = useState([])
+  const [useOcc, setUseOcc] = useState(true)
+  const [useOccGroups, setUseOccGroups] = useState(true)
+  const [useOccFields, setUseOccFields] = useState(true)
+  const [useSkills, setUseSkills] = useState(true)
+  const [useComp, setUseComp] = useState(true)
   const [errors, setErrors] = useState({})
   const [formData, setFormData] = useState({})
+  const returnNumAds = 25
+  const [totalMatchedAds, setTotalMatchedAds] = useState(0)
 
   useEffect(() => {
     const fetchAds = async () => {
-      const jobsearchData = await jobsearchSearch(
-        Object.entries(occupations).map(([key, x], index) => (x.vagledning_active ? x.concept_taxonomy_id : '')),
-        Object.entries(occupationGroups).map(([key, x], index) => (x.vagledning_active ? x.concept_taxonomy_id : '')),
-        [],//skills.map(x => x.concept_taxonomy_id),
-        // 'currently unused freetext parameter',
-        25
+      let jobsearchData = await jobsearchSearch(
+        (useOcc ? Object.entries(occupations).filter(([key, x], index) => x.vagledning_active).map(([key, x], index) => (x.vagledning_active ? x.concept_taxonomy_id : '')) : []),
+        (useOccGroups ? Object.entries(occupationGroups).filter(([key, x], index) => x.vagledning_active).map(([key, x], index) => (x.vagledning_active ? x.concept_taxonomy_id : '')) : []),
+        (useOccFields ? Object.entries(occupationFields).filter(([key, x], index) => x.vagledning_active).map(([key, x], index) => (x.vagledning_active ? x.concept_taxonomy_id : '')) : []),
+        (useSkills ? Object.entries(skills).filter(([key, x], index) => x.vagledning_active).map(([key, x], index) => (x.vagledning_active ? x.concept_taxonomy_id : '')) : []),
+        (useComp ? Object.entries(competences).filter(([key, x], index) => x.vagledning_active).map(([key, x], index) => (x.vagledning_active ? x.term : '')) : []),
+        returnNumAds
       );
-      console.log(jobsearchData)
+      setTotalMatchedAds(jobsearchData.total.value)
+      console.log('XXX 1: ' + jobsearchData.total.value)
       setAds(jobsearchData.hits.map(x => {
             return {
               "id": x.id,
@@ -40,6 +51,8 @@ const MatchResult = () => {
               "workplace_address": x.workplace_address,
               "employer": x.employer,
               "vagledning_active": false,
+              "must_have_skills": x.must_have.skills,
+              "nice_to_have_skills": x.nice_to_have.skills,
               "ssyk_related_skills": [],
               "enrichment_competencies": []
             }
@@ -48,7 +61,13 @@ const MatchResult = () => {
       )
     }
     fetchAds();
-  }, [occupations]);
+  }, [useOcc, useOccGroups, useOccFields, useSkills, useComp]);
+
+  const handleUseOcc = (event) => {setUseOcc(event.target.checked)};
+  const handleUseOccGroups = (event) => {setUseOccGroups(event.target.checked)};
+  const handleUseOccFields = (event) => {setUseOccFields(event.target.checked)};
+  const handleUseSkills = (event) => {setUseSkills(event.target.checked)};
+  const handleUseComp = (event) => {setUseComp(event.target.checked)};
 
   const adExpandHandler = (event) => {
     const currentIndex = ads.findIndex((ads) => ads.id === event.target.id);
@@ -147,13 +166,24 @@ const MatchResult = () => {
 
         <Form formData={formData} setFormData={setFormData} errors={errors} className='register-user' onSubmit={handleSubmit}>
           <div>
-            <h3>{strings.vagledning.matchResult.ads} (JobSearch)</h3>
+
+            <h3>Sökparametrar</h3>
+            <div key='1' className='cat-title'>
+              <CheckboxInput id='1' checked={useOcc} onChange={handleUseOcc} text='Occupations' />
+              <CheckboxInput id='2' checked={useOccGroups} onChange={handleUseOccGroups} text='Occupation Groups' />
+              <CheckboxInput id='3' checked={useOccFields} onChange={handleUseOccFields} text='Occupation Fields' />
+              <CheckboxInput id='4' checked={useSkills} onChange={handleUseSkills} text='Skills' />
+              <CheckboxInput id='5' checked={useComp} onChange={handleUseComp} text='Competences' />
+            </div>
+
+            <h3>{strings.vagledning.matchResult.ads} (JobSearch) {ads.length}/{totalMatchedAds} st</h3>
             {ads.map((ad, index) => (
               <div key={index} className='cat-title'>
                 <CheckboxInput id={ad.id} data-ssyk4-id={ad.occupation_group.concept_id} checked={ad.vagledning_active} onChange={adExpandHandler} text={ad.headline} />
                 {ad.vagledning_active ? ExpandedData(ad, index) : <i></i>}
               </div>
             ))}
+
           </div>    
           <button className='button'>{strings.vagledning.cv.next}</button>
         </Form>

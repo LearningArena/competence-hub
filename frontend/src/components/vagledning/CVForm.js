@@ -55,7 +55,7 @@ const CVForm = ({ formData, setFormData, submitForm }) => {
                 "concept_taxonomy_id": '', //TODO: Ask JobTech why it's missing!
                 "term": item.term,
                 "prediction": item.prediction,
-                "vagledning_active": true
+                "vagledning_active": false //TODO: (item.prediction > 0.33 ? true : false)
               },
           }
         }, newState)
@@ -72,7 +72,7 @@ const CVForm = ({ formData, setFormData, submitForm }) => {
                 "concept_taxonomy_id": item.concept_taxonomy_id,
                 "definition": '',
                 "metadata": item.metadata,
-                "vagledning_active": true
+                "vagledning_active": false //TODO: (item.metadata.match_score > 10 ? true : false)
               },
           }
         }, newState)
@@ -86,7 +86,7 @@ const CVForm = ({ formData, setFormData, submitForm }) => {
                 "concept_taxonomy_id": item.occupation_group.concept_taxonomy_id,
                 "definition": '',
                 "ssyk": item.occupation_group.ssyk,
-                "vagledning_active": true
+                "vagledning_active": false //TODO: (item.metadata.match_score > 10 ? true : false)
               },
           }
         }, newState)
@@ -103,7 +103,7 @@ const CVForm = ({ formData, setFormData, submitForm }) => {
                 [f["id"]]: {
                     "label": f.preferred_label,
                     "concept_taxonomy_id": f.id,
-                    "vagledning_active": true
+                    "vagledning_active": false //TODO: true
                   },
               }
             }, newState)
@@ -119,7 +119,7 @@ const CVForm = ({ formData, setFormData, submitForm }) => {
                 [item["id"]]: {
                     "label": item.preferred_label,
                     "concept_taxonomy_id": item.id,
-                    "vagledning_active": true
+                    "vagledning_active": false //TODO: true
                   },
               }
             }, newState)

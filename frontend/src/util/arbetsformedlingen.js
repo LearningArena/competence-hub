@@ -17,7 +17,7 @@ export const jobadEnrichTextDocuments = async (docHeadline, docText) => {
           ],
           "include_terms_info": false,
           "include_sentences": false,
-          "sort_by_prediction_score": "NOT_SORTED"
+          "sort_by_prediction_score": "DESC"
         }),
         redirect: 'follow'
       });
@@ -60,15 +60,17 @@ export const taxonomyGraphql = async (query, variables, operationName) => {
   }
 };
 
-// TODO: test skillids when/if available
 // TODO: freetext seems to work by AND function - how/when to use?
 // TODO: relevance sounds interesting, but is always 1?
-export const jobsearchSearch = async (occupationNameIds, occupationGroupIds, skillIds, limit) => {
+export const jobsearchSearch = async (occupationNameIds, occupationGroupIds, occupationFieldIds, skillIds, freetext, limit) => {
   try {
+    // console.log(occupationNameIds, occupationGroupIds, occupationFieldIds, skillIds, freetext, limit)
     const searchUrl = "https://jobsearch.api.jobtechdev.se/search?" +
-      occupationNameIds.map(x => "occupation-name=" + x).join("&") +"&" +
-      occupationGroupIds.map(x => "occupation-group=" + x).join("&") +
-      skillIds.map(x => "skill=" + x).join("&") +
+      occupationNameIds.map(x => "&occupation-name=" + x) +
+      occupationGroupIds.map(x => "&occupation-group=" + x) +
+      occupationFieldIds.map(x => "&occupation-field=" + x) +
+      skillIds.map(x => "&skill=" + x) +
+      "&q=" + encodeURIComponent(freetext) +
       "&offset=0&limit=" + limit.toString()
     console.log('URL: ' + searchUrl)
     const response = await fetch(searchUrl, {
