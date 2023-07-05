@@ -28,9 +28,9 @@ export const jobadEnrichTextDocuments = async (docHeadline, docText) => {
     }
 };
 
-export const jobedOccupationsMatchByText = async (inputText) => {
+export const jobedOccupationsMatchByText = async (inputText, limit) => {
     try {
-        const response = await fetch("https://jobed-connect-api.jobtechdev.se/v1/occupations/match-by-text?limit=10&offset=0&input_text="+encodeURIComponent(inputText)+"&include_metadata=true", {
+        const response = await fetch("https://jobed-connect-api.jobtechdev.se/v1/occupations/match-by-text?limit="+limit+"&offset=0&input_text="+encodeURIComponent(inputText)+"&include_metadata=true", {
         method: 'POST',
         headers: {
           'accept': 'application/json'

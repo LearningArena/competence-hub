@@ -4,8 +4,9 @@ import { LanguageContext } from '../../context/LanguageContext'
 import { useContext } from 'react'
 import { Link, Route, Switch, useRouteMatch } from 'react-router-dom'
 import CVStart from './CVStart'
-import Matcher from './Matcher'
-import MatchResult from './MatchResult'
+import Insight from './Insight'
+import Outlook from './Outlook'
+import Future from './Future'
 import { BrowserView } from "react-device-detect"
 import SideMenu from '../general/SideMenu'
 
@@ -18,8 +19,11 @@ const VagledningMain = () => {
     <div className='educate-main tab-main'>
       <BrowserView viewClassName="broswer-view">
         {/* <SideMenu placement='left' items={[
-          { title: strings.sidemenuCV, url: match.url + '/cv' },
-          { title: strings.sidemenuCompetence, url: match.url + '/competence' },
+          { title: strings.vagledning.sidemenuStart, url: match.url + '/cv' },
+          { title: strings.vagledning.sidemenuInsight, url: match.url + '/insight' },
+          { title: strings.vagledning.sidemenuOutlook, url: match.url + '#' },
+          { title: strings.vagledning.sidemenuFuture, url: match.url + '#' },
+          { title: strings.vagledning.sidemenuMyPath, url: match.url + '#' },
         ]} /> */}
       </BrowserView>
       <div className='content-main'>
@@ -27,11 +31,14 @@ const VagledningMain = () => {
           <Route path={`${match.path}/cv`}>
             <CVStart />
           </Route>
-          <Route path={`${match.path}/matcher`}>
-            <Matcher />
+          <Route path={`${match.path}/insight`}>
+            <Insight />
           </Route>
-          <Route path={`${match.path}/matchresult`}>
-            <MatchResult />
+          <Route path={`${match.path}/outlook`}>
+            <Outlook />
+          </Route>
+          <Route path={`${match.path}/future`}>
+            <Future />
           </Route>
           <Route exact path={`${match.path}`}>
             <div className='vagledning-main'>

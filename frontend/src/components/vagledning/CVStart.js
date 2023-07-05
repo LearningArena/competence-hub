@@ -30,21 +30,13 @@ const CVMain = () => {
   return (
     <div>
 
-      <CardContainer cards={cards} />
-      
-      <Bubble>
-        <p><b>{strings.vagledning.cv.bubbleHeader}</b></p>
-        <p>{strings.vagledning.cv.bubbleText1}</p>
-        <p><b>{strings.vagledning.cv.bubbleText2}</b></p>
-      </Bubble>
-
       <SectionWrapper>
-        <h2 id='heading-mod'>{strings.vagledning.cv.pageTitle}</h2>
-        <ProgressTable currentStep='1' totalSteps='4' />
+        <h2 id='heading-mod'>{strings.vagledning.cv.Header}</h2>
+        <p>{strings.vagledning.cv.Preamble}</p>
       </SectionWrapper>
 
-      <SectionWrapper circleText='1' isChecked={false}>
-        <h3 id='heading-mod'>{strings.vagledning.cv.step1Header}</h3>
+      <SectionWrapper>
+        <h3 id='heading-mod'>{strings.vagledning.cv.cvUpload}</h3>
         <CVForm formData={formData} setFormData={setFormData} submitForm={handleSubmit} />
       </SectionWrapper>
 

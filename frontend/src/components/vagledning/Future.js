@@ -2,16 +2,15 @@ import React, { useState, useContext, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { LanguageContext } from '../../context/LanguageContext'
 import { GuidanceContext } from '../../context/GuidanceContext'
-import ProgressTable from '../general/ProgressTable'
-import StepHeader from '../general/StepHeader'
+import SectionWrapper from './SectionWrapper'
 import { CheckboxInput, Form } from '../educate/FormInputs'
 import { jobsearchSearch, taxonomyGraphql, jobadEnrichTextDocuments } from '../../util/arbetsformedlingen'
 
 
-const MatchResult = () => {
+const Future = () => {
 
   const { strings } = useContext(LanguageContext)
-  const { competences } = useContext(GuidanceContext)
+  const { cvCompetences } = useContext(GuidanceContext)
   const { skills } = useContext(GuidanceContext)
   const { occupations } = useContext(GuidanceContext)
   const { occupationGroups } = useContext(GuidanceContext)
@@ -35,14 +34,14 @@ const MatchResult = () => {
         (useOccGroups ? Object.entries(occupationGroups).filter(([key, x], index) => x.vagledning_active).map(([key, x], index) => (x.vagledning_active ? x.concept_taxonomy_id : '')) : []),
         (useOccFields ? Object.entries(occupationFields).filter(([key, x], index) => x.vagledning_active).map(([key, x], index) => (x.vagledning_active ? x.concept_taxonomy_id : '')) : []),
         (useSkills ? Object.entries(skills).filter(([key, x], index) => x.vagledning_active).map(([key, x], index) => (x.vagledning_active ? x.concept_taxonomy_id : '')) : []),
-        (useComp ? Object.entries(competences).filter(([key, x], index) => x.vagledning_active).map(([key, x], index) => (x.vagledning_active ? x.term : '')) : []),
+        (useComp ? Object.entries(cvCompetences).filter(([key, x], index) => x.vagledning_active).map(([key, x], index) => (x.vagledning_active ? x.term : '')) : []),
         returnNumAds
       );
       setTotalMatchedAds(jobsearchData.total.value)
-      console.log('XXX 1: ' + jobsearchData.total.value)
       setAds(jobsearchData.hits.map(x => {
             return {
               "id": x.id,
+              "webpage_url": x.webpage_url,
               "headline": x.headline,
               "description": x.description,
               "occupation": x.occupation,
@@ -111,6 +110,15 @@ const MatchResult = () => {
   const ExpandedData = (ad, index) => {
     return (
       <div>
+        <i>Employment:</i>
+        <div className='employment'>
+          <ul>
+              <li key="1">- occupation: {ad.occupation.label}</li>
+              <li key="2">- occupation_group: {ad.occupation_group.label}</li>
+              <li key="3">- occupation_field: {ad.occupation_field.label}</li>
+              <li key="4">- {ad.webpage_url}</li>
+          </ul>
+        </div>
         <i>Workplace:</i>
         <div className='workplace'>
           <ul>
@@ -137,7 +145,7 @@ const MatchResult = () => {
         <i>cv enrichment competencies:</i>
         <div className='cv enrichment competencies'>
           <ul>
-            {Object.entries(competences).map(([key, competence], index) => {
+            {Object.entries(cvCompetences).map(([key, competence], index) => {
               return <li key={index}>- {competence.label}</li>
             })}
           </ul>
@@ -154,16 +162,12 @@ const MatchResult = () => {
 
   return (
     <div>
-      <h2>{strings.vagledning.cv.pageTitle}</h2>
-
-      <ProgressTable currentStep='3' totalSteps='4' />
+      <SectionWrapper>
+        <h2 id='heading-mod'>{strings.vagledning.future.Header}</h2>
+        <p dangerouslySetInnerHTML={{__html: strings.vagledning.future.Preamble}} />
+      </SectionWrapper>
 
       <div className='vagledning-start'>
-        <StepHeader currentStep='3' text={strings.vagledning.matchResult.step3Header} />
-        <div>
-          {strings.vagledning.matchResult.step3Instr}
-        </div>
-
         <Form formData={formData} setFormData={setFormData} errors={errors} className='register-user' onSubmit={handleSubmit}>
           <div>
 
@@ -176,7 +180,7 @@ const MatchResult = () => {
               <CheckboxInput id='5' checked={useComp} onChange={handleUseComp} text='Competences' />
             </div>
 
-            <h3>{strings.vagledning.matchResult.ads} (JobSearch) {ads.length}/{totalMatchedAds} st</h3>
+            <h3>{strings.vagledning.future.ads} (JobSearch) {ads.length}/{totalMatchedAds} st</h3>
             {ads.map((ad, index) => (
               <div key={index} className='cat-title'>
                 <CheckboxInput id={ad.id} data-ssyk4-id={ad.occupation_group.concept_id} checked={ad.vagledning_active} onChange={adExpandHandler} text={ad.headline} />
@@ -192,4 +196,4 @@ const MatchResult = () => {
   )
 }
 
-export default MatchResult
+export default Future

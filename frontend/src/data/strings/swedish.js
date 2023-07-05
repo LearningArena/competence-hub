@@ -16,8 +16,6 @@ export const swedishStrings = {
   sidemenuMyAds: 'Mina efterlysningar',
   sidemenuFavAds: 'Sparade efterlysningar',
   sidemenuRequests: 'Efterlysningar',
-  sidemenuCV: 'CV',
-  sidemenuCompetence: 'Kompetenser',
   signup: {
     header: 'Skapa konto',
     or: '| ',
@@ -488,24 +486,28 @@ export const swedishStrings = {
     ingress: 'Välj utgångsläge för vägledning',
     haveCV: 'Jag har ett CV',
     haveAd: 'Jag har hittat ett drömjobb',
+    sidemenuStart: 'Start',
+    sidemenuInsight: 'Insikt',
+    sidemenuOutlook: 'Utsikt',
+    sidemenuFuture: 'Framsikt',
+    sidemenuMyPath: 'Min väg',
     cv: {
-      bubbleHeader: 'Hej!',
-      bubbleText1: 'Står du mitt i yrkeslivet, med behov  att byta jobb, men är osäker på vad du är behörig till - eller kanske nyfiken på vilket jobb som skulle kunna passa just dig?',
-      bubbleText2: 'Infoga då ditt CV här nedan och testa jobbmatcharen!',
+      Header: 'Steg 1 - Få insikt om dig själv',
+      Preamble: 'Ett viktigt första steg i att hitta rätt väg framåt är att börja kartlägga och förstå var du är nu; vilka kompetenser och preferenser du redan har och bar med dig sedan tidigare - Och vilka vägar du kanske redan vandrat en bit på. Kanske kan delar av din befintliga kunskap passa in i en helt annan bransch? Vad saknas då för att du ska kunna ta ett steg in i den branschen? Och vet du vilket värde en potentiell arbetsgivare i den branschen kan se i just dig? Vi kan hjälpa dig ett steg på vägen genom att extrahera och analysera kompetenser från ditt CV. För djupare självkännedom kan du ocksà själv ställa dig utforskande frågor som: Vad har jag uppskattat i mitt yrkesliv hittills? Vad kan jag inte vara utan? När trivs jag som bäst',
       pageTitle: 'Testa jobbmatcharen',
-      step1Header: 'Steg 1 - Ladda upp ditt CV',
-      step1Instr: 'För att kunna matcha dig mot jobbannonsen behöver vi tillgång till ditt CV och personliga brev. Ladda upp dem nedan.',
+      cvUpload: 'Ladda upp dokument',
+      cvInstr: 'För att kunna matcha dig mot jobbannonsen behöver vi tillgång till ditt CV och personliga brev. Ladda upp dem nedan.',
       uploadSpec: 'Tillåtna filformat: TXT, RTF.',
-      next: 'Börja matchning',
+      next: 'Ta nästa steg',
       analyzeText: 'Text som kommer att laddas upp för analys:',
       popup: {
         uploadInstr: 'Välj bland filer',
       },
       dataProcessText: 'Jag samtycker till insamling och bearbetning av data, i enlighet med GDPR, för att kunna nyttja tillhandahållna tjänster, samt möjliggöra analys och framtida förbättringar av hemsidan.'
     },
-    matching: {
-      step2Header: 'Steg 2 - Välj yrken',
-      step2Instr: 'Utifrån de kompetenser vi identifierat rekommenderar vi listade yrken nedan. Välj vilka du vill matchas mot för befintliga jobbannonser eller förfina din matchning.',
+    insight: {
+      Header: 'Kartläggning av kompetenser',
+      Preamble: '<p>Nedan ser du de kompetensord vi extraherat från ditt CV och personliga brev, samt relaterade kompetenser som du kanske också har. Markera de kompetenser du har och vill använda dig av i den fortsatta vägledningsprocessen.</p>',
       competences: 'Kompetenser',
       traits: 'Egenskaper',
       occupationNames: 'Yrkesnamn',
@@ -513,9 +515,13 @@ export const swedishStrings = {
       occupationGroups: 'Yrkesgrupper',
       occupationFields: 'Yrkesområden'
     },
-    matchResult: {
-      step3Header: 'Steg 3 - Välj annonser',
-      step3Instr: 'Utifrån de yrken du valt och de kompetenser vi identifierat rekommenderar vi jobbannonserna nedan. Välj vilka du vill matchas mot för rekommenderad väg framåt eller förfina din matchning.',
+    outlook: {
+      Header: 'Steg 2 - Blicka utåt, mot arbetsmarknaden',
+      Preamble: '<p>Nästa steg på resan att välja en passande väg framåt är att blicka utåt och utforska vad arbetsmarknaden har att erbjuda; vilka branscher och yrken som finns - och vad som kan vara intressant och viktigt för att just du ska trivas.</p><p>Kanske är du nyfiken att utforska en helt ny bransch? Vad är det i så fall som gör dig nyfiken på just den? Och vilka yken i den branschen kan då vara intressanta utifrån just dina personliga preferenser?</p><p>Vi hjälper dig att börja utforska en rad olika branscher och yrken nedan, för att du ska kunna börja fundera kring olika möjligheter i olika delar av arbetsmarknaden. För djupare insikt kan du också själv ställa dig utforskande frågor som:</p><p><ul><li>Vad har jag uppskattat i mitt yrkesliv hittills?</li><li>Vad kan och vill jag inte vara utan?</li><li>Vad är extra viktigt för mig? T.ex. hållbarhet eller mänskliga möten?</li></ul></p>'
+    },
+    future: {
+      Header: 'Steg 3 - Blicka in i framtiden',
+      Preamble: '<p>Det tredje steget på resan är att blicka framåt och tänka sig in i vad framtiden har att erbjuda; vilka faktiska möjligheter som finns där för dig - och vad som passar som vägval utifrån din nuvarande situation.</p><p>Kanske är det extra viktigt med flexibla arbetstider just nu, för att kunna spendera mer tid med familjen? Eller kanske har en förändrad ekonomisk situation gjort att långsiktig stabilitet och trygghet nu är din främsta prioritet? Hur ska du då tänka och prioritera för att hamna rätt - och vilken väg ska du ta?</p><p>Nedan hittar du en lista över möjliga jobb och vägval som skulle kunna passa dig, utifrån de kompetenser du markerat att du besitter, och de yrkesområden som du markerat som intressanta. </p><p>Se och ladda ned en sammanfattning av din resa under nästa steg, som du gärna kan dela med en fysisk studie- och yrkesvägledare på din ort.</p>',
       ads: 'Annonser'
     }
   }
