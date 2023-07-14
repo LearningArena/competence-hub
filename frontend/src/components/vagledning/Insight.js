@@ -4,7 +4,7 @@ import { LanguageContext } from '../../context/LanguageContext'
 import { GuidanceContext } from '../../context/GuidanceContext'
 import SectionWrapper from './SectionWrapper'
 import { CheckboxInput, Form } from '../educate/FormInputs'
-import { jobedOccupationsMatchByText, taxonomyGraphql } from '../../util/arbetsformedlingen'
+import { jobsearchSearch, jobedOccupationsMatchByText, taxonomyGraphql } from '../../util/arbetsformedlingen'
 
 
 const Insight = () => {
@@ -20,6 +20,7 @@ const Insight = () => {
   const [errors, setErrors] = useState({})
   const [formData, setFormData] = useState({})
   const [inputChange, setInputChange] = useState(false)
+  const [newSkills, setNewSkills] = useState(false)
 
   
   const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
@@ -33,7 +34,7 @@ const Insight = () => {
       ...prevState,
       [idKey]: updatedCompetence
     }));
-    setInputChange(true)
+    // setInputChange(true)
   };
 
   const handleCvOccupationChange = (event) => {
@@ -45,20 +46,21 @@ const Insight = () => {
       ...prevState,
       [idKey]: updatedOccupation
     }));
-    setInputChange(true)
+    // setInputChange(true)
   };
 
+  const manualUpdate = (event) => {
+    setInputChange(true)
+  }
 
-  // limit update call frequency
+  // limit update call frequency (when automatically triggered, how to change to use execute on last change?)
   useEffect(() => {
-    const timer = setTimeout(() => inputChange && updateJobEdRelated(), 5e3)
+    const timer = setTimeout(() => inputChange && updateJobEdRelated(), 1e3)
     return () => clearTimeout(timer)
   }, [inputChange]);
 
   const updateJobEdRelated = () => {
-    console.log('updateJobEdRelated!')
-
-    // console.log(Object.keys(cvCompetences).map(function (k) {return (cvCompetences[k]['vagledning_active'] ? cvCompetences[k]['term'] : '');}).join(" "));
+    console.log('updateJobEdRelated!', Object.keys(cvCompetences).map(function (k) {return (cvCompetences[k]['vagledning_active'] ? cvCompetences[k]['term'] : '');}).join(" "))
 
     const fetchJobEdRelated = async () => {
       // First use JobEd API to find occupations (occupation-name) and occupation groups (ssyk-level-4)
@@ -162,7 +164,8 @@ const Insight = () => {
               [item.id]: {
                   "label": item.preferred_label,
                   "concept_taxonomy_id": item.id,
-                  "vagledning_active": (skills.hasOwnProperty(item.id) ? skills[item.id].vagledning_active : false)
+                  "vagledning_active": (skills.hasOwnProperty(item.id) ? skills[item.id].vagledning_active : false),
+                  "jobsearch_hits": -1
                 },
             }
           }, newState)          
@@ -170,11 +173,42 @@ const Insight = () => {
         }
         await sleep(1000)
       }
+      setNewSkills(true)
       console.log("rel skills:", Object.keys(newState).length);
     })();
   
     return () => {};
   }, [occupationGroups]);
+
+  // update new skills with jobsearch hits, in order to sort
+  useEffect(() => {
+    if (newSkills == true) {
+      (async () => {
+        let i = 0
+        // Add jobseaarch hits to every skill
+        for (const skillId in skills) {
+          let jobsearchData = await jobsearchSearch(
+            [],
+            [],
+            [],
+            [],
+            skills[skillId].label,
+            1
+          );
+          console.log(skills[skillId].label, jobsearchData.total.value);
+
+          const updatedSkill = Object.assign({}, skills[skillId]);
+          updatedSkill.jobsearch_hits = jobsearchData.total.value;
+          setSkills(prevState => ({
+            ...prevState,
+            [skillId]: updatedSkill
+          }));
+          await sleep(1000)
+        }
+      })();
+    }
+    setNewSkills(false)
+  }, [newSkills]);
   
   const handleOccupationChange = (event) => {
     const idKey = event.target.getAttribute('data-tax-id')
@@ -196,32 +230,20 @@ const Insight = () => {
     }));
   };
 
-  const handleOccupationGroupChange = (event) => {
-    const idKey = event.target.getAttribute('data-tax-id')
-    const updatedGroup = Object.assign({}, occupationGroups[idKey]);
-    updatedGroup.vagledning_active = !updatedGroup.vagledning_active;
-    setOccupationGroups(prevState => ({
-      ...prevState,
-      [idKey]: updatedGroup
-    }))
-  }
-
-  const handleOccupationFieldChange = (event) => {
-    const idKey = event.target.getAttribute('data-tax-id')
-    const updatedField = Object.assign({}, occupationFields[idKey]);
-    updatedField.vagledning_active = !updatedField.vagledning_active;
-    setOccupationFields(prevState => ({
-      ...prevState,
-      [idKey]: updatedField
-    }));
-  };
-
-  const ConceptCheckbox = (tags, changeHandler) => {
+  const ConceptCheckbox = (tags, changeHandler, sortKey) => {
+    let tagsArr = Object.entries(tags)
+    let sortedTags = []
+    if (sortKey) {
+      sortedTags = [...tagsArr].sort((p1, p2) => (p2[1][sortKey] - p1[1][sortKey]));
+    } else {
+      sortedTags = tagsArr;
+    }
     return (
       <div className='cats-wrap'>
-        {Object.entries(tags).map(([key, item], index) => {
+        {sortedTags.map(([key, item], index) => {
           return  <div key={index} className='cat-title'>
                     <CheckboxInput id={item.label} data-tax-id={item.concept_taxonomy_id} checked={item.vagledning_active} onChange={changeHandler} text={item.label} />
+                    {sortKey ? item.jobsearch_hits : ''}
                   </div>
         })}
       </div>
@@ -245,33 +267,17 @@ const Insight = () => {
           <div>
             <h3>Extraherade kompetens- och yrkesord</h3>
             (Laborera med val (minst 3) för att upptäcka nya skills)
-            {ConceptCheckbox(cvCompetences, handleCvCompetenceChange)}
+            {ConceptCheckbox(cvCompetences, handleCvCompetenceChange, null)}
             <b>- - - - -</b>
-            {ConceptCheckbox(cvOccupations, handleCvOccupationChange)}
+            {ConceptCheckbox(cvOccupations, handleCvOccupationChange, null)}
           </div>
           <hr></hr>
-          {/* <div>
-            <h3>{strings.vagledning.insight.occupations} från cv-kompetenser (JobEd OccupationsMatchByText)</h3>
-            {ConceptCheckbox(occupations, handleOccupationChange)}
-          </div>
-          <div>
-            <h3>{strings.vagledning.insight.occupationGroups} från cv-kompetenser (JobEd OccupationsMatchByText)</h3>
-            <p>Klicka för att addera relaterade skills!</p>
-            {ConceptCheckbox(occupationGroups, handleOccupationGroupChange)}
-          </div> */}
+          <button className='button' type="button" onClick={manualUpdate}>Update related skills</button>
+          <hr></hr>
           <div>
             <h3>Skills från {strings.vagledning.insight.occupationGroups} (Taxonomy ssyk-level-4 related skills)</h3>
-            {ConceptCheckbox(skills, handleSkillChange)}
+            {ConceptCheckbox(skills, handleSkillChange, "jobsearch_hits")}
           </div>
-          {/* <div>
-            <h3>{strings.vagledning.insight.occupationFields} från {strings.vagledning.insight.occupationGroups} och {strings.vagledning.insight.occupationNames} (Taxonomy ssyk-level-4,occupation-name related occupation-fields)</h3>
-            <ul>
-              {Object.entries(occupationFields).map(([key, f], index) => {
-                return <li key={index}>{f.label}</li>;
-              })}
-            </ul>
-            {ConceptCheckbox(occupationFields, handleOccupationFieldChange)}
-          </div> */}
           <button className='button'>{strings.vagledning.cv.next}</button>
         </Form>
       </div>
