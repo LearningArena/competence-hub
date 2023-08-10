@@ -26,7 +26,6 @@ const Insight = () => {
   const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
 
   const handleCvCompetenceChange = (event) => {
-    console.log('handleCvCompetenceChange')
     const idKey = event.target.id
     const updatedCompetence = Object.assign({}, cvCompetences[idKey]);
     updatedCompetence.vagledning_active = !updatedCompetence.vagledning_active;
@@ -38,7 +37,6 @@ const Insight = () => {
   };
 
   const handleCvOccupationChange = (event) => {
-    console.log('handleCvOccupationChange')
     const idKey = event.target.id
     const updatedOccupation = Object.assign({}, cvOccupations[idKey]);
     updatedOccupation.vagledning_active = !updatedOccupation.vagledning_active;
@@ -171,7 +169,7 @@ const Insight = () => {
           }, newState)          
           setSkills(newState)
         }
-        await sleep(1000)
+        await sleep(25)
       }
       setNewSkills(true)
       console.log("rel skills:", Object.keys(newState).length);
@@ -203,7 +201,7 @@ const Insight = () => {
             ...prevState,
             [skillId]: updatedSkill
           }));
-          await sleep(1000)
+          await sleep(25)
         }
       })();
     }
@@ -275,7 +273,7 @@ const Insight = () => {
           <button className='button' type="button" onClick={manualUpdate}>Update related skills</button>
           <hr></hr>
           <div>
-            <h3>Skills från {strings.vagledning.insight.occupationGroups} (Taxonomy ssyk-level-4 related skills)</h3>
+            <h3>Skills från {strings.vagledning.insight.occupationGroups} (Taxonomy ssyk-level-4 related skills), sortering mha jobsearch freetext hits </h3>
             {ConceptCheckbox(skills, handleSkillChange, "jobsearch_hits")}
           </div>
           <button className='button'>{strings.vagledning.cv.next}</button>

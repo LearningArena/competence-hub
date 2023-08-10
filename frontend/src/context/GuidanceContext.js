@@ -11,9 +11,10 @@ const GuidanceContextProvider = (props) => {
   const [occupations, setOccupations] = useState({})
   const [occupationGroups, setOccupationGroups] = useState({})
   const [occupationFields, setOccupationFields] = useState({})
+  const [occGroupForecasts, setOccGroupForecasts] = useState({})
 
   return (
-    <GuidanceContext.Provider value={{ cvText, setCvText, cvCompetences, setCvCompetences, cvOccupations, setCvOccupations, skills, setSkills, occupations, setOccupations, occupationGroups, setOccupationGroups, occupationFields, setOccupationFields }}>
+    <GuidanceContext.Provider value={{ cvText, setCvText, cvCompetences, setCvCompetences, cvOccupations, setCvOccupations, skills, setSkills, occupations, setOccupations, occupationGroups, setOccupationGroups, occupationFields, setOccupationFields, occGroupForecasts, setOccGroupForecasts }}>
       {props.children}
     </GuidanceContext.Provider>
   )

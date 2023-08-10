@@ -72,7 +72,7 @@ export const jobsearchSearch = async (occupationNameIds, occupationGroupIds, occ
       skillIds.map(x => "&skill=" + x) +
       "&q=" + encodeURIComponent(freetext) +
       "&offset=0&limit=" + limit.toString()
-    console.log('URL: ' + searchUrl)
+    // console.log('URL: ' + searchUrl)
     const response = await fetch(searchUrl, {
       method: 'GET',
       headers: {
@@ -82,6 +82,22 @@ export const jobsearchSearch = async (occupationNameIds, occupationGroupIds, occ
       redirect: 'follow'
     });
     // console.log('RESPONSE: ' + response)
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getOccGroupForecasts = async () => {
+  try {
+      const response = await fetch("https://data.jobtechdev.se/yrkesprognoser/current/Yrkesprognos.json", {
+      method: 'GET',
+      // headers: {
+      //   'accept': 'application/json'
+      // },
+      redirect: 'follow'
+    });
     const data = await response.json();
     return data;
   } catch (error) {

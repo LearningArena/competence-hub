@@ -18,6 +18,7 @@ const Outlook = () => {
   const history = useHistory()
   const [errors, setErrors] = useState({})
   const [formData, setFormData] = useState({})
+  const { occGroupForecasts } = useContext(GuidanceContext)
 
 
   const handleOccupationChange = (event) => {
@@ -56,6 +57,8 @@ const Outlook = () => {
         {Object.entries(tags).map(([key, item], index) => {
           return  <div key={index} className='cat-title'>
                     <CheckboxInput id={item.label} data-tax-id={item.concept_taxonomy_id} checked={item.vagledning_active} onChange={changeHandler} text={item.label} />
+                    <div>{occGroupForecasts[item.concept_taxonomy_id+":0"] ? "Forecast year 0: "+occGroupForecasts[item.concept_taxonomy_id+":0"]['shortage'] : "-"}</div>
+                    <div>{occGroupForecasts[item.concept_taxonomy_id+":3"] ? "Forecast year 3: "+occGroupForecasts[item.concept_taxonomy_id+":3"]['shortage'] : "-"}</div>
                   </div>
         })}
       </div>
@@ -82,7 +85,6 @@ const Outlook = () => {
           </div>
           <div>
             <h3>{strings.vagledning.insight.occupationGroups} från cv-kompetenser (JobEd OccupationsMatchByText)</h3>
-            <p>Klicka för att addera relaterade skills!</p>
             {ConceptCheckbox(occupationGroups, handleOccupationGroupChange)}
           </div>
           <div>
