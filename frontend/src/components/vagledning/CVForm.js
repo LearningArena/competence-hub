@@ -15,6 +15,7 @@ const CVForm = ({ formData, setFormData, submitForm }) => {
   const { occupations, setOccupations } = useContext(GuidanceContext)
   const { occupationGroups, setOccupationGroups } = useContext(GuidanceContext)
   const { occupationFields, setOccupationFields } = useContext(GuidanceContext)
+  const [checked, setChecked] = useState(false)
   const [currentCV, setCurrentCV] = useState('')
   const history = useHistory()
 
@@ -82,16 +83,18 @@ const CVForm = ({ formData, setFormData, submitForm }) => {
         <FileInput id='cv_file' onChange={handleChange} popupText={strings.vagledning.cv.popup.uploadInstr} text={strings.vagledning.cv.cvInstr} multiple />
         <span className='upload-specifications'>{strings.vagledning.cv.uploadSpec}</span>
 
-        {currentCV && <h3>{strings.vagledning.cv.analyzeText}</h3>}
-        {currentCV && <pre>{currentCV}</pre>}
+        {/* {currentCV && <h3>{strings.vagledning.cv.analyzeText}</h3>}
+        {currentCV && <pre>{currentCV}</pre>} */}
 
-        <label style={{verticalAlign: 'super'}}>
-          <input type="checkbox" />
-          <span>{strings.vagledning.cv.dataProcessText}</span>
-        </label>
+        <p>
+          <label style={{verticalAlign: 'super'}}>
+          <input type="checkbox" onChange={() => setChecked(!checked)} />
+            <span>{strings.vagledning.cv.dataProcessText}</span>
+          </label>
+        </p>
 
         <div style={{textAlign: 'center'}}>
-          <button className='button save-button' onClick={handleClick}>{strings.vagledning.cv.next}</button>
+          <button className='button save-button' disabled={!checked || currentCV.length===0} onClick={handleClick}>{strings.vagledning.cv.next}</button>
         </div>
       </Form>
     </>

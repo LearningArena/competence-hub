@@ -257,7 +257,7 @@ const Insight = () => {
     <div>
       <SectionWrapper>
         <h2 id='heading-mod'>{strings.vagledning.insight.Header}</h2>
-        <p>{strings.vagledning.insight.Preamble}</p>
+        <p dangerouslySetInnerHTML={{__html: strings.vagledning.insight.Preamble}} />
       </SectionWrapper>
 
       <div className='vagledning-start'>

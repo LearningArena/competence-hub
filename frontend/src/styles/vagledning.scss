@@ -2,6 +2,16 @@
 
 /* vagledning sass */
 
+.choose-file {
+  width: 100%;
+  padding: 5 5 5 5;
+  margin-top: 20px;
+}
+
+form p {
+  display: block;
+  margin-top: 40px;
+}
 
 // SectionWrapper styles
 
@@ -20,6 +30,8 @@
   text-align: left;
   grid-column-start: 2; /* start at second vertical grid line */
   grid-column-end: 3; /* end at fifth vertical grid line */
+  border-radius: 10px;
+  background-color: lightsteelblue;
 }
 
 .center {

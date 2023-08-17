@@ -51,7 +51,7 @@ const CVMain = () => {
 
       <SectionWrapper>
         <h2 id='heading-mod'>{strings.vagledning.cv.Header}</h2>
-        <p>{strings.vagledning.cv.Preamble}</p>
+        <p dangerouslySetInnerHTML={{__html: strings.vagledning.cv.Preamble}} />
       </SectionWrapper>
 
       <SectionWrapper>

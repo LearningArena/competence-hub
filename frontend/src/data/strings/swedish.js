@@ -493,17 +493,17 @@ export const swedishStrings = {
     sidemenuMyPath: 'Min väg',
     cv: {
       Header: 'Steg 1 - Få insikt om dig själv',
-      Preamble: 'Ett viktigt första steg i att hitta rätt väg framåt är att börja kartlägga och förstå var du är nu; vilka kompetenser och preferenser du redan har och bar med dig sedan tidigare - Och vilka vägar du kanske redan vandrat en bit på. Kanske kan delar av din befintliga kunskap passa in i en helt annan bransch? Vad saknas då för att du ska kunna ta ett steg in i den branschen? Och vet du vilket värde en potentiell arbetsgivare i den branschen kan se i just dig? Vi kan hjälpa dig ett steg på vägen genom att extrahera och analysera kompetenser från ditt CV. För djupare självkännedom kan du ocksà själv ställa dig utforskande frågor som: Vad har jag uppskattat i mitt yrkesliv hittills? Vad kan jag inte vara utan? När trivs jag som bäst',
+      Preamble: '<p>Ett viktigt första steg i att hitta rätt väg framåt är att börja kartlägga och förstå var du är nu; vilka kompetenser och preferenser du redan har och bar med dig sedan tidigare - Och vilka vägar du kanske redan vandrat en bit på.</p><p>Kanske kan delar av din befintliga kunskap passa in i en helt annan bransch? Vad saknas då för att du ska kunna ta ett steg in i den branschen? Och vet du vilket värde en potentiell arbetsgivare i den branschen kan se i just dig?</p><p>Vi kan hjälpa dig ett steg på vägen genom att extrahera och analysera kompetenser från ditt CV. För djupare självkännedom kan du ocksà själv ställa dig utforskande frågor som:</p><p><ul><li>Vad har jag uppskattat i mitt yrkesliv hittills?</li><li>Vad kan jag inte vara utan?</li><li>När trivs jag som bäst?</li></ul></p>',
       pageTitle: 'Testa jobbmatcharen',
-      cvUpload: 'Ladda upp dokument',
+      cvUpload: 'Ladda upp CV eller personligt brev',
       cvInstr: 'För att kunna matcha dig mot jobbannonsen behöver vi tillgång till ditt CV och personliga brev. Ladda upp dem nedan.',
       uploadSpec: 'Tillåtna filformat: TXT, RTF.',
-      next: 'Ta nästa steg',
+      next: 'Nästa steg',
       analyzeText: 'Text som kommer att laddas upp för analys:',
       popup: {
         uploadInstr: 'Välj bland filer',
       },
-      dataProcessText: 'Jag samtycker till insamling och bearbetning av data, i enlighet med GDPR, för att kunna nyttja tillhandahållna tjänster, samt möjliggöra analys och framtida förbättringar av hemsidan.'
+      dataProcessText: 'Genom att ladda upp ditt CV, godkänner du att användning av dessa personuppgifter på sajten kompetensmatchning.se sker i enlighet med den Allmänna Dataskyddsförordningen (GDPR). Du förstår att uppgifterna endast kommer att användas för att identifiera nyckelord mha arbetsförmedlingens berikningstjänst JobAd Enrichment för att kunna erbjuda karriärvägledningstjänster. Ingen information lagras och temporär information i din webbläsare försvinner så fort du stänger den.'
     },
     insight: {
       Header: 'Kartläggning av kompetenser',
