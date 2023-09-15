@@ -42,13 +42,13 @@ const InputCommon = (props) => {
 
   return (
     <>
+    {props.children}
     {props.text && <div className={'labelwrapper' + (props.className ? ` ${props.className}` : '')}>
         <label htmlFor={props.id}>{props.text}{props.required && '*'}</label>
         {props.popupText && 
           <div ref={ref} className='questionmark' onMouseLeave={hidePopup} onMouseOver={(evt) => showTooltip(<span>{props.popupText}</span>, ref)}><Questionmark/></div>
         }
     </div>}
-      {props.children}
       {data?.errors?.[props.id] && 
       <div className='error'>{data.errors[props.id]}</div>
       }
