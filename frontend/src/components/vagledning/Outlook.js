@@ -55,7 +55,7 @@ const Outlook = () => {
     return (
       <div className='cats-wrap'>
         {Object.entries(tags).map(([key, item], index) => {
-          return  <div key={index} className='cat-title'>
+          return  <div key={index} className={`cat-title ${item.vagledning_active ? 'checked' : ''}`}>
                     <CheckboxInput id={item.label} data-tax-id={item.concept_taxonomy_id} checked={item.vagledning_active} onChange={changeHandler} text={item.label} />
                     <div>{occGroupForecasts[item.concept_taxonomy_id+":0"] ? "Forecast year 0: "+occGroupForecasts[item.concept_taxonomy_id+":0"]['shortage'] : "-"}</div>
                     <div>{occGroupForecasts[item.concept_taxonomy_id+":3"] ? "Forecast year 3: "+occGroupForecasts[item.concept_taxonomy_id+":3"]['shortage'] : "-"}</div>

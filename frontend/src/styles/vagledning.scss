@@ -17,19 +17,21 @@ form p {
 
 .grid-container {
   display: grid;
-  grid-template-columns: 1fr 4fr 1fr;
-  grid-gap: 15px;
-  margin-left: -15px;
-  margin-right: -15px;
+  // grid-template-columns: 1fr 4fr 1fr;
+  // grid-gap: 15px;
+  // margin-left: -15px;
+  // margin-right: -15px;
   margin-bottom: 50px;
   align-items: baseline;
 }
   
 .content {
-  padding: 20px;
+  padding: 30px 50px;
   text-align: left;
-  grid-column-start: 2; /* start at second vertical grid line */
-  grid-column-end: 3; /* end at fifth vertical grid line */
+  max-width: 900px;
+  min-width: 400px;
+  // grid-column-start: 2; /* start at second vertical grid line */
+  // grid-column-end: 3; /* end at fifth vertical grid line */
   border-radius: 10px;
   background-color: lightsteelblue;
 }
@@ -136,3 +138,31 @@ form p {
   background-color: $colHeaderBG;
   color: #fff;
 }
+
+
+
+.cats-wrap {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px; 
+}
+
+.cat-title {
+  background-color: white;
+  border-radius: 8px; 
+  border: 1px solid #000;  
+  word-wrap: break-word;
+  padding: 10px; 
+  overflow: hidden; 
+}
+
+.cat-title.checked {
+  background-color: #c2f4bc;
+}
+
+form .checkbox label {
+  font-size: 1em;
+  word-wrap: break-word;
+}
+
+
