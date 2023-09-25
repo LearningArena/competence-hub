@@ -6,7 +6,7 @@ import { Form, FileInput } from '../educate/FormInputs'
 import { jobadEnrichTextDocuments, jobedOccupationsMatchByText, taxonomyGraphql } from '../../util/arbetsformedlingen'
 
 
-const CVForm = ({ formData, setFormData, submitForm }) => {
+const CVForm = ({ formData, setFormData, submitForm, setShowInsight }) => {
 
   const { strings } = useContext(LanguageContext)
   const { cvText, setCvText } = useContext(GuidanceContext)
@@ -33,6 +33,7 @@ const CVForm = ({ formData, setFormData, submitForm }) => {
   }
 
   const handleClick = (e) => {
+    e.preventDefault(); // prevent the default form submission
     if (currentCV) {
       setCvText(currentCV)
 
@@ -72,7 +73,8 @@ const CVForm = ({ formData, setFormData, submitForm }) => {
 
       };
       fetchCVEnrichment();
-      history.push('/vagledning/insight')
+      //history.push('/vagledning/insight')
+      setShowInsight(true);
     }
   }
 
@@ -94,7 +96,7 @@ const CVForm = ({ formData, setFormData, submitForm }) => {
         </p>
 
         <div style={{textAlign: 'center'}}>
-          <button className='button save-button' disabled={!checked || currentCV.length===0} onClick={handleClick}>{strings.vagledning.cv.next}</button>
+          <button className='button save-button' disabled={!checked || currentCV.length===0} onClick={handleClick}>{strings.vagledning.cv.upload}</button>
         </div>
       </Form>
     </>

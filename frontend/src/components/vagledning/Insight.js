@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { LanguageContext } from '../../context/LanguageContext'
 import { GuidanceContext } from '../../context/GuidanceContext'
-import SectionWrapper from './SectionWrapper'
 import { CheckboxInput, Form } from '../educate/FormInputs'
 import { jobsearchSearch, jobedOccupationsMatchByText, taxonomyGraphql } from '../../util/arbetsformedlingen'
 
@@ -255,12 +254,11 @@ const Insight = () => {
 
   return (
     <div>
-      <SectionWrapper>
+      <div className='content content--white'>
         <h2 id='heading-mod'>{strings.vagledning.insight.Header}</h2>
         <p dangerouslySetInnerHTML={{__html: strings.vagledning.insight.Preamble}} />
-      </SectionWrapper>
 
-      <SectionWrapper>
+
         <div className='vagledning-start'>
           <Form formData={formData} setFormData={setFormData} errors={errors} className='register-user' onSubmit={handleSubmit}>
             <div>
@@ -277,10 +275,12 @@ const Insight = () => {
               <h3>Skills från {strings.vagledning.insight.occupationGroups} (Taxonomy ssyk-level-4 related skills), sortering mha jobsearch freetext hits </h3>
               {ConceptCheckbox(skills, handleSkillChange, "jobsearch_hits")}
             </div>
-            <button className='button'>{strings.vagledning.cv.next}</button>
+            <div style={{textAlign: 'center'}}>
+              <button className='button'>{strings.vagledning.cv.next}</button>
+            </div>
           </Form>
         </div>
-      </SectionWrapper>
+      </div>
     </div>
   )
 }

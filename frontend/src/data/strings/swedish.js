@@ -499,6 +499,7 @@ export const swedishStrings = {
       cvInstr: 'För att kunna matcha dig mot jobbannonsen behöver vi tillgång till ditt CV och personliga brev. Ladda upp dem nedan.',
       uploadSpec: 'Tillåtna filformat: TXT, RTF.',
       next: 'Nästa steg',
+      upload: 'Kartlägg kompetens',
       analyzeText: 'Text som kommer att laddas upp för analys:',
       popup: {
         uploadInstr: 'Välj bland filer',

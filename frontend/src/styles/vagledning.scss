@@ -30,10 +30,13 @@ form p {
   text-align: left;
   max-width: 900px;
   min-width: 400px;
-  // grid-column-start: 2; /* start at second vertical grid line */
-  // grid-column-end: 3; /* end at fifth vertical grid line */
   border-radius: 10px;
   background-color: lightsteelblue;
+  margin-bottom: 50px;
+  
+  &--white {
+    background-color: #fff;
+  }
 }
 
 .center {

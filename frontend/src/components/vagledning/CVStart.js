@@ -3,8 +3,8 @@ import { LanguageContext } from '../../context/LanguageContext'
 import { GuidanceContext } from '../../context/GuidanceContext'
 import CVForm from './CVForm'
 import '../../styles/vagledning.scss'
-import SectionWrapper from './SectionWrapper'
 import { getOccGroupForecasts } from '../../util/arbetsformedlingen'
+import InsightComponent from './Insight'
 
 const handleSubmit = (evt) => {
   evt.preventDefault()
@@ -12,6 +12,7 @@ const handleSubmit = (evt) => {
 
 const CVMain = () => {
 
+  const [showInsight, setShowInsight] = useState(false);
   const { strings } = useContext(LanguageContext)
   const [formData, setFormData] = useState()
   const { occGroupForecasts, setOccGroupForecasts } = useContext(GuidanceContext)
@@ -36,28 +37,20 @@ const CVMain = () => {
     }
   }, []);
 
-  const cards = [
-    {title: "Card 1", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
-    {title: "Card 2", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
-    {title: "Card 3", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
-    {title: "Card 4", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
-    {title: "Card 5", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
-    {title: "Card 6", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
-    {title: "Card 7", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
-  ];
-
   return (
     <div>
 
-      <SectionWrapper>
+      <div className='content'>
         <h2 id='heading-mod'>{strings.vagledning.cv.Header}</h2>
         <p dangerouslySetInnerHTML={{__html: strings.vagledning.cv.Preamble}} />
-      </SectionWrapper>
+      </div>
 
-      <SectionWrapper>
+      <div className='content'>
         <h3 id='heading-mod'>{strings.vagledning.cv.cvUpload}</h3>
-        <CVForm formData={formData} setFormData={setFormData} submitForm={handleSubmit} />
-      </SectionWrapper>
+        <CVForm formData={formData} setFormData={setFormData} submitForm={handleSubmit} setShowInsight={setShowInsight} />
+      </div>
+      {showInsight && <InsightComponent />} {/* Render InsightComponent when showInsight is true */}
+
 
     </div>
   );
