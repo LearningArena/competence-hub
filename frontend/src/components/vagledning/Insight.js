@@ -238,8 +238,19 @@ const Insight = () => {
     return (
       <div className='cats-wrap'>
         {sortedTags.map(([key, item], index) => {
-          return  <div key={index} className={`cat-title ${item.vagledning_active ? 'checked' : ''}`}>
-                    <CheckboxInput id={item.label} data-tax-id={item.concept_taxonomy_id} checked={item.vagledning_active} onChange={changeHandler} text={item.label} />
+          return  <div 
+                    key={index} className={`cat-title ${item.vagledning_active ? 'checked' : ''}`}
+                    onClick={() => changeHandler(item)}
+                  >
+                    {/* <div style={{ pointerEvents: 'none' }}> */}
+                      <CheckboxInput 
+                        id={item.label} 
+                        data-tax-id={item.concept_taxonomy_id} 
+                        checked={item.vagledning_active} 
+                        onChange={changeHandler} 
+                        text={item.label} 
+                      />
+                    {/* </div> */}
                     {sortKey ? item.jobsearch_hits : ''}
                   </div>
         })}
@@ -262,17 +273,19 @@ const Insight = () => {
         <div className='vagledning-start'>
           <Form formData={formData} setFormData={setFormData} errors={errors} className='register-user' onSubmit={handleSubmit}>
             <div>
+              <hr></hr>
               <h3>Extraherade kompetens- och yrkesord</h3>
               (Laborera med val (minst 3) för att upptäcka nya skills)
+              <hr></hr>
               {ConceptCheckbox(cvCompetences, handleCvCompetenceChange, null)}
-              <b>- - - - -</b>
-              {ConceptCheckbox(cvOccupations, handleCvOccupationChange, null)}
             </div>
-            <hr></hr>
-            <button className='button' type="button" onClick={manualUpdate}>Update related skills</button>
-            <hr></hr>
+            <div style={{textAlign: 'center'}}>
+              <button className='button' type="button" onClick={manualUpdate}>Update related skills</button>
+            </div>
             <div>
+              <hr></hr>
               <h3>Skills från {strings.vagledning.insight.occupationGroups} (Taxonomy ssyk-level-4 related skills), sortering mha jobsearch freetext hits </h3>
+              <hr></hr>
               {ConceptCheckbox(skills, handleSkillChange, "jobsearch_hits")}
             </div>
             <div style={{textAlign: 'center'}}>

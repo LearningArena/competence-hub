@@ -51,14 +51,33 @@ const Outlook = () => {
     }));
   };
 
+  const handleShowMoreChange = (event) => {
+
+  }
+
   const ConceptCheckbox = (tags, changeHandler) => {
     return (
-      <div className='cats-wrap'>
+      <div>
         {Object.entries(tags).map(([key, item], index) => {
-          return  <div key={index} className={`cat-title ${item.vagledning_active ? 'checked' : ''}`}>
-                    <CheckboxInput id={item.label} data-tax-id={item.concept_taxonomy_id} checked={item.vagledning_active} onChange={changeHandler} text={item.label} />
-                    <div>{occGroupForecasts[item.concept_taxonomy_id+":0"] ? "Forecast year 0: "+occGroupForecasts[item.concept_taxonomy_id+":0"]['shortage'] : "-"}</div>
-                    <div>{occGroupForecasts[item.concept_taxonomy_id+":3"] ? "Forecast year 3: "+occGroupForecasts[item.concept_taxonomy_id+":3"]['shortage'] : "-"}</div>
+          return  <div className='field-wrap'>
+                    <div key={index} className={`field-inner-1 ${item.vagledning_active ? 'checked' : ''}`}>
+                    {item.label}
+                    <div style={{textAlign: 'center'}}>
+                     <button className='button' type="button" onClick={handleShowMoreChange}>Visa mer</button>
+                    </div>
+                    </div>
+                    <div key={index} className={`field-inner-2 ${item.vagledning_active ? 'checked' : ''}`}>
+                      För mig känns området:
+                      <CheckboxInput id={item.label} data-tax-id={item.concept_taxonomy_id} checked={item.vagledning_active} onChange={changeHandler} text='Intressant' />
+                      <CheckboxInput id={item.label} data-tax-id={item.concept_taxonomy_id} checked={item.vagledning_active} onChange={changeHandler} text='Varken eller' />
+                      <CheckboxInput id={item.label} data-tax-id={item.concept_taxonomy_id} checked={item.vagledning_active} onChange={changeHandler} text='Inte alls intressant' />
+                    </div>
+                    <div key={index} className={`field-inner-3`}>
+
+                    </div>
+                      {/* <CheckboxInput id={item.label} data-tax-id={item.concept_taxonomy_id} checked={item.vagledning_active} onChange={changeHandler} text={item.label} /> */}
+                      {/* <div>{occGroupForecasts[item.concept_taxonomy_id+":0"] ? "Forecast year 0: "+occGroupForecasts[item.concept_taxonomy_id+":0"]['shortage'] : "-"}</div> */}
+                      {/* <div>{occGroupForecasts[item.concept_taxonomy_id+":3"] ? "Forecast year 3: "+occGroupForecasts[item.concept_taxonomy_id+":3"]['shortage'] : "-"}</div> */}
                   </div>
         })}
       </div>
@@ -72,26 +91,20 @@ const Outlook = () => {
 
   return (
     <div>
-      <SectionWrapper>
+      <div className='content'>
         <h2 id='heading-mod'>{strings.vagledning.outlook.Header}</h2>
         <p dangerouslySetInnerHTML={{__html: strings.vagledning.outlook.Preamble}} />
-      </SectionWrapper>
+      </div>
 
       <div className='vagledning-start'>
-        <Form formData={formData} setFormData={setFormData} errors={errors} className='register-user' onSubmit={handleSubmit}>
+        <Form formData={formData} setFormData={setFormData} errors={errors} className='no-margin-form' onSubmit={handleSubmit}>
+         
           <div>
-            <h3>{strings.vagledning.insight.occupations} från cv-kompetenser (JobEd OccupationsMatchByText)</h3>
-            {ConceptCheckbox(occupations, handleOccupationChange)}
-          </div>
-          <div>
-            <h3>{strings.vagledning.insight.occupationGroups} från cv-kompetenser (JobEd OccupationsMatchByText)</h3>
-            {ConceptCheckbox(occupationGroups, handleOccupationGroupChange)}
-          </div>
-          <div>
-            <h3>{strings.vagledning.insight.occupationFields} från {strings.vagledning.insight.occupationGroups} och {strings.vagledning.insight.occupationNames} (Taxonomy ssyk-level-4,occupation-name related occupation-fields)</h3>
             {ConceptCheckbox(occupationFields, handleOccupationFieldChange)}
           </div>
-          <button className='button'>{strings.vagledning.cv.next}</button>
+          <div style={{textAlign: 'center'}}>
+            <button className='button'>{strings.vagledning.cv.next}</button>
+          </div>
         </Form>
       </div>
     </div>
