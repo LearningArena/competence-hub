@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { LanguageContext } from '../../context/LanguageContext'
 import { GuidanceContext } from '../../context/GuidanceContext'
-import SectionWrapper from './SectionWrapper'
 import { CheckboxInput, Form } from '../educate/FormInputs'
 
 
@@ -51,11 +50,16 @@ const Outlook = () => {
     }));
   };
 
-  const handleShowMoreChange = (event) => {
 
-  }
 
   const ConceptCheckbox = (tags, changeHandler) => {
+    const [showMore, setShowMore] = useState({});
+    const handleShowMoreChange = (index) => {
+      setShowMore(prevState => ({
+          ...prevState,
+          [index]: !prevState[index]
+      }));
+  }
     return (
       <div>
         {Object.entries(tags).map(([key, item], index) => {
@@ -67,20 +71,29 @@ const Outlook = () => {
               groups = groups + occupationGroups[ogId].concept_taxonomy_id + " : " + occupationGroups[ogId].label + "<br>"
             }
           }
-          return  <div className='field-wrap'>
-                    <div key={index} className={`field-inner-1 ${item.vagledning_active ? 'checked' : ''}`}>
+          return  <div key={`wrap-${index}`} className='field-wrap'>
+                   <div 
+                      key={`inner-1-${index}`} 
+                      className={`field-inner-1`}
+                      style={{ borderBottomLeftRadius: showMore[index] ? '0px' : '8px' }}>
                     {item.label}
                     <div style={{textAlign: 'center'}}>
-                     <button className='button' type="button" onClick={handleShowMoreChange}>Visa mer</button>
+                      <p className='field-text'>
+                        Här kommer en text om yrkesområdet som beskriver det.
+                      </p>
+                    <button 
+                      className='button' 
+                      type="button" 
+                      onClick={() => handleShowMoreChange(index)}>
+                        {showMore[index] ? 'Visa mindre' : 'Visa mer'}
+                    </button>
                     </div>
                     </div>
-                    <div key={index} className={`field-inner-2 ${item.vagledning_active ? 'checked' : ''}`}>
+                    <div key={`inner-2-${index}`} className={`field-inner-2 ${item.vagledning_active ? 'checked' : ''}`} style={{ borderBottomRightRadius: showMore[index] ? '0px' : '8px' }}>
                       För mig känns området:
                       <CheckboxInput id={item.label} data-tax-id={item.concept_taxonomy_id} checked={item.vagledning_active} onChange={changeHandler} text='Intressant' />
-                      <CheckboxInput id={item.label} data-tax-id={item.concept_taxonomy_id} checked={item.vagledning_active} onChange={changeHandler} text='Varken eller' />
-                      <CheckboxInput id={item.label} data-tax-id={item.concept_taxonomy_id} checked={item.vagledning_active} onChange={changeHandler} text='Inte alls intressant' />
                     </div>
-                    <div key={index} className={`field-inner-3`}>
+                    <div key={`inner-3-${index}`} className={`field-inner-3`} style={{ display: showMore[index] ? 'block' : 'none' }}>
                       <div dangerouslySetInnerHTML={{ __html: groups }} />
                     </div>
                       {/* <CheckboxInput id={item.label} data-tax-id={item.concept_taxonomy_id} checked={item.vagledning_active} onChange={changeHandler} text={item.label} /> */}

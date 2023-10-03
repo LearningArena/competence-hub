@@ -183,7 +183,25 @@ form .checkbox label {
 }
 
 .field-inner-1 {
+  display: flex;
+  flex-direction: column; /* Vertikal orientering */
+  justify-content: space-between; /* Skapar utrymme mellan elementen */
+
+
   border-top-left-radius: 8px;
+  background-color: lightsteelblue;
+
+  margin: 0;
+
+  word-wrap: break-word;
+  padding: 50px;
+  padding-bottom: 10px; 
+  overflow: hidden;
+
+  font-size: 1.6em;
+}
+
+.field-inner-2 {
   background-image: repeating-linear-gradient(
     to bottom,
     #000,
@@ -193,20 +211,8 @@ form .checkbox label {
   );
   background-size: 2px 100%; /* 1px is the thickness of the dashed line, 100% is the width of the line */
   background-repeat: repeat-y; /* Makes the dashed line repeat vertical */
-  background-position: right;
+  background-position: left;
 
-  background-color: lightsteelblue;
-
-  margin: 0;
-
-  word-wrap: break-word;
-  padding: 50px; 
-  overflow: hidden;
-
-  font-size: 1.6em;
-}
-
-.field-inner-2 {
   margin: 0;
   word-wrap: break-word;
   border-top-right-radius: 8px;
@@ -241,6 +247,12 @@ form .checkbox label {
 
 .button {
   border-radius: 8px;
-  margin: 20px;
   transition: 0.2s;
+  margin: 20px;
+}
+
+.field-text {
+  text-align: left;
+  font-size: small;
+  margin-top: 20px;
 }
