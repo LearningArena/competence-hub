@@ -238,19 +238,8 @@ const Insight = () => {
     return (
       <div className='cats-wrap'>
         {sortedTags.map(([key, item], index) => {
-          return  <div 
-                    key={index} className={`cat-title ${item.vagledning_active ? 'checked' : ''}`}
-                    onClick={() => changeHandler(item)}
-                  >
-                    {/* <div style={{ pointerEvents: 'none' }}> */}
-                      <CheckboxInput 
-                        id={item.label} 
-                        data-tax-id={item.concept_taxonomy_id} 
-                        checked={item.vagledning_active} 
-                        onChange={changeHandler} 
-                        text={item.label} 
-                      />
-                    {/* </div> */}
+          return  <div key={index} className={`cat-title ${item.vagledning_active ? 'checked' : ''}`}>
+                    <CheckboxInput id={item.label} data-tax-id={item.concept_taxonomy_id} checked={item.vagledning_active} onChange={changeHandler} text={item.label} />
                     {sortKey ? item.jobsearch_hits : ''}
                   </div>
         })}
