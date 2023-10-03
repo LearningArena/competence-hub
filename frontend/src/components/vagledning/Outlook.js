@@ -59,6 +59,14 @@ const Outlook = () => {
     return (
       <div>
         {Object.entries(tags).map(([key, item], index) => {
+          let groups = "";
+          for (const ogId in occupationGroups) {
+            if (item.concept_taxonomy_id == occupationGroups[ogId].occupation_field_id) {
+              // console.log(occupationGroups[ogId].concept_taxonomy_id, occupationGroups[ogId].label);
+              groups = groups + "<div key=" + occupationGroups[ogId].concept_taxonomy_id + ">" + occupationGroups[ogId].concept_taxonomy_id + " : " + occupationGroups[ogId].label + "</div>"
+              groups = groups + occupationGroups[ogId].concept_taxonomy_id + " : " + occupationGroups[ogId].label + "<br>"
+            }
+          }
           return  <div className='field-wrap'>
                     <div key={index} className={`field-inner-1 ${item.vagledning_active ? 'checked' : ''}`}>
                     {item.label}
@@ -73,7 +81,7 @@ const Outlook = () => {
                       <CheckboxInput id={item.label} data-tax-id={item.concept_taxonomy_id} checked={item.vagledning_active} onChange={changeHandler} text='Inte alls intressant' />
                     </div>
                     <div key={index} className={`field-inner-3`}>
-
+                      <div dangerouslySetInnerHTML={{ __html: groups }} />
                     </div>
                       {/* <CheckboxInput id={item.label} data-tax-id={item.concept_taxonomy_id} checked={item.vagledning_active} onChange={changeHandler} text={item.label} /> */}
                       {/* <div>{occGroupForecasts[item.concept_taxonomy_id+":0"] ? "Forecast year 0: "+occGroupForecasts[item.concept_taxonomy_id+":0"]['shortage'] : "-"}</div> */}

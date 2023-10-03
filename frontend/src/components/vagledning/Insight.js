@@ -82,8 +82,8 @@ const Insight = () => {
       }, newState)
       console.log("occs:", Object.keys(newState).length)
       setOccupations(newState)
-      newState = {}
-      newState = jobedData.related_occupations.reduce((obj, item) => {
+      let newOGState = {}
+      newOGState = jobedData.related_occupations.reduce((obj, item) => {
         return {
           ...obj,
           [item.occupation_group.concept_taxonomy_id]: {
@@ -94,9 +94,9 @@ const Insight = () => {
               "vagledning_active": false
             },
         }
-      }, newState)
-      console.log("groups:", Object.keys(newState).length)
-      setOccupationGroups(newState)
+      }, newOGState)
+      console.log("groups:", Object.keys(newOGState).length)
+      // Delay updating until further down
 
       // Then use AF Taxonomy to find occupation fields related to occupations
       newState = {}
@@ -116,10 +116,11 @@ const Insight = () => {
         }
       }
       // ... and occupation fields related to occupation groups
-      newData = await taxonomyGraphql("query MyQuery{concepts(id:[" + jobedData.related_occupations.map(o => `"${o.occupation_group.concept_taxonomy_id}"`).join(",") + "]){id preferred_label type related(type:\"occupation-field\",limit:50){id type preferred_label}}}", '', '');
+      newData = await taxonomyGraphql("query MyQuery{concepts(id:[" + jobedData.related_occupations.map(o => `"${o.occupation_group.concept_taxonomy_id}"`).join(",") + "]){id preferred_label type broader(type:\"occupation-field\",limit:50){id type preferred_label}}}", '', '');
       for (let i = 0; i < newData.data.concepts.length; i++) {
-        if (newData.data.concepts[i].related.length > 0) {
-          newState = newData.data.concepts[i].related.reduce((obj, item) => {
+        if (newData.data.concepts[i].broader.length > 0) {
+          newOGState[newData.data.concepts[i].id]["occupation_field_id"] = newData.data.concepts[i].broader[0].id; // add field to group for use in outlook view
+          newState = newData.data.concepts[i].broader.reduce((obj, item) => {
             return {
               ...obj,
               [item["id"]]: {
@@ -133,6 +134,7 @@ const Insight = () => {
       }
       console.log("fields:", Object.keys(newState).length)
       setOccupationFields(newState)
+      setOccupationGroups(newOGState)
     };
     fetchJobEdRelated();
 
