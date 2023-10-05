@@ -238,9 +238,9 @@ form .checkbox label {
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
 
-  word-wrap: break-word;
+  // word-wrap: break-word;
   padding: 50px; 
-  overflow: hidden; 
+  // overflow: hidden; 
 }
 
 
@@ -255,4 +255,34 @@ form .checkbox label {
   text-align: left;
   font-size: small;
   margin-top: 20px;
+}
+
+
+/* Style for the table */
+table {
+  margin: 0px;
+  width: 100%;
+  border-collapse: collapse;
+  display: table;
+}
+
+/* Style for table headings */
+th {
+  background-color: #f2f2f2;
+  padding: 10px;
+  display: table-cell;
+
+}
+
+/* Style for table rows */
+tr {
+  border-bottom: 1px solid #000;
+  display: table-row;
+}
+
+/* Style for table data */
+td {
+  padding: 10px;
+  display: table-cell; 
+  
 }

@@ -60,17 +60,33 @@ const Outlook = () => {
           [index]: !prevState[index]
       }));
   }
+
+  function cleanGroupData(data) {
+    const lines = data.split("\n");
+    const uniqueValues = new Set();
+
+    for (const line of lines) {
+        if (line.trim() === "") continue;  // skip empty lines
+        const parts = line.split(" : ");
+        if (parts.length === 2) {
+            uniqueValues.add(parts[1].trim());
+        }
+    }
+
+    return Array.from(uniqueValues).join("\n");
+  }
+
+
     return (
       <div>
         {Object.entries(tags).map(([key, item], index) => {
-          let groups = "";
+          let groups = "<table> <thead> <tr> <th>Exempelyrken</th> <th>Heading 2</th> </tr> </thead> <tbody>";
           for (const ogId in occupationGroups) {
-            if (item.concept_taxonomy_id == occupationGroups[ogId].occupation_field_id) {
-              // console.log(occupationGroups[ogId].concept_taxonomy_id, occupationGroups[ogId].label);
-              groups = groups + "<div key=" + occupationGroups[ogId].concept_taxonomy_id + ">" + occupationGroups[ogId].concept_taxonomy_id + " : " + occupationGroups[ogId].label + "</div>"
-              groups = groups + occupationGroups[ogId].concept_taxonomy_id + " : " + occupationGroups[ogId].label + "<br>"
+            if (item.concept_taxonomy_id === occupationGroups[ogId].occupation_field_id) {
+              groups = groups + "<tr> <td>" + occupationGroups[ogId].label + "</td> <td>" + + "</td> </tr>" 
             }
           }
+          groups = groups + "</tbody> </table>"
           return  <div key={`wrap-${index}`} className='field-wrap'>
                    <div 
                       key={`inner-1-${index}`} 
