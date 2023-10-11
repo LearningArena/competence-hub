@@ -267,8 +267,8 @@ table {
 }
 
 /* Style for table headings */
-th {
-  background-color: #f2f2f2;
+table th {
+  font-weight: bold;
   padding: 10px;
   display: table-cell;
 

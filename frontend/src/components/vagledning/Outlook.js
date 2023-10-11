@@ -80,13 +80,6 @@ const Outlook = () => {
     return (
       <div>
         {Object.entries(tags).map(([key, item], index) => {
-          let groups = "<table> <thead> <tr> <th>Exempelyrken</th> <th>Heading 2</th> </tr> </thead> <tbody>";
-          for (const ogId in occupationGroups) {
-            if (item.concept_taxonomy_id === occupationGroups[ogId].occupation_field_id) {
-              groups = groups + "<tr> <td>" + occupationGroups[ogId].label + "</td> <td>" + + "</td> </tr>" 
-            }
-          }
-          groups = groups + "</tbody> </table>"
           return  <div key={`wrap-${index}`} className='field-wrap'>
                    <div 
                       key={`inner-1-${index}`} 
@@ -110,11 +103,36 @@ const Outlook = () => {
                       <CheckboxInput id={item.label} data-tax-id={item.concept_taxonomy_id} checked={item.vagledning_active} onChange={changeHandler} text='Intressant' />
                     </div>
                     <div key={`inner-3-${index}`} className={`field-inner-3`} style={{ display: showMore[index] ? 'block' : 'none' }}>
-                      <div dangerouslySetInnerHTML={{ __html: groups }} />
+                      <table key={index}>
+                          <thead>
+                              <tr>
+                                  <th>Exempelyrken</th>
+                                  <th>Chans till jobb</th>
+                                  <th>Läs mer</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              {Object.values(occupationGroups).map((og) => {
+                                  if (item.concept_taxonomy_id === og.occupation_field_id) {
+                                      return (
+                                          <tr key={og.concept_taxonomy_id /* or some other unique key from og */}>
+                                              <td>{og.label}</td>
+                                              <td>
+                                                  {
+                                                      occGroupForecasts[item.concept_taxonomy_id + ":0"] 
+                                                      ? occGroupForecasts[item.concept_taxonomy_id + ":0"].shortage
+                                                      : 'info saknas'
+                                                  }
+                                              </td>
+                                              <td>länk</td>
+                                          </tr>
+                                      );
+                                  }
+                                  return null;  // Return null for items that don't meet the condition
+                              })}
+                          </tbody>
+                      </table>
                     </div>
-                      {/* <CheckboxInput id={item.label} data-tax-id={item.concept_taxonomy_id} checked={item.vagledning_active} onChange={changeHandler} text={item.label} /> */}
-                      {/* <div>{occGroupForecasts[item.concept_taxonomy_id+":0"] ? "Forecast year 0: "+occGroupForecasts[item.concept_taxonomy_id+":0"]['shortage'] : "-"}</div> */}
-                      {/* <div>{occGroupForecasts[item.concept_taxonomy_id+":3"] ? "Forecast year 3: "+occGroupForecasts[item.concept_taxonomy_id+":3"]['shortage'] : "-"}</div> */}
                   </div>
         })}
       </div>
