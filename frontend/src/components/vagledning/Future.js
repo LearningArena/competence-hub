@@ -18,16 +18,17 @@ const Future = () => {
   const history = useHistory()
   const [ads, setAds] = useState([])
   const [useOcc, setUseOcc] = useState(false)
-  const [useOccGroups, setUseOccGroups] = useState(true)
-  const [useOccFields, setUseOccFields] = useState(false)
+  const [useOccGroups, setUseOccGroups] = useState(false)
+  const [useOccFields, setUseOccFields] = useState(true)
   const [useSkills, setUseSkills] = useState(false)
-  const [useComp, setUseComp] = useState(false)
+  const [useComp, setUseComp] = useState(true)
   const [errors, setErrors] = useState({})
   const [formData, setFormData] = useState({})
   const returnNumAds = 25
   const [totalMatchedAds, setTotalMatchedAds] = useState(0)
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const fetchAds = async () => {
       let jobsearchData = await jobsearchSearch(
         (useOcc ? Object.entries(occupations).filter(([key, x], index) => x.vagledning_active).map(([key, x], index) => (x.vagledning_active ? x.concept_taxonomy_id : '')) : []),
@@ -160,6 +161,7 @@ const Future = () => {
     history.push('/vagledning')
   }
 
+
   return (
     <div>
       <SectionWrapper>
@@ -181,15 +183,52 @@ const Future = () => {
             </div>
 
             <h3>{strings.vagledning.future.ads} (JobSearch) {ads.length}/{totalMatchedAds} st</h3>
-            {ads.map((ad, index) => (
-              <div key={index} className='cat-title'>
-                <CheckboxInput id={ad.id} data-ssyk4-id={ad.occupation_group.concept_id} checked={ad.vagledning_active} onChange={adExpandHandler} text={ad.headline} />
-                {ad.vagledning_active ? ExpandedData(ad, index) : <i></i>}
-              </div>
-            ))}
+            {ads.map((ad, index) => 
 
-          </div>    
+              <div key={`wrap-${index}`} className='ad-wrap'>
+                  <div 
+                    key={`inner-1-${index}`} 
+                    className={`ad-inner-1`}
+                  >
+                  {ad.headline}
+                  <div style={{textAlign: 'center'}}>
+                    <p className='ad-description'>
+                    {ad.description.text}
+                    </p>
+                  <a href={ad.webpage_url} target="_blank" rel="noopener noreferrer" className="button field-text">
+                    <p>Gå till annons</p>
+                  </a>
+
+
+
+                  </div>
+                  </div>
+                  <div key={`inner-2-${index}`} className={`ad-inner-2`}>
+                  För mig känns området:
+                      <CheckboxInput id={ad.label} data-tax-id={ad.concept_taxonomy_id} checked={ad.vagledning_active} text='Intressant' />
+                  </div>
+                  <div key={`inner-3-${index}`} className={`ad-inner-3` }>
+
+                  <p><b>Arbetsgivare:</b><br></br>{ad.employer.name}</p>
+                  <p><b>Kommun:</b><br></br>{ad.workplace_address.municipality}</p>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+
+              
+            )}
+
+          </div>
+          <div style={{textAlign: 'center'}}>  
           <button className='button'>{strings.vagledning.cv.next}</button>
+          </div>  
         </Form>
       </div>
     </div>

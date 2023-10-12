@@ -7,6 +7,10 @@ import { CheckboxInput, Form } from '../educate/FormInputs'
 
 const Outlook = () => {
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const { strings } = useContext(LanguageContext)
   const { cvCompetences, setCvCompetences } = useContext(GuidanceContext)
   const { cvOccupations, setCvOccupations } = useContext(GuidanceContext)
@@ -118,11 +122,16 @@ const Outlook = () => {
                                           <tr key={og.concept_taxonomy_id /* or some other unique key from og */}>
                                               <td>{og.label}</td>
                                               <td>
-                                                  {
-                                                      occGroupForecasts[item.concept_taxonomy_id + ":0"] 
-                                                      ? occGroupForecasts[item.concept_taxonomy_id + ":0"].shortage
-                                                      : 'info saknas'
-                                                  }
+                                                {
+                                                    occGroupForecasts[og.concept_taxonomy_id + ":2000"]   // this used to be :0 but for some reason it changed to :2000
+                                                    ? (occGroupForecasts[og.concept_taxonomy_id + ":2000"].shortage === 3 
+                                                      ? "Liten till medelstor" 
+                                                      : (occGroupForecasts[og.concept_taxonomy_id + ":2000"].shortage === 4 
+                                                          ? "Stor" 
+                                                          : "Mycket Stor")
+                                                      )
+                                                    : 'Info saknas'
+                                                }
                                               </td>
                                               <td>länk</td>
                                           </tr>

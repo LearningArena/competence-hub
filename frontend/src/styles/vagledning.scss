@@ -201,6 +201,9 @@ form .checkbox label {
   font-size: 1.6em;
 }
 
+
+
+
 .field-inner-2 {
   background-image: repeating-linear-gradient(
     to bottom,
@@ -241,6 +244,90 @@ form .checkbox label {
   // word-wrap: break-word;
   padding: 50px; 
   // overflow: hidden; 
+}
+
+
+
+.ad-wrap {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0px; 
+  background-color: white;
+  border-radius: 8px; 
+  margin-bottom: 50px;
+}
+
+.ad-inner-1 {
+  grid-row: span 2;
+
+  display: flex;
+  flex-direction: column; /* Vertikal orientering */
+  justify-content: space-between; /* Skapar utrymme mellan elementen */
+
+
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  background-color: lightsteelblue;
+
+  background-image: repeating-linear-gradient(
+    to bottom,
+    #000,
+    #000 10px, /* Length of the dash */
+    #FFFFFF00 10px,
+    #FFFFFF00 20px /* Length of the space */
+  );
+  background-size: 2px 100%; /* 1px is the thickness of the dashed line, 100% is the width of the line */
+  background-repeat: repeat-y; /* Makes the dashed line repeat vertical */
+  background-position: right;
+
+  margin: 0;
+
+  word-wrap: break-word;
+  padding: 50px;
+  padding-bottom: 10px; 
+  overflow: hidden;
+
+  font-size: 1.6em;
+}
+
+.ad-description {
+  font-size: medium;
+  text-align: left;
+  max-height: 190px;
+  overflow: hidden;
+  word-wrap: break-word;
+  
+}
+
+.ad-inner-2 {
+
+
+  margin: 0;
+  word-wrap: break-word;
+  border-top-right-radius: 8px;
+
+  padding: 50px; 
+  overflow: hidden; 
+}
+
+.ad-inner-3 {
+  margin: 0;
+  background-image: repeating-linear-gradient(
+    to right,
+    #000,
+    #000 10px, /* Length of the dash */
+    #ffffff00 10px,
+    #ffffff00 20px /* Length of the space */
+  );
+  background-size: 100% 2px; /* 1px is the thickness of the dashed line, 100% is the width of the line */
+  background-repeat: repeat-x; /* Makes the dashed line repeat horizontally */
+  background-position: top; 
+
+  border-bottom-right-radius: 8px;
+
+  word-wrap: break-word;
+  padding: 50px; 
+  overflow: hidden; 
 }
 
 

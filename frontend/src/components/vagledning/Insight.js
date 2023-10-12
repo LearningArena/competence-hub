@@ -265,17 +265,16 @@ const Insight = () => {
           <Form formData={formData} setFormData={setFormData} errors={errors} className='register-user' onSubmit={handleSubmit}>
             <div>
               <hr></hr>
-              <h3>Extraherade kompetens- och yrkesord</h3>
-              (Laborera med val (minst 3) för att upptäcka nya skills)
+              <h3>Extraherade kompetensord</h3>
               <hr></hr>
               {ConceptCheckbox(cvCompetences, handleCvCompetenceChange, null)}
             </div>
             <div style={{textAlign: 'center'}}>
-              <button className='button' type="button" onClick={manualUpdate}>Update related skills</button>
+              <button className='button' type="button" onClick={manualUpdate}>Hitta relaterade kompetensord</button>
             </div>
             <div>
               <hr></hr>
-              <h3>Skills från {strings.vagledning.insight.occupationGroups} (Taxonomy ssyk-level-4 related skills), sortering mha jobsearch freetext hits </h3>
+              <h3>Relaterade kompetensord </h3>
               <hr></hr>
               {ConceptCheckbox(skills, handleSkillChange, "jobsearch_hits")}
             </div>

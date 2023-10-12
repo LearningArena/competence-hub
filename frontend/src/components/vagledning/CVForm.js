@@ -51,7 +51,7 @@ const CVForm = ({ formData, setFormData, submitForm, setShowInsight }) => {
                 "concept_taxonomy_id": '', //TODO: Ask JobTech why it's missing!
                 "term": item.term,
                 "prediction": item.prediction,
-                "vagledning_active": false // (item.prediction > 0.33 ? true : false)
+                "vagledning_active": true // (item.prediction > 0.33 ? true : false)
               },
           }
         }, newState)
