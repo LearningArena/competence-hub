@@ -116,7 +116,7 @@ const Insight = () => {
         }
       }
       // ... and occupation fields related to occupation groups
-      newData = await taxonomyGraphql("query MyQuery{concepts(id:[" + jobedData.related_occupations.map(o => `"${o.occupation_group.concept_taxonomy_id}"`).join(",") + "]){id preferred_label type broader(type:\"occupation-field\",limit:50){id type preferred_label}}}", '', '');
+      newData = await taxonomyGraphql("query MyQuery{concepts(id:[" + jobedData.related_occupations.map(o => `"${o.occupation_group.concept_taxonomy_id}"`).join(",") + "]){id preferred_label type broader(type:\"occupation-field\",limit:50){id type definition preferred_label}}}", '', '');
       for (let i = 0; i < newData.data.concepts.length; i++) {
         if (newData.data.concepts[i].broader.length > 0) {
           newOGState[newData.data.concepts[i].id]["occupation_field_id"] = newData.data.concepts[i].broader[0].id; // add field to group for use in outlook view
@@ -126,6 +126,7 @@ const Insight = () => {
               [item["id"]]: {
                   "label": item.preferred_label,
                   "concept_taxonomy_id": item.id,
+                  "definition": item.definition,
                   "vagledning_active": false //TODO: true
                 },
             }
