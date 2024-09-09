@@ -596,6 +596,8 @@ namespace SusaNavet
 
 			log.Information("{LogType}, {ImportEvent}, {InfoType}, {ID}, {URL}, {More}", Extapi.Externaldata.LOGTYPE_FILE_PREFIX+"SUSA", "Stats", Extapi.Externaldata.STATS, "", "", "{total_processed_courses : " + coursesProcessed.ToString() + "}");
 			log.Information("{LogType}, {ImportEvent}, {InfoType}, {ID}, {URL}, {More}", Extapi.Externaldata.LOGTYPE_FILE_PREFIX+"SUSA", "Stats", Extapi.Externaldata.STATS, "", "", "{total_approved_courses : "  + coursesApproved.ToString()  + "}");
+			log.Information("{LogType}: {message}", Extapi.Externaldata.LOGTYPE_SYSTEM_PREFIX+"SusaNavet", "Import finished (approved/processed): "  + coursesApproved.ToString() + "/" + coursesProcessed.ToString());
+			Log.CloseAndFlush();
 
 			return courses;
 		}
