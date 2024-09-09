@@ -16,6 +16,15 @@ using Serilog;
 
 namespace Arena;
 
+public enum Chatbot_Kind
+{
+	OPENAI_GPT_3_5_TURBO
+}
+
+
+
+
+
 
 
 public class Account
